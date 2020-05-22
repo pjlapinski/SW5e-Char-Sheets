@@ -10,8 +10,9 @@ body {
   color: rgb(255, 255, 255);
 }
 
+/* styling for the navigation bar at the top of the screen */
 .top-navbar {
-  position: static;
+  position: sticky;
   top: 0;
   left: 0;
   display: flex;
@@ -44,16 +45,21 @@ body {
   pointer-events: none;
 }
 
-.top-info {
+/* general styling for the sheet content*/
+.sheet-info {
   border-radius: 1vw;
-  /* move the border-radius when more content is added */
   background: rgb(100, 100, 100);
   margin: 2vw 3vw;
   padding: 5vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: fit-content;
+}
+
+/* styling for the top part, including basic information
+like name, class and health */
+.top-info {
+  width: auto;
 }
 
 .basic-info {
@@ -123,4 +129,77 @@ body {
 .submit-heal-or-damage:active {
   background-color: rgb(255, 255, 255);
   color: rgb(63, 63, 63);
+}
+
+/* FIXME: this was not made with mobile in mind, it's just a temporary
+styling that kinda works on pc and will be used for testing. ultimately
+all styling should be designed with mobile in mind first!*/
+
+/* styling for the part with attribute scores and skills */
+.attributes-and-skills {
+  padding: 2vh 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+}
+
+.attribute-wrapper {
+  margin: 1vh 0;
+  display: flex;
+}
+
+.attribute-score-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 10vw;
+}
+
+.skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* the saving throw */
+.skills-wrapper :first-child {
+  margin-bottom: 0.5rem;
+}
+
+.skills-wrapper :first-child .skill-name {
+  margin-bottom: 0.5rem;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.skill {
+  display: flex;
+}
+
+.skill * {
+  margin-left: 1rem;
+}
+
+.attribute-small-input {
+  /* 1 or 2 digit numbers only */
+  width: 4rem;
+  background: rgb(78, 78, 78);
+  border: solid;
+  color: rgb(255, 255, 255);
+  border-radius: 1vw;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.attribute-big {
+  /* 1 digit numbers with a + or - in front (excluding 0) */
+  background: rgb(78, 78, 78);
+  border: solid;
+  border-width: 2px;
+  border-radius: 1vw;
+  margin: 0.5vh 0;
+  padding: 3vh;
 }
