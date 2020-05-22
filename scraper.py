@@ -225,7 +225,7 @@ def find(data_type, **kwargs):
 
 def find_exactly(data_type, **kwargs):
     """Finds element of the specified data type (a target from get_target) that
-    matches criterion given in kwargs. If no criterion is given, it returns the first
+    matches the criteria given in kwargs. If no criteria are given, it returns the first
     element in that file. The values in kwargs have to match content of the element
     EXACTLY for it to be returned."""
 
