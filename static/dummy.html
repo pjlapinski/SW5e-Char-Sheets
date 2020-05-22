@@ -1,0 +1,51 @@
+<!-- This is just a dummy site. It will be deleted and replced
+by proper Flask generated page. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/char-sheet-style.css" />
+    <title>SW5e - CHARNAME</title>
+  </head>
+  <body>
+    <nav class="top-navbar">
+      <div class="nav-wrapper">
+        <h2 id="save-nav">Save</h2>
+      </div>
+      <div class="nav-wrapper">
+        <h2 id="return-nav">Return</h2>
+      </div>
+    </nav>
+    <div class="sheet-content">
+      <div class="top-info">
+        <div class="basic-info">
+          <h2 id="charname">CHARNAME</h2>
+          <h4 id="species-class">Bothan Consular 1</h4>
+        </div>
+        <div class="hp">
+          <div class="hp-info">
+            <h4 id="hp-label">Hit Points:</h4>
+            <h4 id="curr-hp">70</h4>
+            <h4 id="separator">/</h4>
+            <h4 id="max-hp">70</h4>
+          </div>
+          <div class="temp-hp">
+            <h4 id="temp-hp-label">Temporary HP:</h4>
+            <h4 id="temp-hp">0</h4>
+          </div>
+          <div class="heal-or-damage">
+            <input type="number" id="heal-or-damage-amount" />
+            <select name="heal-or-damage-choice" id="heal-or-damage-choice">
+              <option value="damage">Damage</option>
+              <option value="heal">Heal</option>
+              <option value="temp-hp">Temp. HP</option>
+            </select>
+          </div>
+          <button class="submit-heal-or-damage">Add</button>
+        </div>
+      </div>
+    </div>
+    <script src="/static/char-sheet-script.js"></script>
+  </body>
+</html>
