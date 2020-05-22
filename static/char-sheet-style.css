@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background: rgb(156, 156, 156);
+  color: rgb(255, 255, 255);
+}
+
+.top-navbar {
+  position: static;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  background-color: rgb(63, 63, 63);
+  height: 50px;
+  padding: 0 5vw;
+}
+
+.nav-wrapper {
+  display: flex;
+  height: inherit;
+  width: 7rem;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.nav-wrapper:hover {
+  color: rgb(85, 187, 255);
+  text-decoration: underline;
+  cursor: pointer;
+  background: rgb(105, 105, 105);
+}
+
+.nav-wrapper h2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.top-info {
+  border-radius: 1vw;
+  /* move the border-radius when more content is added */
+  background: rgb(100, 100, 100);
+  margin: 2vw 3vw;
+  padding: 5vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+}
+
+.basic-info {
+  margin-top: 0.4vw;
+  margin-right: 5vw;
+}
+
+#charname {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#species-class {
+  margin-top: 1rem;
+}
+
+#heal-or-damage-amount {
+  background: transparent;
+  border-style: hidden;
+  border-bottom-style: groove;
+  border-bottom-color: white;
+  width: 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+#heal-or-damage-choice {
+  background-color: rgb(163, 163, 163);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.hp {
+  margin-left: 5vw;
+  text-align: center;
+}
+
+.hp * {
+  margin-top: 0.5vw;
+}
+
+.hp:first-child {
+  margin-top: 0;
+}
+
+.temp-hp {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.hp-info {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.submit-heal-or-damage {
+  background: rgb(63, 63, 63);
+  color: rgb(255, 255, 255);
+  border: solid;
+  border-color: black;
+  border-radius: 0.6vw;
+  font-weight: bold;
+  padding: 1vh 3vw;
+}
+
+.submit-heal-or-damage:active {
+  background-color: rgb(255, 255, 255);
+  color: rgb(63, 63, 63);
+}
