@@ -47,33 +47,14 @@ body {
 
 /* general styling for the sheet content*/
 .sheet-info {
-  border-radius: 1vw;
+  border-radius: 50px;
   background: rgb(100, 100, 100);
   margin: 2vw 3vw;
   padding: 5vh 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-/* styling for the top part, including basic information
-like name, class and health */
-.top-info {
-  width: auto;
-}
-
-.basic-info {
-  margin-top: 0.4vw;
-  margin-right: 5vw;
-}
-
-#charname {
-  font-style: italic;
-  text-decoration: underline;
-}
-
-#species-class {
-  margin-top: 1rem;
 }
 
 #heal-or-damage-amount {
@@ -93,24 +74,7 @@ like name, class and health */
   font-size: 1rem;
 }
 
-.hp {
-  margin-left: 5vw;
-  text-align: center;
-}
-
-.hp * {
-  margin-top: 0.5vw;
-}
-
-.hp:first-child {
-  margin-top: 0;
-}
-
-.temp-hp {
-  display: flex;
-  justify-content: space-evenly;
-}
-
+.temp-hp,
 .hp-info {
   display: flex;
   justify-content: space-evenly;
@@ -121,7 +85,7 @@ like name, class and health */
   color: rgb(255, 255, 255);
   border: solid;
   border-color: black;
-  border-radius: 0.6vw;
+  border-radius: 15px;
   font-weight: bold;
   padding: 1vh 3vw;
 }
@@ -132,42 +96,39 @@ like name, class and health */
 }
 
 /* FIXME: this was not made with mobile in mind, it's just a temporary
-styling that kinda works on pc and will be used for testing. ultimately
+styling that kinda works and will be used for testing. ultimately
 all styling should be designed with mobile in mind first!*/
 
 /* styling for the part with attribute scores and skills */
-.attributes-and-skills {
-  padding: 2vh 1vw;
+.species-info,
+.class-info {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: fit-content;
+  justify-content: space-evenly;
 }
 
 .attribute-wrapper {
-  margin: 1vh 0;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3vh 0;
 }
 
 .attribute-score-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   width: 10vw;
 }
 
 .skills-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  margin-top: 1vh;
 }
 
 /* the saving throw */
-.skills-wrapper :first-child {
-  margin-bottom: 0.5rem;
-}
-
+/* TODO: when changing to flask, just give them class "saving-throw" */
 .skills-wrapper :first-child .skill-name {
   margin-bottom: 0.5rem;
   font-style: italic;
@@ -192,7 +153,7 @@ all styling should be designed with mobile in mind first!*/
   background: rgb(78, 78, 78);
   border: solid;
   color: rgb(255, 255, 255);
-  border-radius: 1vw;
+  border-radius: 20px;
   font-weight: bold;
   text-align: center;
   font-size: 1rem;
@@ -203,7 +164,7 @@ all styling should be designed with mobile in mind first!*/
   background: rgb(78, 78, 78);
   border: solid;
   border-width: 2px;
-  border-radius: 1vw;
+  border-radius: 20px;
   margin: 0.5vh 0;
   padding: 3vh;
 }
@@ -217,7 +178,7 @@ all styling should be designed with mobile in mind first!*/
 #passive-perception-score {
   margin-left: 1vw;
   border: solid;
-  border-radius: 0.3vw;
+  border-radius: 10px;
   border-width: 2px;
   padding: 5px;
 }

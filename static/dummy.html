@@ -18,384 +18,411 @@ by proper Flask generated page. -->
       </div>
     </nav>
     <div class="sheet-content">
-      <div class="top-info sheet-info">
-        <div class="basic-info">
-          <h2 id="charname">CHARNAME</h2>
-          <h4 id="species-class">Bothan Consular 1</h4>
+      <!-- make every "sheet-info" div a tab that you can switch to? -->
+      <div class="basic-info sheet-info">
+        <h2 id="character-name">CHARNAME</h2>
+        <div class="species-info">
+          <h4 class="label">Species:</h4>
+          <h4 id="species">Bothan</h4>
         </div>
-        <div class="hp">
-          <div class="hp-info">
-            <h4 id="hp-label">Hit Points:</h4>
-            <h4 id="curr-hp">70</h4>
-            <h4 id="separator">/</h4>
-            <h4 id="max-hp">70</h4>
-          </div>
-          <div class="temp-hp">
-            <h4 id="temp-hp-label">Temporary HP:</h4>
-            <h4 id="temp-hp">0</h4>
-          </div>
-          <div class="heal-or-damage">
-            <input type="number" id="heal-or-damage-amount" />
-            <select name="heal-or-damage-choice" id="heal-or-damage-choice">
-              <option value="damage">Damage</option>
-              <option value="heal">Heal</option>
-              <option value="temp-hp">Temp. HP</option>
-            </select>
-          </div>
-          <button class="submit-heal-or-damage">Add</button>
+        <div class="class-info">
+          <h4 class="label">Class & level:</h4>
+          <h4 id="class">Consular</h4>
+          <h4 id="level">1</h4>
+        </div>
+        <div class="background-info">
+          <h4 class="label">Personality traits:</h4>
+          <!-- text areas maybe? -->
+          <h5 id="personality-traits">pt</h5>
+          <h4 class="label">Ideal:</h4>
+          <h5 id="ideal">i</h5>
+          <h4 class="label">Bond:</h4>
+          <h5 id="bond">b</h5>
+          <h4 class="label">Flaw:</h4>
+          <h5 id="flaw">f</h5>
+          <!-- very likely some more here, perhaps a text area for backstory/notes? -->
         </div>
       </div>
-      <div class="main-sheet">
-        <div class="attributes-and-skills sheet-info">
-          <div class="attribute-wrapper">
-            <div class="attribute-score-wrapper">
-              <h3>STRENGTH</h3>
-              <div class="attribute-big">
-                <h1>+5</h1>
-              </div>
-              <div class="attibute-small" id="strength-mod">
-                <input
-                  type="number"
-                  class="attribute-small-input"
-                  id="strength-score"
-                  value="20"
-                />
-              </div>
+      <div class="hp-wrapper sheet-info">
+        <div class="hp-info">
+          <h4 class="label">Hit Points:</h4>
+          <h4 id="curr-hp">70</h4>
+          <h4 class="slash-separator">/</h4>
+          <h4 id="max-hp">70</h4>
+        </div>
+        <div class="temp-hp">
+          <h4 class="label">Temporary HP:</h4>
+          <h4 id="temp-hp">0</h4>
+        </div>
+        <div class="heal-or-damage">
+          <input type="number" id="heal-or-damage-amount" />
+          <select name="heal-or-damage-choice" id="heal-or-damage-choice">
+            <option value="damage">Damage</option>
+            <option value="heal">Heal</option>
+            <option value="temp-hp">Temp. HP</option>
+          </select>
+        </div>
+        <button class="submit-heal-or-damage">Add</button>
+        <div class="damage-effects">
+          <!-- alternatively, something like "Immunities, resistances and vulnerabilities"
+          and 1 big text area, which also allows to put in condition immunities -->
+          <h4 class="label">Damage immunities</h4>
+          <h5 id="immunities">ALL</h5>
+          <h4 class="label">Damage resistances</h4>
+          <h5 id="resistances">ALL</h5>
+          <h4 class="label">Damage vulnerabilities</h4>
+          <h5 id="resistances">ALL</h5>
+        </div>
+      </div>
+      <div class="attributes-and-skills sheet-info">
+        <div class="attribute-wrapper">
+          <div class="attribute-score-wrapper">
+            <h3>STRENGTH</h3>
+            <div class="attribute-big">
+              <h1>+5</h1>
             </div>
-            <div class="skills-wrapper">
-              <div class="skill" id="strength-save">
-                <input
-                  type="checkbox"
-                  id="strength-save-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="strength-save-score">+7</h4>
-                <h4 class="skill-name">
-                  Saving Throw
-                </h4>
-              </div>
-              <div class="skill" id="athletics">
-                <input
-                  type="checkbox"
-                  id="athletics-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="athletics-score">+7</h4>
-                <h4 class="skill-name">Athletics</h4>
-              </div>
+            <div class="attibute-small" id="strength-mod">
+              <input
+                type="number"
+                class="attribute-small-input"
+                id="strength-score"
+                value="20"
+              />
+            </div>
+          </div>
+          <div class="skills-wrapper">
+            <div class="skill" id="strength-save">
+              <input
+                type="checkbox"
+                id="strength-save-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="strength-save-score">+7</h4>
+              <h4 class="skill-name">
+                Saving Throw
+              </h4>
+            </div>
+            <div class="skill" id="athletics">
+              <input
+                type="checkbox"
+                id="athletics-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="athletics-score">+7</h4>
+              <h4 class="skill-name">Athletics</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="attribute-wrapper">
+          <div class="attribute-score-wrapper">
+            <h3>DEXTERITY</h3>
+            <div class="attribute-big">
+              <h1>+5</h1>
+            </div>
+            <div class="attibute-small" id="dexterity-mod">
+              <input
+                type="number"
+                class="attribute-small-input"
+                id="dexterity-score"
+                value="20"
+              />
+            </div>
+          </div>
+          <div class="skills-wrapper">
+            <div class="skill" id="dexterity-save">
+              <input
+                type="checkbox"
+                id="dexterity-save-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="dexterity-save-score">+7</h4>
+              <h4 class="skill-name">
+                Saving Throw
+              </h4>
+            </div>
+            <div class="skill" id="acrobatics">
+              <input
+                type="checkbox"
+                id="acrobatics-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="acrobatics-score">+7</h4>
+              <h4 class="skill-name">Acrobatics</h4>
+            </div>
+            <div class="skill" id="sleight">
+              <input
+                type="checkbox"
+                id="sleight-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="sleight-score">+7</h4>
+              <h4 class="skill-name">Sleight of Hand</h4>
+            </div>
+            <div class="skill" id="stealth">
+              <input
+                type="checkbox"
+                id="stealth-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="stealth-score">+7</h4>
+              <h4 class="skill-name">Stealth</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="attribute-wrapper">
+          <div class="attribute-score-wrapper">
+            <h3>CONSTITUTION</h3>
+            <div class="attribute-big">
+              <h1>+5</h1>
+            </div>
+            <div class="attibute-small" id="constitution-mod">
+              <input
+                type="number"
+                class="attribute-small-input"
+                id="constitution-score"
+                value="20"
+              />
+            </div>
+          </div>
+          <div class="skills-wrapper">
+            <div class="skill" id="constitution-save">
+              <input
+                type="checkbox"
+                id="constitution-save-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="constitution-save-score">+7</h4>
+              <h4 class="skill-name">
+                Saving Throw
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="attribute-wrapper">
+          <div class="attribute-score-wrapper">
+            <h3>INTELLIGENCE</h3>
+            <div class="attribute-big">
+              <h1>+5</h1>
+            </div>
+            <div class="attibute-small" id="intelligence-mod">
+              <input
+                type="number"
+                class="attribute-small-input"
+                id="intelligence-score"
+                value="20"
+              />
+            </div>
+          </div>
+          <div class="skills-wrapper">
+            <div class="skill" id="intelligence-save">
+              <input
+                type="checkbox"
+                id="intelligence-save-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="intelligence-save-score">+7</h4>
+              <h4 class="skill-name">
+                Saving Throw
+              </h4>
+            </div>
+            <div class="skill" id="investigation">
+              <input
+                type="checkbox"
+                id="investigation-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="investigation-score">+7</h4>
+              <h4 class="skill-name">
+                Investigation
+              </h4>
+            </div>
+            <div class="skill" id="lore">
+              <input
+                type="checkbox"
+                id="lore-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="lore-score">+7</h4>
+              <h4 class="skill-name">Lore</h4>
+            </div>
+            <div class="skill" id="nature">
+              <input
+                type="checkbox"
+                id="nature-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="nature-score">+7</h4>
+              <h4 class="skill-name">Nature</h4>
+            </div>
+            <div class="skill" id="piloting">
+              <input
+                type="checkbox"
+                id="piloting-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="piloting-score">+7</h4>
+              <h4 class="skill-name">Piloting</h4>
+            </div>
+            <div class="skill" id="technology">
+              <input
+                type="checkbox"
+                id="technology-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="technology-score">+7</h4>
+              <h4 class="skill-name">Technology</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="attribute-wrapper">
+          <div class="attribute-score-wrapper">
+            <h3>WISDOM</h3>
+            <div class="attribute-big">
+              <h1>+5</h1>
+            </div>
+            <div class="attibute-small" id="wisdom-mod">
+              <input
+                type="number"
+                class="attribute-small-input"
+                id="wisdom-score"
+                value="20"
+              />
+            </div>
+          </div>
+          <div class="skills-wrapper">
+            <div class="skill" id="wisdom-save">
+              <input
+                type="checkbox"
+                id="wisdom-save-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="wisdom-save-score">+7</h4>
+              <h4 class="skill-name">
+                Saving Throw
+              </h4>
+            </div>
+            <div class="skill" id="animal">
+              <input
+                type="checkbox"
+                id="animal-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="animal-score">+7</h4>
+              <h4 class="skill-name">Animal handling</h4>
+            </div>
+            <div class="skill" id="insight">
+              <input
+                type="checkbox"
+                id="insight-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="insight-score">+7</h4>
+              <h4 class="skill-name">Insight</h4>
+            </div>
+            <div class="skill" id="medicine">
+              <input
+                type="checkbox"
+                id="medicine-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="medicine-score">+7</h4>
+              <h4 class="skill-name">Medicine</h4>
+            </div>
+            <div class="skill" id="perception">
+              <input
+                type="checkbox"
+                id="perception-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="perception-score">+7</h4>
+              <h4 class="skill-name">Perception</h4>
+            </div>
+            <div class="skill" id="survival">
+              <input
+                type="checkbox"
+                id="survival-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="survival-score">+7</h4>
+              <h4 class="skill-name">Survival</h4>
+            </div>
+          </div>
+        </div>
+        <div class="attribute-wrapper">
+          <div class="attribute-score-wrapper">
+            <h3>CHARISMA</h3>
+            <div class="attribute-big">
+              <h1>+5</h1>
+            </div>
+            <div class="attibute-small" id="charisma-mod">
+              <input
+                type="number"
+                class="attribute-small-input"
+                id="charisma-score"
+                value="20"
+              />
             </div>
           </div>
 
-          <div class="attribute-wrapper">
-            <div class="attribute-score-wrapper">
-              <h3>DEXTERITY</h3>
-              <div class="attribute-big">
-                <h1>+5</h1>
-              </div>
-              <div class="attibute-small" id="dexterity-mod">
-                <input
-                  type="number"
-                  class="attribute-small-input"
-                  id="dexterity-score"
-                  value="20"
-                />
-              </div>
+          <div class="skills-wrapper">
+            <div class="skill" id="charisma-save">
+              <input
+                type="checkbox"
+                id="charisma-save-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="charisma-save-score">+7</h4>
+              <h4 class="skill-name">
+                Saving Throw
+              </h4>
             </div>
-            <div class="skills-wrapper">
-              <div class="skill" id="dexterity-save">
-                <input
-                  type="checkbox"
-                  id="dexterity-save-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="dexterity-save-score">+7</h4>
-                <h4 class="skill-name">
-                  Saving Throw
-                </h4>
-              </div>
-              <div class="skill" id="acrobatics">
-                <input
-                  type="checkbox"
-                  id="acrobatics-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="acrobatics-score">+7</h4>
-                <h4 class="skill-name">Acrobatics</h4>
-              </div>
-              <div class="skill" id="sleight">
-                <input
-                  type="checkbox"
-                  id="sleight-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="sleight-score">+7</h4>
-                <h4 class="skill-name">Sleight of Hand</h4>
-              </div>
-              <div class="skill" id="stealth">
-                <input
-                  type="checkbox"
-                  id="stealth-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="stealth-score">+7</h4>
-                <h4 class="skill-name">Stealth</h4>
-              </div>
+            <div class="skill" id="deception">
+              <input
+                type="checkbox"
+                id="deception-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="deception-score">+7</h4>
+              <h4 class="skill-name">
+                Deception
+              </h4>
+            </div>
+            <div class="skill" id="intimidation">
+              <input
+                type="checkbox"
+                id="intimidation-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="intimidation-score">+7</h4>
+              <h4 class="skill-name">Intimidation</h4>
+            </div>
+            <div class="skill" id="performance">
+              <input
+                type="checkbox"
+                id="performance-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="performance-score">+7</h4>
+              <h4 class="skill-name">Performance</h4>
+            </div>
+            <div class="skill" id="persuasion">
+              <input
+                type="checkbox"
+                id="persuasion-prof"
+                class="proficiency-checkbox"
+              />
+              <h4 class="skill-score" id="persuasion-score">+7</h4>
+              <h4 class="skill-name">Persuasion</h4>
             </div>
           </div>
-
-          <div class="attribute-wrapper">
-            <div class="attribute-score-wrapper">
-              <h3>CONSTITUTION</h3>
-              <div class="attribute-big">
-                <h1>+5</h1>
-              </div>
-              <div class="attibute-small" id="constitution-mod">
-                <input
-                  type="number"
-                  class="attribute-small-input"
-                  id="constitution-score"
-                  value="20"
-                />
-              </div>
-            </div>
-            <div class="skills-wrapper">
-              <div class="skill" id="constitution-save">
-                <input
-                  type="checkbox"
-                  id="constitution-save-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="constitution-save-score">+7</h4>
-                <h4 class="skill-name">
-                  Saving Throw
-                </h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="attribute-wrapper">
-            <div class="attribute-score-wrapper">
-              <h3>INTELLIGENCE</h3>
-              <div class="attribute-big">
-                <h1>+5</h1>
-              </div>
-              <div class="attibute-small" id="intelligence-mod">
-                <input
-                  type="number"
-                  class="attribute-small-input"
-                  id="intelligence-score"
-                  value="20"
-                />
-              </div>
-            </div>
-            <div class="skills-wrapper">
-              <div class="skill" id="intelligence-save">
-                <input
-                  type="checkbox"
-                  id="intelligence-save-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="intelligence-save-score">+7</h4>
-                <h4 class="skill-name">
-                  Saving Throw
-                </h4>
-              </div>
-              <div class="skill" id="investigation">
-                <input
-                  type="checkbox"
-                  id="investigation-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="investigation-score">+7</h4>
-                <h4 class="skill-name">
-                  Investigation
-                </h4>
-              </div>
-              <div class="skill" id="lore">
-                <input
-                  type="checkbox"
-                  id="lore-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="lore-score">+7</h4>
-                <h4 class="skill-name">Lore</h4>
-              </div>
-              <div class="skill" id="nature">
-                <input
-                  type="checkbox"
-                  id="nature-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="nature-score">+7</h4>
-                <h4 class="skill-name">Nature</h4>
-              </div>
-              <div class="skill" id="piloting">
-                <input
-                  type="checkbox"
-                  id="piloting-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="piloting-score">+7</h4>
-                <h4 class="skill-name">Piloting</h4>
-              </div>
-              <div class="skill" id="technology">
-                <input
-                  type="checkbox"
-                  id="technology-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="technology-score">+7</h4>
-                <h4 class="skill-name">Technology</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="attribute-wrapper">
-            <div class="attribute-score-wrapper">
-              <h3>WISDOM</h3>
-              <div class="attribute-big">
-                <h1>+5</h1>
-              </div>
-              <div class="attibute-small" id="wisdom-mod">
-                <input
-                  type="number"
-                  class="attribute-small-input"
-                  id="wisdom-score"
-                  value="20"
-                />
-              </div>
-            </div>
-            <div class="skills-wrapper">
-              <div class="skill" id="wisdom-save">
-                <input
-                  type="checkbox"
-                  id="wisdom-save-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="wisdom-save-score">+7</h4>
-                <h4 class="skill-name">
-                  Saving Throw
-                </h4>
-              </div>
-              <div class="skill" id="animal">
-                <input
-                  type="checkbox"
-                  id="animal-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="animal-score">+7</h4>
-                <h4 class="skill-name">Animal handling</h4>
-              </div>
-              <div class="skill" id="insight">
-                <input
-                  type="checkbox"
-                  id="insight-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="insight-score">+7</h4>
-                <h4 class="skill-name">Insight</h4>
-              </div>
-              <div class="skill" id="medicine">
-                <input
-                  type="checkbox"
-                  id="medicine-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="medicine-score">+7</h4>
-                <h4 class="skill-name">Medicine</h4>
-              </div>
-              <div class="skill" id="perception">
-                <input
-                  type="checkbox"
-                  id="perception-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="perception-score">+7</h4>
-                <h4 class="skill-name">Perception</h4>
-              </div>
-              <div class="skill" id="survival">
-                <input
-                  type="checkbox"
-                  id="survival-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="survival-score">+7</h4>
-                <h4 class="skill-name">Survival</h4>
-              </div>
-            </div>
-          </div>
-          <div class="attribute-wrapper">
-            <div class="attribute-score-wrapper">
-              <h3>CHARISMA</h3>
-              <div class="attribute-big">
-                <h1>+5</h1>
-              </div>
-              <div class="attibute-small" id="charisma-mod">
-                <input
-                  type="number"
-                  class="attribute-small-input"
-                  id="charisma-score"
-                  value="20"
-                />
-              </div>
-            </div>
-
-            <div class="skills-wrapper">
-              <div class="skill" id="charisma-save">
-                <input
-                  type="checkbox"
-                  id="charisma-save-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="charisma-save-score">+7</h4>
-                <h4 class="skill-name">
-                  Saving Throw
-                </h4>
-              </div>
-              <div class="skill" id="deception">
-                <input
-                  type="checkbox"
-                  id="deception-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="deception-score">+7</h4>
-                <h4 class="skill-name">
-                  Deception
-                </h4>
-              </div>
-              <div class="skill" id="intimidation">
-                <input
-                  type="checkbox"
-                  id="intimidation-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="intimidation-score">+7</h4>
-                <h4 class="skill-name" id="intimidation-label">Intimidation</h4>
-              </div>
-              <div class="skill" id="performance">
-                <input
-                  type="checkbox"
-                  id="performance-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="performance-score">+7</h4>
-                <h4 class="skill-name" id="performance-label">Performance</h4>
-              </div>
-              <div class="skill" id="persuasion">
-                <input
-                  type="checkbox"
-                  id="persuasion-prof"
-                  class="proficiency-checkbox"
-                />
-                <h4 class="skill-score" id="persuasion-score">+7</h4>
-                <h4 class="skill-name" id="persuasion-label">Persuasion</h4>
-              </div>
-            </div>
-          </div>
-          <div class="passive-perception-wrapper">
-            <h3>Passive Wisdom (Perception)</h3>
-            <h3 id="passive-perception-score">17</h3>
-          </div>
+        </div>
+        <div class="passive-perception-wrapper">
+          <h3>Passive Wisdom (Perception)</h3>
+          <h3 id="passive-perception-score">17</h3>
         </div>
       </div>
     </div>
