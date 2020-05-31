@@ -6,6 +6,10 @@ by proper Flask generated page. -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/char-sheet-style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
     <title>SW5e - CHARNAME</title>
   </head>
   <body>
@@ -19,18 +23,33 @@ by proper Flask generated page. -->
     </nav>
     <div class="sheet-content">
       <!-- make every "sheet-info" div a tab that you can switch to? -->
-      <div class="basic-info sheet-info">
+      <div class="basic-info-section sheet-section">
         <h2 id="character-name">CHARNAME</h2>
-        <div class="species-info">
+        <div class="species-wrapper">
           <h4 class="label">Species:</h4>
           <h4 id="species">Bothan</h4>
         </div>
-        <div class="class-info">
+        <div class="class-wrapper">
           <h4 class="label">Class & level:</h4>
           <h4 id="class">Consular</h4>
           <h4 id="level">1</h4>
         </div>
-        <div class="background-info">
+        <div class="background-wrapper">
+          <h4 class="label">Background:</h4>
+          <h4 id="background">Acolyte</h4>
+        </div>
+        <div class="alignment-wrapper">
+          <h4 class="label">Alignment:</h4>
+          <h4 id="alignment">Lawful Dark</h4>
+        </div>
+        <div class="combat-info-wrapper">
+          <!-- some fancy borders for both -->
+          <h4 class="label">Speed:</h4>
+          <h3 id="speed">30</h3>
+          <h4 class="label">Armor Class:</h4>
+          <h3 id="armor-class">16</h3>
+        </div>
+        <div class="personality-wrapper">
           <h4 class="label">Personality traits:</h4>
           <!-- text areas maybe? -->
           <h5 id="personality-traits">pt</h5>
@@ -43,19 +62,24 @@ by proper Flask generated page. -->
           <!-- very likely some more here, perhaps a text area for backstory/notes? -->
         </div>
       </div>
-      <div class="hp-wrapper sheet-info">
-        <div class="hp-info">
+
+      <div class="hp-section sheet-section">
+        <div class="hp-wrapper">
           <h4 class="label">Hit Points:</h4>
           <h4 id="curr-hp">70</h4>
           <h4 class="slash-separator">/</h4>
           <h4 id="max-hp">70</h4>
         </div>
-        <div class="temp-hp">
+        <div class="temp-hp-wrapper">
           <h4 class="label">Temporary HP:</h4>
           <h4 id="temp-hp">0</h4>
         </div>
-        <div class="heal-or-damage">
-          <input type="number" id="heal-or-damage-amount" />
+        <div class="heal-or-damage-wrapper">
+          <input
+            type="number"
+            id="heal-or-damage-amount"
+            class="underlined-input__number"
+          />
           <select name="heal-or-damage-choice" id="heal-or-damage-choice">
             <option value="damage">Damage</option>
             <option value="heal">Heal</option>
@@ -63,9 +87,9 @@ by proper Flask generated page. -->
           </select>
         </div>
         <button class="submit-heal-or-damage">Add</button>
-        <div class="damage-effects">
+        <div class="damage-effects-wrapper">
           <!-- alternatively, something like "Immunities, resistances and vulnerabilities"
-          and 1 big text area, which also allows to put in condition immunities -->
+and 1 big text area, which also allows to put in condition immunities -->
           <h4 class="label">Damage immunities</h4>
           <h5 id="immunities">ALL</h5>
           <h4 class="label">Damage resistances</h4>
@@ -73,8 +97,34 @@ by proper Flask generated page. -->
           <h4 class="label">Damage vulnerabilities</h4>
           <h5 id="resistances">ALL</h5>
         </div>
+        <div class="hit-dice-wrapper">
+          <h4 class="label">Hit dice:</h4>
+          <input
+            type="number"
+            id="hit-dice-available-amount"
+            class="underlined-input__number"
+          />
+          <h4 class="slash-separator">/</h4>
+          <h4 id="hit-dice-max">1</h4>
+          <h4 id="hit-dice-die">8</h4>
+        </div>
+        <div class="death-saves-wrapper">
+          <h4 class="label">Successes:</h4>
+          <div class="death-saves-line">
+            <input type="radio" />
+            <input type="radio" />
+            <input type="radio" />
+          </div>
+          <h4 class="label">Failures:</h4>
+          <div class="death-saves-line">
+            <input type="radio" />
+            <input type="radio" />
+            <input type="radio" />
+          </div>
+        </div>
       </div>
-      <div class="attributes-and-skills sheet-info">
+
+      <div class="attributes-and-skills-section sheet-section">
         <div class="attribute-wrapper">
           <div class="attribute-score-wrapper">
             <h3>STRENGTH</h3>
@@ -425,6 +475,28 @@ by proper Flask generated page. -->
           <h3 id="passive-perception-score">17</h3>
         </div>
       </div>
+
+      <div class="features-section sheet-section">
+        <div class="proficiencies-wrapper"></div>
+        <div class="languages-wrapper"></div>
+        <div class="features-and-traits-wrapper"></div>
+      </div>
+
+      <div class="equipment-section sheet-section"></div>
+
+      <div class="attacks-section sheet-section">
+        <!-- js is going to calculate attacks by itself - kind of.
+        it's going to need some input, like, if you're proficient in the weapon,
+        if it's a magic weapon, what's it's damage etc,
+
+        with that info it will calculate attack bonus and damage bonus 
+        
+        should there be a separate section for input and output, or should it
+        all be in here
+        -->
+      </div>
+
+      <div class="powers-section sheet-section"></div>
     </div>
     <script src="/static/char-sheet-script.js"></script>
   </body>
