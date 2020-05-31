@@ -111,15 +111,17 @@ and 1 big text area, which also allows to put in condition immunities -->
         <div class="death-saves-wrapper">
           <h4 class="label">Successes:</h4>
           <div class="death-saves-line">
-            <input type="radio" />
-            <input type="radio" />
-            <input type="radio" />
+            <!-- classes so that when #2 is pressed, #1 gets checked too,
+            and if #3 is pressed, both #2 and #1 get checked -->
+            <input type="checkbox" class="first-checkbox-in-line" />
+            <input type="checkbox" class="second-checkbox-in-line" />
+            <input type="checkbox" class="third-checkbox-in-line" />
           </div>
           <h4 class="label">Failures:</h4>
           <div class="death-saves-line">
-            <input type="radio" />
-            <input type="radio" />
-            <input type="radio" />
+            <input type="checkbox" class="first-checkbox-in-line" />
+            <input type="checkbox" class="second-checkbox-in-line" />
+            <input type="checkbox" class="third-checkbox-in-line" />
           </div>
         </div>
       </div>
