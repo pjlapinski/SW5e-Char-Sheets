@@ -2,3 +2,4 @@ json/
 venv/
 .vscode/
 __pycache__/
+*.js
