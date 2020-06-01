@@ -239,3 +239,7 @@ all styling should be designed with mobile in mind first!*/
 .powers-header__element__single-line {
   align-items: flex-end;
 }
+
+.power {
+  margin-left: 2rem;
+}
