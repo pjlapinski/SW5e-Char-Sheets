@@ -52,13 +52,13 @@ by proper Flask generated page. -->
         <div class="personality-wrapper">
           <h4 class="label">Personality traits:</h4>
           <!-- text areas maybe? -->
-          <h5 id="personality-traits">pt</h5>
+          <p id="personality-traits">pt</p>
           <h4 class="label">Ideal:</h4>
-          <h5 id="ideal">i</h5>
+          <p id="ideal">i</p>
           <h4 class="label">Bond:</h4>
-          <h5 id="bond">b</h5>
+          <p id="bond">b</p>
           <h4 class="label">Flaw:</h4>
-          <h5 id="flaw">f</h5>
+          <p id="flaw">f</p>
           <!-- very likely some more here, perhaps a text area for backstory/notes? -->
         </div>
       </div>
@@ -90,11 +90,11 @@ by proper Flask generated page. -->
         <div class="damage-effects-wrapper">
           <!-- alternatively, something like "Immunities, resistances and vulnerabilities"
 and 1 big text area, which also allows to put in condition immunities -->
-          <h4 class="label">Damage immunities</h4>
+          <h2 class="label">Damage immunities</h2>
           <h5 id="immunities">ALL</h5>
-          <h4 class="label">Damage resistances</h4>
+          <h2 class="label">Damage resistances</h2>
           <h5 id="resistances">ALL</h5>
-          <h4 class="label">Damage vulnerabilities</h4>
+          <h2 class="label">Damage vulnerabilities</h2>
           <h5 id="resistances">ALL</h5>
         </div>
         <div class="hit-dice-wrapper">
@@ -473,18 +473,81 @@ and 1 big text area, which also allows to put in condition immunities -->
           </div>
         </div>
         <div class="passive-perception-wrapper">
-          <h3>Passive Wisdom (Perception)</h3>
-          <h3 id="passive-perception-score">17</h3>
+          <h4>Passive Wisdom (Perception)</h4>
+          <h4 id="passive-perception-score">17</h4>
         </div>
       </div>
 
       <div class="features-section sheet-section">
-        <div class="proficiencies-wrapper"></div>
-        <div class="languages-wrapper"></div>
-        <div class="features-and-traits-wrapper"></div>
+        <div class="proficiencies-wrapper">
+          <h2 class="label">Other proficiencies:</h2>
+          <ul id="proficiencies">
+            <li>Simple weapons</li>
+            <li>Light armor</li>
+            <li>Artificer's tools</li>
+          </ul>
+        </div>
+        <div class="languages-wrapper">
+          <h2 class="label">Languages:</h2>
+          <ul id="languages">
+            <li>Galactic Basic</li>
+            <li>Binary</li>
+          </ul>
+        </div>
+        <div class="features-and-traits-wrapper">
+          <h2 class="label">Features & traits:</h2>
+          <ul id="features-and-traits">
+            <li>
+              <h4 class="label">Feature 1</h4>
+              <h4 class="label">Rest:</h4>
+              <select>
+                <option>long</option>
+                <option>short</option>
+              </select>
+              <h4 class="label">Uses:</h4>
+              <div class="limited-uses-wrapper">
+                <input type="number" class="underlined-input__number" />
+                <h4 class="slash-separator">/</h4>
+                <h4 class="label">5</h4>
+              </div>
+              <p>Really long description that needs word-wrap</p>
+            </li>
+            <li>
+              <h4 class="label">Feature 2</h4>
+              <h4 class="label">Rest:</h4>
+              <select>
+                <option>long</option>
+                <option>short</option>
+              </select>
+              <h4 class="label">Uses:</h4>
+              <div class="limited-uses-wrapper">
+                <input type="number" class="underlined-input__number" />
+                <h4 class="slash-separator">/</h4>
+                <h4 class="label">5</h4>
+              </div>
+              <p>Really long description that needs word-wrap too</p>
+            </li>
+            <!-- probably the longest section -->
+          </ul>
+        </div>
       </div>
 
-      <div class="equipment-section sheet-section"></div>
+      <div class="equipment-section sheet-section">
+        <ul id="equipment">
+          <li class="equipment__item">
+            <div class="item-amount-and-name">
+              <input type="number" class="underlined-input__number" />
+              <h4 class="label">Name</h4>
+            </div>
+            <div class="limited-uses-wrapper">
+              <input type="number" class="underlined-input__number" />
+              <h4 class="slash-separator">/</h4>
+              <h4 class="label">5</h4>
+            </div>
+            <p>Description</p>
+          </li>
+        </ul>
+      </div>
 
       <div class="attacks-section sheet-section">
         <!-- js is going to calculate attacks by itself - kind of.
@@ -496,9 +559,161 @@ and 1 big text area, which also allows to put in condition immunities -->
         should there be a separate section for input and output, or should it
         all be in here
         -->
+        <table class="attacks-table">
+          <tr class="table-header">
+            <td>Name</td>
+            <td>Attack bonus</td>
+            <td>Damage</td>
+          </tr>
+          <tr>
+            <td class="attack-name">Unarmed strike</td>
+            <td class="attack-atk-bonus">+5</td>
+            <td class="attack-damage">1+5 bludgeoning</td>
+          </tr>
+          <tr>
+            <td class="attack-name">Blaster pistol</td>
+            <td class="attack-atk-bonus">+7</td>
+            <td class="attack-damage">1d6+5 Energy</td>
+          </tr>
+        </table>
       </div>
 
-      <div class="powers-section sheet-section"></div>
+      <div class="powers-section sheet-section">
+        <div class="powers-header">
+          <div class="powers-header__element">
+            <h3 class="label">Tech powers:</h3>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Tech save DC:</h4>
+              <h4 id="tech-save-dc">14</h4>
+            </div>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Tech attack bonus:</h4>
+              <h4 id="tech-attack-bonus">+6</h4>
+            </div>
+          </div>
+
+          <div class="powers-header__element">
+            <h3 class="label">Dark side powers:</h3>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Dark side save DC:</h4>
+              <h4 id="dark-side-save-dc">14</h4>
+            </div>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Dark side attack bonus:</h4>
+              <h4 id="dark-side-attack-bonus">+6</h4>
+            </div>
+          </div>
+
+          <div class="powers-header__element">
+            <h3 class="label">Light side powers:</h3>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Light side save DC:</h4>
+              <h4 id="light-side-save-dc">14</h4>
+            </div>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Light side attack bonus:</h4>
+              <h4 id="light-side-attack-bonus">+6</h4>
+            </div>
+          </div>
+
+          <div class="powers-header__element">
+            <h4 class="label">Tech power points:</h4>
+            <div class="powers-header__element__single-line">
+              <input
+                type="number"
+                id="current-tech-points"
+                class="underlined-input__number"
+              />
+              <h4 class="slash-separator">/</h4>
+              <h4 class="label" id="max-tech-points">6</h4>
+            </div>
+          </div>
+
+          <div class="powers-header__element">
+            <h4 class="label">Force power points:</h4>
+            <div class="powers-header__element__single-line">
+              <input
+                type="number"
+                id="current-force-points"
+                class="underlined-input__number"
+              />
+              <h4 class="slash-separator">/</h4>
+              <h4 class="label" id="max-force-points">6</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="powers-list-wrapper">
+          <h3 class="label">Powers known:</h3>
+          <ol class="powers-list-power-levels" start="0">
+            <li id="powers__at-will">
+              <br />
+              <ul>
+                <li class="power">
+                  <h3 class="label">Affect Mind</h3>
+                  <div class="power__single-line">
+                    <h4 class="label">Force Alignment:</h4>
+                    <h4 class="label">Universal</h4>
+                  </div>
+                  <div class="power__single-line">
+                    <h4 class="label">Casting Period:</h4>
+                    <h4 class="label">1 action</h4>
+                  </div>
+                  <div class="power__single-line">
+                    <h4 class="label">Range:</h4>
+                    <h4 class="label">30 feet</h4>
+                  </div>
+                  <div class="power__single-line">
+                    <h4 class="label">Duration:</h4>
+                    <h4 class="label">Up to 1 minute</h4>
+                  </div>
+                  <div class="power__single-line">
+                    <h4 class="label">Concentration:</h4>
+                    <input type="checkbox" />
+                  </div>
+                  <h4 class="label">Description:</h4>
+                  <p>
+                    Choose a target within range that isn’t hostile toward you.
+                    The target must make a Wisdom saving throw. On a failed
+                    save, you have advantage on all Charisma checks directed at
+                    that target. On a successful save, the creature does not
+                    realize that you tried to use the Force to influence its
+                    mood, but it becomes immune to this power for one day. This
+                    power has no effect on droids or constructs.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            <li id="powers__level-1">
+              <br />
+            </li>
+            <li id="powers__level-2">
+              <br />
+            </li>
+            <li id="powers__level-3">
+              <br />
+            </li>
+            <li id="powers__level-4">
+              <br />
+            </li>
+            <li id="powers__level-5">
+              <br />
+            </li>
+            <li id="powers__level-6">
+              <br />
+            </li>
+            <li id="powers__level-7">
+              <br />
+            </li>
+            <li id="powers__level-8">
+              <br />
+            </li>
+            <li id="powers__level-9">
+              <br />
+            </li>
+          </ol>
+        </div>
+      </div>
     </div>
     <script src="/static/char-sheet-script.js"></script>
   </body>

@@ -50,11 +50,12 @@ body {
   border-radius: 50px;
   background: rgb(100, 100, 100);
   margin: 2vw 3vw;
-  padding: 5vh 0 5vh 10vw;
+  padding: 5vh 10vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  width: 93vw;
 }
 
 .underlined-input__number {
@@ -86,9 +87,10 @@ body {
 
 .temp-hp-wrapper,
 .hp-wrapper,
-.hit-dice-wrapper {
+.hit-dice-wrapper,
+.death-saves-line {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .submit-heal-or-damage {
@@ -104,11 +106,6 @@ body {
 .submit-heal-or-damage:active {
   background-color: rgb(255, 255, 255);
   color: rgb(63, 63, 63);
-}
-
-.death-saves-line {
-  display: flex;
-  justify-content: space-between;
 }
 
 /* FIXME: this was not made with mobile in mind, it's just a temporary
@@ -153,10 +150,6 @@ all styling should be designed with mobile in mind first!*/
   text-decoration: underline;
 }
 
-.skill {
-  display: flex;
-}
-
 .skill * {
   margin-left: 1rem;
 }
@@ -199,4 +192,50 @@ all styling should be designed with mobile in mind first!*/
   border-radius: 10px;
   border-width: 2px;
   padding: 5px;
+}
+
+.skill,
+.limited-uses-wrapper,
+.item-amount-and-name,
+.attack,
+.attacks-description-wrapper,
+.powers-header__element__single-line,
+.powers-header,
+.power__single-line {
+  display: flex;
+}
+
+.attack .label-with-background + .label-with-background {
+  margin-left: 1rem;
+}
+
+.attacks-description-wrapper h4 + h4 {
+  margin-left: 2rem;
+}
+
+.attacks-table {
+  width: 75vw;
+}
+
+.attacks-table td {
+  font-size: 16;
+  width: fit-content;
+  background-color: rgb(78, 78, 78);
+  padding: 1.5vh;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.table-header td {
+  font-weight: bold;
+  background: rgb(177, 177, 177);
+  color: black;
+}
+
+.power__single-line {
+  align-items: center;
+}
+
+.powers-header__element__single-line {
+  align-items: flex-end;
 }
