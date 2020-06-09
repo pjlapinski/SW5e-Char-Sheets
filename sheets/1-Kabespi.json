@@ -1,0 +1,137 @@
+{
+    "name": "Kabespi",
+    "class": "Operative",
+    "archetype": "Sharphooter",
+    "level": 3,
+    "background": "Agent",
+    "species": "Chiss",
+    "alignment": "Lawful dark",
+    "attributes": {
+        "strength": 12,
+        "dexterity": 12,
+        "constitution": 12,
+        "intelligence": 12,
+        "wisdom": 12,
+        "charisma": 12
+    },
+    "baseAc": 10,
+    "armorType": "light",
+    "shieldBonus": 0,
+    "proficiencies": [
+        "Athletics",
+        "Acrobatics",
+        "Stealth",
+        "Piloting",
+        "Technology",
+        "Deception"
+    ],
+    "expertise": [
+        "Stealth",
+        "Deception"
+    ],
+    "bonuses": {
+        "savingThrows": 2,
+        "skillPerception": 3
+    },
+    "deathSaves": {
+        "succeeded": 0,
+        "failed": 0
+    },
+    "hitDice": {
+        "type": 8,
+        "left": 2
+    },
+    "hitPoints": {
+        "current": 20,
+        "max": 24,
+        "temporary": 3
+    },
+    "features": [
+        {
+            "name": "Sneak Attack",
+            "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe’s distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon. You don’t need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn’t incapacitated, and you don’t have disadvantage on the attack roll.",
+            "usesLeft": 0,
+            "usesMax": 0,
+            "refresh": "none"
+        },
+        {
+            "name": "Bad Feeling",
+            "description": "Starting at 2nd level, you have a wary eye, bordering on paranoia. When you roll for initiative, you can move up to your speed. This movement happens before the initiative order is determined. Once you’ve used this feature, you can’t use it again until you finish a long rest.",
+            "usesLeft": 1,
+            "usesMax": 1,
+            "refresh": "longRest"
+        }
+    ],
+    "attacks": [
+        {
+            "name": "Blaster Pistol",
+            "proficiency": true,
+            "finesse": true,
+            "dmgDiceAmount": 1,
+            "dmgDiceValue": 6,
+            "dmgType": "Energy",
+            "dmgBonus": 0,
+            "attkBonus": 0,
+            "notes": "Properties: Ammunition (range 40/160), reload 16"
+        }
+    ],
+    "languages": [
+        "Galactic Basic",
+        "Chiss",
+        "Binary"
+    ],
+    "speed": 30,
+    "personalityTraits": "I can find common ground between the fiercest enemies, empathizing with them and always working towards peace.\nNothing can shake my optimistic attitude.",
+    "ideal": "Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld.",
+    "bond": "I will someday get revenge on the corrupt faction hierarchy who branded me a heretic.",
+    "flaw": "I put too much trust in those who wield power within my faction's hierarchy.",
+    "notes": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil aspernatur laborum saepe iure? Placeat accusamus doloribus ratione qui ab? Reprehenderit fuga tempore corporis sint ab autem aperiam aliquid, molestias adipisci. Assumenda enim consequuntur, quos facere molestias quasi quae. Provident, ut nulla. Minus tempora placeat nemo. Fugiat, temporibus recusandae ab iure sit ipsum soluta? Nulla quaerat dolorum sapiente ea impedit ut dolorem quibusdam nisi omnis culpa animi debitis, ducimus a quam quasi sequi nemo consequuntur excepturi aspernatur eum dolore consectetur nobis delectus enim. Possimus libero sapiente ab placeat repellendus, iure doloribus ex exercitationem debitis. Nemo, deserunt! Numquam, asperiores unde. Saepe, voluptatem. Magnam impedit suscipit quod libero nisi eligendi quo et, sint placeat natus autem? Reiciendis dignissimos, eligendi recusandae ipsa tenetur suscipit ea accusantium sed quos beatae sit illo, ut repellat officiis optio cumque consequuntur quia incidunt. Quibusdam eum adipisci blanditiis consequatur minima eius tenetur quos nobis ducimus natus suscipit soluta exercitationem cum possimus voluptas velit accusantium eveniet rem id, voluptates neque est debitis. Similique corrupti rerum, placeat asperiores, magnam, voluptatem autem hic sapiente cum dolore nam eum dolorum facilis. Nostrum architecto eveniet, error provident consectetur dicta aperiam ut possimus nesciunt praesentium voluptas culpa quos doloribus accusamus laboriosam dolores reprehenderit. Suscipit necessitatibus ullam amet in similique adipisci praesentium numquam facilis laudantium eius at, perferendis fugit facere ea veniam debitis dicta eos sit quisquam. Dolorum, voluptatum? Optio, hic at reiciendis labore minima similique, mollitia consequuntur id ducimus, maxime enim suscipit nam dolor debitis illo minus soluta? Ad dolorem, repellat, exercitationem voluptas iste ipsam inventore iure harum autem necessitatibus deserunt ratione facilis cupiditate saepe dolore id accusantium nemo non maxime cumque tenetur. Quaerat quis laudantium, eligendi numquam ipsum minima. Nostrum, voluptatem praesentium, reprehenderit doloremque, tenetur at rem consectetur dolor numquam libero minus mollitia explicabo nisi iure voluptatibus blanditiis quam sed odit animi. Blanditiis, quam!",
+    "credits": 5223,
+    "equipment": [
+        {
+            "name": "Blaster Pistol",
+            "amount": 2,
+            "notes": "my first blaster",
+            "usesLeft": 0,
+            "usesMax": 0
+        },
+        {
+            "name": "Antitoxin",
+            "amount": 1,
+            "notes": "An antitoxkit contained a variety of wide-spectrum antidote hypospray injectors that were designed to neutralize all known poisons. A kit has five charges. As an action, you can administer a charge of the kit to cure a target of one poison affecting them or to give them advantage on saving throws against poison for 1 hour. It confers no benefit to droids or constructs.",
+            "usesLeft": 3,
+            "usesMax": 5
+        },
+        {
+            "name": "Random rock I found",
+            "amount": 1,
+            "notes": "It's a pretty cool looking rock",
+            "usesLeft": 0,
+            "usesMax": 0
+        }
+    ],
+    "powerPointsUsed": 3,
+    "powerPointsMax": 16,
+    "powers": {
+        "level0": [
+            {
+                "name": "Affect Mind",
+                "alignment": "Universal",
+                "casting": "1 action",
+                "range": "30 feet",
+                "duration": "Up to 1 minute",
+                "concentration": false,
+                "description": "Choose a target within range that isn’t hostile toward you. The target must make a Wisdom saving throw. On a failed save, you have advantage on all Charisma checks directed at that target. On a successful save, the creature does not realize that you tried to use the Force to influence its mood, but it becomes immune to this power for one day. This power has no effect on droids or constructs."
+            }
+        ],
+        "level1": [],
+        "level2": [],
+        "level3": [],
+        "level4": [],
+        "level5": [],
+        "level6": [],
+        "level7": [],
+        "level8": [],
+        "level9": []
+    }
+}
