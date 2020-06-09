@@ -86,5 +86,16 @@ interface sheet {
   equipment: item[]
   powerPointsUsed: number
   powerPointsMax: number
-  powers: power[]
+  powers: {
+    level0: power[]
+    level1: power[]
+    level2: power[]
+    level3: power[]
+    level4: power[]
+    level5: power[]
+    level6: power[]
+    level7: power[]
+    level8: power[]
+    level9: power[]
+  }
 }
