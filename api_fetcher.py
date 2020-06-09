@@ -5,7 +5,7 @@ from time import sleep
 
 
 def get_targets():
-    """Available targets for downloading (there are more on the website, these are the only ones we're
+    """Available targets for fetching (there are more in the API, these are the only ones we're
     going to be using)."""
 
     return [
@@ -20,7 +20,7 @@ def get_targets():
 
 
 def dump_to_json(target):
-    """Downloads the target file from the website and puts it into a json file."""
+    """Fetches the target file from the API and puts it into a json file."""
 
     targets = {
         'species': 'https://sw5eapi.azurewebsites.net/api/Species',
@@ -50,7 +50,12 @@ def dump_to_json(target):
 
 
 def clean_up_json(source):
-    """Fixes odd problems that the downloaded json files have."""
+    """Fixes odd problems that the fetched json files have."""
+
+    def strip(s):
+        """Helper function, which formats numbers nicely, i.e. 3rd -> 3."""
+
+        return s.strip('st').strip('rd').strip('th').strip('nd')
 
     relevant_info = []
     for data in source:
@@ -172,14 +177,8 @@ def clean_up_json(source):
     return relevant_info
 
 
-def strip(s: str):
-    """Formats numbers nicely, i.e. 3rd -> 3."""
-
-    return s.strip('st').strip('rd').strip('th').strip('nd')
-
-
 def update():
-    """Downloads all files from the website. If the correct folder is not created yet,
+    """Fetches all files from the API. If the correct folder is not created yet,
     it creates it. It will always sleep for the amount of time it took to download
     the file (just to be mindful of the website traffic). This function will only
     be used on the server and should probably be executed every week or so."""
@@ -196,7 +195,7 @@ def update():
 
 
 def find(data_type, **kwargs):
-    """Finds elements of the specified data type (a target from get_target) that
+    """Finds elements of the specified data type (a target from get_targets()) that
     match criteria given in kwargs. If no criteria are given, it returns everything
     from that file."""
 
@@ -224,7 +223,7 @@ def find(data_type, **kwargs):
 
 
 def find_exactly(data_type, **kwargs):
-    """Finds element of the specified data type (a target from get_target) that
+    """Finds element of the specified data type (a target from get_targets()) that
     matches the criteria given in kwargs. If no criteria are given, it returns the first
     element in that file. The values in kwargs have to match content of the element
     EXACTLY for it to be returned."""
