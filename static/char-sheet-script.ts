@@ -26,6 +26,16 @@ interface item {
   usesMax: number
 }
 
+interface power {
+  name: string
+  alignment: string
+  casting: string
+  range: string
+  duration: string
+  concentration: boolean
+  description: string
+}
+
 interface sheet {
   name: string
   class: string
@@ -76,7 +86,5 @@ interface sheet {
   equipment: item[]
   powerPointsUsed: number
   powerPointsMax: number
-  // only names are needed, everything else can be loaded
-  // from the api
-  powers: string[]
+  powers: power[]
 }
