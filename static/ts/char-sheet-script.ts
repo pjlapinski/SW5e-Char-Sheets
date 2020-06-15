@@ -103,6 +103,7 @@ interface sheet {
 // this is only done so that typescript has no problem with using a variable
 // defined in a completly different place
 var characterSheet: sheet
+
 // html elements that are going to be changing
 const characterName: HTMLElement = document.getElementById('character-name')
 const species: HTMLElement = document.getElementById('species')
@@ -141,19 +142,24 @@ function getAttributeModifier(attribute): number {
 }
 
 function calculateAC(): number {
+  let bonus = 0
+  for (let _bonus in characterSheet.bonuses) {
+    if (_bonus === 'armorClass') bonus = characterSheet.bonuses[_bonus]
+  }
   if (characterSheet.armorType === 'heavy') {
-    return characterSheet.baseAc + characterSheet.shieldBonus
+    return characterSheet.baseAc + characterSheet.shieldBonus + bonus
   } else if (characterSheet.armorType === 'medium') {
     return (
       characterSheet.baseAc +
       characterSheet.shieldBonus +
-      Math.min(2, getAttributeModifier('dexterity'))
+      Math.min(2, getAttributeModifier('dexterity') + bonus)
     )
   } else {
     return (
       characterSheet.baseAc +
       characterSheet.shieldBonus +
-      getAttributeModifier('dexterity')
+      getAttributeModifier('dexterity') +
+      bonus
     )
   }
 }
