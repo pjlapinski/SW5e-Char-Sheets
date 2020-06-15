@@ -1,556 +1,539 @@
 <!-- This is just a dummy site. It will be deleted and replced
 by proper Flask generated page. -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/char-sheet-style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <title>SW5e - CHARNAME</title>
-  </head>
-  <body>
-    <nav class="top-navbar">
-      <div class="nav-wrapper">
-        <h2 id="save-nav">Save</h2>
-      </div>
-      <div class="nav-wrapper">
-        <h2 id="return-nav">Return</h2>
-      </div>
-    </nav>
-    <div class="sheet-content">
-      <!-- make every "sheet-info" div a tab that you can switch to? -->
-      <div class="basic-info-section sheet-section">
-        <h2 id="character-name">CHARNAME</h2>
-        <div class="species-wrapper">
-          <h4 class="label">Species:</h4>
-          <h4 id="species">Bothan</h4>
-        </div>
-        <div class="class-wrapper">
-          <h4 class="label">Class & level:</h4>
-          <h4 id="class">Consular</h4>
-          <h4 id="level">1</h4>
-        </div>
-        <div class="background-wrapper">
-          <h4 class="label">Background:</h4>
-          <h4 id="background">Acolyte</h4>
-        </div>
-        <div class="alignment-wrapper">
-          <h4 class="label">Alignment:</h4>
-          <h4 id="alignment">Lawful Dark</h4>
-        </div>
-        <div class="combat-info-wrapper">
-          <!-- some fancy borders for both -->
-          <h4 class="label">Speed:</h4>
-          <h3 id="speed">30</h3>
-          <h4 class="label">Armor Class:</h4>
-          <h3 id="armor-class">16</h3>
-        </div>
-        <div class="personality-wrapper">
-          <h4 class="label">Personality traits:</h4>
-          <!-- text areas maybe? -->
-          <p id="personality-traits">pt</p>
-          <h4 class="label">Ideal:</h4>
-          <p id="ideal">i</p>
-          <h4 class="label">Bond:</h4>
-          <p id="bond">b</p>
-          <h4 class="label">Flaw:</h4>
-          <p id="flaw">f</p>
-          <!-- very likely some more here, perhaps a text area for backstory/notes? -->
-        </div>
-      </div>
+<nav class="top-navbar">
+  <div class="nav-wrapper">
+    <h2 id="save-nav">Save</h2>
+  </div>
+  <div class="nav-wrapper">
+    <h2 id="return-nav">Return</h2>
+  </div>
+</nav>
+<div class="sheet-content">
+  <!-- make every "sheet-info" div a tab that you can switch to? -->
+  <div class="basic-info-section sheet-section">
+    <h2 id="character-name">CHARNAME</h2>
+    <div class="species-wrapper">
+      <h4 class="label">Species:</h4>
+      <h4 id="species">Bothan</h4>
+    </div>
+    <div class="class-wrapper">
+      <h4 class="label">Class & level:</h4>
+      <h4 id="class">Consular</h4>
+      <h4 id="level">1</h4>
+    </div>
+    <div class="background-wrapper">
+      <h4 class="label">Background:</h4>
+      <h4 id="background">Acolyte</h4>
+    </div>
+    <div class="alignment-wrapper">
+      <h4 class="label">Alignment:</h4>
+      <h4 id="alignment">Lawful Dark</h4>
+    </div>
+    <div class="combat-info-wrapper">
+      <!-- some fancy borders for both -->
+      <h4 class="label">Speed:</h4>
+      <h3 id="speed">30</h3>
+      <h4 class="label">Armor Class:</h4>
+      <h3 id="armor-class">16</h3>
+    </div>
+    <div class="personality-wrapper">
+      <h4 class="label">Personality traits:</h4>
+      <!-- text areas maybe? -->
+      <p id="personality-traits">pt</p>
+      <h4 class="label">Ideal:</h4>
+      <p id="ideal">i</p>
+      <h4 class="label">Bond:</h4>
+      <p id="bond">b</p>
+      <h4 class="label">Flaw:</h4>
+      <p id="flaw">f</p>
+      <!-- very likely some more here, perhaps a text area for backstory/notes? -->
+    </div>
+  </div>
 
-      <div class="hp-section sheet-section">
-        <div class="hp-wrapper">
-          <h4 class="label">Hit Points:</h4>
-          <h4 id="curr-hp">70</h4>
-          <h4 class="slash-separator">/</h4>
-          <h4 id="max-hp">70</h4>
-        </div>
-        <div class="temp-hp-wrapper">
-          <h4 class="label">Temporary HP:</h4>
-          <h4 id="temp-hp">0</h4>
-        </div>
-        <div class="heal-or-damage-wrapper">
-          <input
-            type="number"
-            id="heal-or-damage-amount"
-            class="underlined-input__number"
-          />
-          <select name="heal-or-damage-choice" id="heal-or-damage-choice">
-            <option value="damage">Damage</option>
-            <option value="heal">Heal</option>
-            <option value="temp-hp">Temp. HP</option>
-          </select>
-        </div>
-        <button class="submit-heal-or-damage">Add</button>
-        <div class="damage-effects-wrapper">
-          <!-- alternatively, something like "Immunities, resistances and vulnerabilities"
+  <div class="hp-section sheet-section">
+    <div class="hp-wrapper">
+      <h4 class="label">Hit Points:</h4>
+      <h4 id="curr-hp">70</h4>
+      <h4 class="slash-separator">/</h4>
+      <h4 id="max-hp">70</h4>
+    </div>
+    <div class="temp-hp-wrapper">
+      <h4 class="label">Temporary HP:</h4>
+      <h4 id="temp-hp">0</h4>
+    </div>
+    <div class="heal-or-damage-wrapper">
+      <input
+        type="number"
+        id="heal-or-damage-amount"
+        class="underlined-input__number"
+      />
+      <select name="heal-or-damage-choice" id="heal-or-damage-choice">
+        <option value="damage">Damage</option>
+        <option value="heal">Heal</option>
+        <option value="temp-hp">Temp. HP</option>
+      </select>
+    </div>
+    <button class="submit-heal-or-damage">Add</button>
+    <div class="damage-effects-wrapper">
+      <!-- alternatively, something like "Immunities, resistances and vulnerabilities"
 and 1 big text area, which also allows to put in condition immunities -->
-          <h2 class="label">Damage immunities</h2>
-          <h5 id="immunities">ALL</h5>
-          <h2 class="label">Damage resistances</h2>
-          <h5 id="resistances">ALL</h5>
-          <h2 class="label">Damage vulnerabilities</h2>
-          <h5 id="resistances">ALL</h5>
+      <h2 class="label">Damage immunities</h2>
+      <h5 id="immunities">ALL</h5>
+      <h2 class="label">Damage resistances</h2>
+      <h5 id="resistances">ALL</h5>
+      <h2 class="label">Damage vulnerabilities</h2>
+      <h5 id="resistances">ALL</h5>
+    </div>
+    <div class="hit-dice-wrapper">
+      <h4 class="label">Hit dice:</h4>
+      <input
+        type="number"
+        id="hit-dice-available-amount"
+        class="underlined-input__number"
+      />
+      <h4 class="slash-separator">/</h4>
+      <h4 id="hit-dice-max">1</h4>
+      <h4 id="hit-dice-die">8</h4>
+    </div>
+    <div class="death-saves-wrapper">
+      <h4 class="label">Successes:</h4>
+      <div class="death-saves-line">
+        <!-- classes so that when #2 is pressed, #1 gets checked too,
+            and if #3 is pressed, both #2 and #1 get checked -->
+        <input type="checkbox" class="first-checkbox-in-line" />
+        <input type="checkbox" class="second-checkbox-in-line" />
+        <input type="checkbox" class="third-checkbox-in-line" />
+      </div>
+      <h4 class="label">Failures:</h4>
+      <div class="death-saves-line">
+        <input type="checkbox" class="first-checkbox-in-line" />
+        <input type="checkbox" class="second-checkbox-in-line" />
+        <input type="checkbox" class="third-checkbox-in-line" />
+      </div>
+    </div>
+  </div>
+
+  <div class="attributes-and-skills-section sheet-section">
+    <div class="attribute-wrapper">
+      <div class="attribute-score-wrapper">
+        <h3>STRENGTH</h3>
+        <div class="attribute-big">
+          <h1>+5</h1>
         </div>
-        <div class="hit-dice-wrapper">
-          <h4 class="label">Hit dice:</h4>
+        <div class="attibute-small" id="strength-mod">
           <input
             type="number"
-            id="hit-dice-available-amount"
-            class="underlined-input__number"
+            class="attribute-small-input"
+            id="strength-score"
+            value="20"
           />
+        </div>
+      </div>
+      <div class="skills-wrapper">
+        <div class="skill" id="strength-save">
+          <input
+            type="checkbox"
+            id="strength-save-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="strength-save-score">+7</h4>
+          <h4 class="skill-name">
+            Saving Throw
+          </h4>
+        </div>
+        <div class="skill" id="athletics">
+          <input
+            type="checkbox"
+            id="athletics-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="athletics-score">+7</h4>
+          <h4 class="skill-name">Athletics</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribute-wrapper">
+      <div class="attribute-score-wrapper">
+        <h3>DEXTERITY</h3>
+        <div class="attribute-big">
+          <h1>+5</h1>
+        </div>
+        <div class="attibute-small" id="dexterity-mod">
+          <input
+            type="number"
+            class="attribute-small-input"
+            id="dexterity-score"
+            value="20"
+          />
+        </div>
+      </div>
+      <div class="skills-wrapper">
+        <div class="skill" id="dexterity-save">
+          <input
+            type="checkbox"
+            id="dexterity-save-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="dexterity-save-score">+7</h4>
+          <h4 class="skill-name">
+            Saving Throw
+          </h4>
+        </div>
+        <div class="skill" id="acrobatics">
+          <input
+            type="checkbox"
+            id="acrobatics-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="acrobatics-score">+7</h4>
+          <h4 class="skill-name">Acrobatics</h4>
+        </div>
+        <div class="skill" id="sleight">
+          <input
+            type="checkbox"
+            id="sleight-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="sleight-score">+7</h4>
+          <h4 class="skill-name">Sleight of Hand</h4>
+        </div>
+        <div class="skill" id="stealth">
+          <input
+            type="checkbox"
+            id="stealth-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="stealth-score">+7</h4>
+          <h4 class="skill-name">Stealth</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribute-wrapper">
+      <div class="attribute-score-wrapper">
+        <h3>CONSTITUTION</h3>
+        <div class="attribute-big">
+          <h1>+5</h1>
+        </div>
+        <div class="attibute-small" id="constitution-mod">
+          <input
+            type="number"
+            class="attribute-small-input"
+            id="constitution-score"
+            value="20"
+          />
+        </div>
+      </div>
+      <div class="skills-wrapper">
+        <div class="skill" id="constitution-save">
+          <input
+            type="checkbox"
+            id="constitution-save-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="constitution-save-score">+7</h4>
+          <h4 class="skill-name">
+            Saving Throw
+          </h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribute-wrapper">
+      <div class="attribute-score-wrapper">
+        <h3>INTELLIGENCE</h3>
+        <div class="attribute-big">
+          <h1>+5</h1>
+        </div>
+        <div class="attibute-small" id="intelligence-mod">
+          <input
+            type="number"
+            class="attribute-small-input"
+            id="intelligence-score"
+            value="20"
+          />
+        </div>
+      </div>
+      <div class="skills-wrapper">
+        <div class="skill" id="intelligence-save">
+          <input
+            type="checkbox"
+            id="intelligence-save-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="intelligence-save-score">+7</h4>
+          <h4 class="skill-name">
+            Saving Throw
+          </h4>
+        </div>
+        <div class="skill" id="investigation">
+          <input
+            type="checkbox"
+            id="investigation-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="investigation-score">+7</h4>
+          <h4 class="skill-name">
+            Investigation
+          </h4>
+        </div>
+        <div class="skill" id="lore">
+          <input type="checkbox" id="lore-prof" class="proficiency-checkbox" />
+          <h4 class="skill-score" id="lore-score">+7</h4>
+          <h4 class="skill-name">Lore</h4>
+        </div>
+        <div class="skill" id="nature">
+          <input
+            type="checkbox"
+            id="nature-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="nature-score">+7</h4>
+          <h4 class="skill-name">Nature</h4>
+        </div>
+        <div class="skill" id="piloting">
+          <input
+            type="checkbox"
+            id="piloting-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="piloting-score">+7</h4>
+          <h4 class="skill-name">Piloting</h4>
+        </div>
+        <div class="skill" id="technology">
+          <input
+            type="checkbox"
+            id="technology-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="technology-score">+7</h4>
+          <h4 class="skill-name">Technology</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribute-wrapper">
+      <div class="attribute-score-wrapper">
+        <h3>WISDOM</h3>
+        <div class="attribute-big">
+          <h1>+5</h1>
+        </div>
+        <div class="attibute-small" id="wisdom-mod">
+          <input
+            type="number"
+            class="attribute-small-input"
+            id="wisdom-score"
+            value="20"
+          />
+        </div>
+      </div>
+      <div class="skills-wrapper">
+        <div class="skill" id="wisdom-save">
+          <input
+            type="checkbox"
+            id="wisdom-save-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="wisdom-save-score">+7</h4>
+          <h4 class="skill-name">
+            Saving Throw
+          </h4>
+        </div>
+        <div class="skill" id="animal">
+          <input
+            type="checkbox"
+            id="animal-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="animal-score">+7</h4>
+          <h4 class="skill-name">Animal handling</h4>
+        </div>
+        <div class="skill" id="insight">
+          <input
+            type="checkbox"
+            id="insight-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="insight-score">+7</h4>
+          <h4 class="skill-name">Insight</h4>
+        </div>
+        <div class="skill" id="medicine">
+          <input
+            type="checkbox"
+            id="medicine-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="medicine-score">+7</h4>
+          <h4 class="skill-name">Medicine</h4>
+        </div>
+        <div class="skill" id="perception">
+          <input
+            type="checkbox"
+            id="perception-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="perception-score">+7</h4>
+          <h4 class="skill-name">Perception</h4>
+        </div>
+        <div class="skill" id="survival">
+          <input
+            type="checkbox"
+            id="survival-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="survival-score">+7</h4>
+          <h4 class="skill-name">Survival</h4>
+        </div>
+      </div>
+    </div>
+    <div class="attribute-wrapper">
+      <div class="attribute-score-wrapper">
+        <h3>CHARISMA</h3>
+        <div class="attribute-big">
+          <h1>+5</h1>
+        </div>
+        <div class="attibute-small" id="charisma-mod">
+          <input
+            type="number"
+            class="attribute-small-input"
+            id="charisma-score"
+            value="20"
+          />
+        </div>
+      </div>
+
+      <div class="skills-wrapper">
+        <div class="skill" id="charisma-save">
+          <input
+            type="checkbox"
+            id="charisma-save-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="charisma-save-score">+7</h4>
+          <h4 class="skill-name">
+            Saving Throw
+          </h4>
+        </div>
+        <div class="skill" id="deception">
+          <input
+            type="checkbox"
+            id="deception-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="deception-score">+7</h4>
+          <h4 class="skill-name">
+            Deception
+          </h4>
+        </div>
+        <div class="skill" id="intimidation">
+          <input
+            type="checkbox"
+            id="intimidation-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="intimidation-score">+7</h4>
+          <h4 class="skill-name">Intimidation</h4>
+        </div>
+        <div class="skill" id="performance">
+          <input
+            type="checkbox"
+            id="performance-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="performance-score">+7</h4>
+          <h4 class="skill-name">Performance</h4>
+        </div>
+        <div class="skill" id="persuasion">
+          <input
+            type="checkbox"
+            id="persuasion-prof"
+            class="proficiency-checkbox"
+          />
+          <h4 class="skill-score" id="persuasion-score">+7</h4>
+          <h4 class="skill-name">Persuasion</h4>
+        </div>
+      </div>
+    </div>
+    <div class="passive-perception-wrapper">
+      <h4>Passive Wisdom (Perception)</h4>
+      <h4 id="passive-perception-score">17</h4>
+    </div>
+  </div>
+
+  <div class="features-section sheet-section">
+    <div class="proficiencies-wrapper">
+      <h2 class="label">Other proficiencies:</h2>
+      <ul id="proficiencies">
+        <li>Simple weapons</li>
+        <li>Light armor</li>
+        <li>Artificer's tools</li>
+      </ul>
+    </div>
+    <div class="languages-wrapper">
+      <h2 class="label">Languages:</h2>
+      <ul id="languages">
+        <li>Galactic Basic</li>
+        <li>Binary</li>
+      </ul>
+    </div>
+    <div class="features-and-traits-wrapper">
+      <h2 class="label">Features & traits:</h2>
+      <ul id="features-and-traits">
+        <li>
+          <h4 class="label">Feature 1</h4>
+          <h4 class="label">Rest:</h4>
+          <select>
+            <option>long</option>
+            <option>short</option>
+          </select>
+          <h4 class="label">Uses:</h4>
+          <div class="limited-uses-wrapper">
+            <input type="number" class="underlined-input__number" />
+            <h4 class="slash-separator">/</h4>
+            <h4 class="label">5</h4>
+          </div>
+          <p>Really long description that needs word-wrap</p>
+        </li>
+        <li>
+          <h4 class="label">Feature 2</h4>
+          <h4 class="label">Rest:</h4>
+          <select>
+            <option>long</option>
+            <option>short</option>
+          </select>
+          <h4 class="label">Uses:</h4>
+          <div class="limited-uses-wrapper">
+            <input type="number" class="underlined-input__number" />
+            <h4 class="slash-separator">/</h4>
+            <h4 class="label">5</h4>
+          </div>
+          <p>Really long description that needs word-wrap too</p>
+        </li>
+        <!-- probably the longest section -->
+      </ul>
+    </div>
+  </div>
+
+  <div class="equipment-section sheet-section">
+    <ul id="equipment">
+      <li class="equipment__item">
+        <div class="item-amount-and-name">
+          <input type="number" class="underlined-input__number" />
+          <h4 class="label">Name</h4>
+        </div>
+        <div class="limited-uses-wrapper">
+          <input type="number" class="underlined-input__number" />
           <h4 class="slash-separator">/</h4>
-          <h4 id="hit-dice-max">1</h4>
-          <h4 id="hit-dice-die">8</h4>
+          <h4 class="label">5</h4>
         </div>
-        <div class="death-saves-wrapper">
-          <h4 class="label">Successes:</h4>
-          <div class="death-saves-line">
-            <!-- classes so that when #2 is pressed, #1 gets checked too,
-            and if #3 is pressed, both #2 and #1 get checked -->
-            <input type="checkbox" class="first-checkbox-in-line" />
-            <input type="checkbox" class="second-checkbox-in-line" />
-            <input type="checkbox" class="third-checkbox-in-line" />
-          </div>
-          <h4 class="label">Failures:</h4>
-          <div class="death-saves-line">
-            <input type="checkbox" class="first-checkbox-in-line" />
-            <input type="checkbox" class="second-checkbox-in-line" />
-            <input type="checkbox" class="third-checkbox-in-line" />
-          </div>
-        </div>
-      </div>
+        <p>Description</p>
+      </li>
+    </ul>
+  </div>
 
-      <div class="attributes-and-skills-section sheet-section">
-        <div class="attribute-wrapper">
-          <div class="attribute-score-wrapper">
-            <h3>STRENGTH</h3>
-            <div class="attribute-big">
-              <h1>+5</h1>
-            </div>
-            <div class="attibute-small" id="strength-mod">
-              <input
-                type="number"
-                class="attribute-small-input"
-                id="strength-score"
-                value="20"
-              />
-            </div>
-          </div>
-          <div class="skills-wrapper">
-            <div class="skill" id="strength-save">
-              <input
-                type="checkbox"
-                id="strength-save-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="strength-save-score">+7</h4>
-              <h4 class="skill-name">
-                Saving Throw
-              </h4>
-            </div>
-            <div class="skill" id="athletics">
-              <input
-                type="checkbox"
-                id="athletics-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="athletics-score">+7</h4>
-              <h4 class="skill-name">Athletics</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="attribute-wrapper">
-          <div class="attribute-score-wrapper">
-            <h3>DEXTERITY</h3>
-            <div class="attribute-big">
-              <h1>+5</h1>
-            </div>
-            <div class="attibute-small" id="dexterity-mod">
-              <input
-                type="number"
-                class="attribute-small-input"
-                id="dexterity-score"
-                value="20"
-              />
-            </div>
-          </div>
-          <div class="skills-wrapper">
-            <div class="skill" id="dexterity-save">
-              <input
-                type="checkbox"
-                id="dexterity-save-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="dexterity-save-score">+7</h4>
-              <h4 class="skill-name">
-                Saving Throw
-              </h4>
-            </div>
-            <div class="skill" id="acrobatics">
-              <input
-                type="checkbox"
-                id="acrobatics-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="acrobatics-score">+7</h4>
-              <h4 class="skill-name">Acrobatics</h4>
-            </div>
-            <div class="skill" id="sleight">
-              <input
-                type="checkbox"
-                id="sleight-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="sleight-score">+7</h4>
-              <h4 class="skill-name">Sleight of Hand</h4>
-            </div>
-            <div class="skill" id="stealth">
-              <input
-                type="checkbox"
-                id="stealth-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="stealth-score">+7</h4>
-              <h4 class="skill-name">Stealth</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="attribute-wrapper">
-          <div class="attribute-score-wrapper">
-            <h3>CONSTITUTION</h3>
-            <div class="attribute-big">
-              <h1>+5</h1>
-            </div>
-            <div class="attibute-small" id="constitution-mod">
-              <input
-                type="number"
-                class="attribute-small-input"
-                id="constitution-score"
-                value="20"
-              />
-            </div>
-          </div>
-          <div class="skills-wrapper">
-            <div class="skill" id="constitution-save">
-              <input
-                type="checkbox"
-                id="constitution-save-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="constitution-save-score">+7</h4>
-              <h4 class="skill-name">
-                Saving Throw
-              </h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="attribute-wrapper">
-          <div class="attribute-score-wrapper">
-            <h3>INTELLIGENCE</h3>
-            <div class="attribute-big">
-              <h1>+5</h1>
-            </div>
-            <div class="attibute-small" id="intelligence-mod">
-              <input
-                type="number"
-                class="attribute-small-input"
-                id="intelligence-score"
-                value="20"
-              />
-            </div>
-          </div>
-          <div class="skills-wrapper">
-            <div class="skill" id="intelligence-save">
-              <input
-                type="checkbox"
-                id="intelligence-save-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="intelligence-save-score">+7</h4>
-              <h4 class="skill-name">
-                Saving Throw
-              </h4>
-            </div>
-            <div class="skill" id="investigation">
-              <input
-                type="checkbox"
-                id="investigation-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="investigation-score">+7</h4>
-              <h4 class="skill-name">
-                Investigation
-              </h4>
-            </div>
-            <div class="skill" id="lore">
-              <input
-                type="checkbox"
-                id="lore-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="lore-score">+7</h4>
-              <h4 class="skill-name">Lore</h4>
-            </div>
-            <div class="skill" id="nature">
-              <input
-                type="checkbox"
-                id="nature-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="nature-score">+7</h4>
-              <h4 class="skill-name">Nature</h4>
-            </div>
-            <div class="skill" id="piloting">
-              <input
-                type="checkbox"
-                id="piloting-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="piloting-score">+7</h4>
-              <h4 class="skill-name">Piloting</h4>
-            </div>
-            <div class="skill" id="technology">
-              <input
-                type="checkbox"
-                id="technology-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="technology-score">+7</h4>
-              <h4 class="skill-name">Technology</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="attribute-wrapper">
-          <div class="attribute-score-wrapper">
-            <h3>WISDOM</h3>
-            <div class="attribute-big">
-              <h1>+5</h1>
-            </div>
-            <div class="attibute-small" id="wisdom-mod">
-              <input
-                type="number"
-                class="attribute-small-input"
-                id="wisdom-score"
-                value="20"
-              />
-            </div>
-          </div>
-          <div class="skills-wrapper">
-            <div class="skill" id="wisdom-save">
-              <input
-                type="checkbox"
-                id="wisdom-save-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="wisdom-save-score">+7</h4>
-              <h4 class="skill-name">
-                Saving Throw
-              </h4>
-            </div>
-            <div class="skill" id="animal">
-              <input
-                type="checkbox"
-                id="animal-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="animal-score">+7</h4>
-              <h4 class="skill-name">Animal handling</h4>
-            </div>
-            <div class="skill" id="insight">
-              <input
-                type="checkbox"
-                id="insight-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="insight-score">+7</h4>
-              <h4 class="skill-name">Insight</h4>
-            </div>
-            <div class="skill" id="medicine">
-              <input
-                type="checkbox"
-                id="medicine-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="medicine-score">+7</h4>
-              <h4 class="skill-name">Medicine</h4>
-            </div>
-            <div class="skill" id="perception">
-              <input
-                type="checkbox"
-                id="perception-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="perception-score">+7</h4>
-              <h4 class="skill-name">Perception</h4>
-            </div>
-            <div class="skill" id="survival">
-              <input
-                type="checkbox"
-                id="survival-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="survival-score">+7</h4>
-              <h4 class="skill-name">Survival</h4>
-            </div>
-          </div>
-        </div>
-        <div class="attribute-wrapper">
-          <div class="attribute-score-wrapper">
-            <h3>CHARISMA</h3>
-            <div class="attribute-big">
-              <h1>+5</h1>
-            </div>
-            <div class="attibute-small" id="charisma-mod">
-              <input
-                type="number"
-                class="attribute-small-input"
-                id="charisma-score"
-                value="20"
-              />
-            </div>
-          </div>
-
-          <div class="skills-wrapper">
-            <div class="skill" id="charisma-save">
-              <input
-                type="checkbox"
-                id="charisma-save-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="charisma-save-score">+7</h4>
-              <h4 class="skill-name">
-                Saving Throw
-              </h4>
-            </div>
-            <div class="skill" id="deception">
-              <input
-                type="checkbox"
-                id="deception-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="deception-score">+7</h4>
-              <h4 class="skill-name">
-                Deception
-              </h4>
-            </div>
-            <div class="skill" id="intimidation">
-              <input
-                type="checkbox"
-                id="intimidation-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="intimidation-score">+7</h4>
-              <h4 class="skill-name">Intimidation</h4>
-            </div>
-            <div class="skill" id="performance">
-              <input
-                type="checkbox"
-                id="performance-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="performance-score">+7</h4>
-              <h4 class="skill-name">Performance</h4>
-            </div>
-            <div class="skill" id="persuasion">
-              <input
-                type="checkbox"
-                id="persuasion-prof"
-                class="proficiency-checkbox"
-              />
-              <h4 class="skill-score" id="persuasion-score">+7</h4>
-              <h4 class="skill-name">Persuasion</h4>
-            </div>
-          </div>
-        </div>
-        <div class="passive-perception-wrapper">
-          <h4>Passive Wisdom (Perception)</h4>
-          <h4 id="passive-perception-score">17</h4>
-        </div>
-      </div>
-
-      <div class="features-section sheet-section">
-        <div class="proficiencies-wrapper">
-          <h2 class="label">Other proficiencies:</h2>
-          <ul id="proficiencies">
-            <li>Simple weapons</li>
-            <li>Light armor</li>
-            <li>Artificer's tools</li>
-          </ul>
-        </div>
-        <div class="languages-wrapper">
-          <h2 class="label">Languages:</h2>
-          <ul id="languages">
-            <li>Galactic Basic</li>
-            <li>Binary</li>
-          </ul>
-        </div>
-        <div class="features-and-traits-wrapper">
-          <h2 class="label">Features & traits:</h2>
-          <ul id="features-and-traits">
-            <li>
-              <h4 class="label">Feature 1</h4>
-              <h4 class="label">Rest:</h4>
-              <select>
-                <option>long</option>
-                <option>short</option>
-              </select>
-              <h4 class="label">Uses:</h4>
-              <div class="limited-uses-wrapper">
-                <input type="number" class="underlined-input__number" />
-                <h4 class="slash-separator">/</h4>
-                <h4 class="label">5</h4>
-              </div>
-              <p>Really long description that needs word-wrap</p>
-            </li>
-            <li>
-              <h4 class="label">Feature 2</h4>
-              <h4 class="label">Rest:</h4>
-              <select>
-                <option>long</option>
-                <option>short</option>
-              </select>
-              <h4 class="label">Uses:</h4>
-              <div class="limited-uses-wrapper">
-                <input type="number" class="underlined-input__number" />
-                <h4 class="slash-separator">/</h4>
-                <h4 class="label">5</h4>
-              </div>
-              <p>Really long description that needs word-wrap too</p>
-            </li>
-            <!-- probably the longest section -->
-          </ul>
-        </div>
-      </div>
-
-      <div class="equipment-section sheet-section">
-        <ul id="equipment">
-          <li class="equipment__item">
-            <div class="item-amount-and-name">
-              <input type="number" class="underlined-input__number" />
-              <h4 class="label">Name</h4>
-            </div>
-            <div class="limited-uses-wrapper">
-              <input type="number" class="underlined-input__number" />
-              <h4 class="slash-separator">/</h4>
-              <h4 class="label">5</h4>
-            </div>
-            <p>Description</p>
-          </li>
-        </ul>
-      </div>
-
-      <div class="attacks-section sheet-section">
-        <!-- js is going to calculate attacks by itself - kind of.
+  <div class="attacks-section sheet-section">
+    <!-- js is going to calculate attacks by itself - kind of.
         it's going to need some input, like, if you're proficient in the weapon,
         if it's a magic weapon, what's it's damage etc,
 
@@ -559,171 +542,168 @@ and 1 big text area, which also allows to put in condition immunities -->
         should there be a separate section for input and output, or should it
         all be in here
         -->
-        <table class="attacks-table">
-          <tr class="table-header">
-            <td>Name</td>
-            <td>Attack bonus</td>
-            <td>Damage</td>
-          </tr>
-          <tr>
-            <td class="attack-name">Unarmed strike</td>
-            <td class="attack-atk-bonus">+5</td>
-            <td class="attack-damage">1+5 bludgeoning</td>
-          </tr>
-          <tr>
-            <td class="attack-name">Blaster pistol</td>
-            <td class="attack-atk-bonus">+7</td>
-            <td class="attack-damage">1d6+5 Energy</td>
-          </tr>
-        </table>
-      </div>
+    <table class="attacks-table">
+      <tr class="table-header">
+        <td>Name</td>
+        <td>Attack bonus</td>
+        <td>Damage</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Unarmed strike</td>
+        <td class="attack-atk-bonus">+5</td>
+        <td class="attack-damage">1+5 bludgeoning</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Blaster pistol</td>
+        <td class="attack-atk-bonus">+7</td>
+        <td class="attack-damage">1d6+5 Energy</td>
+      </tr>
+    </table>
+  </div>
 
-      <div class="powers-section sheet-section">
-        <div class="powers-header">
-          <div class="powers-header__element">
-            <!-- in the final version we're only going to have either tech powers or
+  <div class="powers-section sheet-section">
+    <div class="powers-header">
+      <div class="powers-header__element">
+        <!-- in the final version we're only going to have either tech powers or
               both dark and light side powers 
             
               which means that both tech points and force points are going to be combined
               into just "power points", so the ids will have to be changed -->
-            <h3 class="label">Tech powers:</h3>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Tech save DC:</h4>
-              <h4 id="tech-save-dc">14</h4>
-            </div>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Tech attack bonus:</h4>
-              <h4 id="tech-attack-bonus">+6</h4>
-            </div>
-          </div>
-
-          <div class="powers-header__element">
-            <h3 class="label">Dark side powers:</h3>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Dark side save DC:</h4>
-              <h4 id="dark-side-save-dc">14</h4>
-            </div>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Dark side attack bonus:</h4>
-              <h4 id="dark-side-attack-bonus">+6</h4>
-            </div>
-          </div>
-
-          <div class="powers-header__element">
-            <h3 class="label">Light side powers:</h3>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Light side save DC:</h4>
-              <h4 id="light-side-save-dc">14</h4>
-            </div>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Light side attack bonus:</h4>
-              <h4 id="light-side-attack-bonus">+6</h4>
-            </div>
-          </div>
-
-          <div class="powers-header__element">
-            <h4 class="label">Tech power points:</h4>
-            <div class="powers-header__element__single-line">
-              <input
-                type="number"
-                id="current-tech-points"
-                class="underlined-input__number"
-              />
-              <h4 class="slash-separator">/</h4>
-              <h4 class="label" id="max-tech-points">6</h4>
-            </div>
-          </div>
-
-          <div class="powers-header__element">
-            <h4 class="label">Force power points:</h4>
-            <div class="powers-header__element__single-line">
-              <input
-                type="number"
-                id="current-force-points"
-                class="underlined-input__number"
-              />
-              <h4 class="slash-separator">/</h4>
-              <h4 class="label" id="max-force-points">6</h4>
-            </div>
-          </div>
+        <h3 class="label">Tech powers:</h3>
+        <div class="powers-header__element__single-line">
+          <h4 class="label">Tech save DC:</h4>
+          <h4 id="tech-save-dc">14</h4>
         </div>
+        <div class="powers-header__element__single-line">
+          <h4 class="label">Tech attack bonus:</h4>
+          <h4 id="tech-attack-bonus">+6</h4>
+        </div>
+      </div>
 
-        <div class="powers-list-wrapper">
-          <h3 class="label">Powers known:</h3>
-          <ol class="powers-list-power-levels" start="0">
-            <li id="powers__at-will">
-              <br />
-              <ul>
-                <li class="power">
-                  <h3 class="label">Affect Mind</h3>
-                  <div class="power__single-line">
-                    <h4 class="label">Force Alignment:</h4>
-                    <h4 class="label">Universal</h4>
-                  </div>
-                  <div class="power__single-line">
-                    <h4 class="label">Casting Period:</h4>
-                    <h4 class="label">1 action</h4>
-                  </div>
-                  <div class="power__single-line">
-                    <h4 class="label">Range:</h4>
-                    <h4 class="label">30 feet</h4>
-                  </div>
-                  <div class="power__single-line">
-                    <h4 class="label">Duration:</h4>
-                    <h4 class="label">Up to 1 minute</h4>
-                  </div>
-                  <div class="power__single-line">
-                    <h4 class="label">Concentration:</h4>
-                    <input type="checkbox" />
-                  </div>
-                  <h4 class="label">Description:</h4>
-                  <p>
-                    Choose a target within range that isn’t hostile toward you.
-                    The target must make a Wisdom saving throw. On a failed
-                    save, you have advantage on all Charisma checks directed at
-                    that target. On a successful save, the creature does not
-                    realize that you tried to use the Force to influence its
-                    mood, but it becomes immune to this power for one day. This
-                    power has no effect on droids or constructs.
-                  </p>
-                </li>
-              </ul>
-            </li>
-            <li id="powers__level-1">
-              <br />
-            </li>
-            <li id="powers__level-2">
-              <br />
-            </li>
-            <li id="powers__level-3">
-              <br />
-            </li>
-            <li id="powers__level-4">
-              <br />
-            </li>
-            <li id="powers__level-5">
-              <br />
-            </li>
-            <li id="powers__level-6">
-              <br />
-            </li>
-            <li id="powers__level-7">
-              <br />
-            </li>
-            <li id="powers__level-8">
-              <br />
-            </li>
-            <li id="powers__level-9">
-              <br />
-            </li>
-          </ol>
+      <div class="powers-header__element">
+        <h3 class="label">Dark side powers:</h3>
+        <div class="powers-header__element__single-line">
+          <h4 class="label">Dark side save DC:</h4>
+          <h4 id="dark-side-save-dc">14</h4>
+        </div>
+        <div class="powers-header__element__single-line">
+          <h4 class="label">Dark side attack bonus:</h4>
+          <h4 id="dark-side-attack-bonus">+6</h4>
+        </div>
+      </div>
+
+      <div class="powers-header__element">
+        <h3 class="label">Light side powers:</h3>
+        <div class="powers-header__element__single-line">
+          <h4 class="label">Light side save DC:</h4>
+          <h4 id="light-side-save-dc">14</h4>
+        </div>
+        <div class="powers-header__element__single-line">
+          <h4 class="label">Light side attack bonus:</h4>
+          <h4 id="light-side-attack-bonus">+6</h4>
+        </div>
+      </div>
+
+      <div class="powers-header__element">
+        <h4 class="label">Tech power points:</h4>
+        <div class="powers-header__element__single-line">
+          <input
+            type="number"
+            id="current-tech-points"
+            class="underlined-input__number"
+          />
+          <h4 class="slash-separator">/</h4>
+          <h4 class="label" id="max-tech-points">6</h4>
+        </div>
+      </div>
+
+      <div class="powers-header__element">
+        <h4 class="label">Force power points:</h4>
+        <div class="powers-header__element__single-line">
+          <input
+            type="number"
+            id="current-force-points"
+            class="underlined-input__number"
+          />
+          <h4 class="slash-separator">/</h4>
+          <h4 class="label" id="max-force-points">6</h4>
         </div>
       </div>
     </div>
-    <script>
-      // in flask we want to insert the loaded json into a js variable here
-      // (preferably as an object already)
-    </script>
-    <script src="/static/js/char-sheet-script.js"></script>
-  </body>
-</html>
+
+    <div class="powers-list-wrapper">
+      <h3 class="label">Powers known:</h3>
+      <ol class="powers-list-power-levels" start="0">
+        <li id="powers__at-will">
+          <br />
+          <ul>
+            <li class="power">
+              <h3 class="label">Affect Mind</h3>
+              <div class="power__single-line">
+                <h4 class="label">Force Alignment:</h4>
+                <h4 class="label">Universal</h4>
+              </div>
+              <div class="power__single-line">
+                <h4 class="label">Casting Period:</h4>
+                <h4 class="label">1 action</h4>
+              </div>
+              <div class="power__single-line">
+                <h4 class="label">Range:</h4>
+                <h4 class="label">30 feet</h4>
+              </div>
+              <div class="power__single-line">
+                <h4 class="label">Duration:</h4>
+                <h4 class="label">Up to 1 minute</h4>
+              </div>
+              <div class="power__single-line">
+                <h4 class="label">Concentration:</h4>
+                <input type="checkbox" />
+              </div>
+              <h4 class="label">Description:</h4>
+              <p>
+                Choose a target within range that isn’t hostile toward you. The
+                target must make a Wisdom saving throw. On a failed save, you
+                have advantage on all Charisma checks directed at that target.
+                On a successful save, the creature does not realize that you
+                tried to use the Force to influence its mood, but it becomes
+                immune to this power for one day. This power has no effect on
+                droids or constructs.
+              </p>
+            </li>
+          </ul>
+        </li>
+        <li id="powers__level-1">
+          <br />
+        </li>
+        <li id="powers__level-2">
+          <br />
+        </li>
+        <li id="powers__level-3">
+          <br />
+        </li>
+        <li id="powers__level-4">
+          <br />
+        </li>
+        <li id="powers__level-5">
+          <br />
+        </li>
+        <li id="powers__level-6">
+          <br />
+        </li>
+        <li id="powers__level-7">
+          <br />
+        </li>
+        <li id="powers__level-8">
+          <br />
+        </li>
+        <li id="powers__level-9">
+          <br />
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<script>
+  const sheet = JSON.parse('{{ data | tojson | safe }}'.replace(/\n/, '\\n'))
+</script>
+<script src="{{ url_for('static', filename='js/char-sheet-script.js') }}"></script>

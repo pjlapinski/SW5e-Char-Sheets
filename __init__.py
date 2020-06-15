@@ -14,15 +14,15 @@ def index():
     return render_template('dummy.html')
 
 
-@app.route('/char-sheet/<string:sheet_name>')
-def sheet(sheet_name):
+@app.route('/char-sheet/<int:sheet_id>')
+def sheet(sheet_id):
     # first query the database and save the file from it into the /sheets folder
     # if there are no results, return an error page
     #
     # or, even better, create a database handler which, when queried, returns
     # the character sheet as a json already, without having to save it to a folder
     # ---- this would be much preferred
-    with open(os.path.join(APP_ROOT, f'sheets/{sheet_name}.json'), 'r') as f:
+    with open(os.path.join(APP_ROOT, f'sheets/{sheet_id}-Kabespi.json'), 'r') as f:
         result = json.loads(f.read())
     return render_template('character-sheet.html', data=result)
 
