@@ -58,7 +58,43 @@ interface sheet {
   proficiencies: string[]
   expertise: string[]
   bonuses: {
-    [name: string]: number
+    armorClass: number
+    attacks: number
+    damage: number
+    savingThrows: number
+    strengthSave: number
+    dexteritySave: number
+    constitutionSave: number
+    intelligenceSave: number
+    wisdomSave: number
+    charismaSave: number
+    skills: number
+    powerPoints: number
+    passivePerception: number
+    techSaveDC: number
+    techAttackBonus: number
+    darkSaveDC: number
+    darkAttackBonus: number
+    lightSaveDC: number
+    lightAttackBonus: number
+    athletics: number
+    acrobatics: number
+    sleightOfHand: number
+    stealth: number
+    investigation: number
+    lore: number
+    nature: number
+    piloting: number
+    technology: number
+    animalHandling: number
+    insight: number
+    medicine: number
+    perception: number
+    survival: number
+    deception: number
+    intimidation: number
+    performance: number
+    persuasion: number
   }
   deathSaves: {
     succeeded: number
@@ -142,26 +178,14 @@ function getAttributeModifier(attribute): number {
 }
 
 function calculateAC(): number {
-  let bonus = 0
-  for (let _bonus in characterSheet.bonuses) {
-    if (_bonus === 'armorClass') bonus = characterSheet.bonuses[_bonus]
-  }
-  if (characterSheet.armorType === 'heavy') {
-    return characterSheet.baseAc + characterSheet.shieldBonus + bonus
-  } else if (characterSheet.armorType === 'medium') {
-    return (
-      characterSheet.baseAc +
-      characterSheet.shieldBonus +
-      Math.min(2, getAttributeModifier('dexterity') + bonus)
-    )
-  } else {
-    return (
-      characterSheet.baseAc +
-      characterSheet.shieldBonus +
-      getAttributeModifier('dexterity') +
-      bonus
-    )
-  }
+  let base =
+    characterSheet.baseAc +
+    characterSheet.shieldBonus +
+    characterSheet.bonuses.armorClass
+  if (characterSheet.armorType === 'heavy') return base
+  if (characterSheet.armorType === 'medium')
+    return base + Math.min(2, getAttributeModifier('dexterity'))
+  return base + getAttributeModifier('dexterity')
 }
 
 updateHTML()
