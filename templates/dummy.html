@@ -11,42 +11,42 @@ by proper Flask generated page. -->
 <div class="sheet-content">
   <!-- make every "sheet-info" div a tab that you can switch to? -->
   <div class="basic-info-section sheet-section">
-    <h2 id="character-name">CHARNAME</h2>
+    <h2 id="character-name"></h2>
     <div class="species-wrapper">
       <h4 class="label">Species:</h4>
-      <h4 id="species">Bothan</h4>
+      <h4 id="species"></h4>
     </div>
     <div class="class-wrapper">
       <h4 class="label">Class & level:</h4>
-      <h4 id="class">Consular</h4>
+      <h4 id="class"></h4>
       <h4 id="archetype"></h4>
-      <h4 id="level">1</h4>
+      <h4 id="level"></h4>
     </div>
     <div class="background-wrapper">
       <h4 class="label">Background:</h4>
-      <h4 id="background">Acolyte</h4>
+      <h4 id="background"></h4>
     </div>
     <div class="alignment-wrapper">
       <h4 class="label">Alignment:</h4>
-      <h4 id="alignment">Lawful Dark</h4>
+      <h4 id="alignment"></h4>
     </div>
     <div class="combat-info-wrapper">
       <!-- some fancy borders for both -->
       <h4 class="label">Speed:</h4>
-      <h3 id="speed">30</h3>
+      <h3 id="speed"></h3>
       <h4 class="label">Armor Class:</h4>
-      <h3 id="armor-class">16</h3>
+      <h3 id="armor-class"></h3>
     </div>
     <div class="personality-wrapper">
       <h4 class="label">Personality traits:</h4>
       <!-- text areas maybe? -->
-      <p id="personality-traits">pt</p>
+      <p id="personality-traits"></p>
       <h4 class="label">Ideal:</h4>
-      <p id="ideal">i</p>
+      <p id="ideal"></p>
       <h4 class="label">Bond:</h4>
-      <p id="bond">b</p>
+      <p id="bond"></p>
       <h4 class="label">Flaw:</h4>
-      <p id="flaw">f</p>
+      <p id="flaw"></p>
       <!-- very likely some more here, perhaps a text area for backstory/notes? -->
     </div>
   </div>
@@ -606,28 +606,15 @@ and 1 big text area, which also allows to put in condition immunities -->
       </div>
 
       <div class="powers-header__element">
-        <h4 class="label">Tech power points:</h4>
+        <h4 class="label">Power points:</h4>
         <div class="powers-header__element__single-line">
           <input
             type="number"
-            id="current-tech-points"
+            id="current-power-points"
             class="underlined-input__number"
           />
           <h4 class="slash-separator">/</h4>
-          <h4 class="label" id="max-tech-points">6</h4>
-        </div>
-      </div>
-
-      <div class="powers-header__element">
-        <h4 class="label">Force power points:</h4>
-        <div class="powers-header__element__single-line">
-          <input
-            type="number"
-            id="current-force-points"
-            class="underlined-input__number"
-          />
-          <h4 class="slash-separator">/</h4>
-          <h4 class="label" id="max-force-points">6</h4>
+          <h4 class="label" id="max-power-points">6</h4>
         </div>
       </div>
     </div>
