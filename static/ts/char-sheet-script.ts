@@ -95,6 +95,7 @@ interface sheet {
     intimidation: number
     performance: number
     persuasion: number
+    initiative: number
   }
   deathSaves: {
     succeeded: number
