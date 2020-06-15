@@ -19,6 +19,7 @@ by proper Flask generated page. -->
     <div class="class-wrapper">
       <h4 class="label">Class & level:</h4>
       <h4 id="class">Consular</h4>
+      <h4 id="archetype"></h4>
       <h4 id="level">1</h4>
     </div>
     <div class="background-wrapper">
@@ -704,6 +705,13 @@ and 1 big text area, which also allows to put in condition immunities -->
   </div>
 </div>
 <script>
-  const sheet = JSON.parse('{{ data | tojson | safe }}'.replace(/\n/, '\\n'))
+  // this is only done so that typescript has no problem with using a variable
+  // defined in a completly different place
+  var characterSheet = JSON.parse(
+    '{{ data | tojson | safe }}'.replace(/\n/, '\\n')
+  )
 </script>
-<script src="{{ url_for('static', filename='js/char-sheet-script.js') }}"></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/char-sheet-script.js') }}"
+></script>
