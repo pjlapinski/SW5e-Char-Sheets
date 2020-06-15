@@ -6,6 +6,8 @@ APP_STATIC = os.path.join(APP_ROOT, 'static')
 
 
 app = Flask(__name__)
+# don't cache files, may be deleted later when deploying
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 
 @app.route('/')
