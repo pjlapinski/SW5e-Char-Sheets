@@ -54,13 +54,13 @@ by proper Flask generated page. -->
   <div class="hp-section sheet-section">
     <div class="hp-wrapper">
       <h4 class="label">Hit Points:</h4>
-      <h4 id="curr-hp">70</h4>
+      <h4 id="curr-hp"></h4>
       <h4 class="slash-separator">/</h4>
-      <h4 id="max-hp">70</h4>
+      <h4 id="max-hp"></h4>
     </div>
     <div class="temp-hp-wrapper">
       <h4 class="label">Temporary HP:</h4>
-      <h4 id="temp-hp">0</h4>
+      <h4 id="temp-hp"></h4>
     </div>
     <div class="heal-or-damage-wrapper">
       <input
@@ -83,8 +83,8 @@ by proper Flask generated page. -->
         class="underlined-input__number"
       />
       <h4 class="slash-separator">/</h4>
-      <h4 id="hit-dice-max">1</h4>
-      <h4 id="hit-dice-die">8</h4>
+      <h4 id="hit-dice-max"></h4>
+      <h4 id="hit-dice-die"></h4>
     </div>
     <div class="death-saves-wrapper">
       <h4 class="label">Successes:</h4>
@@ -109,14 +109,13 @@ by proper Flask generated page. -->
       <div class="attribute-score-wrapper">
         <h3>STRENGTH</h3>
         <div class="attribute-big">
-          <h1>+5</h1>
+          <h1 id="strength-mod"></h1>
         </div>
-        <div class="attibute-small" id="strength-mod">
+        <div class="attibute-small">
           <input
             type="number"
             class="attribute-small-input"
             id="strength-score"
-            value="20"
           />
         </div>
       </div>
@@ -127,7 +126,7 @@ by proper Flask generated page. -->
             id="strength-save-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="strength-save-score">+7</h4>
+          <h4 class="skill-score" id="strength-save-score"></h4>
           <h4 class="skill-name">
             Saving Throw
           </h4>
@@ -138,7 +137,7 @@ by proper Flask generated page. -->
             id="athletics-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="athletics-score">+7</h4>
+          <h4 class="skill-score" id="athletics-score"></h4>
           <h4 class="skill-name">Athletics</h4>
         </div>
       </div>
@@ -148,14 +147,13 @@ by proper Flask generated page. -->
       <div class="attribute-score-wrapper">
         <h3>DEXTERITY</h3>
         <div class="attribute-big">
-          <h1>+5</h1>
+          <h1 id="dexterity-mod"></h1>
         </div>
-        <div class="attibute-small" id="dexterity-mod">
+        <div class="attibute-small">
           <input
             type="number"
             class="attribute-small-input"
             id="dexterity-score"
-            value="20"
           />
         </div>
       </div>
@@ -166,7 +164,7 @@ by proper Flask generated page. -->
             id="dexterity-save-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="dexterity-save-score">+7</h4>
+          <h4 class="skill-score" id="dexterity-save-score"></h4>
           <h4 class="skill-name">
             Saving Throw
           </h4>
@@ -177,16 +175,16 @@ by proper Flask generated page. -->
             id="acrobatics-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="acrobatics-score">+7</h4>
+          <h4 class="skill-score" id="acrobatics-score"></h4>
           <h4 class="skill-name">Acrobatics</h4>
         </div>
-        <div class="skill" id="sleight">
+        <div class="skill" id="sleight-of-hand">
           <input
             type="checkbox"
-            id="sleight-prof"
+            id="sleight-of-hand-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="sleight-score">+7</h4>
+          <h4 class="skill-score" id="sleight-of-hand-score"></h4>
           <h4 class="skill-name">Sleight of Hand</h4>
         </div>
         <div class="skill" id="stealth">
@@ -195,7 +193,7 @@ by proper Flask generated page. -->
             id="stealth-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="stealth-score">+7</h4>
+          <h4 class="skill-score" id="stealth-score"></h4>
           <h4 class="skill-name">Stealth</h4>
         </div>
       </div>
@@ -205,14 +203,13 @@ by proper Flask generated page. -->
       <div class="attribute-score-wrapper">
         <h3>CONSTITUTION</h3>
         <div class="attribute-big">
-          <h1>+5</h1>
+          <h1 id="constitution-mod"></h1>
         </div>
-        <div class="attibute-small" id="constitution-mod">
+        <div class="attibute-small">
           <input
             type="number"
             class="attribute-small-input"
             id="constitution-score"
-            value="20"
           />
         </div>
       </div>
@@ -223,7 +220,7 @@ by proper Flask generated page. -->
             id="constitution-save-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="constitution-save-score">+7</h4>
+          <h4 class="skill-score" id="constitution-save-score"></h4>
           <h4 class="skill-name">
             Saving Throw
           </h4>
@@ -235,14 +232,13 @@ by proper Flask generated page. -->
       <div class="attribute-score-wrapper">
         <h3>INTELLIGENCE</h3>
         <div class="attribute-big">
-          <h1>+5</h1>
+          <h1 id="intelligence-mod"></h1>
         </div>
-        <div class="attibute-small" id="intelligence-mod">
+        <div class="attibute-small">
           <input
             type="number"
             class="attribute-small-input"
             id="intelligence-score"
-            value="20"
           />
         </div>
       </div>
@@ -253,7 +249,7 @@ by proper Flask generated page. -->
             id="intelligence-save-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="intelligence-save-score">+7</h4>
+          <h4 class="skill-score" id="intelligence-save-score"></h4>
           <h4 class="skill-name">
             Saving Throw
           </h4>
@@ -264,14 +260,14 @@ by proper Flask generated page. -->
             id="investigation-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="investigation-score">+7</h4>
+          <h4 class="skill-score" id="investigation-score"></h4>
           <h4 class="skill-name">
             Investigation
           </h4>
         </div>
         <div class="skill" id="lore">
           <input type="checkbox" id="lore-prof" class="proficiency-checkbox" />
-          <h4 class="skill-score" id="lore-score">+7</h4>
+          <h4 class="skill-score" id="lore-score"></h4>
           <h4 class="skill-name">Lore</h4>
         </div>
         <div class="skill" id="nature">
@@ -280,7 +276,7 @@ by proper Flask generated page. -->
             id="nature-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="nature-score">+7</h4>
+          <h4 class="skill-score" id="nature-score"></h4>
           <h4 class="skill-name">Nature</h4>
         </div>
         <div class="skill" id="piloting">
@@ -289,7 +285,7 @@ by proper Flask generated page. -->
             id="piloting-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="piloting-score">+7</h4>
+          <h4 class="skill-score" id="piloting-score"></h4>
           <h4 class="skill-name">Piloting</h4>
         </div>
         <div class="skill" id="technology">
@@ -298,7 +294,7 @@ by proper Flask generated page. -->
             id="technology-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="technology-score">+7</h4>
+          <h4 class="skill-score" id="technology-score"></h4>
           <h4 class="skill-name">Technology</h4>
         </div>
       </div>
@@ -308,14 +304,13 @@ by proper Flask generated page. -->
       <div class="attribute-score-wrapper">
         <h3>WISDOM</h3>
         <div class="attribute-big">
-          <h1>+5</h1>
+          <h1 id="wisdom-mod">+5</h1>
         </div>
-        <div class="attibute-small" id="wisdom-mod">
+        <div class="attibute-small">
           <input
             type="number"
             class="attribute-small-input"
             id="wisdom-score"
-            value="20"
           />
         </div>
       </div>
@@ -326,18 +321,18 @@ by proper Flask generated page. -->
             id="wisdom-save-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="wisdom-save-score">+7</h4>
+          <h4 class="skill-score" id="wisdom-save-score"></h4>
           <h4 class="skill-name">
             Saving Throw
           </h4>
         </div>
-        <div class="skill" id="animal">
+        <div class="skill" id="animal-handling">
           <input
             type="checkbox"
-            id="animal-prof"
+            id="animal-handling-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="animal-score">+7</h4>
+          <h4 class="skill-score" id="animal-handling-score"></h4>
           <h4 class="skill-name">Animal handling</h4>
         </div>
         <div class="skill" id="insight">
@@ -346,7 +341,7 @@ by proper Flask generated page. -->
             id="insight-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="insight-score">+7</h4>
+          <h4 class="skill-score" id="insight-score"></h4>
           <h4 class="skill-name">Insight</h4>
         </div>
         <div class="skill" id="medicine">
@@ -355,7 +350,7 @@ by proper Flask generated page. -->
             id="medicine-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="medicine-score">+7</h4>
+          <h4 class="skill-score" id="medicine-score"></h4>
           <h4 class="skill-name">Medicine</h4>
         </div>
         <div class="skill" id="perception">
@@ -364,7 +359,7 @@ by proper Flask generated page. -->
             id="perception-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="perception-score">+7</h4>
+          <h4 class="skill-score" id="perception-score"></h4>
           <h4 class="skill-name">Perception</h4>
         </div>
         <div class="skill" id="survival">
@@ -373,7 +368,7 @@ by proper Flask generated page. -->
             id="survival-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="survival-score">+7</h4>
+          <h4 class="skill-score" id="survival-score"></h4>
           <h4 class="skill-name">Survival</h4>
         </div>
       </div>
@@ -382,14 +377,13 @@ by proper Flask generated page. -->
       <div class="attribute-score-wrapper">
         <h3>CHARISMA</h3>
         <div class="attribute-big">
-          <h1>+5</h1>
+          <h1 id="charisma-mod">+5</h1>
         </div>
-        <div class="attibute-small" id="charisma-mod">
+        <div class="attibute-small">
           <input
             type="number"
             class="attribute-small-input"
             id="charisma-score"
-            value="20"
           />
         </div>
       </div>
@@ -401,7 +395,7 @@ by proper Flask generated page. -->
             id="charisma-save-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="charisma-save-score">+7</h4>
+          <h4 class="skill-score" id="charisma-save-score"></h4>
           <h4 class="skill-name">
             Saving Throw
           </h4>
@@ -412,7 +406,7 @@ by proper Flask generated page. -->
             id="deception-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="deception-score">+7</h4>
+          <h4 class="skill-score" id="deception-score"></h4>
           <h4 class="skill-name">
             Deception
           </h4>
@@ -423,7 +417,7 @@ by proper Flask generated page. -->
             id="intimidation-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="intimidation-score">+7</h4>
+          <h4 class="skill-score" id="intimidation-score"></h4>
           <h4 class="skill-name">Intimidation</h4>
         </div>
         <div class="skill" id="performance">
@@ -432,7 +426,7 @@ by proper Flask generated page. -->
             id="performance-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="performance-score">+7</h4>
+          <h4 class="skill-score" id="performance-score"></h4>
           <h4 class="skill-name">Performance</h4>
         </div>
         <div class="skill" id="persuasion">
@@ -441,14 +435,14 @@ by proper Flask generated page. -->
             id="persuasion-prof"
             class="proficiency-checkbox"
           />
-          <h4 class="skill-score" id="persuasion-score">+7</h4>
+          <h4 class="skill-score" id="persuasion-score"></h4>
           <h4 class="skill-name">Persuasion</h4>
         </div>
       </div>
     </div>
     <div class="passive-perception-wrapper">
       <h4>Passive Wisdom (Perception)</h4>
-      <h4 id="passive-perception-score">17</h4>
+      <h4 id="passive-perception-score"></h4>
     </div>
   </div>
 

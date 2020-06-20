@@ -18,12 +18,15 @@
     "armorType": "light",
     "shieldBonus": 0,
     "proficiencies": [
+        "Dexterity Save",
+        "Intelligence Save",
         "Athletics",
         "Acrobatics",
         "Stealth",
         "Piloting",
         "Technology",
-        "Deception"
+        "Deception",
+        "Animal Handling"
     ],
     "expertise": [
         "Stealth",
@@ -70,7 +73,7 @@
         "initiative": 0
     },
     "deathSaves": {
-        "succeeded": 0,
+        "succeeded": 2,
         "failed": 0
     },
     "hitDice": {
