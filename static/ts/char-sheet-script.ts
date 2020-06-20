@@ -187,10 +187,10 @@ function calculateAC(): number {
   return base + getAttributeModifier('dexterity')
 }
 
+/**
+ * skill variable needs to be given as in skills const
+ */
 function getSkillMod(skill: string): number {
-  /**
-   * skill variable needs to be given as in skills const
-   */
   let camelCase = stringToCamelCase(skill.replace(/-/g, ' '))
   let attr = skills[skill]
   let attrMod = getAttributeModifier(attr)
@@ -212,10 +212,10 @@ function getSkillMod(skill: string): number {
   return attrMod + bonus
 }
 
+/**
+ * skill variable needs to be given as in skills const
+ */
 function getPassiveSkill(skill: string): number {
-  /**
-   * skill variable needs to be given as in skills const
-   */
   return 10 + getSkillMod(skill)
 }
 
