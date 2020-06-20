@@ -75,16 +75,6 @@ by proper Flask generated page. -->
       </select>
     </div>
     <button class="submit-heal-or-damage">Add</button>
-    <div class="damage-effects-wrapper">
-      <!-- alternatively, something like "Immunities, resistances and vulnerabilities"
-and 1 big text area, which also allows to put in condition immunities -->
-      <h2 class="label">Damage immunities</h2>
-      <h5 id="immunities">ALL</h5>
-      <h2 class="label">Damage resistances</h2>
-      <h5 id="resistances">ALL</h5>
-      <h2 class="label">Damage vulnerabilities</h2>
-      <h5 id="resistances">ALL</h5>
-    </div>
     <div class="hit-dice-wrapper">
       <h4 class="label">Hit dice:</h4>
       <input
@@ -98,7 +88,7 @@ and 1 big text area, which also allows to put in condition immunities -->
     </div>
     <div class="death-saves-wrapper">
       <h4 class="label">Successes:</h4>
-      <div class="death-saves-line">
+      <div class="death-saves-line" id="death-saves__successes">
         <!-- classes so that when #2 is pressed, #1 gets checked too,
             and if #3 is pressed, both #2 and #1 get checked -->
         <input type="checkbox" class="first-checkbox-in-line" />
@@ -106,7 +96,7 @@ and 1 big text area, which also allows to put in condition immunities -->
         <input type="checkbox" class="third-checkbox-in-line" />
       </div>
       <h4 class="label">Failures:</h4>
-      <div class="death-saves-line">
+      <div class="death-saves-line" id="death-saves__failures">
         <input type="checkbox" class="first-checkbox-in-line" />
         <input type="checkbox" class="second-checkbox-in-line" />
         <input type="checkbox" class="third-checkbox-in-line" />

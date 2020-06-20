@@ -21,6 +21,21 @@ const ideal: HTMLElement = document.getElementById('ideal')
 const bond: HTMLElement = document.getElementById('bond')
 const flaw: HTMLElement = document.getElementById('flaw')
 
+const currHp: HTMLElement = document.getElementById('curr-hp')
+const maxHp: HTMLElement = document.getElementById('max-hp')
+const tempHp: HTMLElement = document.getElementById('temp-hp')
+const availableHitDice: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('hit-dice-available-amount')
+)
+const hitDiceMax: HTMLElement = document.getElementById('hit-dice-max')
+const hitDiceDie: HTMLElement = document.getElementById('hit-dice-die')
+const deathSavesSucc: HTMLElement = document.getElementById(
+  'death-saves__successes'
+)
+const deathSavesFail: HTMLElement = document.getElementById(
+  'death-saves__failures'
+)
+
 function updateHTML(): void {
   characterName.innerText = characterSheet.name
   species.innerText = characterSheet.species
@@ -35,6 +50,25 @@ function updateHTML(): void {
   ideal.innerText = characterSheet.ideal
   bond.innerText = characterSheet.bond
   flaw.innerText = characterSheet.flaw
+  currHp.innerText = String(characterSheet.hitPoints.current)
+  maxHp.innerText = String(characterSheet.hitPoints.max)
+  tempHp.innerText = String(characterSheet.hitPoints.temporary)
+  availableHitDice.value = String(characterSheet.hitDice.left)
+  hitDiceMax.innerText = String(characterSheet.level)
+  hitDiceDie.innerText = String(characterSheet.hitDice.type)
+  updateDeathSavesHTML()
+}
+
+function updateDeathSavesHTML(): void {
+  let successes = deathSavesSucc.children
+  let failures = deathSavesFail.children
+
+  for (let i = 0; i < 3; i++) {
+    let succ = <HTMLInputElement>successes[i]
+    let fail = <HTMLInputElement>failures[i]
+    succ.checked = i < characterSheet.deathSaves.succeeded
+    fail.checked = i < characterSheet.deathSaves.failed
+  }
 }
 
 function getAttributeModifier(attribute): number {
