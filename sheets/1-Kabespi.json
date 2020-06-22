@@ -119,6 +119,11 @@
         "Chiss",
         "Binary"
     ],
+    "otherProficiencies": [
+        "Simple weapons",
+        "Light armor",
+        "Artificer's tools"
+    ],
     "speed": 30,
     "personalityTraits": "I can find common ground between the fiercest enemies, empathizing with them and always working towards peace.\nNothing can shake my optimistic attitude.",
     "ideal": "Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld.",

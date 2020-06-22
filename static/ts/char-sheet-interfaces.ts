@@ -113,6 +113,7 @@ export interface sheet {
   features: feature[]
   attacks: attack[]
   languages: string[]
+  otherProficiencies: string[]
   speed: number
   personalityTraits: string
   ideal: string
