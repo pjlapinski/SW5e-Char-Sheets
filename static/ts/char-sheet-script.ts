@@ -105,6 +105,12 @@ const passivePerception: HTMLElement = document.getElementById(
   'passive-perception-score'
 )
 // #endregion
+// region features & traits elements
+const otherProficiencies: HTMLElement = document.getElementById('proficiencies')
+const languages: HTMLElement = document.getElementById('languages')
+const featuresAndTraits: HTMLElement = document.getElementById(
+  'features-and-traits'
+)
 
 function updateHTML(): void {
   // could all be moved to different functions and just called here
@@ -158,6 +164,72 @@ function updateHTML(): void {
     skillScoreHTML.innerText = String(getSkillMod(skill))
   }
   passivePerception.innerText = String(getPassiveSkill('perception'))
+  otherProficiencies.innerHTML = ''
+  for (let prof of characterSheet.otherProficiencies) {
+    let profHTML: HTMLElement = document.createElement('li')
+    profHTML.innerText = prof
+    otherProficiencies.appendChild(profHTML)
+  }
+  languages.innerHTML = ''
+  for (let lang of characterSheet.languages) {
+    let langHTML: HTMLElement = document.createElement('li')
+    langHTML.innerText = lang
+    languages.appendChild(langHTML)
+  }
+  fillFeaturesHTML()
+}
+
+/**
+ * Fills the features section with all the info about features
+ * in the character sheet.
+ */
+function fillFeaturesHTML(): void {
+  featuresAndTraits.innerHTML = ''
+  for (let feature of characterSheet.features) {
+    let li: HTMLElement = document.createElement('li')
+    let name: HTMLElement = document.createElement('h4')
+    name.className = 'label'
+    name.innerText = feature.name
+    li.appendChild(name)
+    if (feature.usesMax !== 0) {
+      let restLabel: HTMLElement = document.createElement('h4')
+      restLabel.className = 'label'
+      restLabel.innerText = 'Rest:'
+      li.appendChild(restLabel)
+      let restSelect: HTMLElement = document.createElement('select')
+      let optionLong: HTMLElement = document.createElement('option')
+      optionLong.innerText = 'long'
+      let optionShort: HTMLElement = document.createElement('option')
+      optionShort.innerText = 'short'
+      restSelect.appendChild(optionLong)
+      restSelect.appendChild(optionShort)
+      li.appendChild(restSelect)
+      let usesLabel: HTMLElement = document.createElement('h4')
+      usesLabel.className = 'label'
+      usesLabel.innerText = 'Uses:'
+      li.appendChild(usesLabel)
+      let limitedUsesWrapper: HTMLElement = document.createElement('div')
+      limitedUsesWrapper.className = 'limited-uses-wrapper'
+      let usesAmount: HTMLInputElement = document.createElement('input')
+      usesAmount.type = 'number'
+      usesAmount.className = 'underlined-input__number'
+      usesAmount.value = String(feature.usesLeft)
+      limitedUsesWrapper.appendChild(usesAmount)
+      let slash: HTMLElement = document.createElement('h4')
+      slash.className = 'slash-separator'
+      slash.innerText = '/'
+      limitedUsesWrapper.appendChild(slash)
+      let maxUses: HTMLElement = document.createElement('h4')
+      maxUses.className = 'label'
+      maxUses.innerText = String(feature.usesMax)
+      limitedUsesWrapper.appendChild(maxUses)
+      li.appendChild(limitedUsesWrapper)
+    }
+    let description: HTMLElement = document.createElement('p')
+    description.innerText = feature.description
+    li.appendChild(description)
+    featuresAndTraits.appendChild(li)
+  }
 }
 
 function updateDeathSavesHTML(): void {
@@ -172,7 +244,7 @@ function updateDeathSavesHTML(): void {
   }
 }
 
-function getAttributeModifier(attribute): number {
+function getAttributeModifier(attribute: string): number {
   return Math.floor((characterSheet.attributes[attribute] - 10) / 2)
 }
 
