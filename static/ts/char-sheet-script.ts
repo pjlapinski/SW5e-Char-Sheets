@@ -111,6 +111,10 @@ const languages: HTMLElement = document.getElementById('languages')
 const featuresAndTraits: HTMLElement = document.getElementById(
   'features-and-traits'
 )
+const credits: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('credits')
+)
+const equipment: HTMLElement = document.getElementById('equipment')
 
 function updateHTML(): void {
   // could all be moved to different functions and just called here
@@ -177,6 +181,7 @@ function updateHTML(): void {
     languages.appendChild(langHTML)
   }
   fillFeaturesHTML()
+  fillEquipmentHTML()
 }
 
 /**
@@ -229,6 +234,57 @@ function fillFeaturesHTML(): void {
     description.innerText = feature.description
     li.appendChild(description)
     featuresAndTraits.appendChild(li)
+  }
+}
+
+/**
+ * Fills the equipment section with all the info about equipment
+ * in the character sheet.
+ */
+function fillEquipmentHTML(): void {
+  credits.value = String(characterSheet.credits)
+  equipment.innerHTML = ''
+  for (let item of characterSheet.equipment) {
+    let li: HTMLElement = document.createElement('li')
+    li.className = 'equipment__item'
+    let amountAndName: HTMLElement = document.createElement('div')
+    amountAndName.className = 'item-amount-and-name'
+    let amount: HTMLInputElement = document.createElement('input')
+    amount.type = 'number'
+    amount.className = 'underlined-input__number'
+    amount.value = String(item.amount)
+    amountAndName.appendChild(amount)
+    let name: HTMLElement = document.createElement('h4')
+    name.className = 'label'
+    name.innerText = item.name
+    amountAndName.appendChild(name)
+    li.appendChild(amountAndName)
+    if (item.usesMax !== 0) {
+      let usesLabel: HTMLElement = document.createElement('h4')
+      usesLabel.className = 'label'
+      usesLabel.innerText = 'Uses:'
+      li.appendChild(usesLabel)
+      let limitedUsesWrapper: HTMLElement = document.createElement('div')
+      limitedUsesWrapper.className = 'limited-uses-wrapper'
+      let usesAmount: HTMLInputElement = document.createElement('input')
+      usesAmount.type = 'number'
+      usesAmount.className = 'underlined-input__number'
+      usesAmount.value = String(item.usesLeft)
+      limitedUsesWrapper.appendChild(usesAmount)
+      let slash: HTMLElement = document.createElement('h4')
+      slash.className = 'slash-separator'
+      slash.innerText = '/'
+      limitedUsesWrapper.appendChild(slash)
+      let maxUses: HTMLElement = document.createElement('h4')
+      maxUses.className = 'label'
+      maxUses.innerText = String(item.usesMax)
+      limitedUsesWrapper.appendChild(maxUses)
+      li.appendChild(limitedUsesWrapper)
+    }
+    let notes: HTMLElement = document.createElement('p')
+    notes.innerText = item.notes
+    li.appendChild(notes)
+    equipment.appendChild(li)
   }
 }
 
