@@ -120,7 +120,11 @@ const equipment: HTMLElement = document.getElementById('equipment')
 const attacksTable: HTMLElement = <HTMLElement>(
   document.getElementsByClassName('attacks-table')[0]
 )
+// #endregion
 
+/**
+ * Updates ALL fields of the html file.
+ */
 function updateHTML(): void {
   // could all be moved to different functions and just called here
   // basic info elements
@@ -179,6 +183,7 @@ function updateHTML(): void {
     profHTML.innerText = prof
     otherProficiencies.appendChild(profHTML)
   }
+  // features and traits elements
   languages.innerHTML = ''
   for (let lang of characterSheet.languages) {
     let langHTML: HTMLElement = document.createElement('li')
@@ -186,7 +191,9 @@ function updateHTML(): void {
     languages.appendChild(langHTML)
   }
   fillFeaturesHTML()
+  // equipment elements
   fillEquipmentHTML()
+  // attacks elements
   // firstElementChild twice, because the first child is tbody
   let atkTableHeader: HTMLElement = <HTMLElement>(
     attacksTable.firstElementChild.firstElementChild
