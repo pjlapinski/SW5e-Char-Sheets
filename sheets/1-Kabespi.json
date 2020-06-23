@@ -44,7 +44,6 @@
         "wisdomSave": 0,
         "charismaSave": 0,
         "skills": 0,
-        "powerPoints": 0,
         "passivePerception": 0,
         "techSaveDC": 0,
         "techAttackBonus": 0,
@@ -155,10 +154,12 @@
             "usesMax": 0
         }
     ],
-    "powerPointsUsed": 3,
+    "powerPointsLeft": 3,
     "powerPointsMax": 16,
     "powers": {
-        "level0": [
+        "level0": [],
+        "level1": [],
+        "level2": [
             {
                 "name": "Affect Mind",
                 "alignment": "Universal",
@@ -169,8 +170,6 @@
                 "description": "Choose a target within range that isn’t hostile toward you. The target must make a Wisdom saving throw. On a failed save, you have advantage on all Charisma checks directed at that target. On a successful save, the creature does not realize that you tried to use the Force to influence its mood, but it becomes immune to this power for one day. This power has no effect on droids or constructs."
             }
         ],
-        "level1": [],
-        "level2": [],
         "level3": [],
         "level4": [],
         "level5": [],

@@ -1,5 +1,9 @@
 import { feature, attack, item, power, sheet } from 'char-sheet-interfaces'
 
+// TODO: so it turns out that the API needs to be queried from here instead, so that we can,
+// for example, access the power points at current character's level. After that, some things
+// may need to be changed here again
+
 // this is only done so that typescript has no problem with using a variable
 // defined in a completly different place
 var characterSheet: sheet
@@ -121,6 +125,26 @@ const attacksTable: HTMLElement = <HTMLElement>(
   document.getElementsByClassName('attacks-table')[0]
 )
 // #endregion
+// #region powers elements
+const techSaveDC: HTMLElement = document.getElementById('tech-save-dc')
+const techAttackBonus: HTMLElement = document.getElementById(
+  'tech-attack-bonus'
+)
+const darkSideSaveDC: HTMLElement = document.getElementById('dark-side-save-dc')
+const darkSideAttackBonus: HTMLElement = document.getElementById(
+  'dark-side-attack-bonus'
+)
+const lightSideSaveDC: HTMLElement = document.getElementById(
+  'light-side-save-dc'
+)
+const lightSideAttackBonus: HTMLElement = document.getElementById(
+  'light-side-attack-bonus'
+)
+const currentPowerPoints: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('current-power-points')
+)
+const maxPowerPoints: HTMLElement = document.getElementById('max-power-points')
+// #endregion
 
 /**
  * Updates ALL fields of the html file.
@@ -202,6 +226,119 @@ function updateHTML(): void {
   attacksTable.appendChild(atkTableHeader)
   for (let atk of characterSheet.attacks)
     attacksTable.appendChild(createAttackTableRow(atk))
+  maxPowerPoints.innerText = String(characterSheet.powerPointsMax)
+  currentPowerPoints.value = String(characterSheet.powerPointsLeft)
+  techSaveDC.innerText = String(getPowerSaveDC('tech'))
+  let techAtk = getPowerAttackBonus('tech')
+  techAttackBonus.innerText = techAtk >= 0 ? `+${techAtk}` : String(techAtk)
+  darkSideSaveDC.innerText = String(getPowerSaveDC('dark'))
+  let darkAtk = getPowerAttackBonus('dark')
+  darkSideAttackBonus.innerText = darkAtk >= 0 ? `+${darkAtk}` : String(darkAtk)
+  lightSideSaveDC.innerText = String(getPowerSaveDC('light'))
+  let lightAtk = getPowerAttackBonus('light')
+  lightSideAttackBonus.innerText =
+    lightAtk >= 0 ? `+${lightAtk}` : String(lightAtk)
+  for (let i = 0; i <= 9; i++) fillPowersHTML(i)
+}
+
+function getPowerSaveDC(type: string): number {
+  let dc = characterSheet.bonuses[`${type}SaveDC`]
+  dc += getProficiencyBonus(characterSheet.level)
+  if (type === 'tech') dc += getAttributeModifier('intelligence')
+  else if (type === 'light') dc += getAttributeModifier('wisdom')
+  else dc += getAttributeModifier('charisma')
+  dc += 8
+  return dc
+}
+
+function getPowerAttackBonus(type: string): number {
+  let bonus = characterSheet.bonuses[`${type}AttackBonus`]
+  if (type === 'tech') bonus += getAttributeModifier('intelligence')
+  else if (type === 'light') bonus += getAttributeModifier('wisdom')
+  else bonus += getAttributeModifier('charisma')
+  return bonus
+}
+
+/**
+ * Fills the powers of the given level from the sheet to html.
+ */
+function fillPowersHTML(level: number): void {
+  let levelStr = level === 0 ? 'at-will' : `level-${level}`
+  let powersAtLevel = document.getElementById(`powers__${levelStr}`)
+  powersAtLevel.innerHTML = ''
+  powersAtLevel.appendChild(document.createElement('br'))
+  let ul: HTMLElement = document.createElement('ul')
+  for (let power of characterSheet.powers[`level${level}`]) {
+    let li: HTMLElement = document.createElement('li')
+    li.className = 'power'
+    let name: HTMLElement = document.createElement('h3')
+    name.className = 'label'
+    name.innerText = power.name
+    li.appendChild(name)
+    let alignmentDiv: HTMLElement = document.createElement('div')
+    alignmentDiv.className = 'power__single-line'
+    let alignmentLabel: HTMLElement = document.createElement('h4')
+    alignmentLabel.className = 'label'
+    alignmentLabel.innerText = 'Force Alignment:'
+    alignmentDiv.appendChild(alignmentLabel)
+    let alignment: HTMLElement = document.createElement('h4')
+    alignment.className = 'label'
+    alignment.innerText = power.name
+    alignmentDiv.appendChild(alignment)
+    li.appendChild(alignmentDiv)
+    let castingPeriodDiv: HTMLElement = document.createElement('div')
+    castingPeriodDiv.className = 'power__single-line'
+    let castingPeriodLabel: HTMLElement = document.createElement('h4')
+    castingPeriodLabel.className = 'label'
+    castingPeriodLabel.innerText = 'Casting Period:'
+    castingPeriodDiv.appendChild(castingPeriodLabel)
+    let castingPeriod: HTMLElement = document.createElement('h4')
+    castingPeriod.className = 'label'
+    castingPeriod.innerText = power.casting
+    castingPeriodDiv.appendChild(castingPeriod)
+    li.appendChild(castingPeriodDiv)
+    let rangeDiv: HTMLElement = document.createElement('div')
+    rangeDiv.className = 'power__single-line'
+    let rangeLabel: HTMLElement = document.createElement('h4')
+    rangeLabel.className = 'label'
+    rangeLabel.innerText = 'Range:'
+    rangeDiv.appendChild(rangeLabel)
+    let range: HTMLElement = document.createElement('h4')
+    range.className = 'label'
+    range.innerText = power.range
+    rangeDiv.appendChild(range)
+    li.appendChild(rangeDiv)
+    let durationDiv: HTMLElement = document.createElement('div')
+    durationDiv.className = 'power__single-line'
+    let durationLabel: HTMLElement = document.createElement('h4')
+    durationLabel.className = 'label'
+    durationLabel.innerText = 'Duration:'
+    durationDiv.appendChild(durationLabel)
+    let duration: HTMLElement = document.createElement('h4')
+    duration.className = 'label'
+    duration.innerText = power.duration
+    durationDiv.appendChild(duration)
+    li.appendChild(durationDiv)
+    let concentrationDiv: HTMLElement = document.createElement('div')
+    concentrationDiv.className = 'power__single-line'
+    let concentrationLabel: HTMLElement = document.createElement('h4')
+    concentrationLabel.className = 'label'
+    concentrationLabel.innerText = 'Concentration:'
+    concentrationDiv.appendChild(concentrationLabel)
+    let concentration: HTMLInputElement = document.createElement('input')
+    concentration.type = 'checkbox'
+    concentration.checked = power.concentration
+    concentrationDiv.appendChild(concentration)
+    li.appendChild(concentrationDiv)
+    let descriptionLabel: HTMLElement = document.createElement('h4')
+    descriptionLabel.className = 'label'
+    descriptionLabel.innerText = 'Description:'
+    li.appendChild(descriptionLabel)
+    let description: HTMLElement = document.createElement('p')
+    description.innerText = power.description
+    ul.appendChild(li)
+    powersAtLevel.appendChild(ul)
+  }
 }
 
 /**

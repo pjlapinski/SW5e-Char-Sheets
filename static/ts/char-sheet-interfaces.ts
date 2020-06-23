@@ -70,7 +70,6 @@ export interface sheet {
     wisdomSave: number
     charismaSave: number
     skills: number
-    powerPoints: number
     passivePerception: number
     techSaveDC: number
     techAttackBonus: number
@@ -123,7 +122,7 @@ export interface sheet {
   notes: string
   credits: number
   equipment: item[]
-  powerPointsUsed: number
+  powerPointsLeft: number
   powerPointsMax: number
   powers: {
     level0: power[]
