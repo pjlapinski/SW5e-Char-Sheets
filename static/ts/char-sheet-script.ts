@@ -105,7 +105,7 @@ const passivePerception: HTMLElement = document.getElementById(
   'passive-perception-score'
 )
 // #endregion
-// region features & traits elements
+// #region features & traits elements
 const otherProficiencies: HTMLElement = document.getElementById('proficiencies')
 const languages: HTMLElement = document.getElementById('languages')
 const featuresAndTraits: HTMLElement = document.getElementById(
@@ -115,6 +115,11 @@ const credits: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('credits')
 )
 const equipment: HTMLElement = document.getElementById('equipment')
+// #endregion
+// #region attacks elements
+const attacksTable: HTMLElement = <HTMLElement>(
+  document.getElementsByClassName('attacks-table')[0]
+)
 
 function updateHTML(): void {
   // could all be moved to different functions and just called here
@@ -182,6 +187,14 @@ function updateHTML(): void {
   }
   fillFeaturesHTML()
   fillEquipmentHTML()
+  // firstElementChild twice, because the first child is tbody
+  let atkTableHeader: HTMLElement = <HTMLElement>(
+    attacksTable.firstElementChild.firstElementChild
+  )
+  attacksTable.innerHTML = ''
+  attacksTable.appendChild(atkTableHeader)
+  for (let atk of characterSheet.attacks)
+    attacksTable.appendChild(createAttackTableRow(atk))
 }
 
 /**
@@ -286,6 +299,54 @@ function fillEquipmentHTML(): void {
     li.appendChild(notes)
     equipment.appendChild(li)
   }
+}
+
+function createAttackTableRow(atk: attack): HTMLElement {
+  let row: HTMLElement = document.createElement('tr')
+  let name: HTMLElement = document.createElement('td')
+  name.className = 'attack-name'
+  name.innerText = atk.name
+  row.appendChild(name)
+  let atkBonus: HTMLElement = document.createElement('td')
+  atkBonus.className = 'attack-atk-bonus'
+  let attackBonus = calculateAttackBonus(atk)
+  let sign: string = attackBonus >= 0 ? '+' : ''
+  atkBonus.innerText = `${sign}${attackBonus}`
+  row.appendChild(atkBonus)
+  let dmg: HTMLElement = document.createElement('td')
+  dmg.className = 'attack-damage'
+  dmg.innerText = calculateAttackDamage(atk)
+  row.appendChild(dmg)
+  return row
+}
+
+function calculateAttackBonus(atk: attack): number {
+  let bonus = characterSheet.bonuses.attacks
+  bonus += atk.proficiency ? getProficiencyBonus(characterSheet.level) : 0
+  if (atk.ranged) bonus += getAttributeModifier('dexterity')
+  else if (atk.finesse)
+    bonus += Math.max(
+      getAttributeModifier('strength'),
+      getAttributeModifier('dexterity')
+    )
+  else bonus += getAttributeModifier('strength')
+  bonus += atk.atkBonus
+  return bonus
+}
+
+function calculateAttackDamage(atk: attack): string {
+  let bonus = characterSheet.bonuses.damage
+  if (atk.ranged) bonus += getAttributeModifier('dexterity')
+  else if (atk.finesse)
+    bonus += Math.max(
+      getAttributeModifier('strength'),
+      getAttributeModifier('dexterity')
+    )
+  else bonus += getAttributeModifier('strength')
+  bonus += atk.dmgBonus
+  // if lower than 0 it's empty, because bonus already has the '-' in it
+  let sign: string = bonus >= 0 ? '+' : ''
+  return `${atk.dmgDiceAmount}d${atk.dmgDiceValue}${sign}${bonus} ${atk.dmgType}`
 }
 
 function updateDeathSavesHTML(): void {
