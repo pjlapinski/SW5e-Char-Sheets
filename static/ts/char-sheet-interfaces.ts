@@ -10,11 +10,12 @@ export interface attack {
   name: string
   proficiency: boolean
   finesse: boolean
+  ranged: boolean
   dmgDiceAmount: number
   dmgDiceValue: number
   dmgType: number
   dmgBonus: number
-  attkBonus: number
+  atkBonus: number
   notes: string
 }
 

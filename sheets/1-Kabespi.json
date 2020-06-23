@@ -106,11 +106,12 @@
             "name": "Blaster Pistol",
             "proficiency": true,
             "finesse": true,
+            "ranged": true,
             "dmgDiceAmount": 1,
             "dmgDiceValue": 6,
             "dmgType": "Energy",
             "dmgBonus": 0,
-            "attkBonus": 0,
+            "atkBonus": 0,
             "notes": "Properties: Ammunition (range 40/160), reload 16"
         }
     ],
