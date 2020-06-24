@@ -1,8 +1,5 @@
 import { feature, attack, item, power, sheet } from 'char-sheet-interfaces'
 
-// TODO: add initiative
-// TODO: add notes to attacks
-
 // TODO: so it turns out that the API needs to be queried from here instead, so that we can,
 // for example, access the power points at current character's level. After that, some things
 // may need to be changed here again
@@ -29,7 +26,7 @@ const personalityTraits: HTMLElement = document.getElementById(
 const ideal: HTMLElement = document.getElementById('ideal')
 const bond: HTMLElement = document.getElementById('bond')
 const flaw: HTMLElement = document.getElementById('flaw')
-
+const initiative: HTMLElement = document.getElementById('initiative')
 //#endregion
 // #region hp tab elements
 const currHp: HTMLElement = document.getElementById('curr-hp')
@@ -171,6 +168,7 @@ function updateHTML(): void {
   ideal.innerText = characterSheet.ideal
   bond.innerText = characterSheet.bond
   flaw.innerText = characterSheet.flaw
+  initiative.innerText = String(getInitiativeBonus())
   // hp info elements
   currHp.innerText = String(characterSheet.hitPoints.current)
   maxHp.innerText = String(characterSheet.hitPoints.max)
@@ -232,6 +230,7 @@ function updateHTML(): void {
   attacksTable.appendChild(atkTableHeader)
   for (let atk of characterSheet.attacks)
     attacksTable.appendChild(createAttackTableRow(atk))
+  // powers elements
   maxPowerPoints.innerText = String(characterSheet.powerPointsMax)
   currentPowerPoints.value = String(characterSheet.powerPointsLeft)
   techSaveDC.innerText = String(getPowerSaveDC('tech'))
@@ -245,6 +244,7 @@ function updateHTML(): void {
   lightSideAttackBonus.innerText =
     lightAtk >= 0 ? `+${lightAtk}` : String(lightAtk)
   for (let i = 0; i <= 9; i++) fillPowersHTML(i)
+  // powers elements
   notes.innerText = characterSheet.notes
 }
 
@@ -468,6 +468,10 @@ function createAttackTableRow(atk: attack): HTMLElement {
   dmg.className = 'attack-damage'
   dmg.innerText = calculateAttackDamage(atk)
   row.appendChild(dmg)
+  let note: HTMLElement = document.createElement('td')
+  note.className = 'attack-notes'
+  note.innerText = atk.notes
+  row.appendChild(note)
   return row
 }
 
@@ -557,6 +561,10 @@ function getSkillMod(skill: string): number {
  */
 function getPassiveSkill(skill: string): number {
   return 10 + getSkillMod(skill)
+}
+
+function getInitiativeBonus(): number {
+  return getAttributeModifier('dexterity') + characterSheet.bonuses.initiative
 }
 
 function getProficiencyBonus(level: number): number {
