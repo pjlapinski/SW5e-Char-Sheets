@@ -1,6 +1,7 @@
 import { feature, attack, item, power, sheet } from 'char-sheet-interfaces'
 
 // TODO: add initiative
+// TODO: add notes to attacks
 
 // TODO: so it turns out that the API needs to be queried from here instead, so that we can,
 // for example, access the power points at current character's level. After that, some things
