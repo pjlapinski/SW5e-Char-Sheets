@@ -145,6 +145,9 @@ const currentPowerPoints: HTMLInputElement = <HTMLInputElement>(
 )
 const maxPowerPoints: HTMLElement = document.getElementById('max-power-points')
 // #endregion
+// #region notes elements
+const notes: HTMLElement = document.getElementById('notes')
+// #endregion
 
 /**
  * Updates ALL fields of the html file.
@@ -239,6 +242,7 @@ function updateHTML(): void {
   lightSideAttackBonus.innerText =
     lightAtk >= 0 ? `+${lightAtk}` : String(lightAtk)
   for (let i = 0; i <= 9; i++) fillPowersHTML(i)
+  notes.innerText = characterSheet.notes
 }
 
 function getPowerSaveDC(type: string): number {
