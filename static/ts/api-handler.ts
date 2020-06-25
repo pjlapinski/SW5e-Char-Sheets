@@ -33,7 +33,7 @@ async function apiFind(
 async function apiFindExactly(
   dataType: string,
   filter: { [name: string]: string }
-): Promise<object> {
+): Promise<object[]> {
   let content = await fetch(`../static/json/${dataType}.json`).then(response =>
     response.json()
   )
