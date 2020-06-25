@@ -193,53 +193,56 @@ def update():
             sleep(seconds)
         print('Done sleeping\n')
 
+# in case this is ever needed, here are the two functions
+# that can handle the api, however they should not be
+# needed in Python anymore, so they're left commented out
+#
+# def find(data_type, **kwargs):
+#     """Finds elements of the specified data type (a target from get_targets()) that
+#     match criteria given in kwargs. If no criteria are given, it returns everything
+#     from that file."""
 
-def find(data_type, **kwargs):
-    """Finds elements of the specified data type (a target from get_targets()) that
-    match criteria given in kwargs. If no criteria are given, it returns everything
-    from that file."""
-
-    if len(kwargs) == 0:
-        return find(data_type, name='')
-    with open(f'./json/{data_type}.json', 'r') as f:
-        file_content = json.load(f)
-    results = []
-    for key, value in kwargs.items():
-        if isinstance(value, str):
-            value = value.lower()
-            for result in file_content:
-                value_from_key = json.dumps(result[key], ensure_ascii=False)
-                if value in value_from_key.lower():
-                    results.append(result)
-        elif isinstance(value, list):
-            for member in value:
-                member = member.lower()
-                for result in file_content:
-                    value_from_key = json.dumps(
-                        result[key], ensure_ascii=False)
-                    if member in value_from_key.lower():
-                        results.append(result)
-    return results
+#     if len(kwargs) == 0:
+#         return find(data_type, name='')
+#     with open(f'./json/{data_type}.json', 'r') as f:
+#         file_content = json.load(f)
+#     results = []
+#     for key, value in kwargs.items():
+#         if isinstance(value, str):
+#             value = value.lower()
+#             for result in file_content:
+#                 value_from_key = json.dumps(result[key], ensure_ascii=False)
+#                 if value in value_from_key.lower():
+#                     results.append(result)
+#         elif isinstance(value, list):
+#             for member in value:
+#                 member = member.lower()
+#                 for result in file_content:
+#                     value_from_key = json.dumps(
+#                         result[key], ensure_ascii=False)
+#                     if member in value_from_key.lower():
+#                         results.append(result)
+#     return results
 
 
-def find_exactly(data_type, **kwargs):
-    """Finds element of the specified data type (a target from get_targets()) that
-    matches the criteria given in kwargs. If no criteria are given, it returns the first
-    element in that file. The values in kwargs have to match content of the element
-    EXACTLY for it to be returned."""
+# def find_exactly(data_type, **kwargs):
+#     """Finds element of the specified data type (a target from get_targets()) that
+#     matches the criteria given in kwargs. If no criteria are given, it returns the first
+#     element in that file. The values in kwargs have to match content of the element
+#     EXACTLY for it to be returned."""
 
-    if len(kwargs) == 0:
-        return find(data_type, name='')
-    with open(f'./json/{data_type}.json', 'r') as f:
-        file_content = json.load(f)
-    for key, value in kwargs.items():
-        if isinstance(value, str):
-            value = value.lower()
-            for result in file_content:
-                value_from_key = json.dumps(result[key], ensure_ascii=False)
-                if value == value_from_key.lower().strip('"').strip():
-                    return result
-    return None
+#     if len(kwargs) == 0:
+#         return find(data_type, name='')
+#     with open(f'./json/{data_type}.json', 'r') as f:
+#         file_content = json.load(f)
+#     for key, value in kwargs.items():
+#         if isinstance(value, str):
+#             value = value.lower()
+#             for result in file_content:
+#                 value_from_key = json.dumps(result[key], ensure_ascii=False)
+#                 if value == value_from_key.lower().strip('"').strip():
+#                     return result
+#     return None
 
 
 if __name__ == "__main__":
