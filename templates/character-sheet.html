@@ -14,8 +14,6 @@
     <title>SW5e - {{ data['name'] }}</title>
   </head>
   <body>
-    <!-- This is just a dummy site. It will be deleted and replced
-by proper Flask generated page. -->
     <div class="sheet-side-menu">
       <!-- names here propably will be changed to icons -->
       <div class="nav-wrapper">
@@ -50,6 +48,7 @@ by proper Flask generated page. -->
       </div>
     </div>
     <div class="sheet-content">
+      <!-- #region view sections -->
       <!-- make every "sheet-info" div a tab that you can switch to? -->
       <div class="basic-info-section sheet-section">
         <h2 id="character-name"></h2>
@@ -147,7 +146,9 @@ by proper Flask generated page. -->
         </div>
       </div>
 
-      <div class="attributes-and-skills-section sheet-section">
+      <div
+        class="attributes-and-skills-section attributes-and-skills-section-edit sheet-section"
+      >
         <div class="attribute-wrapper">
           <div class="attribute-score-wrapper">
             <h3>STRENGTH</h3>
@@ -632,6 +633,207 @@ by proper Flask generated page. -->
       <div class="notes-section sheet-section">
         <p id="notes"></p>
       </div>
+      <!-- #endregion -->
+      <!-- #region editing sections -->
+      <div class="basic-info-section-edit sheet-section">
+        <h4 class="label">Name:</h4>
+        <input type="text" id="character-name-edit" />
+        <div class="species-wrapper">
+          <h4 class="label">Species:</h4>
+          <input type="text" id="species-edit" />
+        </div>
+        <div class="class-wrapper">
+          <h4 class="label">Class & level:</h4>
+          <input type="text" id="class-edit" />
+          <input type="text" id="archetype-edit" />
+          <input type="number" id="level-edit" />
+        </div>
+        <div class="background-wrapper">
+          <h4 class="label">Background:</h4>
+          <input type="text" id="background-edit" />
+        </div>
+        <div class="alignment-wrapper">
+          <h4 class="label">Alignment:</h4>
+          <input type="text" id="alignment-edit" />
+        </div>
+        <div class="combat-info-wrapper">
+          <!-- some fancy borders for both -->
+          <h4 class="label">Speed:</h4>
+          <input type="number" id="speed-edit" />
+        </div>
+        <div class="personality-wrapper">
+          <h4 class="label">Personality traits:</h4>
+          <!-- text areas maybe? -->
+          <input type="text" id="personality-traits-edit" />
+          <h4 class="label">Ideal:</h4>
+          <input type="text" id="ideal-edit" />
+          <h4 class="label">Bond:</h4>
+          <input type="text" id="bond-edit" />
+          <h4 class="label">Flaw:</h4>
+          <input type="text" id="flaw-edit" />
+          <!-- very likely some more here, perhaps a text area for backstory/notes? -->
+        </div>
+      </div>
+
+      <div class="hp-section-edit sheet-section">
+        <h4 class="label">Max hit points:</h4>
+        <input type="number" id="max-hp-edit" />
+        <h4 class="label">Hit dice die:</h4>
+        <input type="number" id="hit-dice-die-edit" />
+      </div>
+
+      <!-- attributes & skills not needed -->
+
+      <div class="features-section-edit sheet-section">
+        <div class="proficiencies-wrapper">
+          <h2 class="label">Other proficiencies:</h2>
+          <ul id="proficiencies-edit">
+            <!-- add in ts -->
+          </ul>
+          <input type="button" value="+" id="add-feature" class="add-button" />
+        </div>
+        <div class="languages-wrapper">
+          <h2 class="label">Languages:</h2>
+          <ul id="languages-edit">
+            <!-- add in ts -->
+          </ul>
+          <input type="button" value="+" id="add-language" class="add-button" />
+        </div>
+        <div class="features-and-traits-wrapper">
+          <h2 class="label">Features & traits:</h2>
+          <ul id="features-and-traits-edit">
+            <!-- add in ts -->
+          </ul>
+          <input type="button" value="+" id="add-feature" class="add-button" />
+        </div>
+      </div>
+
+      <div class="equipment-section-edit sheet-section">
+        <ul id="equipment-edit">
+          <!-- add in ts -->
+        </ul>
+        <input type="button" value="+" id="add-equipment" class="add-button" />
+      </div>
+
+      <div class="attacks-section-edit sheet-section">
+        <ul id="attacks-edit">
+          <!-- add in ts -->
+        </ul>
+        <input type="button" value="+" id="add-attack" class="add-button" />
+      </div>
+
+      <div class="powers-section-edit sheet-section">
+        <div class="powers-header">
+          <div class="powers-header__element">
+            <h4 class="label">Max power points:</h4>
+            <input
+              type="number"
+              id="current-power-points-edit"
+              class="underlined-input__number"
+            />
+          </div>
+        </div>
+
+        <div class="powers-list-wrapper">
+          <h3 class="label">Powers known:</h3>
+          <ol class="powers-list-power-levels" start="0">
+            <li id="powers__at-will-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__at-will"
+                class="add-button"
+              />
+            <li id="powers__level-1-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-1"
+                class="add-button"
+              />
+            <li id="powers__level-2-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-2"
+                class="add-button"
+              />
+            <li id="powers__level-3-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-3"
+                class="add-button"
+              />
+            <li id="powers__level-4-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-4"
+                class="add-button"
+              />
+            <li id="powers__level-5-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-5"
+                class="add-button"
+              />
+            <li id="powers__level-6-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-6"
+                class="add-button"
+              />
+            <li id="powers__level-7-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-7"
+                class="add-button"
+              />
+            <li id="powers__level-8-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-8"
+                class="add-button"
+              />
+            <li id="powers__level-9-edit">
+              <br />
+            </li>
+            <input
+                type="button"
+                value="+"
+                id="add-power__level-9"
+                class="add-button"
+              />
+          </ol>
+        </div>
+      </div>
+      <div class="notes-section-edit sheet-section">
+        <input type="text" id="notes-edit" />
+      </div>
+      <!-- #endregion -->
     </div>
     <script>
       // this is only done so that typescript has no problem with using a variable
