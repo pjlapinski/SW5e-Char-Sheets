@@ -10,25 +10,9 @@ body {
   color: rgb(255, 255, 255);
 }
 
-/* styling for the navigation bar at the top of the screen */
-.top-navbar {
-  position: sticky;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: stretch;
-  background-color: rgb(63, 63, 63);
-  height: 50px;
-  padding: 0 5vw;
-}
-
 .nav-wrapper {
-  display: flex;
-  height: inherit;
-  width: 7rem;
-  justify-content: center;
-  flex-direction: column;
+  margin-top: 1vh;
+  text-align: center;
 }
 
 .nav-wrapper:hover {
@@ -39,23 +23,41 @@ body {
 }
 
 .nav-wrapper h2 {
-  display: flex;
-  flex-direction: row;
   justify-content: center;
   pointer-events: none;
 }
 
+/* menu*/
+
+.sheet-side-menu {
+  height: 100%;
+  width: 9vw;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(63, 63, 63);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
 /* general styling for the sheet content*/
+
+.sheet-content {
+  align-content: center;
+}
+
 .sheet-section {
   border-radius: 50px;
   background: rgb(100, 100, 100);
   margin: 2vw 3vw;
+  margin-left: 11vw;
   padding: 5vh 10vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 93vw;
+  width: 85vw;
 }
 
 .underlined-input__number {
@@ -241,4 +243,12 @@ all styling should be designed with mobile in mind first!*/
 
 .power {
   margin-left: 2rem;
+}
+
+/* TODO */
+/* other pages that are ought to be moved into separate css file later*/
+
+.error-div {
+  text-align: center;
+  font-size: xx-large;
 }

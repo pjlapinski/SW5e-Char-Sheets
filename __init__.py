@@ -13,7 +13,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 @app.route('/')
 def index():
     # for now
-    return render_template('dummy.html')
+    return render_template('error-page.html')
 
 
 @app.route('/char-sheet/<int:sheet_id>')
