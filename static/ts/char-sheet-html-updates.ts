@@ -290,7 +290,7 @@ function fillPowersHTML(level: number): void {
     alignmentDiv.appendChild(alignmentLabel)
     let alignment: HTMLElement = document.createElement('h4')
     alignment.className = 'label'
-    alignment.innerText = power.name
+    alignment.innerText = power.alignment
     alignmentDiv.appendChild(alignment)
     li.appendChild(alignmentDiv)
     let castingPeriodDiv: HTMLElement = document.createElement('div')
