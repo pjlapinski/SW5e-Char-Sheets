@@ -20,7 +20,7 @@ body {
 .nav-wrapper:hover {
   color: rgb(85, 187, 255);
   cursor: pointer;
-  background: rgb(105, 105, 105);
+  background: rgb(105, 105, 105) !important;
 }
 
 .nav-wrapper h2 {
