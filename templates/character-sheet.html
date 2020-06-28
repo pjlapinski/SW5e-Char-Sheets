@@ -41,16 +41,22 @@
         <h2>Notes</h2>
       </div>
       <div class="nav-wrapper">
+        <h2>Bonuses</h2>
+      </div>
+      <div class="nav-wrapper">
         <h2 id="save-nav">Save</h2>
       </div>
       <div class="nav-wrapper">
         <h2 id="return-nav">Return</h2>
       </div>
+      <div class="nav-wrapper edit-wrapper">
+        <h2>Edit</h2>
+      </div>
     </div>
     <div class="sheet-content">
       <!-- #region view sections -->
       <!-- make every "sheet-info" div a tab that you can switch to? -->
-      <div class="basic-info-section sheet-section">
+      <div class="sheet-section display-sheet-section" id="basic-info-section">
         <h2 id="character-name"></h2>
         <div class="species-wrapper">
           <h4 class="label">Species:</h4>
@@ -93,7 +99,7 @@
         </div>
       </div>
 
-      <div class="hp-section sheet-section">
+      <div class="sheet-section display-sheet-section" id="hp-section">
         <div class="hp-wrapper">
           <h4 class="label">Hit Points:</h4>
           <h4 id="curr-hp"></h4>
@@ -146,9 +152,8 @@
         </div>
       </div>
 
-      <div
-        class="attributes-and-skills-section attributes-and-skills-section-edit sheet-section"
-      >
+      <div class="sheet-section display-sheet-section" id="attributes-and-skills-section-edit"
+            id="attributes-and-skills-section">
         <div class="attribute-wrapper">
           <div class="attribute-score-wrapper">
             <h3>STRENGTH</h3>
@@ -494,7 +499,7 @@
         </div>
       </div>
 
-      <div class="features-section sheet-section">
+      <div class="sheet-section display-sheet-section" id="features-section">
         <div class="proficiencies-wrapper">
           <h2 class="label">Other proficiencies:</h2>
           <ul id="proficiencies"></ul>
@@ -511,13 +516,13 @@
         </div>
       </div>
 
-      <div class="equipment-section sheet-section">
+      <div class="sheet-section display-sheet-section" id="equipment-section">
         <h4 class="label">Credits:</h4>
         <input type="number" id="credits" class="underlined-input__number" />
         <ul id="equipment"></ul>
       </div>
 
-      <div class="attacks-section sheet-section">
+      <div class="sheet-section display-sheet-section" id="attacks-section">
         <!-- js is going to calculate attacks by itself - kind of.
         it's going to need some input, like, if you're proficient in the weapon,
         if it's a magic weapon, what's it's damage etc,
@@ -537,7 +542,7 @@
         </table>
       </div>
 
-      <div class="powers-section sheet-section">
+      <div class="sheet-section display-sheet-section" id="powers-section">
         <div class="powers-header">
           <div class="powers-header__element">
             <!-- in the final version we're only going to have either tech powers or
@@ -631,19 +636,20 @@
         </div>
       </div>
 
-      <div class="notes-section sheet-section">
+      <div class="sheet-section display-sheet-section" id="notes-section">
         <p id="notes"></p>
       </div>
 
-      <div class="bonuses-sections sheet-section">
+      <div class="sheet-section display-sheet-section" id="bonuses-sections">
         <!-- probably better to just do this in ts
         should look like this:
         <h4 class="label">Bonus Name</h4>
-        <input type="number" id="bonus-name-value" />
-      --></div>
+        <input type="number" id="bonus-name-value" />-->
+      </div>
+
       <!-- #endregion -->
       <!-- #region editing sections -->
-      <div class="basic-info-section-edit sheet-section">
+      <div class="sheet-section edit-sheet-section" id="basic-info-section-edit">
         <h4 class="label">Name:</h4>
         <input type="text" id="character-name-edit" />
         <div class="species-wrapper">
@@ -683,7 +689,7 @@
         </div>
       </div>
 
-      <div class="hp-section-edit sheet-section">
+      <div class="sheet-section edit-sheet-section" id="hp-section-edit">
         <h4 class="label">Max hit points:</h4>
         <input type="number" id="max-hp-edit" />
         <h4 class="label">Hit dice die:</h4>
@@ -692,7 +698,7 @@
 
       <!-- attributes & skills not needed -->
 
-      <div class="features-section-edit sheet-section">
+      <div class="sheet-section edit-sheet-section" id="features-section-edit">
         <div class="proficiencies-wrapper">
           <h2 class="label">Other proficiencies:</h2>
           <ul id="proficiencies-edit">
@@ -716,21 +722,21 @@
         </div>
       </div>
 
-      <div class="equipment-section-edit sheet-section">
+      <div class="sheet-section edit-sheet-section" id="equipment-section-edit">
         <ul id="equipment-edit">
           <!-- add in ts -->
         </ul>
         <input type="button" value="+" id="add-equipment" class="add-button" />
       </div>
 
-      <div class="attacks-section-edit sheet-section">
+      <div class="sheet-section edit-sheet-section" id="attacks-section-edit">
         <ul id="attacks-edit">
           <!-- add in ts -->
         </ul>
         <input type="button" value="+" id="add-attack" class="add-button" />
       </div>
 
-      <div class="powers-section-edit sheet-section">
+      <div class="sheet-section edit-sheet-section" id="powers-section-edit">
         <div class="powers-header">
           <div class="powers-header__element">
             <h4 class="label">Max power points:</h4>
@@ -838,7 +844,7 @@
           </ol>
         </div>
       </div>
-      <div class="notes-section-edit sheet-section">
+      <div class="sheet-section edit-sheet-section" id="notes-section-edit">
         <input type="text" id="notes-edit" />
       </div>
       <!-- #endregion -->

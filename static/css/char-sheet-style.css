@@ -6,10 +6,11 @@
 }
 
 body {
-
   background: rgb(156, 156, 156);
   color: rgb(255, 255, 255);
 }
+
+/* menu*/
 
 .nav-wrapper {
   margin-top: 5%;
@@ -27,7 +28,10 @@ body {
   pointer-events: none;
 }
 
-/* menu*/
+/* .edit-wrapper {
+  position: absolute;
+  bottom: 0;
+} */
 
 .sheet-side-menu {
   height: 100%;
