@@ -9,7 +9,7 @@ let previouslyClickedElement: number = 0;
 let isEditModeActive: Boolean = false;
 initializeSideMenu()
 
-// indexes 0-8 are for infomations about a character, 9-11 are for save, return and edit
+// indexes 0-8 are for infomations about a character, 11-13 are for save, return and edit
 
 function initializeSideMenu(): void {
     sideMenuButtons.forEach(element => {
@@ -53,7 +53,7 @@ function changeSelectedInformations(element): void {
         }
     }
 
-    if (clickedElement == 11) {
+    if (clickedElement == 13) {
         if (isEditModeActive) {
             disableSection(editSheetSections);
             sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(63, 63, 63)");
@@ -65,6 +65,6 @@ function changeSelectedInformations(element): void {
         }
     }
 
-    // 9-11 are for save, return (not supported yet) and edit 
+    // 11-13 are for save, return (not supported yet) and edit 
     // this function can be propably more generic
 }
