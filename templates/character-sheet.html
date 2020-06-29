@@ -152,6 +152,351 @@
         </div>
       </div>
 
+      <div class="sheet-section display-sheet-section" id="features-section">
+        <div class="proficiencies-wrapper">
+          <h2 class="label">Other proficiencies:</h2>
+          <ul id="proficiencies"></ul>
+        </div>
+        <div class="languages-wrapper">
+          <h2 class="label">Languages:</h2>
+          <ul id="languages"></ul>
+        </div>
+        <div class="features-and-traits-wrapper">
+          <h2 class="label">Features & traits:</h2>
+          <ul id="features-and-traits">
+            <!-- probably the longest section -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="sheet-section display-sheet-section" id="equipment-section">
+        <h4 class="label">Credits:</h4>
+        <input type="number" id="credits" class="underlined-input__number" />
+        <ul id="equipment"></ul>
+      </div>
+
+      <div class="sheet-section display-sheet-section" id="attacks-section">
+        <!-- js is going to calculate attacks by itself - kind of.
+        it's going to need some input, like, if you're proficient in the weapon,
+        if it's a magic weapon, what's it's damage etc,
+
+        with that info it will calculate attack bonus and damage bonus 
+        
+        should there be a separate section for input and output, or should it
+        all be in here
+        -->
+        <table class="attacks-table">
+          <tr class="table-header">
+            <td>Name</td>
+            <td>Attack bonus</td>
+            <td>Damage</td>
+            <td>Notes</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="sheet-section display-sheet-section" id="powers-section">
+        <div class="powers-header">
+          <div class="powers-header__element">
+            <!-- in the final version we're only going to have either tech powers or
+              both dark and light side powers 
+            
+              which means that both tech points and force points are going to be combined
+              into just "power points", so the ids will have to be changed -->
+            <h3 class="label">Tech powers:</h3>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Tech save DC:</h4>
+              <h4 id="tech-save-dc"></h4>
+            </div>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Tech attack bonus:</h4>
+              <h4 id="tech-attack-bonus"></h4>
+            </div>
+          </div>
+
+          <div class="powers-header__element">
+            <h3 class="label">Dark side powers:</h3>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Dark side save DC:</h4>
+              <h4 id="dark-side-save-dc"></h4>
+            </div>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Dark side attack bonus:</h4>
+              <h4 id="dark-side-attack-bonus"></h4>
+            </div>
+          </div>
+
+          <div class="powers-header__element">
+            <h3 class="label">Light side powers:</h3>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Light side save DC:</h4>
+              <h4 id="light-side-save-dc"></h4>
+            </div>
+            <div class="powers-header__element__single-line">
+              <h4 class="label">Light side attack bonus:</h4>
+              <h4 id="light-side-attack-bonus"></h4>
+            </div>
+          </div>
+
+          <div class="powers-header__element">
+            <h4 class="label">Power points:</h4>
+            <div class="powers-header__element__single-line">
+              <input
+                type="number"
+                id="current-power-points"
+                class="underlined-input__number"
+              />
+              <h4 class="slash-separator">/</h4>
+              <h4 class="label" id="max-power-points"></h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="powers-list-wrapper">
+          <h3 class="label">Powers known:</h3>
+          <ol class="powers-list-power-levels" start="0">
+            <li id="powers__at-will">
+              <br />
+            </li>
+            <li id="powers__level-1">
+              <br />
+            </li>
+            <li id="powers__level-2">
+              <br />
+            </li>
+            <li id="powers__level-3">
+              <br />
+            </li>
+            <li id="powers__level-4">
+              <br />
+            </li>
+            <li id="powers__level-5">
+              <br />
+            </li>
+            <li id="powers__level-6">
+              <br />
+            </li>
+            <li id="powers__level-7">
+              <br />
+            </li>
+            <li id="powers__level-8">
+              <br />
+            </li>
+            <li id="powers__level-9">
+              <br />
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="sheet-section display-sheet-section" id="notes-section">
+        <p id="notes"></p>
+      </div>
+
+      <!-- #endregion -->
+      <!-- #region editing sections -->
+      <div
+        class="sheet-section edit-sheet-section"
+        id="basic-info-section-edit"
+      >
+        <h4 class="label">Name:</h4>
+        <input type="text" id="character-name-edit" />
+        <div class="species-wrapper">
+          <h4 class="label">Species:</h4>
+          <input type="text" id="species-edit" />
+        </div>
+        <div class="class-wrapper">
+          <h4 class="label">Class & level:</h4>
+          <input type="text" id="class-edit" />
+          <input type="text" id="archetype-edit" />
+          <input type="number" id="level-edit" />
+        </div>
+        <div class="background-wrapper">
+          <h4 class="label">Background:</h4>
+          <input type="text" id="background-edit" />
+        </div>
+        <div class="alignment-wrapper">
+          <h4 class="label">Alignment:</h4>
+          <input type="text" id="alignment-edit" />
+        </div>
+        <div class="combat-info-wrapper">
+          <!-- some fancy borders for both -->
+          <h4 class="label">Speed:</h4>
+          <input type="number" id="speed-edit" />
+        </div>
+        <div class="personality-wrapper">
+          <h4 class="label">Personality traits:</h4>
+          <!-- text areas maybe? -->
+          <input type="text" id="personality-traits-edit" />
+          <h4 class="label">Ideal:</h4>
+          <input type="text" id="ideal-edit" />
+          <h4 class="label">Bond:</h4>
+          <input type="text" id="bond-edit" />
+          <h4 class="label">Flaw:</h4>
+          <input type="text" id="flaw-edit" />
+          <!-- very likely some more here, perhaps a text area for backstory/notes? -->
+        </div>
+      </div>
+
+      <div class="sheet-section edit-sheet-section" id="hp-section-edit">
+        <h4 class="label">Max hit points:</h4>
+        <input type="number" id="max-hp-edit" />
+        <h4 class="label">Hit dice die:</h4>
+        <input type="number" id="hit-dice-die-edit" />
+      </div>
+
+      <!-- attributes & skills not needed -->
+
+      <div class="sheet-section edit-sheet-section" id="features-section-edit">
+        <div class="proficiencies-wrapper">
+          <h2 class="label">Other proficiencies:</h2>
+          <ul id="proficiencies-edit">
+            <!-- add in ts -->
+          </ul>
+          <input type="button" value="+" id="add-feature" class="add-button" />
+        </div>
+        <div class="languages-wrapper">
+          <h2 class="label">Languages:</h2>
+          <ul id="languages-edit">
+            <!-- add in ts -->
+          </ul>
+          <input type="button" value="+" id="add-language" class="add-button" />
+        </div>
+        <div class="features-and-traits-wrapper">
+          <h2 class="label">Features & traits:</h2>
+          <ul id="features-and-traits-edit">
+            <!-- add in ts -->
+          </ul>
+          <input type="button" value="+" id="add-feature" class="add-button" />
+        </div>
+      </div>
+
+      <div class="sheet-section edit-sheet-section" id="equipment-section-edit">
+        <ul id="equipment-edit">
+          <!-- add in ts -->
+        </ul>
+        <input type="button" value="+" id="add-equipment" class="add-button" />
+      </div>
+
+      <div class="sheet-section edit-sheet-section" id="attacks-section-edit">
+        <ul id="attacks-edit">
+          <!-- add in ts -->
+        </ul>
+        <input type="button" value="+" id="add-attack" class="add-button" />
+      </div>
+
+      <div class="sheet-section edit-sheet-section" id="powers-section-edit">
+        <div class="powers-header">
+          <div class="powers-header__element">
+            <h4 class="label">Max power points:</h4>
+            <input
+              type="number"
+              id="current-power-points-edit"
+              class="underlined-input__number"
+            />
+          </div>
+        </div>
+
+        <div class="powers-list-wrapper">
+          <h3 class="label">Powers known:</h3>
+          <ol class="powers-list-power-levels" start="0">
+            <li id="powers__at-will-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__at-will"
+              class="add-button"
+            />
+            <li id="powers__level-1-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-1"
+              class="add-button"
+            />
+            <li id="powers__level-2-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-2"
+              class="add-button"
+            />
+            <li id="powers__level-3-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-3"
+              class="add-button"
+            />
+            <li id="powers__level-4-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-4"
+              class="add-button"
+            />
+            <li id="powers__level-5-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-5"
+              class="add-button"
+            />
+            <li id="powers__level-6-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-6"
+              class="add-button"
+            />
+            <li id="powers__level-7-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-7"
+              class="add-button"
+            />
+            <li id="powers__level-8-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-8"
+              class="add-button"
+            />
+            <li id="powers__level-9-edit">
+              <br />
+            </li>
+            <input
+              type="button"
+              value="+"
+              id="add-power__level-9"
+              class="add-button"
+            />
+          </ol>
+        </div>
+      </div>
+      <div class="sheet-section edit-sheet-section" id="notes-section-edit">
+        <input type="text" id="notes-edit" />
+      </div>
+
       <div
         class="sheet-section display-sheet-section edit-sheet-section"
         id="attributes-and-skills-section"
@@ -501,356 +846,13 @@
         </div>
       </div>
 
-      <div class="sheet-section display-sheet-section" id="features-section">
-        <div class="proficiencies-wrapper">
-          <h2 class="label">Other proficiencies:</h2>
-          <ul id="proficiencies"></ul>
-        </div>
-        <div class="languages-wrapper">
-          <h2 class="label">Languages:</h2>
-          <ul id="languages"></ul>
-        </div>
-        <div class="features-and-traits-wrapper">
-          <h2 class="label">Features & traits:</h2>
-          <ul id="features-and-traits">
-            <!-- probably the longest section -->
-          </ul>
-        </div>
-      </div>
-
-      <div class="sheet-section display-sheet-section" id="equipment-section">
-        <h4 class="label">Credits:</h4>
-        <input type="number" id="credits" class="underlined-input__number" />
-        <ul id="equipment"></ul>
-      </div>
-
-      <div class="sheet-section display-sheet-section" id="attacks-section">
-        <!-- js is going to calculate attacks by itself - kind of.
-        it's going to need some input, like, if you're proficient in the weapon,
-        if it's a magic weapon, what's it's damage etc,
-
-        with that info it will calculate attack bonus and damage bonus 
-        
-        should there be a separate section for input and output, or should it
-        all be in here
-        -->
-        <table class="attacks-table">
-          <tr class="table-header">
-            <td>Name</td>
-            <td>Attack bonus</td>
-            <td>Damage</td>
-            <td>Notes</td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="sheet-section display-sheet-section" id="powers-section">
-        <div class="powers-header">
-          <div class="powers-header__element">
-            <!-- in the final version we're only going to have either tech powers or
-              both dark and light side powers 
-            
-              which means that both tech points and force points are going to be combined
-              into just "power points", so the ids will have to be changed -->
-            <h3 class="label">Tech powers:</h3>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Tech save DC:</h4>
-              <h4 id="tech-save-dc"></h4>
-            </div>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Tech attack bonus:</h4>
-              <h4 id="tech-attack-bonus"></h4>
-            </div>
-          </div>
-
-          <div class="powers-header__element">
-            <h3 class="label">Dark side powers:</h3>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Dark side save DC:</h4>
-              <h4 id="dark-side-save-dc"></h4>
-            </div>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Dark side attack bonus:</h4>
-              <h4 id="dark-side-attack-bonus"></h4>
-            </div>
-          </div>
-
-          <div class="powers-header__element">
-            <h3 class="label">Light side powers:</h3>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Light side save DC:</h4>
-              <h4 id="light-side-save-dc"></h4>
-            </div>
-            <div class="powers-header__element__single-line">
-              <h4 class="label">Light side attack bonus:</h4>
-              <h4 id="light-side-attack-bonus"></h4>
-            </div>
-          </div>
-
-          <div class="powers-header__element">
-            <h4 class="label">Power points:</h4>
-            <div class="powers-header__element__single-line">
-              <input
-                type="number"
-                id="current-power-points"
-                class="underlined-input__number"
-              />
-              <h4 class="slash-separator">/</h4>
-              <h4 class="label" id="max-power-points"></h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="powers-list-wrapper">
-          <h3 class="label">Powers known:</h3>
-          <ol class="powers-list-power-levels" start="0">
-            <li id="powers__at-will">
-              <br />
-            </li>
-            <li id="powers__level-1">
-              <br />
-            </li>
-            <li id="powers__level-2">
-              <br />
-            </li>
-            <li id="powers__level-3">
-              <br />
-            </li>
-            <li id="powers__level-4">
-              <br />
-            </li>
-            <li id="powers__level-5">
-              <br />
-            </li>
-            <li id="powers__level-6">
-              <br />
-            </li>
-            <li id="powers__level-7">
-              <br />
-            </li>
-            <li id="powers__level-8">
-              <br />
-            </li>
-            <li id="powers__level-9">
-              <br />
-            </li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="sheet-section display-sheet-section" id="notes-section">
-        <p id="notes"></p>
-      </div>
-
-      <div class="sheet-section display-sheet-section edit-sheet-section" id="bonuses-section">
-        <!-- probably better to just do this in ts
-        should look like this:
-        <h4 class="label">Bonus Name</h4>
-        <input type="number" id="bonus-name-value" />-->
-      </div>
-
-      <!-- #endregion -->
-      <!-- #region editing sections -->
       <div
-        class="sheet-section edit-sheet-section"
-        id="basic-info-section-edit"
+        class="sheet-section display-sheet-section edit-sheet-section"
+        id="bonuses-section"
       >
-        <h4 class="label">Name:</h4>
-        <input type="text" id="character-name-edit" />
-        <div class="species-wrapper">
-          <h4 class="label">Species:</h4>
-          <input type="text" id="species-edit" />
-        </div>
-        <div class="class-wrapper">
-          <h4 class="label">Class & level:</h4>
-          <input type="text" id="class-edit" />
-          <input type="text" id="archetype-edit" />
-          <input type="number" id="level-edit" />
-        </div>
-        <div class="background-wrapper">
-          <h4 class="label">Background:</h4>
-          <input type="text" id="background-edit" />
-        </div>
-        <div class="alignment-wrapper">
-          <h4 class="label">Alignment:</h4>
-          <input type="text" id="alignment-edit" />
-        </div>
-        <div class="combat-info-wrapper">
-          <!-- some fancy borders for both -->
-          <h4 class="label">Speed:</h4>
-          <input type="number" id="speed-edit" />
-        </div>
-        <div class="personality-wrapper">
-          <h4 class="label">Personality traits:</h4>
-          <!-- text areas maybe? -->
-          <input type="text" id="personality-traits-edit" />
-          <h4 class="label">Ideal:</h4>
-          <input type="text" id="ideal-edit" />
-          <h4 class="label">Bond:</h4>
-          <input type="text" id="bond-edit" />
-          <h4 class="label">Flaw:</h4>
-          <input type="text" id="flaw-edit" />
-          <!-- very likely some more here, perhaps a text area for backstory/notes? -->
-        </div>
-      </div>
-
-      <div class="sheet-section edit-sheet-section" id="hp-section-edit">
-        <h4 class="label">Max hit points:</h4>
-        <input type="number" id="max-hp-edit" />
-        <h4 class="label">Hit dice die:</h4>
-        <input type="number" id="hit-dice-die-edit" />
-      </div>
-
-      <!-- attributes & skills not needed -->
-
-      <div class="sheet-section edit-sheet-section" id="features-section-edit">
-        <div class="proficiencies-wrapper">
-          <h2 class="label">Other proficiencies:</h2>
-          <ul id="proficiencies-edit">
-            <!-- add in ts -->
-          </ul>
-          <input type="button" value="+" id="add-feature" class="add-button" />
-        </div>
-        <div class="languages-wrapper">
-          <h2 class="label">Languages:</h2>
-          <ul id="languages-edit">
-            <!-- add in ts -->
-          </ul>
-          <input type="button" value="+" id="add-language" class="add-button" />
-        </div>
-        <div class="features-and-traits-wrapper">
-          <h2 class="label">Features & traits:</h2>
-          <ul id="features-and-traits-edit">
-            <!-- add in ts -->
-          </ul>
-          <input type="button" value="+" id="add-feature" class="add-button" />
-        </div>
-      </div>
-
-      <div class="sheet-section edit-sheet-section" id="equipment-section-edit">
-        <ul id="equipment-edit">
-          <!-- add in ts -->
-        </ul>
-        <input type="button" value="+" id="add-equipment" class="add-button" />
-      </div>
-
-      <div class="sheet-section edit-sheet-section" id="attacks-section-edit">
-        <ul id="attacks-edit">
-          <!-- add in ts -->
-        </ul>
-        <input type="button" value="+" id="add-attack" class="add-button" />
-      </div>
-
-      <div class="sheet-section edit-sheet-section" id="powers-section-edit">
-        <div class="powers-header">
-          <div class="powers-header__element">
-            <h4 class="label">Max power points:</h4>
-            <input
-              type="number"
-              id="current-power-points-edit"
-              class="underlined-input__number"
-            />
-          </div>
-        </div>
-
-        <div class="powers-list-wrapper">
-          <h3 class="label">Powers known:</h3>
-          <ol class="powers-list-power-levels" start="0">
-            <li id="powers__at-will-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__at-will"
-              class="add-button"
-            />
-            <li id="powers__level-1-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-1"
-              class="add-button"
-            />
-            <li id="powers__level-2-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-2"
-              class="add-button"
-            />
-            <li id="powers__level-3-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-3"
-              class="add-button"
-            />
-            <li id="powers__level-4-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-4"
-              class="add-button"
-            />
-            <li id="powers__level-5-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-5"
-              class="add-button"
-            />
-            <li id="powers__level-6-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-6"
-              class="add-button"
-            />
-            <li id="powers__level-7-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-7"
-              class="add-button"
-            />
-            <li id="powers__level-8-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-8"
-              class="add-button"
-            />
-            <li id="powers__level-9-edit">
-              <br />
-            </li>
-            <input
-              type="button"
-              value="+"
-              id="add-power__level-9"
-              class="add-button"
-            />
-          </ol>
-        </div>
-      </div>
-      <div class="sheet-section edit-sheet-section" id="notes-section-edit">
-        <input type="text" id="notes-edit" />
+        <!-- this gets filled in js, the format is:
+              <h4 class="label">Bonus Name</h4>
+              <input type="number" id="bonus-name-bonus-value" />-->
       </div>
       <!-- #endregion -->
     </div>
