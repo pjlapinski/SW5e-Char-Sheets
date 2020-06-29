@@ -28,11 +28,6 @@ body {
   pointer-events: none;
 }
 
-/* .edit-wrapper {
-  position: absolute;
-  bottom: 0;
-} */
-
 .sheet-side-menu {
   height: 100%;
   width: 9vw;
