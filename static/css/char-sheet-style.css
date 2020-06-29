@@ -10,10 +10,12 @@ body {
   color: rgb(255, 255, 255);
 }
 
-/* menu*/
+/* menu */
+/* TODO ? Menu is kind of responsive, but can be done better, 
+possibly a slide out from the side on screens < 600px wide */
 
 .nav-wrapper {
-  margin-top: 5%;
+  padding: 5%;
   text-align: center;
 }
 
@@ -30,7 +32,7 @@ body {
 
 .sheet-side-menu {
   height: 100%;
-  width: 9vw;
+  width: 20%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -49,7 +51,7 @@ body {
 .sheet-section {
   border-radius: 50px;
   background: rgb(100, 100, 100);
-  margin-left: 11vw;
+  margin-left: 22%;
   margin-right: 2vw;
   margin-top: 5%;
   padding: 5vh 10vw;
