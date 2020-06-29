@@ -581,6 +581,7 @@ function getProficiencyBonus(level: number): number {
 }
 
 function fillBonusesHTML(): void {
+  bonuses.innerHTML = ''
   for (let bonusName in characterSheet.bonuses) {
     let bonusValue: number = characterSheet.bonuses[bonusName]
     let name: HTMLElement = document.createElement('h4')
