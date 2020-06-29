@@ -148,6 +148,9 @@ const maxPowerPoints: HTMLElement = document.getElementById('max-power-points')
 // #region notes elements
 const notes: HTMLElement = document.getElementById('notes')
 // #endregion
+// #region bonuses elements
+const bonuses: HTMLElement = document.getElementById('bonuses-section')
+// #endregion
 
 /**
  * Updates ALL fields of the html file.
@@ -244,8 +247,10 @@ function updateHTML(): void {
   lightSideAttackBonus.innerText =
     lightAtk >= 0 ? `+${lightAtk}` : String(lightAtk)
   for (let i = 0; i <= 9; i++) fillPowersHTML(i)
-  // powers elements
+  // notes elements
   notes.innerText = characterSheet.notes
+  // bonuses
+  fillBonusesHTML()
 }
 
 function getPowerSaveDC(type: string): number {
@@ -573,6 +578,26 @@ function getProficiencyBonus(level: number): number {
   else if (level < 13) return 4
   else if (level < 17) return 5
   else return 6
+}
+
+function fillBonusesHTML(): void {
+  for (let bonusName in characterSheet.bonuses) {
+    let bonusValue: number = characterSheet.bonuses[bonusName]
+    let name: HTMLElement = document.createElement('h4')
+    name.className = 'label'
+    name.innerText = bonusName
+    bonuses.appendChild(name)
+    let input: HTMLInputElement = document.createElement('input')
+    input.type = 'number'
+    // change the camel case name to being separated by dashes, so it fits html standard
+    input.id = `${stringCamelCaseToDashes(bonusName)}-bonus-value`
+    input.value = String(bonusValue)
+    bonuses.appendChild(input)
+  }
+}
+
+function stringCamelCaseToDashes(str: string): string {
+  return str.replace(/[A-Z]/g, m => '-' + m.toLowerCase())
 }
 
 function stringToCamelCase(str: string): string {
