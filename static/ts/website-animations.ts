@@ -33,20 +33,10 @@ function changeSelectedInformations(element): void {
 
     if (clickedElement < 9) {
         if (isEditModeActive) {
-            //FIXME the skills section is creating some troubles to disable and enable it
             sideMenuButtons[previouslyClickedElement].setAttribute("style", "background: rgb(63, 63, 63)");
             sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(105, 105, 105)");
-            
-            if (clickedElement == 2) {
-                editSheetSections[previouslyClickedElement].setAttribute("style", "display: none");
-                displaySheetSections[clickedElement].setAttribute("style", "display: block");
-            } else if (clickedElement < 2) {
-                editSheetSections[previouslyClickedElement].setAttribute("style", "display: none");
-                editSheetSections[clickedElement].setAttribute("style", "display: block");
-            } else if(clickedElement > 2) {
-                editSheetSections[previouslyClickedElement + 1].setAttribute("style", "display: none");
-                editSheetSections[clickedElement + 1].setAttribute("style", "display: block");
-            }
+            editSheetSections[previouslyClickedElement].setAttribute("style", "display: none");
+            editSheetSections[clickedElement].setAttribute("style", "display: block");
 
             if (clickedElement < 9) {
                 previouslyClickedElement = clickedElement;
@@ -66,14 +56,12 @@ function changeSelectedInformations(element): void {
     if (clickedElement == 11) {
         if (isEditModeActive) {
             disableSection(editSheetSections);
-            sideMenuButtons[8].setAttribute("style", "display: block");
             sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(63, 63, 63)");
             isEditModeActive = false;
         } else {
             isEditModeActive = true;
             disableSection(displaySheetSections);
             sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(105, 105, 105)");
-            sideMenuButtons[8].setAttribute("style", "display: none");
         }
     }
 
