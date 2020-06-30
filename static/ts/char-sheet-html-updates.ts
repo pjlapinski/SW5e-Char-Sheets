@@ -1,15 +1,12 @@
 import { feature, attack, item, power, sheet } from 'char-sheet-interfaces'
 
-// TODO: so it turns out that the API needs to be queried from here instead, so that we can,
-// for example, access the power points at current character's level. After that, some things
-// may need to be changed here again
-
 // this is only done so that typescript has no problem with using a variable
 // defined in a completly different place
 var characterSheet: sheet
 
 // html elements that are going to be changing
 //
+// #region display elements
 // #region basic info tab elements
 const characterName: HTMLElement = document.getElementById('character-name')
 const species: HTMLElement = document.getElementById('species')
@@ -115,6 +112,8 @@ const languages: HTMLElement = document.getElementById('languages')
 const featuresAndTraits: HTMLElement = document.getElementById(
   'features-and-traits'
 )
+// #endregion
+// #region equipment elements
 const credits: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('credits')
 )
@@ -151,13 +150,119 @@ const notes: HTMLElement = document.getElementById('notes')
 // #region bonuses elements
 const bonuses: HTMLElement = document.getElementById('bonuses-section')
 // #endregion
+// #endregion
+// #region edit elements
+// #region basic info tab elements
+const editCharacterName: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('character-name-edit')
+)
+const editSpecies: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('species-edit')
+)
+const editClass: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('class-edit')
+)
+const editArchetype: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('archetype-edit')
+)
+const editLevel: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('level-edit')
+)
+const editBackground: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('background-edit')
+)
+const editAlignment: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('alignment-edit')
+)
+const editSpeed: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('speed-edit')
+)
+const editPersonalityTraits: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('personality-traits-edit')
+)
+const editIdeal: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('ideal-edit')
+)
+const editBond: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('bond-edit')
+)
+const editFlaw: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('flaw-edit')
+)
+// #endregion
+// #region hp tab elements
+const editMaxHP: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('max-hp-edit')
+)
+const editHitDiceDie: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('hit-dice-die-edit')
+)
+// #endregion
+// #region features & traits elements
+const editOtherProficiencies: HTMLElement = document.getElementById(
+  'proficiencies-edit'
+)
+const addProficiencyBtn: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('add-feature')
+)
+const editLanguages: HTMLElement = document.getElementById('languages-edit')
+const addLanguageBtn: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('add-language')
+)
+const editFeaturesAndTraits: HTMLElement = document.getElementById(
+  'features-and-traits-edit'
+)
+const addFeatureBtn: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('add-feature')
+)
+// #endregion
+// #region equipment elements
+const editEquipment: HTMLElement = document.getElementById('equipment-edit')
+const addEquipmentBtn: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('add-equipment')
+)
+// #endregion
+// #region attacks elements
+const editAttacks: HTMLElement = document.getElementById('attacks-edit')
+const addAttackBtn: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('add-attack')
+)
+// #endregion
+// #region powers elements
+const editMaxPowerPoints: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('current-power-points-edit')
+)
+// #endregion
+// #region notes elements
+const editNotes: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('notes-edit')
+)
+// #endregion
+// #endregion
 
 /**
  * Updates ALL fields of the html file.
  */
 function updateHTML(): void {
-  // could all be moved to different functions and just called here
-  // basic info elements
+  fillBasicInfoDisplayHTML()
+  fillHPInfoDisplayHTML()
+  fillFeaturesDisplayHTML()
+  fillEquipmentDisplayHTML()
+  fillAttacksDisplayHTML()
+  fillPowersDisplayHTML()
+  fillNotesDisplayHTML()
+  fillAttributesAndSkillsHTML()
+  fillBonusesHTML()
+
+  fillBasicInfoEditHTML()
+  fillHPInfoEditHTML()
+  fillFeaturesEditHTML()
+  fillEquipmentEditHTML()
+  fillAttacksEditHTML()
+}
+
+// #region functions filling display sections
+function fillBasicInfoDisplayHTML(): void {
   characterName.innerText = characterSheet.name
   species.innerText = characterSheet.species
   characterClass.innerText = characterSheet.class
@@ -172,59 +277,133 @@ function updateHTML(): void {
   bond.innerText = characterSheet.bond
   flaw.innerText = characterSheet.flaw
   initiative.innerText = String(getInitiativeBonus())
-  // hp info elements
+}
+
+function fillHPInfoDisplayHTML(): void {
   currHp.innerText = String(characterSheet.hitPoints.current)
   maxHp.innerText = String(characterSheet.hitPoints.max)
   tempHp.innerText = String(characterSheet.hitPoints.temporary)
   availableHitDice.value = String(characterSheet.hitDice.left)
   hitDiceMax.innerText = String(characterSheet.level)
   hitDiceDie.innerText = String(characterSheet.hitDice.type)
-  updateDeathSavesHTML()
-  // attributes and skills elements
-  strengthScore.value = String(characterSheet.attributes.strength)
-  strengthMod.innerText = String(getAttributeModifier('strength'))
-  dexterityScore.value = String(characterSheet.attributes.dexterity)
-  dexterityMod.innerText = String(getAttributeModifier('dexterity'))
-  constitutionScore.value = String(characterSheet.attributes.constitution)
-  constitutionMod.innerText = String(getAttributeModifier('constitution'))
-  intelligenceScore.value = String(characterSheet.attributes.intelligence)
-  intelligenceMod.innerText = String(getAttributeModifier('intelligence'))
-  wisdomScore.value = String(characterSheet.attributes.wisdom)
-  wisdomMod.innerText = String(getAttributeModifier('wisdom'))
-  charismaScore.value = String(characterSheet.attributes.charisma)
-  charismaMod.innerText = String(getAttributeModifier('charisma'))
-  for (let skill in skills) {
-    let camelCase = stringToCamelCase(skill.replace(/-/g, ' '))
-    let skillProficiencyHTML: HTMLInputElement = <HTMLInputElement>(
-      document.getElementById(`${skill}-prof`)
-    )
-    let skillScoreHTML: HTMLElement = document.getElementById(`${skill}-score`)
-    for (let prof of characterSheet.proficiencies) {
-      if (stringToCamelCase(prof) === camelCase) {
-        skillProficiencyHTML.checked = true
-        break
-      }
-    }
-    skillScoreHTML.innerText = String(getSkillMod(skill))
+  let successes = deathSavesSucc.children
+  let failures = deathSavesFail.children
+
+  for (let i = 0; i < 3; i++) {
+    let succ = <HTMLInputElement>successes[i]
+    let fail = <HTMLInputElement>failures[i]
+    succ.checked = i < characterSheet.deathSaves.succeeded
+    fail.checked = i < characterSheet.deathSaves.failed
   }
-  passivePerception.innerText = String(getPassiveSkill('perception'))
+}
+
+function fillFeaturesDisplayHTML(): void {
   otherProficiencies.innerHTML = ''
   for (let prof of characterSheet.otherProficiencies) {
     let profHTML: HTMLElement = document.createElement('li')
     profHTML.innerText = prof
     otherProficiencies.appendChild(profHTML)
   }
-  // features and traits elements
   languages.innerHTML = ''
   for (let lang of characterSheet.languages) {
     let langHTML: HTMLElement = document.createElement('li')
     langHTML.innerText = lang
     languages.appendChild(langHTML)
   }
-  fillFeaturesHTML()
-  // equipment elements
-  fillEquipmentHTML()
-  // attacks elements
+  featuresAndTraits.innerHTML = ''
+  for (let feature of characterSheet.features) {
+    let li: HTMLElement = document.createElement('li')
+    let name: HTMLElement = document.createElement('h4')
+    name.className = 'label'
+    name.innerText = feature.name
+    li.appendChild(name)
+    if (feature.usesMax !== 0) {
+      let restLabel: HTMLElement = document.createElement('h4')
+      restLabel.className = 'label'
+      restLabel.innerText = 'Rest:'
+      li.appendChild(restLabel)
+      let rest: HTMLElement = document.createElement('h4')
+      if (feature.refresh === 'longRest') rest.innerText = 'long'
+      else if (feature.refresh === 'shortRest') rest.innerText = 'short'
+      else rest.innerText = 'none'
+      li.appendChild(rest)
+      let usesLabel: HTMLElement = document.createElement('h4')
+      usesLabel.className = 'label'
+      usesLabel.innerText = 'Uses:'
+      li.appendChild(usesLabel)
+      let limitedUsesWrapper: HTMLElement = document.createElement('div')
+      limitedUsesWrapper.className = 'limited-uses-wrapper'
+      let usesAmount: HTMLInputElement = document.createElement('input')
+      usesAmount.type = 'number'
+      usesAmount.className = 'underlined-input__number'
+      usesAmount.value = String(feature.usesLeft)
+      limitedUsesWrapper.appendChild(usesAmount)
+      let slash: HTMLElement = document.createElement('h4')
+      slash.className = 'slash-separator'
+      slash.innerText = '/'
+      limitedUsesWrapper.appendChild(slash)
+      let maxUses: HTMLElement = document.createElement('h4')
+      maxUses.className = 'label'
+      maxUses.innerText = String(feature.usesMax)
+      limitedUsesWrapper.appendChild(maxUses)
+      li.appendChild(limitedUsesWrapper)
+    }
+    let description: HTMLElement = document.createElement('p')
+    description.innerText = feature.description
+    li.appendChild(description)
+    featuresAndTraits.appendChild(li)
+  }
+}
+
+function fillEquipmentDisplayHTML(): void {
+  credits.value = String(characterSheet.credits)
+  equipment.innerHTML = ''
+  for (let item of characterSheet.equipment) {
+    let li: HTMLElement = document.createElement('li')
+    li.className = 'equipment__item'
+    let amountAndName: HTMLElement = document.createElement('div')
+    amountAndName.className = 'item-amount-and-name'
+    if (item.amount > 1) {
+      let amount: HTMLElement = document.createElement('h4')
+      amount.className = 'label'
+      amount.innerText = String(item.amount)
+      amountAndName.appendChild(amount)
+    }
+    let name: HTMLElement = document.createElement('h4')
+    name.className = 'label'
+    name.innerText = item.name
+    amountAndName.appendChild(name)
+    li.appendChild(amountAndName)
+    if (item.usesMax !== 0) {
+      let usesLabel: HTMLElement = document.createElement('h4')
+      usesLabel.className = 'label'
+      usesLabel.innerText = 'Uses:'
+      li.appendChild(usesLabel)
+      let limitedUsesWrapper: HTMLElement = document.createElement('div')
+      limitedUsesWrapper.className = 'limited-uses-wrapper'
+      let usesAmount: HTMLInputElement = document.createElement('input')
+      usesAmount.type = 'number'
+      usesAmount.className = 'underlined-input__number'
+      usesAmount.value = String(item.usesLeft)
+      limitedUsesWrapper.appendChild(usesAmount)
+      let slash: HTMLElement = document.createElement('h4')
+      slash.className = 'slash-separator'
+      slash.innerText = '/'
+      limitedUsesWrapper.appendChild(slash)
+      let maxUses: HTMLElement = document.createElement('h4')
+      maxUses.className = 'label'
+      maxUses.innerText = String(item.usesMax)
+      limitedUsesWrapper.appendChild(maxUses)
+      li.appendChild(limitedUsesWrapper)
+    }
+    let notes: HTMLElement = document.createElement('p')
+    notes.innerText = item.notes
+    li.appendChild(notes)
+    equipment.appendChild(li)
+  }
+}
+
+function fillAttacksDisplayHTML(): void {
   // firstElementChild twice, because the first child is tbody
   let atkTableHeader: HTMLElement = <HTMLElement>(
     attacksTable.firstElementChild.firstElementChild
@@ -233,7 +412,9 @@ function updateHTML(): void {
   attacksTable.appendChild(atkTableHeader)
   for (let atk of characterSheet.attacks)
     attacksTable.appendChild(createAttackTableRow(atk))
-  // powers elements
+}
+
+function fillPowersDisplayHTML(): void {
   maxPowerPoints.innerText = String(characterSheet.powerPointsMax)
   currentPowerPoints.value = String(characterSheet.powerPointsLeft)
   techSaveDC.innerText = String(getPowerSaveDC('tech'))
@@ -246,35 +427,14 @@ function updateHTML(): void {
   let lightAtk = getPowerAttackBonus('light')
   lightSideAttackBonus.innerText =
     lightAtk >= 0 ? `+${lightAtk}` : String(lightAtk)
-  for (let i = 0; i <= 9; i++) fillPowersHTML(i)
-  // notes elements
+  for (let i = 0; i <= 9; i++) fillSinglePowerLevelDisplayHTML(i)
+}
+
+function fillNotesDisplayHTML(): void {
   notes.innerText = characterSheet.notes
-  // bonuses
-  fillBonusesHTML()
 }
 
-function getPowerSaveDC(type: string): number {
-  let dc = characterSheet.bonuses[`${type}SaveDC`]
-  dc += getProficiencyBonus(characterSheet.level)
-  if (type === 'tech') dc += getAttributeModifier('intelligence')
-  else if (type === 'light') dc += getAttributeModifier('wisdom')
-  else dc += getAttributeModifier('charisma')
-  dc += 8
-  return dc
-}
-
-function getPowerAttackBonus(type: string): number {
-  let bonus = characterSheet.bonuses[`${type}AttackBonus`]
-  if (type === 'tech') bonus += getAttributeModifier('intelligence')
-  else if (type === 'light') bonus += getAttributeModifier('wisdom')
-  else bonus += getAttributeModifier('charisma')
-  return bonus
-}
-
-/**
- * Fills the powers of the given level from the sheet to html.
- */
-function fillPowersHTML(level: number): void {
+function fillSinglePowerLevelDisplayHTML(level: number): void {
   let levelStr = level === 0 ? 'at-will' : `level-${level}`
   let powersAtLevel = document.getElementById(`powers__${levelStr}`)
   powersAtLevel.innerHTML = ''
@@ -353,66 +513,133 @@ function fillPowersHTML(level: number): void {
   }
 }
 
-/**
- * Fills the features section with all the info about features
- * in the character sheet.
- */
-function fillFeaturesHTML(): void {
-  featuresAndTraits.innerHTML = ''
-  for (let feature of characterSheet.features) {
-    let li: HTMLElement = document.createElement('li')
+// #endregion
+// #region functions filling edit sections
+function fillAttributesAndSkillsHTML(): void {
+  strengthScore.value = String(characterSheet.attributes.strength)
+  strengthMod.innerText = String(getAttributeModifier('strength'))
+  dexterityScore.value = String(characterSheet.attributes.dexterity)
+  dexterityMod.innerText = String(getAttributeModifier('dexterity'))
+  constitutionScore.value = String(characterSheet.attributes.constitution)
+  constitutionMod.innerText = String(getAttributeModifier('constitution'))
+  intelligenceScore.value = String(characterSheet.attributes.intelligence)
+  intelligenceMod.innerText = String(getAttributeModifier('intelligence'))
+  wisdomScore.value = String(characterSheet.attributes.wisdom)
+  wisdomMod.innerText = String(getAttributeModifier('wisdom'))
+  charismaScore.value = String(characterSheet.attributes.charisma)
+  charismaMod.innerText = String(getAttributeModifier('charisma'))
+  for (let skill in skills) {
+    let camelCase = stringToCamelCase(skill.replace(/-/g, ' '))
+    let skillProficiencyHTML: HTMLInputElement = <HTMLInputElement>(
+      document.getElementById(`${skill}-prof`)
+    )
+    let skillScoreHTML: HTMLElement = document.getElementById(`${skill}-score`)
+    for (let prof of characterSheet.proficiencies) {
+      if (stringToCamelCase(prof) === camelCase) {
+        skillProficiencyHTML.checked = true
+        break
+      }
+    }
+    skillScoreHTML.innerText = String(getSkillMod(skill))
+  }
+  passivePerception.innerText = String(getPassiveSkill('perception'))
+}
+
+function fillBonusesHTML(): void {
+  bonuses.innerHTML = ''
+  for (let bonusName in characterSheet.bonuses) {
+    let bonusValue: number = characterSheet.bonuses[bonusName]
     let name: HTMLElement = document.createElement('h4')
     name.className = 'label'
-    name.innerText = feature.name
-    li.appendChild(name)
-    if (feature.usesMax !== 0) {
-      let restLabel: HTMLElement = document.createElement('h4')
-      restLabel.className = 'label'
-      restLabel.innerText = 'Rest:'
-      li.appendChild(restLabel)
-      let restSelect: HTMLElement = document.createElement('select')
-      let optionLong: HTMLElement = document.createElement('option')
-      optionLong.innerText = 'long'
-      let optionShort: HTMLElement = document.createElement('option')
-      optionShort.innerText = 'short'
-      restSelect.appendChild(optionLong)
-      restSelect.appendChild(optionShort)
-      li.appendChild(restSelect)
-      let usesLabel: HTMLElement = document.createElement('h4')
-      usesLabel.className = 'label'
-      usesLabel.innerText = 'Uses:'
-      li.appendChild(usesLabel)
-      let limitedUsesWrapper: HTMLElement = document.createElement('div')
-      limitedUsesWrapper.className = 'limited-uses-wrapper'
-      let usesAmount: HTMLInputElement = document.createElement('input')
-      usesAmount.type = 'number'
-      usesAmount.className = 'underlined-input__number'
-      usesAmount.value = String(feature.usesLeft)
-      limitedUsesWrapper.appendChild(usesAmount)
-      let slash: HTMLElement = document.createElement('h4')
-      slash.className = 'slash-separator'
-      slash.innerText = '/'
-      limitedUsesWrapper.appendChild(slash)
-      let maxUses: HTMLElement = document.createElement('h4')
-      maxUses.className = 'label'
-      maxUses.innerText = String(feature.usesMax)
-      limitedUsesWrapper.appendChild(maxUses)
-      li.appendChild(limitedUsesWrapper)
-    }
-    let description: HTMLElement = document.createElement('p')
-    description.innerText = feature.description
-    li.appendChild(description)
-    featuresAndTraits.appendChild(li)
+    name.innerText = bonusName
+    bonuses.appendChild(name)
+    let input: HTMLInputElement = document.createElement('input')
+    input.type = 'number'
+    // change the camel case name to being separated by dashes, so it fits html standard
+    input.id = `${stringCamelCaseToDashes(bonusName)}-bonus-value`
+    input.value = String(bonusValue)
+    bonuses.appendChild(input)
   }
 }
 
-/**
- * Fills the equipment section with all the info about equipment
- * in the character sheet.
- */
-function fillEquipmentHTML(): void {
-  credits.value = String(characterSheet.credits)
-  equipment.innerHTML = ''
+function fillBasicInfoEditHTML(): void {
+  editCharacterName.value = characterSheet.name
+  editSpecies.value = characterSheet.species
+  editClass.value = characterSheet.class
+  editArchetype.value = characterSheet.archetype
+  editLevel.value = String(characterSheet.level)
+  editBackground.value = characterSheet.background
+  editAlignment.value = characterSheet.alignment
+  editSpeed.value = String(characterSheet.speed)
+  editPersonalityTraits.value = characterSheet.personalityTraits
+  editIdeal.value = characterSheet.ideal
+  editBond.value = characterSheet.bond
+  editFlaw.value = characterSheet.flaw
+}
+
+function fillHPInfoEditHTML(): void {
+  editMaxHP.value = String(characterSheet.hitPoints.max)
+  editHitDiceDie.value = String(characterSheet.hitDice.type)
+}
+
+function fillFeaturesEditHTML(): void {
+  editOtherProficiencies.innerHTML = ''
+  for (let prof of characterSheet.otherProficiencies) {
+    let profLi: HTMLElement = document.createElement('li')
+    let profInput: HTMLInputElement = document.createElement('input')
+    profInput.type = 'text'
+    profInput.value = prof
+    profLi.appendChild(profInput)
+    editOtherProficiencies.appendChild(profLi)
+  }
+  editLanguages.innerHTML = ''
+  for (let lang of characterSheet.languages) {
+    let langLi: HTMLElement = document.createElement('li')
+    let langInput: HTMLInputElement = document.createElement('input')
+    langInput.type = 'text'
+    langInput.value = lang
+    langLi.appendChild(langInput)
+    editLanguages.appendChild(langLi)
+  }
+  editFeaturesAndTraits.innerHTML = ''
+  for (let feature of characterSheet.features) {
+    let li: HTMLElement = document.createElement('li')
+    let name: HTMLInputElement = document.createElement('input')
+    name.type = 'text'
+    name.value = feature.name
+    li.appendChild(name)
+    let restSelect: HTMLSelectElement = document.createElement('select')
+    let optionLong: HTMLElement = document.createElement('option')
+    optionLong.innerText = 'long'
+    let optionShort: HTMLElement = document.createElement('option')
+    optionShort.innerText = 'short'
+    let optionNone: HTMLElement = document.createElement('option')
+    optionNone.innerText = 'none'
+    restSelect.appendChild(optionLong)
+    restSelect.appendChild(optionShort)
+    restSelect.appendChild(optionNone)
+    if (feature.refresh === 'longRest') restSelect.options.selectedIndex = 0
+    else if (feature.refresh === 'shortRest')
+      restSelect.options.selectedIndex = 1
+    else restSelect.options.selectedIndex = 2
+    li.appendChild(restSelect)
+    let usesLabel: HTMLElement = document.createElement('h4')
+    usesLabel.className = 'label'
+    usesLabel.innerText = 'Max uses:'
+    li.appendChild(usesLabel)
+    let maxUses: HTMLInputElement = document.createElement('input')
+    maxUses.type = 'number'
+    maxUses.value = String(feature.usesMax)
+    li.appendChild(maxUses)
+    let description: HTMLInputElement = document.createElement('input')
+    description.value = feature.description
+    li.appendChild(description)
+    editFeaturesAndTraits.appendChild(li)
+  }
+}
+
+function fillEquipmentEditHTML(): void {
+  editEquipment.innerHTML = ''
   for (let item of characterSheet.equipment) {
     let li: HTMLElement = document.createElement('li')
     li.className = 'equipment__item'
@@ -423,39 +650,48 @@ function fillEquipmentHTML(): void {
     amount.className = 'underlined-input__number'
     amount.value = String(item.amount)
     amountAndName.appendChild(amount)
-    let name: HTMLElement = document.createElement('h4')
-    name.className = 'label'
-    name.innerText = item.name
+    let name: HTMLInputElement = document.createElement('input')
+    name.type = 'text'
+    name.value = item.name
     amountAndName.appendChild(name)
     li.appendChild(amountAndName)
-    if (item.usesMax !== 0) {
-      let usesLabel: HTMLElement = document.createElement('h4')
-      usesLabel.className = 'label'
-      usesLabel.innerText = 'Uses:'
-      li.appendChild(usesLabel)
-      let limitedUsesWrapper: HTMLElement = document.createElement('div')
-      limitedUsesWrapper.className = 'limited-uses-wrapper'
-      let usesAmount: HTMLInputElement = document.createElement('input')
-      usesAmount.type = 'number'
-      usesAmount.className = 'underlined-input__number'
-      usesAmount.value = String(item.usesLeft)
-      limitedUsesWrapper.appendChild(usesAmount)
-      let slash: HTMLElement = document.createElement('h4')
-      slash.className = 'slash-separator'
-      slash.innerText = '/'
-      limitedUsesWrapper.appendChild(slash)
-      let maxUses: HTMLElement = document.createElement('h4')
-      maxUses.className = 'label'
-      maxUses.innerText = String(item.usesMax)
-      limitedUsesWrapper.appendChild(maxUses)
-      li.appendChild(limitedUsesWrapper)
-    }
-    let notes: HTMLElement = document.createElement('p')
-    notes.innerText = item.notes
+    let usesLabel: HTMLElement = document.createElement('h4')
+    usesLabel.className = 'label'
+    usesLabel.innerText = 'Uses:'
+    li.appendChild(usesLabel)
+    let limitedUsesWrapper: HTMLElement = document.createElement('div')
+    limitedUsesWrapper.className = 'limited-uses-wrapper'
+    let currentUses: HTMLInputElement = document.createElement('input')
+    currentUses.type = 'number'
+    currentUses.className = 'underlined-input__number'
+    currentUses.value = String(item.usesLeft)
+    limitedUsesWrapper.appendChild(currentUses)
+    let slash: HTMLElement = document.createElement('h4')
+    slash.className = 'slash-separator'
+    slash.innerText = '/'
+    limitedUsesWrapper.appendChild(slash)
+    let maxUses: HTMLInputElement = document.createElement('input')
+    maxUses.type = 'number'
+    maxUses.className = 'underlined-input__number'
+    maxUses.value = String(item.usesMax)
+    limitedUsesWrapper.appendChild(maxUses)
+    li.appendChild(limitedUsesWrapper)
+    let notes: HTMLInputElement = document.createElement('input')
+    notes.type = 'text'
+    notes.value = item.notes
     li.appendChild(notes)
-    equipment.appendChild(li)
+    editEquipment.appendChild(li)
   }
 }
+
+// TODO: finish attacks, write powers and notes
+function fillAttacksEditHTML(): void {
+  editAttacks.innerHTML = ''
+  for (let attack of characterSheet.attacks) {
+    let li: HTMLElement = document.createElement('li')
+  }
+}
+// #endregion
 
 function createAttackTableRow(atk: attack): HTMLElement {
   let row: HTMLElement = document.createElement('tr')
@@ -509,20 +745,26 @@ function calculateAttackDamage(atk: attack): string {
   return `${atk.dmgDiceAmount}d${atk.dmgDiceValue}${sign}${bonus} ${atk.dmgType}`
 }
 
-function updateDeathSavesHTML(): void {
-  let successes = deathSavesSucc.children
-  let failures = deathSavesFail.children
-
-  for (let i = 0; i < 3; i++) {
-    let succ = <HTMLInputElement>successes[i]
-    let fail = <HTMLInputElement>failures[i]
-    succ.checked = i < characterSheet.deathSaves.succeeded
-    fail.checked = i < characterSheet.deathSaves.failed
-  }
-}
-
 function getAttributeModifier(attribute: string): number {
   return Math.floor((characterSheet.attributes[attribute] - 10) / 2)
+}
+
+function getPowerSaveDC(type: string): number {
+  let dc = characterSheet.bonuses[`${type}SaveDC`]
+  dc += getProficiencyBonus(characterSheet.level)
+  if (type === 'tech') dc += getAttributeModifier('intelligence')
+  else if (type === 'light') dc += getAttributeModifier('wisdom')
+  else dc += getAttributeModifier('charisma')
+  dc += 8
+  return dc
+}
+
+function getPowerAttackBonus(type: string): number {
+  let bonus = characterSheet.bonuses[`${type}AttackBonus`]
+  if (type === 'tech') bonus += getAttributeModifier('intelligence')
+  else if (type === 'light') bonus += getAttributeModifier('wisdom')
+  else bonus += getAttributeModifier('charisma')
+  return bonus
 }
 
 function calculateAC(): number {
@@ -578,23 +820,6 @@ function getProficiencyBonus(level: number): number {
   else if (level < 13) return 4
   else if (level < 17) return 5
   else return 6
-}
-
-function fillBonusesHTML(): void {
-  bonuses.innerHTML = ''
-  for (let bonusName in characterSheet.bonuses) {
-    let bonusValue: number = characterSheet.bonuses[bonusName]
-    let name: HTMLElement = document.createElement('h4')
-    name.className = 'label'
-    name.innerText = bonusName
-    bonuses.appendChild(name)
-    let input: HTMLInputElement = document.createElement('input')
-    input.type = 'number'
-    // change the camel case name to being separated by dashes, so it fits html standard
-    input.id = `${stringCamelCaseToDashes(bonusName)}-bonus-value`
-    input.value = String(bonusValue)
-    bonuses.appendChild(input)
-  }
 }
 
 function stringCamelCaseToDashes(str: string): string {
