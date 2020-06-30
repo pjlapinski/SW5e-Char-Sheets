@@ -57,10 +57,12 @@ function changeSelectedInformations(element): void {
         if (isEditModeActive) {
             disableSection(editSheetSections);
             sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(63, 63, 63)");
+            displaySheetSections[previouslyClickedElement].setAttribute("style", "display: block");
             isEditModeActive = false;
         } else {
             isEditModeActive = true;
             disableSection(displaySheetSections);
+            editSheetSections[previouslyClickedElement].setAttribute("style", "display: block");
             sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(105, 105, 105)");
         }
     }
