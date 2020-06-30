@@ -259,6 +259,8 @@ function updateHTML(): void {
   fillFeaturesEditHTML()
   fillEquipmentEditHTML()
   fillAttacksEditHTML()
+  fillPowersEditHTML()
+  fillNotesEditHTML()
 }
 
 // #region functions filling display sections
@@ -500,6 +502,7 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     let concentration: HTMLInputElement = document.createElement('input')
     concentration.type = 'checkbox'
     concentration.checked = power.concentration
+    concentration.disabled = true
     concentrationDiv.appendChild(concentration)
     li.appendChild(concentrationDiv)
     let descriptionLabel: HTMLElement = document.createElement('h4')
@@ -508,6 +511,7 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     li.appendChild(descriptionLabel)
     let description: HTMLElement = document.createElement('p')
     description.innerText = power.description
+    li.appendChild(description)
     ul.appendChild(li)
     powersAtLevel.appendChild(ul)
   }
@@ -684,11 +688,188 @@ function fillEquipmentEditHTML(): void {
   }
 }
 
-// TODO: finish attacks, write powers and notes
 function fillAttacksEditHTML(): void {
   editAttacks.innerHTML = ''
   for (let attack of characterSheet.attacks) {
     let li: HTMLElement = document.createElement('li')
+    let nameLabel: HTMLElement = document.createElement('h4')
+    nameLabel.className = 'label'
+    nameLabel.innerText = 'Name:'
+    li.appendChild(nameLabel)
+    let name: HTMLInputElement = document.createElement('input')
+    name.type = 'text'
+    name.value = attack.name
+    li.appendChild(name)
+    let proficientLabel: HTMLElement = document.createElement('h4')
+    proficientLabel.className = 'label'
+    proficientLabel.innerText = 'Proficient:'
+    li.appendChild(proficientLabel)
+    let proficient: HTMLInputElement = document.createElement('input')
+    proficient.type = 'checkbox'
+    proficient.checked = attack.proficiency
+    li.appendChild(proficient)
+    let finesseLabel: HTMLElement = document.createElement('h4')
+    finesseLabel.className = 'label'
+    finesseLabel.innerText = 'Finesse:'
+    li.appendChild(finesseLabel)
+    let finesse: HTMLInputElement = document.createElement('input')
+    finesse.type = 'checkbox'
+    finesse.checked = attack.finesse
+    li.appendChild(finesse)
+    let rangedLabel: HTMLElement = document.createElement('h4')
+    rangedLabel.className = 'label'
+    rangedLabel.innerText = 'Ranged:'
+    li.appendChild(rangedLabel)
+    let ranged: HTMLInputElement = document.createElement('input')
+    ranged.type = 'checkbox'
+    ranged.checked = attack.ranged
+    li.appendChild(ranged)
+    let dmgDiceAmountLabel: HTMLElement = document.createElement('h4')
+    dmgDiceAmountLabel.className = 'label'
+    dmgDiceAmountLabel.innerText = 'Damage Dice Amount:'
+    li.appendChild(dmgDiceAmountLabel)
+    let dmgDiceAmount: HTMLInputElement = document.createElement('input')
+    dmgDiceAmount.type = 'number'
+    dmgDiceAmount.value = String(attack.dmgDiceAmount)
+    li.appendChild(dmgDiceAmount)
+    let dmgDiceValueLabel: HTMLElement = document.createElement('h4')
+    dmgDiceValueLabel.className = 'label'
+    dmgDiceValueLabel.innerText = 'Damage Dice Value:'
+    li.appendChild(dmgDiceValueLabel)
+    let dmgDiceValue: HTMLInputElement = document.createElement('input')
+    dmgDiceValue.type = 'number'
+    dmgDiceValue.value = String(attack.dmgDiceValue)
+    li.appendChild(dmgDiceValue)
+    let dmgTypeLabel: HTMLElement = document.createElement('h4')
+    dmgTypeLabel.className = 'label'
+    dmgTypeLabel.innerText = 'Damage Type:'
+    li.appendChild(dmgTypeLabel)
+    let dmgType: HTMLInputElement = document.createElement('input')
+    dmgType.type = 'text'
+    dmgType.value = String(attack.dmgType)
+    li.appendChild(dmgType)
+    let dmgBonusLabel: HTMLElement = document.createElement('h4')
+    dmgBonusLabel.className = 'label'
+    dmgBonusLabel.innerText = 'Damage Bonus:'
+    li.appendChild(dmgBonusLabel)
+    let dmgBonus: HTMLInputElement = document.createElement('input')
+    dmgBonus.type = 'number'
+    dmgBonus.value = String(attack.dmgBonus)
+    li.appendChild(dmgBonus)
+    let atkBonusLabel: HTMLElement = document.createElement('h4')
+    atkBonusLabel.className = 'label'
+    atkBonusLabel.innerText = 'Attack Bonus:'
+    li.appendChild(atkBonusLabel)
+    let atkBonus: HTMLInputElement = document.createElement('input')
+    atkBonus.type = 'number'
+    atkBonus.value = String(attack.atkBonus)
+    li.appendChild(atkBonus)
+    let notesLabel: HTMLElement = document.createElement('h4')
+    notesLabel.className = 'label'
+    notesLabel.innerText = 'notes:'
+    li.appendChild(notesLabel)
+    let notes: HTMLInputElement = document.createElement('input')
+    notes.type = 'text'
+    notes.value = String(attack.notes)
+    li.appendChild(notes)
+    editAttacks.appendChild(li)
+  }
+}
+
+function fillPowersEditHTML(): void {
+  let maxPowerPoints: HTMLInputElement = <HTMLInputElement>(
+    document.getElementById('max-power-points-edit')
+  )
+  maxPowerPoints.value = String(characterSheet.powerPointsMax)
+
+  for (let i = 0; i <= 9; i++) fillSinglePowerLevelEditHTML(i)
+}
+
+function fillNotesEditHTML(): void {
+  let notes: HTMLInputElement = <HTMLInputElement>(
+    document.getElementById('notes-edit')
+  )
+  notes.value = characterSheet.notes
+}
+
+function fillSinglePowerLevelEditHTML(level: number): void {
+  let levelStr = level === 0 ? 'at-will' : `level-${level}`
+  let powersAtLevel = document.getElementById(`powers__${levelStr}-edit`)
+  powersAtLevel.innerHTML = ''
+  powersAtLevel.appendChild(document.createElement('br'))
+  let ul: HTMLElement = document.createElement('ul')
+  for (let power of characterSheet.powers[`level${level}`]) {
+    let li: HTMLElement = document.createElement('li')
+    li.className = 'power'
+    let name: HTMLInputElement = document.createElement('input')
+    name.type = 'text'
+    name.value = power.name
+    li.appendChild(name)
+    let alignmentDiv: HTMLElement = document.createElement('div')
+    alignmentDiv.className = 'power__single-line'
+    let alignmentLabel: HTMLElement = document.createElement('h4')
+    alignmentLabel.className = 'label'
+    alignmentLabel.innerText = 'Force Alignment:'
+    alignmentDiv.appendChild(alignmentLabel)
+    let alignment: HTMLInputElement = document.createElement('input')
+    alignment.type = 'text'
+    alignment.value = power.alignment
+    alignmentDiv.appendChild(alignment)
+    li.appendChild(alignmentDiv)
+    let castingPeriodDiv: HTMLElement = document.createElement('div')
+    castingPeriodDiv.className = 'power__single-line'
+    let castingPeriodLabel: HTMLElement = document.createElement('h4')
+    castingPeriodLabel.className = 'label'
+    castingPeriodLabel.innerText = 'Casting Period:'
+    castingPeriodDiv.appendChild(castingPeriodLabel)
+    let castingPeriod: HTMLInputElement = document.createElement('input')
+    castingPeriod.type = 'text'
+    castingPeriod.value = power.casting
+    castingPeriodDiv.appendChild(castingPeriod)
+    li.appendChild(castingPeriodDiv)
+    let rangeDiv: HTMLElement = document.createElement('div')
+    rangeDiv.className = 'power__single-line'
+    let rangeLabel: HTMLElement = document.createElement('h4')
+    rangeLabel.className = 'label'
+    rangeLabel.innerText = 'Range:'
+    rangeDiv.appendChild(rangeLabel)
+    let range: HTMLInputElement = document.createElement('input')
+    range.type = 'text'
+    range.value = power.range
+    rangeDiv.appendChild(range)
+    li.appendChild(rangeDiv)
+    let durationDiv: HTMLElement = document.createElement('div')
+    durationDiv.className = 'power__single-line'
+    let durationLabel: HTMLElement = document.createElement('h4')
+    durationLabel.className = 'label'
+    durationLabel.innerText = 'Duration:'
+    durationDiv.appendChild(durationLabel)
+    let duration: HTMLInputElement = document.createElement('input')
+    duration.type = 'text'
+    duration.value = power.duration
+    durationDiv.appendChild(duration)
+    li.appendChild(durationDiv)
+    let concentrationDiv: HTMLElement = document.createElement('div')
+    concentrationDiv.className = 'power__single-line'
+    let concentrationLabel: HTMLElement = document.createElement('h4')
+    concentrationLabel.className = 'label'
+    concentrationLabel.innerText = 'Concentration:'
+    concentrationDiv.appendChild(concentrationLabel)
+    let concentration: HTMLInputElement = document.createElement('input')
+    concentration.type = 'checkbox'
+    concentration.checked = power.concentration
+    concentrationDiv.appendChild(concentration)
+    li.appendChild(concentrationDiv)
+    let descriptionLabel: HTMLElement = document.createElement('h4')
+    descriptionLabel.className = 'label'
+    descriptionLabel.innerText = 'Description:'
+    li.appendChild(descriptionLabel)
+    let description: HTMLInputElement = document.createElement('input')
+    description.type = 'text'
+    description.value = power.description
+    li.appendChild(description)
+    ul.appendChild(li)
+    powersAtLevel.appendChild(ul)
   }
 }
 // #endregion
