@@ -22,11 +22,10 @@ possibly a slide out from the side on screens < 600px wide */
 .nav-wrapper:hover {
   color: rgb(85, 187, 255);
   cursor: pointer;
-  background: rgb(105, 105, 105) !important;
+  background: rgb(105, 105, 105);
 }
 
 .nav-wrapper h2 {
-  justify-content: center;
   pointer-events: none;
 }
 
@@ -43,16 +42,16 @@ possibly a slide out from the side on screens < 600px wide */
   padding-top: 60px;
 }
 
-.sidenav #sheet-close-btn {
+.sidenav {
   position: absolute;
   top: 0;
   right: 25px;
-  font-size: 36px;
   margin-left: 50px;
 }
 
 #sheet-close-btn {
-  font-size: 2vw;
+  margin-left: 20vw;
+  font-size: 6vw;
   cursor: pointer;
 }
 

@@ -12,7 +12,7 @@ initializeSideMenu()
 // indexes 0-8 are for infomations about a character, 11-13 are for save, return and edit
 
 function openMenu() {
-    document.getElementById("sheet-side-menu").style.width = "250px";
+    document.getElementById("sheet-side-menu").style.width = "25vw";
 }
 
 function closeMenu() {
@@ -44,7 +44,7 @@ function changeSelectedInformations(element): void {
 
     if (clickedElement < 9) {
         if (isEditModeActive) {
-            sideMenuButtons[previouslyClickedElement].setAttribute("style", "background: rgb(63, 63, 63)");
+            sideMenuButtons[previouslyClickedElement].setAttribute("style", "background-color: #111");
             sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(105, 105, 105)");
             editSheetSections[previouslyClickedElement].setAttribute("style", "display: none");
             editSheetSections[clickedElement].setAttribute("style", "display: block");
@@ -53,7 +53,7 @@ function changeSelectedInformations(element): void {
                 previouslyClickedElement = clickedElement;
             }
         } else {
-            sideMenuButtons[previouslyClickedElement].setAttribute("style", "background: rgb(63, 63, 63)");
+            sideMenuButtons[previouslyClickedElement].setAttribute("style", "background-color: #111");
             sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(105, 105, 105)");
             displaySheetSections[previouslyClickedElement].setAttribute("style", "display: none");
             displaySheetSections[clickedElement].setAttribute("style", "display: block");
@@ -67,7 +67,7 @@ function changeSelectedInformations(element): void {
     if (clickedElement == 13) {
         if (isEditModeActive) {
             disableSection(editSheetSections);
-            sideMenuButtons[clickedElement].setAttribute("style", "background: rgb(63, 63, 63)");
+            sideMenuButtons[clickedElement].setAttribute("style", "background-color: #111");
             displaySheetSections[previouslyClickedElement].setAttribute("style", "display: block");
             isEditModeActive = false;
         } else {
