@@ -406,10 +406,9 @@ function fillEquipmentDisplayHTML(): void {
 }
 
 function fillAttacksDisplayHTML(): void {
-  // firstElementChild twice, because the first child is tbody
-  let atkTableHeader: HTMLElement = <HTMLElement>(
-    attacksTable.firstElementChild.firstElementChild
-  )
+  let atkTableHeader: HTMLElement = <HTMLElement>attacksTable.firstElementChild
+  if (attacksTable.firstElementChild.nodeName === 'TBODY')
+    atkTableHeader = <HTMLElement>atkTableHeader.firstElementChild
   attacksTable.innerHTML = ''
   attacksTable.appendChild(atkTableHeader)
   for (let atk of characterSheet.attacks)
