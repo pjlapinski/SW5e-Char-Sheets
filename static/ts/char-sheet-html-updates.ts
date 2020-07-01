@@ -177,6 +177,9 @@ const editAlignment: HTMLInputElement = <HTMLInputElement>(
 const editSpeed: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('speed-edit')
 )
+const editBaseArmorClass: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('armor-class-edit')
+)
 const editPersonalityTraits: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('personality-traits-edit')
 )
@@ -243,16 +246,8 @@ const editNotes: HTMLInputElement = <HTMLInputElement>(
 /**
  * Updates ALL fields of the html file.
  */
-function updateHTML(): void {
-  fillBasicInfoDisplayHTML()
-  fillHPInfoDisplayHTML()
-  fillFeaturesDisplayHTML()
-  fillEquipmentDisplayHTML()
-  fillAttacksDisplayHTML()
-  fillPowersDisplayHTML()
-  fillNotesDisplayHTML()
-  fillAttributesAndSkillsHTML()
-  fillBonusesHTML()
+function fillHTMLOnInitialize(): void {
+  updateDisplayHTML()
 
   fillBasicInfoEditHTML()
   fillHPInfoEditHTML()
@@ -261,6 +256,21 @@ function updateHTML(): void {
   fillAttacksEditHTML()
   fillPowersEditHTML()
   fillNotesEditHTML()
+  fillBonusesHTML()
+}
+
+/**
+ * Updates all display fields of the html file.
+ */
+function updateDisplayHTML(): void {
+  fillBasicInfoDisplayHTML()
+  fillHPInfoDisplayHTML()
+  fillFeaturesDisplayHTML()
+  fillEquipmentDisplayHTML()
+  fillAttacksDisplayHTML()
+  fillPowersDisplayHTML()
+  fillNotesDisplayHTML()
+  fillAttributesAndSkillsHTML()
 }
 
 // #region functions filling display sections
@@ -574,6 +584,7 @@ function fillBasicInfoEditHTML(): void {
   editBackground.value = characterSheet.background
   editAlignment.value = characterSheet.alignment
   editSpeed.value = String(characterSheet.speed)
+  editBaseArmorClass.value = String(characterSheet.baseAc)
   editPersonalityTraits.value = characterSheet.personalityTraits
   editIdeal.value = characterSheet.ideal
   editBond.value = characterSheet.bond
@@ -1013,4 +1024,4 @@ function stringToCamelCase(str: string): string {
   })
 }
 
-updateHTML()
+fillHTMLOnInitialize()

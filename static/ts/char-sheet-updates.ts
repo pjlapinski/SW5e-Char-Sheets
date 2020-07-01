@@ -1,7 +1,7 @@
 import { sheet } from 'char-sheet-interfaces'
 
 var characterSheet: sheet
-var updateHTML
+var updateDisplayHTML
 
 // #region variables
 const attributeNames: Array<String> = [
@@ -18,6 +18,9 @@ attributeNames.forEach(att =>
     <HTMLInputElement>document.getElementById(`${att}-score`)
   )
 )
+const bonusesFields: Array<HTMLInputElement> = Array.from(
+  document.getElementById('bonuses-section').getElementsByTagName('input')
+)
 // #endregion
 
 // #region event listeners
@@ -25,7 +28,25 @@ for (let att of attributeScores) {
   att.addEventListener('change', () => {
     let name = att.id.split('-')[0]
     characterSheet.attributes[name] = Number(att.value)
-    updateHTML()
+    updateDisplayHTML()
+  })
+}
+
+for (let bonus of bonusesFields) {
+  bonus.addEventListener('change', () => {
+    let nameParts = bonus.id.split('-')
+    nameParts.pop()
+    nameParts.pop()
+    let name: string = ''
+    for (let part of nameParts) {
+      // first letter to upper case
+      if (nameParts.indexOf(part) !== 0)
+        part = part.charAt(0).toUpperCase() + part.slice(1)
+      name += part
+    }
+
+    characterSheet.bonuses[name] = Number(bonus.value)
+    updateDisplayHTML()
   })
 }
 // #endregion
