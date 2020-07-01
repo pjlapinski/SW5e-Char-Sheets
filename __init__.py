@@ -24,7 +24,7 @@ def sheet(sheet_id):
     # or, even better, create a database handler which, when queried, returns
     # the character sheet as a json already, without having to save it to a folder
     # ---- this would be much preferred
-    with open(os.path.join(APP_ROOT, f'sheets/{sheet_id}-Kabespi.json'), 'r') as f:
+    with open(os.path.join(APP_ROOT, f'sheets/{sheet_id}.json'), 'r') as f:
         result = json.loads(f.read())
     return render_template('character-sheet.html', data=result)
 
