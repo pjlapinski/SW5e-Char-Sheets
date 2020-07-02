@@ -14,8 +14,11 @@
     <title>SW5e - {{ data['name'] }}</title>
   </head>
   <body>
-    <div class="sheet-side-menu">
+    <div id="sheet-side-menu" class="side-menu">
       <!-- names here propably will be changed to icons -->
+      <div id="sheet-close-btn">
+        &times;
+      </div>
       <div class="nav-wrapper">
         <h2>Info</h2>
       </div>
@@ -59,6 +62,7 @@
         <h2>Edit</h2>
       </div>
     </div>
+    <div id="menu-toggle">&#9776;</div>
     <div class="sheet-content">
       <!-- #region view sections -->
       <div class="sheet-section display-sheet-section" id="basic-info-section">
