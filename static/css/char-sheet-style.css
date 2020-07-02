@@ -14,21 +14,6 @@ body {
 /* TODO ? Menu is kind of responsive, but can be done better, 
 possibly a slide out from the side on screens < 600px wide */
 
-.nav-wrapper {
-  padding: 5%;
-  text-align: center;
-}
-
-.nav-wrapper:hover {
-  color: rgb(85, 187, 255);
-  cursor: pointer;
-  background: rgb(105, 105, 105);
-}
-
-.nav-wrapper h2 {
-  pointer-events: none;
-}
-
 .side-menu {
   height: 100%;
   width: 0;
@@ -38,27 +23,40 @@ possibly a slide out from the side on screens < 600px wide */
   left: 0;
   background-color: #111;
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: 0.4s;
   padding-top: 60px;
 }
 
-.sidenav {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  margin-left: 50px;
+.nav-wrapper {
+  padding: 1vw;
+}
+
+.nav-wrapper:hover {
+  color: rgb(85, 187, 255);
+  cursor: pointer;
+  background: rgb(105, 105, 105) !important;
 }
 
 #sheet-close-btn {
-  margin-left: 20vw;
+  margin-left: 39vw;
   font-size: 6vw;
   cursor: pointer;
 }
 
 #menu-toggle {
+  margin-left: 2vw;
   display: inline;
-  font-size: 30px;
+  font-size: 220%;
   cursor: pointer
+}
+
+@media screen and (max-width: 400px) {
+  #sheet-close-btn {
+    font-size: 15vw;
+    margin-left: 35vw;
+  }
+  .side-menu {padding-top: 15px;}
+  .side-menu div {font-size: 5vw;}
 }
 
 /* general styling for the sheet content*/
