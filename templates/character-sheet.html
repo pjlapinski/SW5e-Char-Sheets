@@ -308,6 +308,7 @@
         class="sheet-section edit-sheet-section"
         id="basic-info-section-edit"
       >
+        <input type="button" id="level-up" value="Level up" />
         <h4 class="label">Name:</h4>
         <input type="text" id="character-name-edit" />
         <div class="species-wrapper">
@@ -355,8 +356,6 @@
         <h4 class="label">Hit dice die:</h4>
         <input type="number" id="hit-dice-die-edit" />
       </div>
-
-      <!-- attributes & skills not needed -->
 
       <div class="sheet-section edit-sheet-section" id="features-section-edit">
         <div class="proficiencies-wrapper">
@@ -544,6 +543,11 @@
                 id="athletics-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="athletics-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="athletics-score"></h4>
               <h4 class="skill-name">Athletics</h4>
             </div>
@@ -582,6 +586,11 @@
                 id="acrobatics-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="acrobatics-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="acrobatics-score"></h4>
               <h4 class="skill-name">Acrobatics</h4>
             </div>
@@ -591,6 +600,11 @@
                 id="sleight-of-hand-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="sleight-of-hand-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="sleight-of-hand-score"></h4>
               <h4 class="skill-name">Sleight of Hand</h4>
             </div>
@@ -599,6 +613,11 @@
                 type="checkbox"
                 id="stealth-prof"
                 class="proficiency-checkbox"
+              />
+              <input
+                type="checkbox"
+                id="stealth-expertise"
+                class="proficiency-checkbox__expertise"
               />
               <h4 class="skill-score" id="stealth-score"></h4>
               <h4 class="skill-name">Stealth</h4>
@@ -667,6 +686,11 @@
                 id="investigation-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="investigation-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="investigation-score"></h4>
               <h4 class="skill-name">
                 Investigation
@@ -678,6 +702,11 @@
                 id="lore-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="lore-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="lore-score"></h4>
               <h4 class="skill-name">Lore</h4>
             </div>
@@ -686,6 +715,11 @@
                 type="checkbox"
                 id="nature-prof"
                 class="proficiency-checkbox"
+              />
+              <input
+                type="checkbox"
+                id="nature-expertise"
+                class="proficiency-checkbox__expertise"
               />
               <h4 class="skill-score" id="nature-score"></h4>
               <h4 class="skill-name">Nature</h4>
@@ -696,6 +730,11 @@
                 id="piloting-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="piloting-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="piloting-score"></h4>
               <h4 class="skill-name">Piloting</h4>
             </div>
@@ -704,6 +743,11 @@
                 type="checkbox"
                 id="technology-prof"
                 class="proficiency-checkbox"
+              />
+              <input
+                type="checkbox"
+                id="technology-expertise"
+                class="proficiency-checkbox__expertise"
               />
               <h4 class="skill-score" id="technology-score"></h4>
               <h4 class="skill-name">Technology</h4>
@@ -743,6 +787,11 @@
                 id="animal-handling-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="animal-handling-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="animal-handling-score"></h4>
               <h4 class="skill-name">Animal handling</h4>
             </div>
@@ -751,6 +800,11 @@
                 type="checkbox"
                 id="insight-prof"
                 class="proficiency-checkbox"
+              />
+              <input
+                type="checkbox"
+                id="insight-expertise"
+                class="proficiency-checkbox__expertise"
               />
               <h4 class="skill-score" id="insight-score"></h4>
               <h4 class="skill-name">Insight</h4>
@@ -761,6 +815,11 @@
                 id="medicine-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="medicine-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="medicine-score"></h4>
               <h4 class="skill-name">Medicine</h4>
             </div>
@@ -770,6 +829,11 @@
                 id="perception-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="perception-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="perception-score"></h4>
               <h4 class="skill-name">Perception</h4>
             </div>
@@ -778,6 +842,11 @@
                 type="checkbox"
                 id="survival-prof"
                 class="proficiency-checkbox"
+              />
+              <input
+                type="checkbox"
+                id="survival-expertise"
+                class="proficiency-checkbox__expertise"
               />
               <h4 class="skill-score" id="survival-score"></h4>
               <h4 class="skill-name">Survival</h4>
@@ -817,6 +886,11 @@
                 id="deception-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="deception-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="deception-score"></h4>
               <h4 class="skill-name">
                 Deception
@@ -828,6 +902,11 @@
                 id="intimidation-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="intimidation-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="intimidation-score"></h4>
               <h4 class="skill-name">Intimidation</h4>
             </div>
@@ -837,6 +916,11 @@
                 id="performance-prof"
                 class="proficiency-checkbox"
               />
+              <input
+                type="checkbox"
+                id="performance-expertise"
+                class="proficiency-checkbox__expertise"
+              />
               <h4 class="skill-score" id="performance-score"></h4>
               <h4 class="skill-name">Performance</h4>
             </div>
@@ -845,6 +929,11 @@
                 type="checkbox"
                 id="persuasion-prof"
                 class="proficiency-checkbox"
+              />
+              <input
+                type="checkbox"
+                id="persuasion-expertise"
+                class="proficiency-checkbox__expertise"
               />
               <h4 class="skill-score" id="persuasion-score"></h4>
               <h4 class="skill-name">Persuasion</h4>

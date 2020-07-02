@@ -546,10 +546,19 @@ function fillAttributesAndSkillsHTML(): void {
     let skillProficiencyHTML: HTMLInputElement = <HTMLInputElement>(
       document.getElementById(`${skill}-prof`)
     )
+    let skillExpertiseHTML: HTMLInputElement = <HTMLInputElement>(
+      document.getElementById(`${skill}-expertise`)
+    )
     let skillScoreHTML: HTMLElement = document.getElementById(`${skill}-score`)
     for (let prof of characterSheet.proficiencies) {
       if (stringToCamelCase(prof) === camelCase) {
         skillProficiencyHTML.checked = true
+        break
+      }
+    }
+    for (let prof of characterSheet.expertise) {
+      if (stringToCamelCase(prof) === camelCase) {
+        skillExpertiseHTML.checked = true
         break
       }
     }
