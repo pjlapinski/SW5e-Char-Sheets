@@ -551,16 +551,20 @@ function fillAttributesAndSkillsHTML(): void {
     )
     let skillScoreHTML: HTMLElement = document.getElementById(`${skill}-score`)
     for (let prof of characterSheet.proficiencies) {
-      if (stringToCamelCase(prof) === camelCase) {
+      if (prof === camelCase) {
         skillProficiencyHTML.checked = true
         break
       }
     }
     for (let prof of characterSheet.expertise) {
-      if (stringToCamelCase(prof) === camelCase) {
+      if (prof === camelCase) {
         skillExpertiseHTML.checked = true
         break
       }
+    }
+    if (skillExpertiseHTML != null) {
+      skillExpertiseHTML.disabled = !skillProficiencyHTML.checked
+      skillProficiencyHTML.disabled = skillExpertiseHTML.checked
     }
     skillScoreHTML.innerText = String(getSkillMod(skill))
   }

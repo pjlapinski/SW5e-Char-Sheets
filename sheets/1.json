@@ -18,19 +18,19 @@
     "armorType": "light",
     "shieldBonus": 0,
     "proficiencies": [
-        "Dexterity Save",
-        "Intelligence Save",
-        "Athletics",
-        "Acrobatics",
-        "Stealth",
-        "Piloting",
-        "Technology",
-        "Deception",
-        "Animal Handling"
+        "dexteritySave",
+        "intelligenceSave",
+        "athletics",
+        "acrobatics",
+        "stealth",
+        "piloting",
+        "technology",
+        "deception",
+        "animalHandling"
     ],
     "expertise": [
-        "Stealth",
-        "Deception"
+        "stealth",
+        "deception"
     ],
     "bonuses": {
         "armorClass": 0,
