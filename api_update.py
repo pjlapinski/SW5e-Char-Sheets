@@ -35,13 +35,13 @@ def dump_to_json(target):
     result = requests.get(url)
     print(f'Trying to dump "{target}" to json')
     if result.ok:
-        if os.path.isfile(f'./json/{target}.json'):
+        if os.path.isfile(f'./static/json/{target}.json'):
             print(f'Removing the old {target} file')
-            os.remove(f'./json/{target}.json')
+            os.remove(f'./static/json/{target}.json')
         result_json = result.json()
-        with open(f'./json/{target}.json', 'w') as f:
+        with open(f'./static/json/{target}.json', 'w') as f:
             relevant_info = clean_up_json(result_json)
-            json.dump(relevant_info, f, indent=4, ensure_ascii=False)
+            json.dump(relevant_info, f, indent=4)
         print('Done dumping json to the file')
     else:
         print(
@@ -183,8 +183,8 @@ def update():
     the file (just to be mindful of the website traffic). This function will only
     be used on the server and should probably be executed every week or so."""
 
-    if not os.path.isdir('./json'):
-        os.mkdir('json')
+    if not os.path.isdir('./static/json'):
+        os.mkdir('./static/json')
     for item in get_targets():
         result = dump_to_json(item)
         seconds = result.elapsed.total_seconds()
@@ -204,7 +204,7 @@ def update():
 
 #     if len(kwargs) == 0:
 #         return find(data_type, name='')
-#     with open(f'./json/{data_type}.json', 'r') as f:
+#     with open(f'./static/json/{data_type}.json', 'r') as f:
 #         file_content = json.load(f)
 #     results = []
 #     for key, value in kwargs.items():
@@ -233,7 +233,7 @@ def update():
 
 #     if len(kwargs) == 0:
 #         return find(data_type, name='')
-#     with open(f'./json/{data_type}.json', 'r') as f:
+#     with open(f'./static/json/{data_type}.json', 'r') as f:
 #         file_content = json.load(f)
 #     for key, value in kwargs.items():
 #         if isinstance(value, str):

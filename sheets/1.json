@@ -87,14 +87,14 @@
     "features": [
         {
             "name": "Sneak Attack",
-            "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe’s distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon. You don’t need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn’t incapacitated, and you don’t have disadvantage on the attack roll.",
+            "description": "Also at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon. \r\n\r\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.\r\n\r\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.",
             "usesLeft": 0,
             "usesMax": 0,
             "refresh": "none"
         },
         {
             "name": "Bad Feeling",
-            "description": "Starting at 2nd level, you have a wary eye, bordering on paranoia. When you roll for initiative, you can move up to your speed. This movement happens before the initiative order is determined. Once you’ve used this feature, you can’t use it again until you finish a long rest.",
+            "description": "Starting at 2nd level, you have a wary eye, bordering on paranoia. When you roll for initiative, you can move up to your speed. This movement happens before the initiative order is determined. \r\n\r\nOnce you've used this feature, you can't use it again until you finish a long rest.",
             "usesLeft": 1,
             "usesMax": 1,
             "refresh": "longRest"

@@ -871,7 +871,7 @@
       // this is only done so that typescript has no problem with using a variable
       // defined in a completly different place
       var characterSheet = JSON.parse(
-        '{{ data | tojson | safe }}'.replace(/\n/, '\\n')
+        '{{ data | tojson | safe }}'.replace(/\n/g, '\\n').replace(/\r/g, '\\r')
       )
     </script>
     <script
@@ -883,7 +883,7 @@
       src="{{ url_for('static', filename='js/char-sheet-updates.js') }}"
     ></script>
     <script
-      type="module"
+      type="text/javascript"
       src="{{ url_for('static', filename='js/api-handler.js') }}"
     ></script>
     <script
