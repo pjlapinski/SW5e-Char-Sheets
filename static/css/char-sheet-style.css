@@ -55,7 +55,7 @@ body {
   .side-menu div {font-size: 5vw;}
 }
 
-/* general styling for the sheet content*/
+/* general styling for the sheets */
 
 .sheet-content {
   display: inline;
@@ -69,6 +69,8 @@ body {
   padding: 5vh 10vw;
   justify-content: center;
 }
+
+/* sheets' content styling */
 
 .underlined-input__number {
   background: transparent;
@@ -102,7 +104,6 @@ body {
 .hit-dice-wrapper,
 .death-saves-line {
   display: flex;
-  justify-content: space-between;
 }
 
 .submit-heal-or-damage {
@@ -130,7 +131,11 @@ all styling should be designed with mobile in mind first!*/
 .alignment-wrapper,
 .background-wrapper {
   display: flex;
-  justify-content: space-evenly;
+}
+
+.sheet-section h4, .sheet-section input {
+  margin-right: 2%;
+  margin-bottom: 1%;
 }
 
 .attribute-wrapper {
@@ -172,10 +177,10 @@ all styling should be designed with mobile in mind first!*/
 .attribute-small-input {
   /* 1 or 2 digit numbers only */
   width: 4rem;
-  background: rgb(78, 78, 78);
-  border: solid;
-  color: rgb(255, 255, 255);
-  border-radius: 20px;
+  background: rgba(2, 229, 245, 0.6);
+  color: white;
+  border-right: solid;
+  border-right-width: 2px;
   font-weight: bold;
   text-align: center;
   font-size: 1rem;
@@ -183,10 +188,9 @@ all styling should be designed with mobile in mind first!*/
 
 .attribute-big {
   /* 1 digit numbers with a + or - in front (excluding 0) */
-  background: rgb(78, 78, 78);
-  border: solid;
-  border-width: 2px;
-  border-radius: 20px;
+  background: rgba(2, 229, 245, 0.6);
+  border-right: solid;
+  border-right-width: 2px;
   margin: 0.5vh 0;
   padding: 3vh;
 }

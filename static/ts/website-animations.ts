@@ -20,8 +20,10 @@ function closeMenu() {
 }
 
 function initializeSideMenu(): void {
-    document.getElementById("menu-toggle").addEventListener("click", openMenu, false)
-    document.getElementById("sheet-close-btn").addEventListener("click", closeMenu, false)
+    let menuToggle = document.getElementById("menu-toggle");
+    let closeMenuBtn = document.getElementById("sheet-close-btn");
+    menuToggle.addEventListener("click", openMenu, false);
+    closeMenuBtn.addEventListener("click", closeMenu, false);
 
     sideMenuButtons.forEach(element => {
         element.addEventListener("click", function() {changeSelectedInformations(element)}, false)
