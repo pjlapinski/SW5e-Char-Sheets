@@ -183,8 +183,8 @@ def update():
     the file (just to be mindful of the website traffic). This function will only
     be used on the server and should probably be executed every week or so."""
 
-    if not os.path.isdir('./json'):
-        os.mkdir('json')
+    if not os.path.isdir('./static/json'):
+        os.mkdir('./static/json')
     for item in get_targets():
         result = dump_to_json(item)
         seconds = result.elapsed.total_seconds()
