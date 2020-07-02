@@ -2,6 +2,7 @@ import { sheet } from 'char-sheet-interfaces'
 
 var characterSheet: sheet
 var updateDisplayHTML
+var stringToCamelCase
 
 // #region variables
 const attributeNames: Array<String> = [
@@ -20,6 +21,12 @@ attributeNames.forEach(att =>
 )
 const bonusesFields: Array<HTMLInputElement> = Array.from(
   document.getElementById('bonuses-section').getElementsByTagName('input')
+)
+const proficiencyCheckboxes: HTMLCollection = document.getElementsByClassName(
+  'proficiency-checkbox'
+)
+const expertiseCheckboxes: HTMLCollection = document.getElementsByClassName(
+  'proficiency-checkbox__expertise'
 )
 // #endregion
 
@@ -46,6 +53,34 @@ for (let bonus of bonusesFields) {
     }
 
     characterSheet.bonuses[name] = Number(bonus.value)
+    updateDisplayHTML()
+  })
+}
+
+for (let prof of proficiencyCheckboxes) {
+  prof.addEventListener('change', () => {
+    let input = <HTMLInputElement>prof
+    let skillName = stringToCamelCase(prof.parentElement.id.replace(/-/g, ' '))
+    if (input.checked) characterSheet.proficiencies.push(skillName)
+    else {
+      let index = characterSheet.proficiencies.indexOf(skillName)
+      characterSheet.proficiencies.splice(index, 1)
+    }
+    updateDisplayHTML()
+  })
+}
+
+for (let expertise of expertiseCheckboxes) {
+  expertise.addEventListener('change', () => {
+    let input = <HTMLInputElement>expertise
+    let skillName = stringToCamelCase(
+      expertise.parentElement.id.replace(/-/g, ' ')
+    )
+    if (input.checked) characterSheet.expertise.push(skillName)
+    else {
+      let index = characterSheet.expertise.indexOf(skillName)
+      characterSheet.expertise.splice(index, 1)
+    }
     updateDisplayHTML()
   })
 }
