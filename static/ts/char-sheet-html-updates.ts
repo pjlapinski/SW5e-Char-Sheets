@@ -808,6 +808,10 @@ function fillSinglePowerLevelEditHTML(level: number): void {
   for (let power of characterSheet.powers[`level${level}`]) {
     let li: HTMLElement = document.createElement('li')
     li.className = 'power'
+    let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.type = 'button'
+    deleteBtn.value = 'Delete'
+    li.appendChild(deleteBtn)
     let name: HTMLInputElement = document.createElement('input')
     name.type = 'text'
     name.value = power.name
