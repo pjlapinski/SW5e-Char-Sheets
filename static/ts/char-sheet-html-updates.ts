@@ -412,6 +412,29 @@ function fillAttacksDisplayHTML(): void {
     attacksTable.appendChild(createAttackTableRow(atk))
 }
 
+function createAttackTableRow(atk: attack): HTMLElement {
+  let row: HTMLElement = document.createElement('tr')
+  let name: HTMLElement = document.createElement('td')
+  name.className = 'attack-name'
+  name.innerText = atk.name
+  row.appendChild(name)
+  let atkBonus: HTMLElement = document.createElement('td')
+  atkBonus.className = 'attack-atk-bonus'
+  let attackBonus = calculateAttackBonus(atk)
+  let sign: string = attackBonus >= 0 ? '+' : ''
+  atkBonus.innerText = `${sign}${attackBonus}`
+  row.appendChild(atkBonus)
+  let dmg: HTMLElement = document.createElement('td')
+  dmg.className = 'attack-damage'
+  dmg.innerText = calculateAttackDamage(atk)
+  row.appendChild(dmg)
+  let note: HTMLElement = document.createElement('td')
+  note.className = 'attack-notes'
+  note.innerText = atk.notes
+  row.appendChild(note)
+  return row
+}
+
 function fillPowersDisplayHTML(): void {
   maxPowerPoints.innerText = String(characterSheet.powerPointsMax)
   currentPowerPoints.value = String(characterSheet.powerPointsLeft)
@@ -884,29 +907,6 @@ function fillSinglePowerLevelEditHTML(level: number): void {
   }
 }
 // #endregion
-
-function createAttackTableRow(atk: attack): HTMLElement {
-  let row: HTMLElement = document.createElement('tr')
-  let name: HTMLElement = document.createElement('td')
-  name.className = 'attack-name'
-  name.innerText = atk.name
-  row.appendChild(name)
-  let atkBonus: HTMLElement = document.createElement('td')
-  atkBonus.className = 'attack-atk-bonus'
-  let attackBonus = calculateAttackBonus(atk)
-  let sign: string = attackBonus >= 0 ? '+' : ''
-  atkBonus.innerText = `${sign}${attackBonus}`
-  row.appendChild(atkBonus)
-  let dmg: HTMLElement = document.createElement('td')
-  dmg.className = 'attack-damage'
-  dmg.innerText = calculateAttackDamage(atk)
-  row.appendChild(dmg)
-  let note: HTMLElement = document.createElement('td')
-  note.className = 'attack-notes'
-  note.innerText = atk.notes
-  row.appendChild(note)
-  return row
-}
 
 fillHTMLOnInitialize()
 addAllEventListeners()
