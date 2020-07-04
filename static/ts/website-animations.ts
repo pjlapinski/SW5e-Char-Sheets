@@ -30,14 +30,10 @@ function initializeSideMenu(): void {
         element.addEventListener("click", function() {changeSelectedInformations(element)}, false)
     });
 
-    // FIXME
-    // this function is not working as intended, target matching never sees the 
-    // clases provided in the 'if' condition
-
     window.onmouseup = function(event) {
-        if (!event.target.matches(".side-menu") 
+        if (!event.target.closest(".side-menu") 
         && document.getElementById("sheet-side-menu").offsetWidth > 0
-        && !event.target.matches(".nav-wrapper")) {
+        && !event.target.closest(".nav-wrapper")) {
             closeMenu();
         }
     }
