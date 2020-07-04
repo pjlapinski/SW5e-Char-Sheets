@@ -20,6 +20,7 @@ function closeMenu() {
 }
 
 function initializeSideMenu(): void {
+    let sideMenu = document.getElementsByClassName("side-menu")[0];
     let menuToggle = document.getElementById("menu-toggle");
     let closeMenuBtn = document.getElementById("sheet-close-btn");
     menuToggle.addEventListener("click", openMenu, false);
@@ -28,6 +29,19 @@ function initializeSideMenu(): void {
     sideMenuButtons.forEach(element => {
         element.addEventListener("click", function() {changeSelectedInformations(element)}, false)
     });
+
+    // FIXME
+    // this function is not working as intended, target matching never sees the 
+    // clases provided in the 'if' condition
+
+    window.onmouseup = function(event) {
+        if (!event.target.matches(".side-menu") 
+        && document.getElementById("sheet-side-menu").offsetWidth > 0
+        && !event.target.matches(".nav-wrapper")) {
+            closeMenu();
+        }
+    }
+
     disableSection(displaySheetSections);
     disableSection(editSheetSections);
     
