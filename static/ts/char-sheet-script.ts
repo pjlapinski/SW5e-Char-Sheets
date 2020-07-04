@@ -1,5 +1,8 @@
 import { sheet, attack, power } from 'char-sheet-interfaces'
-import { updateDisplayHTML } from './char-sheet-html-updates.js'
+import {
+  updateDisplayHTML,
+  fillPowersEditHTML,
+} from './char-sheet-html-updates.js'
 
 export const characterSheet: sheet = JSON.parse(
   sessionStorage.getItem('characterSheet')
@@ -55,68 +58,159 @@ const proficiencyCheckboxes: HTMLCollection = document.getElementsByClassName(
 const expertiseCheckboxes: HTMLCollection = document.getElementsByClassName(
   'proficiency-checkbox__expertise'
 )
-
+const editNotes: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('notes-edit')
+)
+const editMaxPowerPoints: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('max-power-points-edit')
+)
+const editPowersLists: Array<HTMLElement> = []
+const addPowerAtLevelButtons: Array<HTMLInputElement> = []
+for (let i = 0; i <= 9; i++) {
+  let levelName = i == 0 ? 'at-will' : `level-${i}`
+  editPowersLists.push(document.getElementById(`powers__${levelName}-edit`))
+  addPowerAtLevelButtons.push(
+    document.getElementById(`add-power__${levelName}`) as HTMLInputElement
+  )
+}
 // #endregion
 
 // #region event listeners
-for (let att of attributeScores) {
-  att.addEventListener('change', () => {
-    let name = att.id.split('-')[0]
-    characterSheet.attributes[name] = Number(att.value)
+export function addAllEventListeners(): void {
+  addAttributeScoresEventListeners()
+  addBonusesEventListeners()
+  addProficienciesEventListeners()
+  addExpertiseEventListeners()
+  addNotesEventListeners()
+  addPowersEventListeners()
+}
+
+function addAttributeScoresEventListeners(): void {
+  for (let att of attributeScores) {
+    att.addEventListener('change', () => {
+      let name = att.id.split('-')[0]
+      characterSheet.attributes[name] = Number(att.value)
+      updateDisplayHTML()
+    })
+  }
+}
+
+function addBonusesEventListeners(): void {
+  for (let bonus of bonusesFields) {
+    bonus.addEventListener('change', () => {
+      let nameParts = bonus.id.split('-')
+      // removing the '-bonus-value' part
+      nameParts.pop()
+      nameParts.pop()
+      let name: string = ''
+      for (let part of nameParts) {
+        if (nameParts.indexOf(part) !== 0)
+          part = part.charAt(0).toUpperCase() + part.slice(1)
+        name += part
+      }
+
+      characterSheet.bonuses[name] = Number(bonus.value)
+      updateDisplayHTML()
+    })
+  }
+}
+
+function addProficienciesEventListeners(): void {
+  for (let prof of proficiencyCheckboxes) {
+    prof.addEventListener('change', () => {
+      let input = <HTMLInputElement>prof
+      let skillName = stringToCamelCase(
+        prof.parentElement.id.replace(/-/g, ' ')
+      )
+      if (input.checked) characterSheet.proficiencies.push(skillName)
+      else {
+        let index = characterSheet.proficiencies.indexOf(skillName)
+        characterSheet.proficiencies.splice(index, 1)
+      }
+      updateDisplayHTML()
+    })
+  }
+}
+
+function addExpertiseEventListeners(): void {
+  for (let expertise of expertiseCheckboxes) {
+    expertise.addEventListener('change', () => {
+      let input = <HTMLInputElement>expertise
+      let skillName = stringToCamelCase(
+        expertise.parentElement.id.replace(/-/g, ' ')
+      )
+      if (input.checked) characterSheet.expertise.push(skillName)
+      else {
+        let index = characterSheet.expertise.indexOf(skillName)
+        characterSheet.expertise.splice(index, 1)
+      }
+      updateDisplayHTML()
+    })
+  }
+}
+function addNotesEventListeners(): void {
+  editNotes.addEventListener('change', () => {
+    characterSheet.notes = editNotes.value
     updateDisplayHTML()
   })
 }
 
-for (let bonus of bonusesFields) {
-  bonus.addEventListener('change', () => {
-    let nameParts = bonus.id.split('-')
-    // removing the '-bonus-value' part
-    nameParts.pop()
-    nameParts.pop()
-    let name: string = ''
-    for (let part of nameParts) {
-      if (nameParts.indexOf(part) !== 0)
-        part = part.charAt(0).toUpperCase() + part.slice(1)
-      name += part
-    }
-
-    characterSheet.bonuses[name] = Number(bonus.value)
+function addPowersEventListeners(): void {
+  editMaxPowerPoints.addEventListener('change', () => {
+    characterSheet.powerPointsMax = Number(editMaxPowerPoints.value)
     updateDisplayHTML()
   })
+
+  for (let i = 0; i <= 9; i++) {
+    addPowerAtLevelButtons[i].addEventListener('click', () => {
+      characterSheet.powers[`level${i}`].push({
+        name: '',
+        alignment: '',
+        casting: '',
+        range: '',
+        duration: '',
+        concentration: false,
+        description: '',
+      })
+      updateDisplayHTML()
+      fillPowersEditHTML()
+      updateEditPowersListsEventListeners(i)
+    })
+    updateEditPowersListsEventListeners(i)
+  }
 }
 
-for (let prof of proficiencyCheckboxes) {
-  prof.addEventListener('change', () => {
-    let input = <HTMLInputElement>prof
-    let skillName = stringToCamelCase(prof.parentElement.id.replace(/-/g, ' '))
-    if (input.checked) characterSheet.proficiencies.push(skillName)
-    else {
-      let index = characterSheet.proficiencies.indexOf(skillName)
-      characterSheet.proficiencies.splice(index, 1)
-    }
-    updateDisplayHTML()
-  })
-}
+function updateEditPowersListsEventListeners(level: number): void {
+  let powers: Array<Element> = Array.from(
+    editPowersLists[level].getElementsByClassName('power')
+  )
 
-for (let expertise of expertiseCheckboxes) {
-  expertise.addEventListener('change', () => {
-    let input = <HTMLInputElement>expertise
-    let skillName = stringToCamelCase(
-      expertise.parentElement.id.replace(/-/g, ' ')
+  for (let power of powers) {
+    let index = powers.indexOf(power)
+    let inputs: Array<HTMLInputElement> = Array.from(
+      power.getElementsByTagName('input')
     )
-    if (input.checked) characterSheet.expertise.push(skillName)
-    else {
-      let index = characterSheet.expertise.indexOf(skillName)
-      characterSheet.expertise.splice(index, 1)
+    let fields = [
+      'name',
+      'alignment',
+      'casting',
+      'range',
+      'duration',
+      'concentration',
+      'description',
+    ]
+    for (let i = 0; i < fields.length; i++) {
+      inputs[i].addEventListener('change', () => {
+        characterSheet.powers[`level${level}`][index][fields[i]] =
+          inputs[i].value
+        updateDisplayHTML()
+        fillPowersEditHTML()
+        addPowersEventListeners()
+      })
     }
-    updateDisplayHTML()
-  })
+  }
 }
 
-// editNotes.addEventListener('change', () => {
-//   characterSheet.notes = editNotes.value
-//   updateDisplayHTML()
-// })
 // #endregion
 
 // #region 5e calculating functions

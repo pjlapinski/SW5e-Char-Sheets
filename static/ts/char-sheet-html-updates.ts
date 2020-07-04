@@ -14,6 +14,7 @@ import {
   getProficiencyBonus,
   stringCamelCaseToDashes,
   stringToCamelCase,
+  addAllEventListeners,
 } from './char-sheet-script.js'
 
 // html elements that are going to be changing
@@ -785,7 +786,7 @@ function fillAttacksEditHTML(): void {
   }
 }
 
-function fillPowersEditHTML(): void {
+export function fillPowersEditHTML(): void {
   let maxPowerPoints: HTMLInputElement = <HTMLInputElement>(
     document.getElementById('max-power-points-edit')
   )
@@ -904,3 +905,4 @@ function createAttackTableRow(atk: attack): HTMLElement {
 }
 
 fillHTMLOnInitialize()
+addAllEventListeners()
