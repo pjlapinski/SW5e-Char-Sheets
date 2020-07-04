@@ -1,8 +1,20 @@
 import { feature, attack, item, power, sheet } from 'char-sheet-interfaces'
-
-// this is only done so that typescript has no problem with using a variable
-// defined in a completly different place
-var characterSheet: sheet
+import {
+  characterSheet,
+  skills,
+  getAttributeModifier,
+  calculateAttackBonus,
+  calculateAttackDamage,
+  getPowerSaveDC,
+  getPowerAttackBonus,
+  calculateAC,
+  getSkillMod,
+  getPassiveSkill,
+  getInitiativeBonus,
+  getProficiencyBonus,
+  stringCamelCaseToDashes,
+  stringToCamelCase,
+} from './char-sheet-script.js'
 
 // html elements that are going to be changing
 //
@@ -76,32 +88,6 @@ const charismaScore: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('charisma-score')
 )
 const charismaSave: HTMLElement = document.getElementById('charisma-save')
-const skills: object = {
-  'strength-save': 'strength',
-  'dexterity-save': 'dexterity',
-  'constitution-save': 'constitution',
-  'intelligence-save': 'intelligence',
-  'wisdom-save': 'wisdom',
-  'charisma-save': 'charisma',
-  athletics: 'strength',
-  acrobatics: 'dexterity',
-  'sleight-of-hand': 'dexterity',
-  stealth: 'dexterity',
-  investigation: 'intelligence',
-  lore: 'intelligence',
-  nature: 'intelligence',
-  piloting: 'intelligence',
-  technology: 'intelligence',
-  'animal-handling': 'wisdom',
-  insight: 'wisdom',
-  medicine: 'wisdom',
-  perception: 'wisdom',
-  survival: 'wisdom',
-  deception: 'charisma',
-  intimidation: 'charisma',
-  performance: 'charisma',
-  persuasion: 'charisma',
-}
 const passivePerception: HTMLElement = document.getElementById(
   'passive-perception-score'
 )
@@ -262,7 +248,7 @@ function fillHTMLOnInitialize(): void {
 /**
  * Updates all display fields of the html file.
  */
-function updateDisplayHTML(): void {
+export function updateDisplayHTML(): void {
   fillBasicInfoDisplayHTML()
   fillHPInfoDisplayHTML()
   fillFeaturesDisplayHTML()
@@ -809,10 +795,7 @@ function fillPowersEditHTML(): void {
 }
 
 function fillNotesEditHTML(): void {
-  let notes: HTMLInputElement = <HTMLInputElement>(
-    document.getElementById('notes-edit')
-  )
-  notes.value = characterSheet.notes
+  editNotes.value = characterSheet.notes
 }
 
 function fillSinglePowerLevelEditHTML(level: number): void {
@@ -918,123 +901,6 @@ function createAttackTableRow(atk: attack): HTMLElement {
   note.innerText = atk.notes
   row.appendChild(note)
   return row
-}
-
-function calculateAttackBonus(atk: attack): number {
-  let bonus = characterSheet.bonuses.attacks
-  bonus += atk.proficiency ? getProficiencyBonus(characterSheet.level) : 0
-  if (atk.ranged) bonus += getAttributeModifier('dexterity')
-  else if (atk.finesse)
-    bonus += Math.max(
-      getAttributeModifier('strength'),
-      getAttributeModifier('dexterity')
-    )
-  else bonus += getAttributeModifier('strength')
-  bonus += atk.atkBonus
-  return bonus
-}
-
-function calculateAttackDamage(atk: attack): string {
-  let bonus = characterSheet.bonuses.damage
-  if (atk.ranged) bonus += getAttributeModifier('dexterity')
-  else if (atk.finesse)
-    bonus += Math.max(
-      getAttributeModifier('strength'),
-      getAttributeModifier('dexterity')
-    )
-  else bonus += getAttributeModifier('strength')
-  bonus += atk.dmgBonus
-  // if lower than 0 it's empty, because bonus already has the '-' in it
-  let sign: string = bonus >= 0 ? '+' : ''
-  return `${atk.dmgDiceAmount}d${atk.dmgDiceValue}${sign}${bonus} ${atk.dmgType}`
-}
-
-function getAttributeModifier(attribute: string): number {
-  return Math.floor((characterSheet.attributes[attribute] - 10) / 2)
-}
-
-function getPowerSaveDC(type: string): number {
-  let dc = characterSheet.bonuses[`${type}SaveDC`]
-  dc += getProficiencyBonus(characterSheet.level)
-  if (type === 'tech') dc += getAttributeModifier('intelligence')
-  else if (type === 'light') dc += getAttributeModifier('wisdom')
-  else dc += getAttributeModifier('charisma')
-  dc += 8
-  return dc
-}
-
-function getPowerAttackBonus(type: string): number {
-  let bonus = characterSheet.bonuses[`${type}AttackBonus`]
-  if (type === 'tech') bonus += getAttributeModifier('intelligence')
-  else if (type === 'light') bonus += getAttributeModifier('wisdom')
-  else bonus += getAttributeModifier('charisma')
-  return bonus
-}
-
-function calculateAC(): number {
-  let base =
-    characterSheet.baseAc +
-    characterSheet.shieldBonus +
-    characterSheet.bonuses.armorClass
-  if (characterSheet.armorType === 'heavy') return base
-  if (characterSheet.armorType === 'medium')
-    return base + Math.min(2, getAttributeModifier('dexterity'))
-  return base + getAttributeModifier('dexterity')
-}
-
-/**
- * skill variable needs to be given as in skills const
- */
-function getSkillMod(skill: string): number {
-  let camelCase = stringToCamelCase(skill.replace(/-/g, ' '))
-  let attr = skills[skill]
-  let attrMod = getAttributeModifier(attr)
-  let bonus = characterSheet.bonuses[camelCase]
-  if (camelCase.includes('Save')) bonus += characterSheet.bonuses.savingThrows
-  else bonus += characterSheet.bonuses.skills
-  for (let proficiency of characterSheet.proficiencies) {
-    if (stringToCamelCase(proficiency) === camelCase) {
-      bonus += getProficiencyBonus(characterSheet.level)
-      break
-    }
-  }
-  for (let expertise of characterSheet.expertise) {
-    if (stringToCamelCase(expertise) === camelCase) {
-      bonus += getProficiencyBonus(characterSheet.level)
-      break
-    }
-  }
-  return attrMod + bonus
-}
-
-/**
- * skill variable needs to be given as in skills const
- */
-function getPassiveSkill(skill: string): number {
-  return 10 + getSkillMod(skill)
-}
-
-function getInitiativeBonus(): number {
-  return getAttributeModifier('dexterity') + characterSheet.bonuses.initiative
-}
-
-function getProficiencyBonus(level: number): number {
-  if (level < 5) return 2
-  else if (level < 9) return 3
-  else if (level < 13) return 4
-  else if (level < 17) return 5
-  else return 6
-}
-
-function stringCamelCaseToDashes(str: string): string {
-  return str.replace(/[A-Z]/g, m => '-' + m.toLowerCase())
-}
-
-function stringToCamelCase(str: string): string {
-  return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
-    if (+match === 0) return ''
-    return index === 0 ? match.toLowerCase() : match.toUpperCase()
-  })
 }
 
 fillHTMLOnInitialize()

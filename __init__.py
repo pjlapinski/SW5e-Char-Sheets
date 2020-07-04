@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import json
 import os
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -27,6 +27,14 @@ def sheet(sheet_id):
     with open(os.path.join(APP_ROOT, f'sheets/{sheet_id}.json'), 'r') as f:
         result = json.loads(f.read())
     return render_template('character-sheet.html', data=result)
+
+
+@app.route('/static/js/<path:filename>')
+def js_static(filename):
+    return send_from_directory(APP_STATIC,
+                               f'js/{filename}', as_attachment=True,
+                               mimetype='text/javascript'
+                               )
 
 
 if __name__ == '__main__':

@@ -959,20 +959,21 @@
     <script>
       // this is only done so that typescript has no problem with using a variable
       // defined in a completly different place
-      var characterSheet = JSON.parse(
+      sessionStorage.setItem(
+        'characterSheet',
         '{{ data | tojson | safe }}'.replace(/\n/g, '\\n').replace(/\r/g, '\\r')
       )
     </script>
     <script
-      type="text/javascript"
+      type="module"
       src="{{ url_for('static', filename='js/char-sheet-html-updates.js') }}"
     ></script>
     <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='js/char-sheet-updates.js') }}"
+      type="module"
+      src="{{ url_for('static', filename='js/char-sheet-script.js') }}"
     ></script>
     <script
-      type="text/javascript"
+      type="module"
       src="{{ url_for('static', filename='js/api-handler.js') }}"
     ></script>
     <script
