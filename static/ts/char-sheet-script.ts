@@ -64,6 +64,9 @@ const editNotes: HTMLInputElement = <HTMLInputElement>(
 const editMaxPowerPoints: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('max-power-points-edit')
 )
+const currentPowerPoints: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('current-power-points')
+)
 const editPowersLists: Array<HTMLElement> = []
 const addPowerAtLevelButtons: Array<HTMLInputElement> = []
 for (let i = 0; i <= 9; i++) {
@@ -83,6 +86,7 @@ export function addAllEventListeners(): void {
   addExpertiseEventListeners()
   addNotesEventListeners()
   addPowersEventListeners()
+  addPowerPointsEventListeners()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -155,12 +159,19 @@ function addNotesEventListeners(): void {
   })
 }
 
-function addPowersEventListeners(): void {
+function addPowerPointsEventListeners(): void {
   editMaxPowerPoints.addEventListener('change', () => {
+    if (Number(editMaxPowerPoints.value) < 0) editMaxPowerPoints.value = '0'
     characterSheet.powerPointsMax = Number(editMaxPowerPoints.value)
     updateDisplayHTML()
   })
+  currentPowerPoints.addEventListener('change', () => {
+    if (Number(currentPowerPoints.value) < 0) currentPowerPoints.value = '0'
+    characterSheet.powerPointsLeft = Number(currentPowerPoints.value)
+  })
+}
 
+function addPowersEventListeners(): void {
   for (let i = 0; i <= 9; i++) {
     addPowerAtLevelButtons[i].addEventListener('click', () => {
       characterSheet.powers[`level${i}`].push({
@@ -185,12 +196,13 @@ function updateEditPowersListsEventListeners(level: number): void {
     editPowersLists[level].getElementsByClassName('power')
   )
 
-  for (let power of powers) {
-    let index = powers.indexOf(power)
+  for (let index = 0; index < powers.length; index++) {
+    let power = powers[index]
     let inputs: Array<HTMLInputElement> = Array.from(
       power.getElementsByTagName('input')
     )
     let fields = [
+      'delete',
       'name',
       'alignment',
       'casting',
@@ -200,12 +212,21 @@ function updateEditPowersListsEventListeners(level: number): void {
       'description',
     ]
     for (let i = 0; i < fields.length; i++) {
+      if (i === 0) {
+        inputs[i].addEventListener('click', () => {
+          characterSheet.powers[`level${level}`].splice(index, 1)
+          updateDisplayHTML()
+          fillPowersEditHTML()
+          updateEditPowersListsEventListeners(level)
+        })
+        continue
+      }
       inputs[i].addEventListener('change', () => {
         characterSheet.powers[`level${level}`][index][fields[i]] =
           inputs[i].value
         updateDisplayHTML()
         fillPowersEditHTML()
-        addPowersEventListeners()
+        updateEditPowersListsEventListeners(level)
       })
     }
   }
