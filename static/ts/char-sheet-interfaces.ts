@@ -1,4 +1,4 @@
-export interface feature {
+export interface Feature {
   name: string
   description: string
   usesLeft: number
@@ -6,7 +6,7 @@ export interface feature {
   refresh: string
 }
 
-export interface attack {
+export interface Attack {
   name: string
   proficiency: boolean
   finesse: boolean
@@ -19,7 +19,7 @@ export interface attack {
   notes: string
 }
 
-export interface item {
+export interface Item {
   name: string
   amount: number
   notes: string
@@ -27,7 +27,7 @@ export interface item {
   usesMax: number
 }
 
-export interface power {
+export interface Power {
   name: string
   alignment: string
   casting: string
@@ -37,7 +37,7 @@ export interface power {
   description: string
 }
 
-export interface sheet {
+export interface Sheet {
   name: string
   class: string
   archetype: string
@@ -110,8 +110,8 @@ export interface sheet {
     max: number
     temporary: number
   }
-  features: feature[]
-  attacks: attack[]
+  features: Feature[]
+  attacks: Attack[]
   languages: string[]
   otherProficiencies: string[]
   speed: number
@@ -121,19 +121,19 @@ export interface sheet {
   flaw: string
   notes: string
   credits: number
-  equipment: item[]
+  equipment: Item[]
   powerPointsLeft: number
   powerPointsMax: number
   powers: {
-    level0: power[]
-    level1: power[]
-    level2: power[]
-    level3: power[]
-    level4: power[]
-    level5: power[]
-    level6: power[]
-    level7: power[]
-    level8: power[]
-    level9: power[]
+    level0: Power[]
+    level1: Power[]
+    level2: Power[]
+    level3: Power[]
+    level4: Power[]
+    level5: Power[]
+    level6: Power[]
+    level7: Power[]
+    level8: Power[]
+    level9: Power[]
   }
 }
