@@ -1,11 +1,11 @@
-import { sheet, attack, power } from 'char-sheet-interfaces'
+import { Sheet, Attack, Power } from 'char-sheet-interfaces'
 import {
   updateDisplayHTML,
   fillPowersEditHTML,
   fillAttacksEditHTML,
 } from './char-sheet-html-updates.js'
 
-export const characterSheet: sheet = JSON.parse(
+export const characterSheet: Sheet = JSON.parse(
   sessionStorage.getItem('characterSheet')
 )
 
@@ -313,7 +313,7 @@ function updateAttacksEventListeners(): void {
 // #endregion
 
 // #region 5e calculating functions
-export function calculateAttackBonus(atk: attack): number {
+export function calculateAttackBonus(atk: Attack): number {
   let bonus = characterSheet.bonuses.attacks
   bonus += atk.proficiency ? getProficiencyBonus(characterSheet.level) : 0
   if (atk.ranged) bonus += getAttributeModifier('dexterity')
@@ -327,7 +327,7 @@ export function calculateAttackBonus(atk: attack): number {
   return bonus
 }
 
-export function calculateAttackDamage(atk: attack): string {
+export function calculateAttackDamage(atk: Attack): string {
   let bonus = characterSheet.bonuses.damage
   if (atk.ranged) bonus += getAttributeModifier('dexterity')
   else if (atk.finesse)
@@ -376,7 +376,7 @@ export function calculateAC(): number {
 }
 
 /**
- * skill variable needs to be given as in skills const
+ * skill variable formatted in a html naming convention, words separated by dashes
  */
 export function getSkillMod(skill: string): number {
   let camelCase = stringToCamelCase(skill.replace(/-/g, ' '))
@@ -401,7 +401,7 @@ export function getSkillMod(skill: string): number {
 }
 
 /**
- * skill variable needs to be given as in skills const
+ * skill variable formatted in a html naming convention, words separated by dashes
  */
 export function getPassiveSkill(skill: string): number {
   return 10 + getSkillMod(skill)
