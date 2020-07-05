@@ -1,4 +1,4 @@
-import { feature, attack, item, power, sheet } from 'char-sheet-interfaces'
+import { Feature, Attack, Item, Power, Sheet } from 'char-sheet-interfaces'
 import {
   characterSheet,
   skills,
@@ -28,6 +28,9 @@ const archetype: HTMLElement = document.getElementById('archetype')
 const level: HTMLElement = document.getElementById('level')
 const background: HTMLElement = document.getElementById('background')
 const alignment: HTMLElement = document.getElementById('alignment')
+const proficiencyBonus: HTMLElement = document.getElementById(
+  'proficiency-bonus'
+)
 const speed: HTMLElement = document.getElementById('speed')
 const armorClass: HTMLElement = document.getElementById('armor-class')
 const personalityTraits: HTMLElement = document.getElementById(
@@ -269,6 +272,7 @@ function fillBasicInfoDisplayHTML(): void {
   level.innerText = String(characterSheet.level)
   background.innerText = characterSheet.background
   alignment.innerText = characterSheet.alignment
+  proficiencyBonus.innerText = `+${getProficiencyBonus(characterSheet.level)}`
   speed.innerText = String(characterSheet.speed)
   armorClass.innerText = String(calculateAC())
   personalityTraits.innerText = characterSheet.personalityTraits
@@ -412,7 +416,7 @@ function fillAttacksDisplayHTML(): void {
     attacksTable.appendChild(createAttackTableRow(atk))
 }
 
-function createAttackTableRow(atk: attack): HTMLElement {
+function createAttackTableRow(atk: Attack): HTMLElement {
   let row: HTMLElement = document.createElement('tr')
   let name: HTMLElement = document.createElement('td')
   name.className = 'attack-name'
@@ -803,7 +807,7 @@ export function fillAttacksEditHTML(): void {
     li.appendChild(atkBonus)
     let notesLabel: HTMLElement = document.createElement('h4')
     notesLabel.className = 'label'
-    notesLabel.innerText = 'notes:'
+    notesLabel.innerText = 'Notes:'
     li.appendChild(notesLabel)
     let notes: HTMLInputElement = document.createElement('input')
     notes.type = 'text'

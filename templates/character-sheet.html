@@ -93,6 +93,10 @@
           <h3 id="speed"></h3>
         </div>
         <div class="combat-info-wrapper">
+          <h4 class="label">Proficiency bonus:</h4>
+          <h3 id="proficiency-bonus"></h3>
+        </div>
+        <div class="combat-info-wrapper">
           <h4 class="label">Armor Class:</h4>
           <h3 id="armor-class"></h3>
         </div>
@@ -315,32 +319,30 @@
       >
         <input type="button" id="level-up" class="button" value="Level up" />
 
-          <h4 class="label">Name:</h4>
-          <input type="text" id="character-name-edit" />
+        <h4 class="label">Name:</h4>
+        <input type="text" id="character-name-edit" />
 
+        <h4 class="label">Species:</h4>
+        <input type="text" id="species-edit" />
 
-          <h4 class="label">Species:</h4>
-          <input type="text" id="species-edit" />
+        <h4 class="label">Class & level:</h4>
+        <input type="text" id="class-edit" />
+        <input type="text" id="archetype-edit" />
+        <input type="number" id="level-edit" />
 
+        <h4 class="label">Background:</h4>
+        <input type="text" id="background-edit" />
 
-          <h4 class="label">Class & level:</h4>
-          <input type="text" id="class-edit" />
-          <input type="text" id="archetype-edit" />
-          <input type="number" id="level-edit" />
+        <h4 class="label">Alignment:</h4>
+        <input type="text" id="alignment-edit" />
 
-          <h4 class="label">Background:</h4>
-          <input type="text" id="background-edit" />
+        <h4 class="label">Speed:</h4>
+        <input type="number" id="speed-edit" />
 
-          <h4 class="label">Alignment:</h4>
-          <input type="text" id="alignment-edit" />
+        <h4 class="label">Base Armor Class:</h4>
+        <input type="number" id="armor-class-edit" />
 
-          <h4 class="label">Speed:</h4>
-          <input type="number" id="speed-edit" />
-
-          <h4 class="label">Base Armor Class:</h4>
-          <input type="number" id="armor-class-edit" />
-
-          <div class="personality-wrapper">
+        <div class="personality-wrapper">
           <h4 class="label">Personality traits:</h4>
           <!-- text areas maybe? -->
           <textarea rows="5" cols="80" id="personality-traits-edit"></textarea>
@@ -508,8 +510,7 @@
         </div>
       </div>
       <div class="sheet-section edit-sheet-section" id="notes-section-edit">
-        <textarea rows="20" cols="100" id="notes-edit">
-        </textarea>
+        <textarea rows="20" cols="100" id="notes-edit"> </textarea>
       </div>
 
       <div
