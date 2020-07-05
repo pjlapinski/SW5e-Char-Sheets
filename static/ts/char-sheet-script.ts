@@ -2,6 +2,7 @@ import { sheet, attack, power } from 'char-sheet-interfaces'
 import {
   updateDisplayHTML,
   fillPowersEditHTML,
+  fillAttacksEditHTML,
 } from './char-sheet-html-updates.js'
 
 export const characterSheet: sheet = JSON.parse(
@@ -76,6 +77,10 @@ for (let i = 0; i <= 9; i++) {
     document.getElementById(`add-power__${levelName}`) as HTMLInputElement
   )
 }
+const attacksEditList: HTMLElement = document.getElementById('attacks-edit')
+const addAttackBtn: HTMLInputElement = document.getElementById(
+  'add-attack'
+) as HTMLInputElement
 // #endregion
 
 // #region event listeners
@@ -87,6 +92,7 @@ export function addAllEventListeners(): void {
   addNotesEventListeners()
   addPowersEventListeners()
   addPowerPointsEventListeners()
+  addAttacksEventListeners()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -222,11 +228,83 @@ function updateEditPowersListsEventListeners(level: number): void {
         continue
       }
       inputs[i].addEventListener('change', () => {
-        characterSheet.powers[`level${level}`][index][fields[i]] =
-          inputs[i].value
+        if (inputs[i].type === 'text')
+          characterSheet.powers[`level${level}`][index][fields[i]] =
+            inputs[i].value
+        else if (inputs[i].type === 'checkbox')
+          characterSheet.powers[`level${level}`][index][fields[i]] =
+            inputs[i].checked
         updateDisplayHTML()
         fillPowersEditHTML()
         updateEditPowersListsEventListeners(level)
+      })
+    }
+  }
+}
+
+function addAttacksEventListeners(): void {
+  addAttackBtn.addEventListener('click', () => {
+    characterSheet.attacks.push({
+      name: '',
+      proficiency: false,
+      finesse: false,
+      ranged: false,
+      dmgDiceAmount: 0,
+      dmgDiceValue: 0,
+      dmgType: '',
+      dmgBonus: 0,
+      atkBonus: 0,
+      notes: '',
+    })
+    updateDisplayHTML()
+    fillAttacksEditHTML()
+    updateAttacksEventListeners()
+  })
+  updateAttacksEventListeners()
+}
+
+function updateAttacksEventListeners(): void {
+  let attacks: HTMLCollection = attacksEditList.getElementsByTagName('li')
+
+  for (let index = 0; index < attacks.length; index++) {
+    let attack = attacks[index]
+
+    let inputs: Array<HTMLInputElement> = Array.from(
+      attack.getElementsByTagName('input')
+    )
+    let fields = [
+      'delete',
+      'name',
+      'proficiency',
+      'finesse',
+      'ranged',
+      'dmgDiceAmount',
+      'dmgDiceValue',
+      'dmgType',
+      'dmgBonus',
+      'atkBonus',
+      'notes',
+    ]
+    for (let i = 0; i < fields.length; i++) {
+      if (i === 0) {
+        inputs[i].addEventListener('click', () => {
+          characterSheet.attacks.splice(index, 1)
+          updateDisplayHTML()
+          fillAttacksEditHTML()
+          updateAttacksEventListeners()
+        })
+        continue
+      }
+      inputs[i].addEventListener('change', () => {
+        if (inputs[i].type === 'text')
+          characterSheet.attacks[index][fields[i]] = inputs[i].value
+        else if (inputs[i].type === 'checkbox')
+          characterSheet.attacks[index][fields[i]] = inputs[i].checked
+        else if (inputs[i].type === 'number')
+          characterSheet.attacks[index][fields[i]] = Number(inputs[i].value)
+        updateDisplayHTML()
+        fillAttacksEditHTML()
+        updateAttacksEventListeners()
       })
     }
   }

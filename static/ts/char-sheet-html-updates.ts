@@ -721,10 +721,14 @@ function fillEquipmentEditHTML(): void {
   }
 }
 
-function fillAttacksEditHTML(): void {
+export function fillAttacksEditHTML(): void {
   editAttacks.innerHTML = ''
   for (let attack of characterSheet.attacks) {
     let li: HTMLElement = document.createElement('li')
+    let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.type = 'button'
+    deleteBtn.value = 'Delete'
+    li.appendChild(deleteBtn)
     let nameLabel: HTMLElement = document.createElement('h4')
     nameLabel.className = 'label'
     nameLabel.innerText = 'Name:'

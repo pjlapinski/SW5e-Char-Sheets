@@ -13,7 +13,7 @@ export interface attack {
   ranged: boolean
   dmgDiceAmount: number
   dmgDiceValue: number
-  dmgType: number
+  dmgType: string
   dmgBonus: number
   atkBonus: number
   notes: string
