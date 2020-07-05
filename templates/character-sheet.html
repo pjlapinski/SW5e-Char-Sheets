@@ -72,9 +72,12 @@
           <h4 id="species"></h4>
         </div>
         <div class="class-wrapper">
-          <h4 class="label">Class & level:</h4>
+          <h4 class="label">Class:</h4>
           <h4 id="class"></h4>
           <h4 id="archetype"></h4>
+        </div>
+        <div class="class-wrapper">
+          <h4 class="label">Level:</h4>
           <h4 id="level"></h4>
         </div>
         <div class="background-wrapper">
@@ -86,17 +89,19 @@
           <h4 id="alignment"></h4>
         </div>
         <div class="combat-info-wrapper">
-          <!-- some fancy borders for both -->
           <h4 class="label">Speed:</h4>
           <h3 id="speed"></h3>
+        </div>
+        <div class="combat-info-wrapper">
           <h4 class="label">Armor Class:</h4>
           <h3 id="armor-class"></h3>
+        </div>
+        <div class="combat-info-wrapper">
           <h4 class="label">Initiative bonus:</h4>
           <h3 id="initiative"></h3>
         </div>
         <div class="personality-wrapper">
           <h4 class="label">Personality traits:</h4>
-          <!-- text areas maybe? -->
           <p id="personality-traits"></p>
           <h4 class="label">Ideal:</h4>
           <p id="ideal"></p>
@@ -308,44 +313,43 @@
         class="sheet-section edit-sheet-section"
         id="basic-info-section-edit"
       >
-        <input type="button" id="level-up" value="Level up" />
-        <h4 class="label">Name:</h4>
-        <input type="text" id="character-name-edit" />
-        <div class="species-wrapper">
+        <input type="button" id="level-up" class="button" value="Level up" />
+
+          <h4 class="label">Name:</h4>
+          <input type="text" id="character-name-edit" />
+
+
           <h4 class="label">Species:</h4>
           <input type="text" id="species-edit" />
-        </div>
-        <div class="class-wrapper">
+
+
           <h4 class="label">Class & level:</h4>
           <input type="text" id="class-edit" />
           <input type="text" id="archetype-edit" />
           <input type="number" id="level-edit" />
-        </div>
-        <div class="background-wrapper">
+
           <h4 class="label">Background:</h4>
           <input type="text" id="background-edit" />
-        </div>
-        <div class="alignment-wrapper">
+
           <h4 class="label">Alignment:</h4>
           <input type="text" id="alignment-edit" />
-        </div>
-        <div class="combat-info-wrapper">
-          <!-- some fancy borders for both -->
+
           <h4 class="label">Speed:</h4>
           <input type="number" id="speed-edit" />
+
           <h4 class="label">Base Armor Class:</h4>
           <input type="number" id="armor-class-edit" />
-        </div>
-        <div class="personality-wrapper">
+
+          <div class="personality-wrapper">
           <h4 class="label">Personality traits:</h4>
           <!-- text areas maybe? -->
-          <input type="text" id="personality-traits-edit" />
+          <textarea rows="5" cols="80" id="personality-traits-edit"></textarea>
           <h4 class="label">Ideal:</h4>
-          <input type="text" id="ideal-edit" />
+          <textarea rows="5" cols="80" id="ideal-edit"></textarea>
           <h4 class="label">Bond:</h4>
-          <input type="text" id="bond-edit" />
+          <textarea rows="5" cols="80" id="bond-edit"></textarea>
           <h4 class="label">Flaw:</h4>
-          <input type="text" id="flaw-edit" />
+          <textarea rows="5" cols="80" id="flaw-edit"></textarea>
           <!-- very likely some more here, perhaps a text area for backstory/notes? -->
         </div>
       </div>
@@ -504,7 +508,8 @@
         </div>
       </div>
       <div class="sheet-section edit-sheet-section" id="notes-section-edit">
-        <input type="text" id="notes-edit" />
+        <textarea rows="20" cols="100" id="notes-edit">
+        </textarea>
       </div>
 
       <div

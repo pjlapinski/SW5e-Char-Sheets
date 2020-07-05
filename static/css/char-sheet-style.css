@@ -59,7 +59,6 @@ body {
 
 .sheet-content {
   display: inline;
-  align-content: center;
 }
 
 .sheet-section {
@@ -67,10 +66,37 @@ body {
   margin-right: 2vw;
   margin-top: 5%;
   padding: 5vh 10vw;
-  justify-content: center;
+}
+
+#bonuses-section {
+  text-align: center;
 }
 
 /* sheets' content styling */
+
+input, textarea {
+  padding: 1%;
+  background: rgba(116, 116, 116, 0.376);
+  color: white;
+  border: white;
+}
+
+.button {
+  width: 100%;
+}
+
+.button:hover {
+  background: rgba(116, 116, 116, 0.800);
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+}
+
+#notes-edit {
+  min-height: 80vh;
+}
 
 .underlined-input__number {
   background: transparent;
@@ -125,13 +151,14 @@ body {
 .species-wrapper,
 .class-wrapper,
 .alignment-wrapper,
-.background-wrapper {
+.background-wrapper,
+.combat-info-wrapper {
   display: flex;
 }
 
-.sheet-section h4, .sheet-section input {
-  margin-right: 2%;
-  margin-bottom: 1%;
+.sheet-section h4, .sheet-section h3, .sheet-section input {
+  margin-right: 5px;
+  margin-top: 1%;
 }
 
 .attribute-wrapper {
