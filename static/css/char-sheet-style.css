@@ -23,7 +23,7 @@ body {
 }
 
 .nav-wrapper {
-  padding: 1vw;
+  padding: 1vh;
   cursor: pointer;
 }
 
@@ -42,6 +42,7 @@ body {
   margin-left: 2vw;
   display: inline;
   font-size: 220%;
+  position: fixed;
   cursor: pointer;
 }
 

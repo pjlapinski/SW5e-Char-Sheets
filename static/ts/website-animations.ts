@@ -12,10 +12,12 @@ initializeSideMenu()
 // indexes 0-8 are for infomations about a character, 11-13 are for save, return and edit
 
 function openMenu() {
+    document.getElementById("menu-toggle").style.display = "none";
     document.getElementById("sheet-side-menu").style.width = "45%";
 }
 
 function closeMenu() {
+    document.getElementById("menu-toggle").style.display = "block";
     document.getElementById("sheet-side-menu").style.width = "0";
 }
 
