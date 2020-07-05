@@ -68,24 +68,29 @@ body {
   padding: 5vh 10vw;
 }
 
-#bonuses-section {
+#bonuses-section, #hp-section-edit {
   text-align: center;
 }
 
 /* sheets' content styling */
 
-input, textarea {
+input, textarea, select {
   padding: 1%;
   background: rgba(116, 116, 116, 0.376);
   color: white;
   border: white;
+  width: 20%;
 }
 
 .button {
   width: 100%;
 }
 
-.button:hover {
+.add-button {
+  width: 20%;
+}
+
+.button:hover, button {
   background: rgba(116, 116, 116, 0.800);
 }
 
@@ -101,8 +106,6 @@ textarea {
 .underlined-input__number {
   background: transparent;
   border-style: hidden;
-  border-bottom-style: groove;
-  border-bottom-color: white;
   width: 3rem;
   font-size: 1rem;
   font-weight: bold;
