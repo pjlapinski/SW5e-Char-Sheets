@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url("/static/images/clear-bg.png");
+  background-image: url('/static/images/clear-bg.png');
   color: rgb(255, 255, 255);
 }
 
@@ -51,8 +51,12 @@ body {
     font-size: 15vw;
     margin-left: 35vw;
   }
-  .side-menu {padding-top: 15px;}
-  .side-menu div {font-size: 5vw;}
+  .side-menu {
+    padding-top: 15px;
+  }
+  .side-menu div {
+    font-size: 5vw;
+  }
 }
 
 /* general styling for the sheets */
@@ -68,13 +72,16 @@ body {
   padding: 5vh 10vw;
 }
 
-#bonuses-section, #hp-section-edit {
+#bonuses-section,
+#hp-section-edit {
   text-align: center;
 }
 
 /* sheets' content styling */
 
-input, textarea, select {
+input,
+textarea,
+select {
   padding: 1%;
   background: rgba(116, 116, 116, 0.376);
   color: white;
@@ -90,8 +97,9 @@ input, textarea, select {
   width: 20%;
 }
 
-.button:hover, button {
-  background: rgba(116, 116, 116, 0.800);
+.button:hover,
+button {
+  background: rgba(116, 116, 116, 0.8);
 }
 
 textarea {
@@ -159,7 +167,9 @@ textarea {
   display: flex;
 }
 
-.sheet-section h4, .sheet-section h3, .sheet-section input {
+.sheet-section h4,
+.sheet-section h3,
+.sheet-section input {
   margin-right: 5px;
   margin-top: 1%;
 }
@@ -254,11 +264,11 @@ textarea {
   margin-left: 2rem;
 }
 
-.attacks-table {
+#attacks-table {
   width: 75vw;
 }
 
-.attacks-table td {
+#attacks-table td {
   font-size: 16;
   width: fit-content;
   background-color: rgb(78, 78, 78);
@@ -267,7 +277,7 @@ textarea {
   text-align: center;
 }
 
-.table-header td {
+#attacks-table-header td {
   font-weight: bold;
   background: rgb(177, 177, 177);
   color: black;

@@ -110,9 +110,7 @@ const credits: HTMLInputElement = <HTMLInputElement>(
 const equipment: HTMLElement = document.getElementById('equipment')
 // #endregion
 // #region attacks elements
-const attacksTable: HTMLElement = <HTMLElement>(
-  document.getElementsByClassName('attacks-table')[0]
-)
+const attacksTable: HTMLElement = document.getElementById('attacks-table')
 // #endregion
 // #region powers elements
 const techSaveDC: HTMLElement = document.getElementById('tech-save-dc')
