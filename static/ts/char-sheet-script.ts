@@ -3,6 +3,7 @@ import {
   updateDisplayHTML,
   fillPowersEditHTML,
   fillAttacksEditHTML,
+  fillEquipmentEditHTML,
 } from './char-sheet-html-updates.js'
 
 export const characterSheet: Sheet = JSON.parse(
@@ -82,6 +83,14 @@ const attacksEditList: HTMLElement = document.getElementById('attacks-edit')
 const addAttackBtn: HTMLInputElement = document.getElementById(
   'add-attack'
 ) as HTMLInputElement
+const creditsEdit: HTMLInputElement = document.getElementById(
+  'credits'
+) as HTMLInputElement
+const equipmentEditList: HTMLElement = document.getElementById('equipment-edit')
+const equipmentDisplayList: HTMLElement = document.getElementById('equipment')
+const addItemBtn: HTMLInputElement = document.getElementById(
+  'add-equipment'
+) as HTMLInputElement
 // #endregion
 
 // #region event listeners
@@ -94,6 +103,7 @@ export function addAllEventListeners(): void {
   addPowersEventListeners()
   addPowerPointsEventListeners()
   addAttacksEventListeners()
+  addEquipmentEventListeners()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -308,6 +318,79 @@ function updateAttacksEventListeners(): void {
         updateDisplayHTML()
         fillAttacksEditHTML()
         updateAttacksEventListeners()
+      })
+    }
+  }
+}
+
+function addEquipmentEventListeners(): void {
+  addItemBtn.addEventListener('click', () => {
+    characterSheet.equipment.push({
+      name: '',
+      amount: 1,
+      notes: '',
+      usesLeft: 0,
+      usesMax: 0,
+    })
+    updateDisplayHTML()
+    fillEquipmentEditHTML()
+    updateEquipmentEventListeners()
+  })
+
+  creditsEdit.addEventListener('change', () => {
+    characterSheet.credits = Number(creditsEdit.value)
+    updateDisplayHTML()
+  })
+
+  updateEquipmentEventListeners()
+}
+
+function updateEquipmentEventListeners(): void {
+  let items = equipmentEditList.getElementsByClassName('equipment__item')
+  let displayItems = equipmentDisplayList.getElementsByClassName(
+    'equipment__item'
+  )
+
+  for (let index = 0; index < items.length; index++) {
+    let item = items[index]
+    let itemDisplay = displayItems[index]
+
+    let inputs: Array<HTMLInputElement> = Array.from(
+      item.getElementsByTagName('input')
+    )
+    let displayInput = itemDisplay.getElementsByTagName('input')
+    if (displayInput.length > 0) {
+      displayInput[0].addEventListener('change', () => {
+        if (Number(displayInput[0].value) < 0) displayInput[0].value = '0'
+        characterSheet.equipment[index].usesLeft = Number(displayInput[0].value)
+        updateDisplayHTML()
+        fillEquipmentEditHTML()
+        updateEquipmentEventListeners()
+      })
+    }
+
+    let fields = ['delete', 'amount', 'name', 'usesLeft', 'usesMax', 'notes']
+    for (let i = 0; i < fields.length; i++) {
+      if (i === 0) {
+        inputs[i].addEventListener('click', () => {
+          characterSheet.equipment.splice(index, 1)
+          updateDisplayHTML()
+          fillEquipmentEditHTML()
+          updateEquipmentEventListeners()
+        })
+        continue
+      }
+      inputs[i].addEventListener('change', () => {
+        if (inputs[i].type === 'text')
+          characterSheet.equipment[index][fields[i]] = inputs[i].value
+        else if (inputs[i].type === 'number') {
+          let min = i === 1 ? 1 : 0
+          if (Number(inputs[i].value) < min) inputs[i].value = String(min)
+          characterSheet.equipment[index][fields[i]] = Number(inputs[i].value)
+        }
+        updateDisplayHTML()
+        fillEquipmentEditHTML()
+        updateEquipmentEventListeners()
       })
     }
   }

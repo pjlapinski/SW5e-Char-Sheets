@@ -369,7 +369,7 @@ function fillEquipmentDisplayHTML(): void {
     if (item.amount > 1) {
       let amount: HTMLElement = document.createElement('h4')
       amount.className = 'label'
-      amount.innerText = String(item.amount)
+      amount.innerText = `${item.amount}x`
       amountAndName.appendChild(amount)
     }
     let name: HTMLElement = document.createElement('h4')
@@ -682,11 +682,15 @@ function fillFeaturesEditHTML(): void {
   }
 }
 
-function fillEquipmentEditHTML(): void {
+export function fillEquipmentEditHTML(): void {
   editEquipment.innerHTML = ''
   for (let item of characterSheet.equipment) {
     let li: HTMLElement = document.createElement('li')
     li.className = 'equipment__item'
+    let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.type = 'button'
+    deleteBtn.value = 'Delete'
+    li.appendChild(deleteBtn)
     let amountAndName: HTMLElement = document.createElement('div')
     amountAndName.className = 'item-amount-and-name'
     let amount: HTMLInputElement = document.createElement('input')
