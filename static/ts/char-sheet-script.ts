@@ -137,6 +137,48 @@ const deathSaveSuccesses: HTMLElement = document.getElementById(
 const deathSaveFailures: HTMLElement = document.getElementById(
   'death-saves__failures'
 )
+const charNameEdit: HTMLInputElement = document.getElementById(
+  'character-name-edit'
+) as HTMLInputElement
+const speciesEdit: HTMLInputElement = document.getElementById(
+  'species-edit'
+) as HTMLInputElement
+const classEdit: HTMLInputElement = document.getElementById(
+  'class-edit'
+) as HTMLInputElement
+const archetypeEdit: HTMLInputElement = document.getElementById(
+  'archetype-edit'
+) as HTMLInputElement
+const levelEdit: HTMLInputElement = document.getElementById(
+  'level-edit'
+) as HTMLInputElement
+const backgroundEdit: HTMLInputElement = document.getElementById(
+  'background-edit'
+) as HTMLInputElement
+const alignmentEdit: HTMLInputElement = document.getElementById(
+  'alignment-edit'
+) as HTMLInputElement
+const speedEdit: HTMLInputElement = document.getElementById(
+  'speed-edit'
+) as HTMLInputElement
+const armorClassEdit: HTMLInputElement = document.getElementById(
+  'armor-class-edit'
+) as HTMLInputElement
+const armorType: HTMLSelectElement = document.getElementById(
+  'equipped-armor-type'
+) as HTMLSelectElement
+const personalityTraitsEdit: HTMLInputElement = document.getElementById(
+  'personality-traits-edit'
+) as HTMLInputElement
+const idealEdit: HTMLInputElement = document.getElementById(
+  'ideal-edit'
+) as HTMLInputElement
+const bondEdit: HTMLInputElement = document.getElementById(
+  'bond-edit'
+) as HTMLInputElement
+const flawEdit: HTMLInputElement = document.getElementById(
+  'flaw-edit'
+) as HTMLInputElement
 // #endregion
 
 // #region event listeners
@@ -152,6 +194,7 @@ export function addAllEventListeners(): void {
   addEquipmentEventListeners()
   addFeaturesEventListeners()
   addHPInfoEventListeners()
+  addBasicInfoEventListeners()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -656,6 +699,99 @@ function addHPInfoEventListeners(): void {
       updateDisplayHTML()
     })
   }
+}
+
+function addBasicInfoEventListeners(): void {
+  // TODO: add level up
+
+  charNameEdit.addEventListener('change', () => {
+    characterSheet.name = charNameEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  speciesEdit.addEventListener('change', () => {
+    characterSheet.species = speciesEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  classEdit.addEventListener('change', () => {
+    characterSheet.class = classEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  archetypeEdit.addEventListener('change', () => {
+    characterSheet.archetype = archetypeEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  levelEdit.addEventListener('change', () => {
+    let level = Number(levelEdit.value)
+    level = level > 0 ? level : 1
+    level = level <= 20 ? level : 20
+    characterSheet.level = level
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  backgroundEdit.addEventListener('change', () => {
+    characterSheet.background = backgroundEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  alignmentEdit.addEventListener('change', () => {
+    characterSheet.alignment = alignmentEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  speedEdit.addEventListener('change', () => {
+    let speed = Number(speedEdit.value)
+    speed = speed >= 0 ? speed : 0
+    characterSheet.speed = speed
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  armorClassEdit.addEventListener('change', () => {
+    characterSheet.baseAc = Number(armorClassEdit.value)
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  armorType.addEventListener('change', () => {
+    characterSheet.armorType = armorType.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  personalityTraitsEdit.addEventListener('change', () => {
+    characterSheet.personalityTraits = personalityTraitsEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  idealEdit.addEventListener('change', () => {
+    characterSheet.ideal = idealEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  bondEdit.addEventListener('change', () => {
+    characterSheet.bond = bondEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  flawEdit.addEventListener('change', () => {
+    characterSheet.flaw = flawEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
 }
 
 // #endregion
