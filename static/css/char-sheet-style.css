@@ -143,7 +143,7 @@ textarea {
   display: flex;
 }
 
-.submit-heal-or-damage {
+#submit-heal-or-damage {
   background: rgb(63, 63, 63);
   color: rgb(255, 255, 255);
   border: solid;
@@ -153,7 +153,7 @@ textarea {
   padding: 1vh 3vw;
 }
 
-.submit-heal-or-damage:active {
+#submit-heal-or-damage:active {
   background-color: rgb(255, 255, 255);
   color: rgb(63, 63, 63);
 }

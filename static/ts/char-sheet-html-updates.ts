@@ -45,6 +45,12 @@ const initiative: HTMLElement = document.getElementById('initiative')
 const currHp: HTMLElement = document.getElementById('curr-hp')
 const maxHp: HTMLElement = document.getElementById('max-hp')
 const tempHp: HTMLElement = document.getElementById('temp-hp')
+const healOrDamageSelect: HTMLSelectElement = document.getElementById(
+  'heal-or-damage-choice'
+) as HTMLSelectElement
+const healOrDamageSubmit: HTMLInputElement = document.getElementById(
+  'submit-heal-or-damage'
+) as HTMLInputElement
 const availableHitDice: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('hit-dice-available-amount')
 )
@@ -287,6 +293,10 @@ function fillHPInfoDisplayHTML(): void {
   availableHitDice.value = String(characterSheet.hitDice.left)
   hitDiceMax.innerText = String(characterSheet.level)
   hitDiceDie.innerText = String(characterSheet.hitDice.type)
+
+  let displays = ['Take', 'Heal', 'Add']
+  healOrDamageSubmit.innerText = displays[healOrDamageSelect.selectedIndex]
+
   let successes = deathSavesSucc.children
   let failures = deathSavesFail.children
 
