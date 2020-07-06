@@ -114,7 +114,6 @@
           <p id="bond"></p>
           <h4 class="label">Flaw:</h4>
           <p id="flaw"></p>
-          <!-- very likely some more here, perhaps a text area for backstory/notes? -->
         </div>
       </div>
 
@@ -156,17 +155,15 @@
         <div class="death-saves-wrapper">
           <h4 class="label">Successes:</h4>
           <div class="death-saves-line" id="death-saves__successes">
-            <!-- classes so that when #2 is pressed, #1 gets checked too,
-            and if #3 is pressed, both #2 and #1 get checked -->
-            <input type="checkbox" class="first-checkbox-in-line" />
-            <input type="checkbox" class="second-checkbox-in-line" />
-            <input type="checkbox" class="third-checkbox-in-line" />
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <input type="checkbox" />
           </div>
           <h4 class="label">Failures:</h4>
           <div class="death-saves-line" id="death-saves__failures">
-            <input type="checkbox" class="first-checkbox-in-line" />
-            <input type="checkbox" class="second-checkbox-in-line" />
-            <input type="checkbox" class="third-checkbox-in-line" />
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <input type="checkbox" />
           </div>
         </div>
       </div>
@@ -342,6 +339,14 @@
 
         <h4 class="label">Base Armor Class:</h4>
         <input type="number" id="armor-class-edit" />
+
+        <h4 class="label">Equipped Armor Type:</h4>
+        <select id="equipped-armor-type">
+          <option value="none">None</option>
+          <option value="light">Light</option>
+          <option value="medium">Medium</option>
+          <option value="heavy">Heavy</option>
+        </select>
 
         <div class="personality-wrapper">
           <h4 class="label">Personality traits:</h4>

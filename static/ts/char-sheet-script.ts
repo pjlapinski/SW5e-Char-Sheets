@@ -5,6 +5,8 @@ import {
   fillAttacksEditHTML,
   fillEquipmentEditHTML,
   fillFeaturesEditHTML,
+  fillHPInfoEditHTML,
+  fillBasicInfoEditHTML,
 } from './char-sheet-html-updates.js'
 
 export const characterSheet: Sheet = JSON.parse(
@@ -111,6 +113,72 @@ const featuresDisplayList: HTMLElement = document.getElementById(
 const addFeatureBtn: HTMLInputElement = document.getElementById(
   'add-feature'
 ) as HTMLInputElement
+const maxHitPointsEdit: HTMLInputElement = document.getElementById(
+  'max-hp-edit'
+) as HTMLInputElement
+const hitDiceDieEdit: HTMLInputElement = document.getElementById(
+  'hit-dice-die-edit'
+) as HTMLInputElement
+const healOrDamageAmount: HTMLInputElement = document.getElementById(
+  'heal-or-damage-amount'
+) as HTMLInputElement
+const healOrDamageChoice: HTMLSelectElement = document.getElementById(
+  'heal-or-damage-choice'
+) as HTMLSelectElement
+const submitHealOrDamage: HTMLInputElement = document.getElementById(
+  'submit-heal-or-damage'
+) as HTMLInputElement
+const hitDiceAvailable: HTMLInputElement = document.getElementById(
+  'hit-dice-available-amount'
+) as HTMLInputElement
+const deathSaveSuccesses: HTMLElement = document.getElementById(
+  'death-saves__successes'
+)
+const deathSaveFailures: HTMLElement = document.getElementById(
+  'death-saves__failures'
+)
+const charNameEdit: HTMLInputElement = document.getElementById(
+  'character-name-edit'
+) as HTMLInputElement
+const speciesEdit: HTMLInputElement = document.getElementById(
+  'species-edit'
+) as HTMLInputElement
+const classEdit: HTMLInputElement = document.getElementById(
+  'class-edit'
+) as HTMLInputElement
+const archetypeEdit: HTMLInputElement = document.getElementById(
+  'archetype-edit'
+) as HTMLInputElement
+const levelEdit: HTMLInputElement = document.getElementById(
+  'level-edit'
+) as HTMLInputElement
+const backgroundEdit: HTMLInputElement = document.getElementById(
+  'background-edit'
+) as HTMLInputElement
+const alignmentEdit: HTMLInputElement = document.getElementById(
+  'alignment-edit'
+) as HTMLInputElement
+const speedEdit: HTMLInputElement = document.getElementById(
+  'speed-edit'
+) as HTMLInputElement
+const armorClassEdit: HTMLInputElement = document.getElementById(
+  'armor-class-edit'
+) as HTMLInputElement
+const armorType: HTMLSelectElement = document.getElementById(
+  'equipped-armor-type'
+) as HTMLSelectElement
+const personalityTraitsEdit: HTMLInputElement = document.getElementById(
+  'personality-traits-edit'
+) as HTMLInputElement
+const idealEdit: HTMLInputElement = document.getElementById(
+  'ideal-edit'
+) as HTMLInputElement
+const bondEdit: HTMLInputElement = document.getElementById(
+  'bond-edit'
+) as HTMLInputElement
+const flawEdit: HTMLInputElement = document.getElementById(
+  'flaw-edit'
+) as HTMLInputElement
 // #endregion
 
 // #region event listeners
@@ -125,6 +193,8 @@ export function addAllEventListeners(): void {
   addAttacksEventListeners()
   addEquipmentEventListeners()
   addFeaturesEventListeners()
+  addHPInfoEventListeners()
+  addBasicInfoEventListeners()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -557,6 +627,171 @@ function updateFeaturesEventListeners(): void {
       updateFeaturesEventListeners()
     })
   }
+}
+
+function addHPInfoEventListeners(): void {
+  maxHitPointsEdit.addEventListener('change', () => {
+    let value = Number(maxHitPointsEdit.value)
+    value = value > 0 ? value : 0
+    characterSheet.hitPoints.max = value
+    updateDisplayHTML()
+  })
+
+  hitDiceDieEdit.addEventListener('change', () => {
+    let value = Number(hitDiceDieEdit.value)
+    value = value > 0 ? value : 0
+    characterSheet.hitDice.type = value
+    updateDisplayHTML()
+  })
+
+  healOrDamageChoice.addEventListener('change', () => {
+    updateDisplayHTML()
+  })
+
+  submitHealOrDamage.addEventListener('click', () => {
+    let state = healOrDamageChoice.value
+    let amount = Number(healOrDamageAmount.value)
+
+    if (state === 'damage') {
+      let diff = characterSheet.hitPoints.temporary - amount
+      if (diff >= 0) {
+        characterSheet.hitPoints.temporary -= amount
+      } else {
+        characterSheet.hitPoints.temporary = 0
+        let after = characterSheet.hitPoints.current + diff // diff is a negative number here
+        after = after > 0 ? after : 0
+        characterSheet.hitPoints.current = after
+      }
+    } else if (state === 'heal') {
+      let after = characterSheet.hitPoints.current + amount
+      let max = characterSheet.hitPoints.max
+      after = after <= max ? after : max
+      characterSheet.hitPoints.current = after
+    } else {
+      amount = amount > 0 ? amount : 0
+      characterSheet.hitPoints.temporary += amount
+    }
+    updateDisplayHTML()
+  })
+
+  hitDiceAvailable.addEventListener('change', () => {
+    let value = Number(hitDiceAvailable.value)
+    let max = characterSheet.level
+
+    value = value > 0 ? value : 0
+    value = value <= max ? value : max
+    characterSheet.hitDice.left = value
+    updateDisplayHTML()
+  })
+
+  let deathSaveSuccInputs = deathSaveSuccesses.getElementsByTagName('input')
+  let deathSaveFailInputs = deathSaveFailures.getElementsByTagName('input')
+
+  for (let i = 0; i < 3; i++) {
+    deathSaveSuccInputs[i].addEventListener('change', () => {
+      let checked = deathSaveSuccInputs[i].checked
+      characterSheet.deathSaves.succeeded = checked ? i + 1 : i
+      updateDisplayHTML()
+    })
+    deathSaveFailInputs[i].addEventListener('change', () => {
+      let checked = deathSaveFailInputs[i].checked
+      characterSheet.deathSaves.failed = checked ? i + 1 : i
+      updateDisplayHTML()
+    })
+  }
+}
+
+function addBasicInfoEventListeners(): void {
+  // TODO: add level up
+
+  charNameEdit.addEventListener('change', () => {
+    characterSheet.name = charNameEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  speciesEdit.addEventListener('change', () => {
+    characterSheet.species = speciesEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  classEdit.addEventListener('change', () => {
+    characterSheet.class = classEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  archetypeEdit.addEventListener('change', () => {
+    characterSheet.archetype = archetypeEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  levelEdit.addEventListener('change', () => {
+    let level = Number(levelEdit.value)
+    level = level > 0 ? level : 1
+    level = level <= 20 ? level : 20
+    characterSheet.level = level
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  backgroundEdit.addEventListener('change', () => {
+    characterSheet.background = backgroundEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  alignmentEdit.addEventListener('change', () => {
+    characterSheet.alignment = alignmentEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  speedEdit.addEventListener('change', () => {
+    let speed = Number(speedEdit.value)
+    speed = speed >= 0 ? speed : 0
+    characterSheet.speed = speed
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  armorClassEdit.addEventListener('change', () => {
+    characterSheet.baseAc = Number(armorClassEdit.value)
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  armorType.addEventListener('change', () => {
+    characterSheet.armorType = armorType.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  personalityTraitsEdit.addEventListener('change', () => {
+    characterSheet.personalityTraits = personalityTraitsEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  idealEdit.addEventListener('change', () => {
+    characterSheet.ideal = idealEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  bondEdit.addEventListener('change', () => {
+    characterSheet.bond = bondEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
+
+  flawEdit.addEventListener('change', () => {
+    characterSheet.flaw = flawEdit.value
+    updateDisplayHTML()
+    fillBasicInfoEditHTML()
+  })
 }
 
 // #endregion

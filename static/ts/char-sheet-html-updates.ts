@@ -613,7 +613,7 @@ function fillBonusesHTML(): void {
   }
 }
 
-function fillBasicInfoEditHTML(): void {
+export function fillBasicInfoEditHTML(): void {
   editCharacterName.value = characterSheet.name
   editSpecies.value = characterSheet.species
   editClass.value = characterSheet.class
@@ -629,7 +629,7 @@ function fillBasicInfoEditHTML(): void {
   editFlaw.value = characterSheet.flaw
 }
 
-function fillHPInfoEditHTML(): void {
+export function fillHPInfoEditHTML(): void {
   editMaxHP.value = String(characterSheet.hitPoints.max)
   editHitDiceDie.value = String(characterSheet.hitDice.type)
 }
