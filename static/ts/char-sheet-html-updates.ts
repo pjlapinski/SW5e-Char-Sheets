@@ -240,7 +240,7 @@ const editNotes: HTMLInputElement = <HTMLInputElement>(
 /**
  * Updates ALL fields of the html file.
  */
-function fillHTMLOnInitialize(): void {
+export function fillHTMLOnInitialize(): void {
   updateDisplayHTML()
 
   fillBasicInfoEditHTML()
@@ -727,23 +727,11 @@ export function fillEquipmentEditHTML(): void {
     usesLabel.className = 'label'
     usesLabel.innerText = 'Uses:'
     li.appendChild(usesLabel)
-    let limitedUsesWrapper: HTMLElement = document.createElement('div')
-    limitedUsesWrapper.className = 'limited-uses-wrapper'
-    let currentUses: HTMLInputElement = document.createElement('input')
-    currentUses.type = 'number'
-    currentUses.className = 'underlined-input__number'
-    currentUses.value = String(item.usesLeft)
-    limitedUsesWrapper.appendChild(currentUses)
-    let slash: HTMLElement = document.createElement('h4')
-    slash.className = 'slash-separator'
-    slash.innerText = '/'
-    limitedUsesWrapper.appendChild(slash)
     let maxUses: HTMLInputElement = document.createElement('input')
     maxUses.type = 'number'
     maxUses.className = 'underlined-input__number'
     maxUses.value = String(item.usesMax)
-    limitedUsesWrapper.appendChild(maxUses)
-    li.appendChild(limitedUsesWrapper)
+    li.appendChild(maxUses)
     let notes: HTMLInputElement = document.createElement('input')
     notes.type = 'text'
     notes.value = item.notes

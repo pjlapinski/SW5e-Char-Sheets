@@ -7,6 +7,7 @@ import {
   fillFeaturesEditHTML,
   fillHPInfoEditHTML,
   fillBasicInfoEditHTML,
+  fillHTMLOnInitialize,
 } from './char-sheet-html-updates.js'
 
 export const characterSheet: Sheet = JSON.parse(
@@ -179,6 +180,12 @@ const bondEdit: HTMLInputElement = document.getElementById(
 const flawEdit: HTMLInputElement = document.getElementById(
   'flaw-edit'
 ) as HTMLInputElement
+const shortRestBtn: HTMLInputElement = document.getElementById(
+  'short-rest'
+) as HTMLInputElement
+const longRestBtn: HTMLInputElement = document.getElementById(
+  'long-rest'
+) as HTMLInputElement
 // #endregion
 
 // #region event listeners
@@ -192,9 +199,10 @@ export function addAllEventListeners(): void {
   addPowerPointsEventListeners()
   addAttacksEventListeners()
   addEquipmentEventListeners()
-  addFeaturesEventListeners()
+  addFeaturesEventListenersOnInit()
   addHPInfoEventListeners()
   addBasicInfoEventListeners()
+  addRestButtonsEventListeners()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -277,6 +285,8 @@ function addPowerPointsEventListeners(): void {
   })
   currentPowerPoints.addEventListener('change', () => {
     if (Number(currentPowerPoints.value) < 0) currentPowerPoints.value = '0'
+    else if (Number(currentPowerPoints.value) > characterSheet.powerPointsMax)
+      currentPowerPoints.value = String(characterSheet.powerPointsMax)
     characterSheet.powerPointsLeft = Number(currentPowerPoints.value)
   })
 }
@@ -453,6 +463,13 @@ function updateEquipmentEventListeners(): void {
     if (displayInput.length > 0) {
       displayInput[0].addEventListener('change', () => {
         if (Number(displayInput[0].value) < 0) displayInput[0].value = '0'
+        else if (
+          Number(displayInput[0].value) >
+          characterSheet.equipment[index].usesMax
+        )
+          displayInput[0].value = String(
+            characterSheet.equipment[index].usesMax
+          )
         characterSheet.equipment[index].usesLeft = Number(displayInput[0].value)
         updateDisplayHTML()
         fillEquipmentEditHTML()
@@ -460,7 +477,7 @@ function updateEquipmentEventListeners(): void {
       })
     }
 
-    let fields = ['delete', 'amount', 'name', 'usesLeft', 'usesMax', 'notes']
+    let fields = ['delete', 'amount', 'name', 'usesMax', 'notes']
     for (let i = 0; i < fields.length; i++) {
       if (i === 0) {
         inputs[i].addEventListener('click', () => {
@@ -487,19 +504,19 @@ function updateEquipmentEventListeners(): void {
   }
 }
 
-function addFeaturesEventListeners(): void {
+function addFeaturesEventListenersOnInit(): void {
   addOtherProficiencyBtn.addEventListener('click', () => {
     characterSheet.otherProficiencies.push('')
     updateDisplayHTML()
     fillFeaturesEditHTML()
-    updateOtherProficienciesEventListeners()
+    addFeaturesEventListeners()
   })
 
   addLanguageBtn.addEventListener('click', () => {
     characterSheet.languages.push('')
     updateDisplayHTML()
     fillFeaturesEditHTML()
-    updateLanguagesEventListeners()
+    addFeaturesEventListeners()
   })
 
   addFeatureBtn.addEventListener('click', () => {
@@ -512,9 +529,12 @@ function addFeaturesEventListeners(): void {
     })
     updateDisplayHTML()
     fillFeaturesEditHTML()
-    updateFeaturesEventListeners()
+    addFeaturesEventListeners()
   })
+  addFeaturesEventListeners()
+}
 
+function addFeaturesEventListeners(): void {
   updateOtherProficienciesEventListeners()
   updateLanguagesEventListeners()
   updateFeaturesEventListeners()
@@ -531,14 +551,14 @@ function updateOtherProficienciesEventListeners(): void {
       characterSheet.otherProficiencies.splice(index, 1)
       updateDisplayHTML()
       fillFeaturesEditHTML()
-      updateOtherProficienciesEventListeners()
+      addFeaturesEventListeners()
     })
 
     inputs[1].addEventListener('change', () => {
       characterSheet.otherProficiencies[index] = inputs[1].value
       updateDisplayHTML()
       fillFeaturesEditHTML()
-      updateOtherProficienciesEventListeners()
+      addFeaturesEventListeners()
     })
   }
 }
@@ -554,14 +574,14 @@ function updateLanguagesEventListeners(): void {
       characterSheet.languages.splice(index, 1)
       updateDisplayHTML()
       fillFeaturesEditHTML()
-      updateLanguagesEventListeners()
+      addFeaturesEventListeners()
     })
 
     inputs[1].addEventListener('change', () => {
       characterSheet.languages[index] = inputs[1].value
       updateDisplayHTML()
       fillFeaturesEditHTML()
-      updateLanguagesEventListeners()
+      addFeaturesEventListeners()
     })
   }
 }
@@ -589,7 +609,7 @@ function updateFeaturesEventListeners(): void {
         characterSheet.features[index].usesLeft = value
         updateDisplayHTML()
         fillFeaturesEditHTML()
-        updateFeaturesEventListeners()
+        addFeaturesEventListeners()
       })
     }
 
@@ -602,7 +622,7 @@ function updateFeaturesEventListeners(): void {
           characterSheet.features.splice(index, 1)
           updateDisplayHTML()
           fillFeaturesEditHTML()
-          updateFeaturesEventListeners()
+          addFeaturesEventListeners()
         })
         continue
       }
@@ -615,7 +635,7 @@ function updateFeaturesEventListeners(): void {
         }
         updateDisplayHTML()
         fillFeaturesEditHTML()
-        updateFeaturesEventListeners()
+        addFeaturesEventListeners()
       })
     }
     select.addEventListener('change', () => {
@@ -624,7 +644,7 @@ function updateFeaturesEventListeners(): void {
         value === 'none' ? value : `${value}Rest`
       updateDisplayHTML()
       fillFeaturesEditHTML()
-      updateFeaturesEventListeners()
+      addFeaturesEventListeners()
     })
   }
 }
@@ -634,6 +654,7 @@ function addHPInfoEventListeners(): void {
     let value = Number(maxHitPointsEdit.value)
     value = value > 0 ? value : 0
     characterSheet.hitPoints.max = value
+    fillHPInfoEditHTML()
     updateDisplayHTML()
   })
 
@@ -641,6 +662,7 @@ function addHPInfoEventListeners(): void {
     let value = Number(hitDiceDieEdit.value)
     value = value > 0 ? value : 0
     characterSheet.hitDice.type = value
+    fillHPInfoEditHTML()
     updateDisplayHTML()
   })
 
@@ -669,7 +691,7 @@ function addHPInfoEventListeners(): void {
       characterSheet.hitPoints.current = after
     } else {
       amount = amount > 0 ? amount : 0
-      characterSheet.hitPoints.temporary += amount
+      characterSheet.hitPoints.temporary = amount
     }
     updateDisplayHTML()
   })
@@ -794,6 +816,10 @@ function addBasicInfoEventListeners(): void {
   })
 }
 
+function addRestButtonsEventListeners(): void {
+  shortRestBtn.addEventListener('click', shortRest)
+  longRestBtn.addEventListener('click', longRest)
+}
 // #endregion
 
 // #region 5e calculating functions
@@ -912,5 +938,34 @@ export function stringToCamelCase(str: string): string {
     if (+match === 0) return ''
     return index === 0 ? match.toLowerCase() : match.toUpperCase()
   })
+}
+
+function longRest(): void {
+  characterSheet.hitPoints.current = characterSheet.hitPoints.max
+  let hitDiceAfterRecovery =
+    characterSheet.hitDice.left + Math.ceil(characterSheet.level / 2)
+  hitDiceAfterRecovery =
+    hitDiceAfterRecovery <= characterSheet.level
+      ? hitDiceAfterRecovery
+      : characterSheet.level
+  characterSheet.hitDice.left = hitDiceAfterRecovery
+  characterSheet.hitPoints.temporary = 0
+  characterSheet.deathSaves.succeeded = 0
+  for (let feature of characterSheet.features)
+    feature.usesLeft = feature.usesMax
+  for (let item of characterSheet.equipment) item.usesLeft = item.usesMax
+  characterSheet.powerPointsLeft = characterSheet.powerPointsMax
+  characterSheet.deathSaves.failed = 0
+  updateDisplayHTML()
+  addFeaturesEventListeners()
+  updateEquipmentEventListeners()
+}
+
+function shortRest(): void {
+  for (let feature of characterSheet.features)
+    if (feature.refresh === 'shortRest') feature.usesLeft = feature.usesMax
+  updateDisplayHTML()
+  addFeaturesEventListeners()
+  updateEquipmentEventListeners()
 }
 // #endregion
