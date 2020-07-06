@@ -72,9 +72,30 @@ body {
   padding: 5vh 10vw;
 }
 
-#bonuses-section,
 #hp-section-edit {
   text-align: center;
+}
+
+#bonuses-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+#bonuses-section > div {
+  display: inline-block;
+  margin: 1vh;
+}
+
+#bonuses-section input {
+  padding: 3%;
+}
+
+.tab {
+  display: inline-block;
+  background-color: rgb(68, 68, 68);
+  padding: 1%;
 }
 
 /* sheets' content styling */
@@ -86,7 +107,6 @@ select {
   background: rgba(116, 116, 116, 0.376);
   color: white;
   border: white;
-  width: 20%;
 }
 
 .button {
