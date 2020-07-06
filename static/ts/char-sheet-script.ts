@@ -9,6 +9,7 @@ import {
   fillBasicInfoEditHTML,
   fillHTMLOnInitialize,
 } from './char-sheet-html-updates.js'
+import { closeMenu } from './website-animations.js'
 
 export const characterSheet: Sheet = JSON.parse(
   sessionStorage.getItem('characterSheet')
@@ -186,6 +187,8 @@ const shortRestBtn: HTMLInputElement = document.getElementById(
 const longRestBtn: HTMLInputElement = document.getElementById(
   'long-rest'
 ) as HTMLInputElement
+const utilityDiv: HTMLElement = document.getElementById('utility-section')
+let previousSection: number
 // #endregion
 
 // #region event listeners
@@ -210,7 +213,7 @@ function addAttributeScoresEventListeners(): void {
     att.addEventListener('change', () => {
       let name = att.id.split('-')[0]
       characterSheet.attributes[name] = Number(att.value)
-      updateDisplayHTML()
+      update()
     })
   }
 }
@@ -231,7 +234,7 @@ function addBonusesEventListeners(): void {
       }
 
       characterSheet.bonuses[name] = Number(input.value)
-      updateDisplayHTML()
+      update()
     })
   }
 }
@@ -248,7 +251,7 @@ function addProficienciesEventListeners(): void {
         let index = characterSheet.proficiencies.indexOf(skillName)
         characterSheet.proficiencies.splice(index, 1)
       }
-      updateDisplayHTML()
+      update()
     })
   }
 }
@@ -265,7 +268,7 @@ function addExpertiseEventListeners(): void {
         let index = characterSheet.expertise.indexOf(skillName)
         characterSheet.expertise.splice(index, 1)
       }
-      updateDisplayHTML()
+      update()
     })
   }
 }
@@ -273,7 +276,7 @@ function addExpertiseEventListeners(): void {
 function addNotesEventListeners(): void {
   editNotes.addEventListener('change', () => {
     characterSheet.notes = editNotes.value
-    updateDisplayHTML()
+    update()
   })
 }
 
@@ -281,7 +284,7 @@ function addPowerPointsEventListeners(): void {
   editMaxPowerPoints.addEventListener('change', () => {
     if (Number(editMaxPowerPoints.value) < 0) editMaxPowerPoints.value = '0'
     characterSheet.powerPointsMax = Number(editMaxPowerPoints.value)
-    updateDisplayHTML()
+    update()
   })
   currentPowerPoints.addEventListener('change', () => {
     if (Number(currentPowerPoints.value) < 0) currentPowerPoints.value = '0'
@@ -303,7 +306,7 @@ function addPowersEventListeners(): void {
         concentration: false,
         description: '',
       })
-      updateDisplayHTML()
+      update()
       fillPowersEditHTML()
       updateEditPowersListsEventListeners(i)
     })
@@ -335,7 +338,7 @@ function updateEditPowersListsEventListeners(level: number): void {
       if (i === 0) {
         inputs[i].addEventListener('click', () => {
           characterSheet.powers[`level${level}`].splice(index, 1)
-          updateDisplayHTML()
+          update()
           fillPowersEditHTML()
           updateEditPowersListsEventListeners(level)
         })
@@ -348,7 +351,7 @@ function updateEditPowersListsEventListeners(level: number): void {
         else if (inputs[i].type === 'checkbox')
           characterSheet.powers[`level${level}`][index][fields[i]] =
             inputs[i].checked
-        updateDisplayHTML()
+        update()
         fillPowersEditHTML()
         updateEditPowersListsEventListeners(level)
       })
@@ -370,7 +373,7 @@ function addAttacksEventListeners(): void {
       atkBonus: 0,
       notes: '',
     })
-    updateDisplayHTML()
+    update()
     fillAttacksEditHTML()
     updateAttacksEventListeners()
   })
@@ -403,7 +406,7 @@ function updateAttacksEventListeners(): void {
       if (i === 0) {
         inputs[i].addEventListener('click', () => {
           characterSheet.attacks.splice(index, 1)
-          updateDisplayHTML()
+          update()
           fillAttacksEditHTML()
           updateAttacksEventListeners()
         })
@@ -416,7 +419,7 @@ function updateAttacksEventListeners(): void {
           characterSheet.attacks[index][fields[i]] = inputs[i].checked
         else if (inputs[i].type === 'number')
           characterSheet.attacks[index][fields[i]] = Number(inputs[i].value)
-        updateDisplayHTML()
+        update()
         fillAttacksEditHTML()
         updateAttacksEventListeners()
       })
@@ -433,14 +436,14 @@ function addEquipmentEventListeners(): void {
       usesLeft: 0,
       usesMax: 0,
     })
-    updateDisplayHTML()
+    update()
     fillEquipmentEditHTML()
     updateEquipmentEventListeners()
   })
 
   creditsEdit.addEventListener('change', () => {
     characterSheet.credits = Number(creditsEdit.value)
-    updateDisplayHTML()
+    update()
   })
 
   updateEquipmentEventListeners()
@@ -471,7 +474,7 @@ function updateEquipmentEventListeners(): void {
             characterSheet.equipment[index].usesMax
           )
         characterSheet.equipment[index].usesLeft = Number(displayInput[0].value)
-        updateDisplayHTML()
+        update()
         fillEquipmentEditHTML()
         updateEquipmentEventListeners()
       })
@@ -482,7 +485,7 @@ function updateEquipmentEventListeners(): void {
       if (i === 0) {
         inputs[i].addEventListener('click', () => {
           characterSheet.equipment.splice(index, 1)
-          updateDisplayHTML()
+          update()
           fillEquipmentEditHTML()
           updateEquipmentEventListeners()
         })
@@ -496,7 +499,7 @@ function updateEquipmentEventListeners(): void {
           if (Number(inputs[i].value) < min) inputs[i].value = String(min)
           characterSheet.equipment[index][fields[i]] = Number(inputs[i].value)
         }
-        updateDisplayHTML()
+        update()
         fillEquipmentEditHTML()
         updateEquipmentEventListeners()
       })
@@ -507,14 +510,14 @@ function updateEquipmentEventListeners(): void {
 function addFeaturesEventListenersOnInit(): void {
   addOtherProficiencyBtn.addEventListener('click', () => {
     characterSheet.otherProficiencies.push('')
-    updateDisplayHTML()
+    update()
     fillFeaturesEditHTML()
     addFeaturesEventListeners()
   })
 
   addLanguageBtn.addEventListener('click', () => {
     characterSheet.languages.push('')
-    updateDisplayHTML()
+    update()
     fillFeaturesEditHTML()
     addFeaturesEventListeners()
   })
@@ -527,7 +530,7 @@ function addFeaturesEventListenersOnInit(): void {
       usesMax: 0,
       refresh: 'none',
     })
-    updateDisplayHTML()
+    update()
     fillFeaturesEditHTML()
     addFeaturesEventListeners()
   })
@@ -549,14 +552,14 @@ function updateOtherProficienciesEventListeners(): void {
 
     inputs[0].addEventListener('click', () => {
       characterSheet.otherProficiencies.splice(index, 1)
-      updateDisplayHTML()
+      update()
       fillFeaturesEditHTML()
       addFeaturesEventListeners()
     })
 
     inputs[1].addEventListener('change', () => {
       characterSheet.otherProficiencies[index] = inputs[1].value
-      updateDisplayHTML()
+      update()
       fillFeaturesEditHTML()
       addFeaturesEventListeners()
     })
@@ -572,14 +575,14 @@ function updateLanguagesEventListeners(): void {
 
     inputs[0].addEventListener('click', () => {
       characterSheet.languages.splice(index, 1)
-      updateDisplayHTML()
+      update()
       fillFeaturesEditHTML()
       addFeaturesEventListeners()
     })
 
     inputs[1].addEventListener('change', () => {
       characterSheet.languages[index] = inputs[1].value
-      updateDisplayHTML()
+      update()
       fillFeaturesEditHTML()
       addFeaturesEventListeners()
     })
@@ -607,7 +610,7 @@ function updateFeaturesEventListeners(): void {
         value = value > 0 ? value : 0
         value = value <= max ? value : max
         characterSheet.features[index].usesLeft = value
-        updateDisplayHTML()
+        update()
         fillFeaturesEditHTML()
         addFeaturesEventListeners()
       })
@@ -620,7 +623,7 @@ function updateFeaturesEventListeners(): void {
       if (i === 0) {
         inputs[i].addEventListener('click', () => {
           characterSheet.features.splice(index, 1)
-          updateDisplayHTML()
+          update()
           fillFeaturesEditHTML()
           addFeaturesEventListeners()
         })
@@ -633,7 +636,7 @@ function updateFeaturesEventListeners(): void {
           if (Number(inputs[i].value) < 0) inputs[i].value = '0'
           characterSheet.features[index][fields[i]] = Number(inputs[i].value)
         }
-        updateDisplayHTML()
+        update()
         fillFeaturesEditHTML()
         addFeaturesEventListeners()
       })
@@ -642,7 +645,7 @@ function updateFeaturesEventListeners(): void {
       let value = select.value
       characterSheet.features[index].refresh =
         value === 'none' ? value : `${value}Rest`
-      updateDisplayHTML()
+      update()
       fillFeaturesEditHTML()
       addFeaturesEventListeners()
     })
@@ -655,7 +658,7 @@ function addHPInfoEventListeners(): void {
     value = value > 0 ? value : 0
     characterSheet.hitPoints.max = value
     fillHPInfoEditHTML()
-    updateDisplayHTML()
+    update()
   })
 
   hitDiceDieEdit.addEventListener('change', () => {
@@ -663,11 +666,11 @@ function addHPInfoEventListeners(): void {
     value = value > 0 ? value : 0
     characterSheet.hitDice.type = value
     fillHPInfoEditHTML()
-    updateDisplayHTML()
+    update()
   })
 
   healOrDamageChoice.addEventListener('change', () => {
-    updateDisplayHTML()
+    update()
   })
 
   submitHealOrDamage.addEventListener('click', () => {
@@ -693,7 +696,7 @@ function addHPInfoEventListeners(): void {
       amount = amount > 0 ? amount : 0
       characterSheet.hitPoints.temporary = amount
     }
-    updateDisplayHTML()
+    update()
   })
 
   hitDiceAvailable.addEventListener('change', () => {
@@ -703,7 +706,7 @@ function addHPInfoEventListeners(): void {
     value = value > 0 ? value : 0
     value = value <= max ? value : max
     characterSheet.hitDice.left = value
-    updateDisplayHTML()
+    update()
   })
 
   let deathSaveSuccInputs = deathSaveSuccesses.getElementsByTagName('input')
@@ -713,12 +716,12 @@ function addHPInfoEventListeners(): void {
     deathSaveSuccInputs[i].addEventListener('change', () => {
       let checked = deathSaveSuccInputs[i].checked
       characterSheet.deathSaves.succeeded = checked ? i + 1 : i
-      updateDisplayHTML()
+      update()
     })
     deathSaveFailInputs[i].addEventListener('change', () => {
       let checked = deathSaveFailInputs[i].checked
       characterSheet.deathSaves.failed = checked ? i + 1 : i
-      updateDisplayHTML()
+      update()
     })
   }
 }
@@ -728,25 +731,25 @@ function addBasicInfoEventListeners(): void {
 
   charNameEdit.addEventListener('change', () => {
     characterSheet.name = charNameEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   speciesEdit.addEventListener('change', () => {
     characterSheet.species = speciesEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   classEdit.addEventListener('change', () => {
     characterSheet.class = classEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   archetypeEdit.addEventListener('change', () => {
     characterSheet.archetype = archetypeEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
@@ -755,19 +758,19 @@ function addBasicInfoEventListeners(): void {
     level = level > 0 ? level : 1
     level = level <= 20 ? level : 20
     characterSheet.level = level
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   backgroundEdit.addEventListener('change', () => {
     characterSheet.background = backgroundEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   alignmentEdit.addEventListener('change', () => {
     characterSheet.alignment = alignmentEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
@@ -775,43 +778,43 @@ function addBasicInfoEventListeners(): void {
     let speed = Number(speedEdit.value)
     speed = speed >= 0 ? speed : 0
     characterSheet.speed = speed
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   armorClassEdit.addEventListener('change', () => {
     characterSheet.baseAc = Number(armorClassEdit.value)
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   armorType.addEventListener('change', () => {
     characterSheet.armorType = armorType.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   personalityTraitsEdit.addEventListener('change', () => {
     characterSheet.personalityTraits = personalityTraitsEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   idealEdit.addEventListener('change', () => {
     characterSheet.ideal = idealEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   bondEdit.addEventListener('change', () => {
     characterSheet.bond = bondEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 
   flawEdit.addEventListener('change', () => {
     characterSheet.flaw = flawEdit.value
-    updateDisplayHTML()
+    update()
     fillBasicInfoEditHTML()
   })
 }
@@ -956,16 +959,71 @@ function longRest(): void {
   for (let item of characterSheet.equipment) item.usesLeft = item.usesMax
   characterSheet.powerPointsLeft = characterSheet.powerPointsMax
   characterSheet.deathSaves.failed = 0
-  updateDisplayHTML()
-  addFeaturesEventListeners()
-  updateEquipmentEventListeners()
+  update()
 }
 
 function shortRest(): void {
   for (let feature of characterSheet.features)
     if (feature.refresh === 'shortRest') feature.usesLeft = feature.usesMax
+  showUtilityShortRest()
+}
+
+// #endregion
+// #region utility functions
+function update(): void {
   updateDisplayHTML()
   addFeaturesEventListeners()
   updateEquipmentEventListeners()
 }
+
+function initUtilityDiv(): void {
+  utilityDiv.innerHTML = ''
+
+  let sections = document.getElementsByClassName('sheet-section')
+  for (let i = 0; i < sections.length; i++) {
+    let section = sections[i] as HTMLElement
+    if (section.style.display === 'block') {
+      previousSection = i
+      section.style.display = 'none'
+    }
+  }
+  utilityDiv.style.display = 'block'
+  closeMenu()
+  document.getElementById('menu-toggle').style.display = 'none'
+}
+
+function exitUtilityDiv(): void {
+  utilityDiv.style.display = 'none'
+  let sections = document.getElementsByClassName('sheet-section')
+  let prev = sections[previousSection] as HTMLElement
+  prev.style.display = 'block'
+  document.getElementById('menu-toggle').style.display = 'block'
+  update()
+}
+
+function showUtilityShortRest(): void {
+  initUtilityDiv()
+  let question = document.createElement('h4')
+  question.innerText = 'How many hit dice would you like to use?'
+  utilityDiv.appendChild(question)
+  let amount = document.createElement('input')
+  amount.type = 'number'
+  amount.addEventListener('change', () => {
+    let value = Number(amount.value)
+    let max = characterSheet.hitDice.left
+    amount.value = value > 0 ? String(value) : '0'
+    amount.value = value <= max ? String(value) : String(max)
+  })
+  utilityDiv.appendChild(amount)
+  let submit = document.createElement('input')
+  submit.type = 'button'
+  submit.value = 'Rest'
+  submit.addEventListener('click', () => {
+    characterSheet.hitDice.left -= Number(amount.value)
+    console.log(characterSheet.hitDice)
+    exitUtilityDiv()
+  })
+  utilityDiv.appendChild(submit)
+}
+
 // #endregion
