@@ -626,10 +626,14 @@ function fillHPInfoEditHTML(): void {
   editHitDiceDie.value = String(characterSheet.hitDice.type)
 }
 
-function fillFeaturesEditHTML(): void {
+export function fillFeaturesEditHTML(): void {
   editOtherProficiencies.innerHTML = ''
   for (let prof of characterSheet.otherProficiencies) {
     let profLi: HTMLElement = document.createElement('li')
+    let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.type = 'button'
+    deleteBtn.value = 'Delete'
+    profLi.appendChild(deleteBtn)
     let profInput: HTMLInputElement = document.createElement('input')
     profInput.type = 'text'
     profInput.value = prof
@@ -639,6 +643,10 @@ function fillFeaturesEditHTML(): void {
   editLanguages.innerHTML = ''
   for (let lang of characterSheet.languages) {
     let langLi: HTMLElement = document.createElement('li')
+    let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.type = 'button'
+    deleteBtn.value = 'Delete'
+    langLi.appendChild(deleteBtn)
     let langInput: HTMLInputElement = document.createElement('input')
     langInput.type = 'text'
     langInput.value = lang
@@ -648,6 +656,10 @@ function fillFeaturesEditHTML(): void {
   editFeaturesAndTraits.innerHTML = ''
   for (let feature of characterSheet.features) {
     let li: HTMLElement = document.createElement('li')
+    let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.type = 'button'
+    deleteBtn.value = 'Delete'
+    li.appendChild(deleteBtn)
     let name: HTMLInputElement = document.createElement('input')
     name.type = 'text'
     name.value = feature.name

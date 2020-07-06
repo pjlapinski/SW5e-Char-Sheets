@@ -4,6 +4,7 @@ import {
   fillPowersEditHTML,
   fillAttacksEditHTML,
   fillEquipmentEditHTML,
+  fillFeaturesEditHTML,
 } from './char-sheet-html-updates.js'
 
 export const characterSheet: Sheet = JSON.parse(
@@ -91,6 +92,25 @@ const equipmentDisplayList: HTMLElement = document.getElementById('equipment')
 const addItemBtn: HTMLInputElement = document.getElementById(
   'add-equipment'
 ) as HTMLInputElement
+const otherProficienciesEditList: HTMLElement = document.getElementById(
+  'proficiencies-edit'
+)
+const addOtherProficiencyBtn: HTMLInputElement = document.getElementById(
+  'add-other-proficiency'
+) as HTMLInputElement
+const languagesEditList: HTMLElement = document.getElementById('languages-edit')
+const addLanguageBtn: HTMLInputElement = document.getElementById(
+  'add-language'
+) as HTMLInputElement
+const featuresEditList: HTMLElement = document.getElementById(
+  'features-and-traits-edit'
+)
+const featuresDisplayList: HTMLElement = document.getElementById(
+  'features-and-traits'
+)
+const addFeatureBtn: HTMLInputElement = document.getElementById(
+  'add-feature'
+) as HTMLInputElement
 // #endregion
 
 // #region event listeners
@@ -104,6 +124,7 @@ export function addAllEventListeners(): void {
   addPowerPointsEventListeners()
   addAttacksEventListeners()
   addEquipmentEventListeners()
+  addFeaturesEventListeners()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -393,6 +414,148 @@ function updateEquipmentEventListeners(): void {
         updateEquipmentEventListeners()
       })
     }
+  }
+}
+
+function addFeaturesEventListeners(): void {
+  addOtherProficiencyBtn.addEventListener('click', () => {
+    characterSheet.otherProficiencies.push('')
+    updateDisplayHTML()
+    fillFeaturesEditHTML()
+    updateOtherProficienciesEventListeners()
+  })
+
+  addLanguageBtn.addEventListener('click', () => {
+    characterSheet.languages.push('')
+    updateDisplayHTML()
+    fillFeaturesEditHTML()
+    updateLanguagesEventListeners()
+  })
+
+  addFeatureBtn.addEventListener('click', () => {
+    characterSheet.features.push({
+      name: '',
+      description: '',
+      usesLeft: 0,
+      usesMax: 0,
+      refresh: 'none',
+    })
+    updateDisplayHTML()
+    fillFeaturesEditHTML()
+    updateFeaturesEventListeners()
+  })
+
+  updateOtherProficienciesEventListeners()
+  updateLanguagesEventListeners()
+  updateFeaturesEventListeners()
+}
+
+function updateOtherProficienciesEventListeners(): void {
+  let profs = otherProficienciesEditList.getElementsByTagName('li')
+
+  for (let index = 0; index < profs.length; index++) {
+    let prof = profs[index]
+    let inputs = prof.getElementsByTagName('input')
+
+    inputs[0].addEventListener('click', () => {
+      characterSheet.otherProficiencies.splice(index, 1)
+      updateDisplayHTML()
+      fillFeaturesEditHTML()
+      updateOtherProficienciesEventListeners()
+    })
+
+    inputs[1].addEventListener('change', () => {
+      characterSheet.otherProficiencies[index] = inputs[1].value
+      updateDisplayHTML()
+      fillFeaturesEditHTML()
+      updateOtherProficienciesEventListeners()
+    })
+  }
+}
+
+function updateLanguagesEventListeners(): void {
+  let langs = languagesEditList.getElementsByTagName('li')
+
+  for (let index = 0; index < langs.length; index++) {
+    let lang = langs[index]
+    let inputs = lang.getElementsByTagName('input')
+
+    inputs[0].addEventListener('click', () => {
+      characterSheet.languages.splice(index, 1)
+      updateDisplayHTML()
+      fillFeaturesEditHTML()
+      updateLanguagesEventListeners()
+    })
+
+    inputs[1].addEventListener('change', () => {
+      characterSheet.languages[index] = inputs[1].value
+      updateDisplayHTML()
+      fillFeaturesEditHTML()
+      updateLanguagesEventListeners()
+    })
+  }
+}
+
+function updateFeaturesEventListeners(): void {
+  let features: HTMLCollection = featuresEditList.getElementsByTagName('li')
+  let displayFeatures: HTMLCollection = featuresDisplayList.getElementsByTagName(
+    'li'
+  )
+
+  for (let index = 0; index < features.length; index++) {
+    let feature = features[index]
+    let featureDisplay = displayFeatures[index]
+
+    let inputs: Array<HTMLInputElement> = Array.from(
+      feature.getElementsByTagName('input')
+    )
+    let displayInput = featureDisplay.getElementsByTagName('input')
+    if (displayInput.length > 0) {
+      displayInput[0].addEventListener('change', () => {
+        let value = Number(displayInput[0].value)
+        let max = characterSheet.features[index].usesMax
+        value = value > 0 ? value : 0
+        value = value <= max ? value : max
+        characterSheet.features[index].usesLeft = value
+        updateDisplayHTML()
+        fillFeaturesEditHTML()
+        updateFeaturesEventListeners()
+      })
+    }
+
+    let select: HTMLSelectElement = feature.getElementsByTagName('select')[0]
+    let fields = ['delete', 'name', 'usesMax', 'description']
+
+    for (let i = 0; i < fields.length; i++) {
+      if (i === 0) {
+        inputs[i].addEventListener('click', () => {
+          characterSheet.features.splice(index, 1)
+          updateDisplayHTML()
+          fillFeaturesEditHTML()
+          updateFeaturesEventListeners()
+        })
+        continue
+      }
+      inputs[i].addEventListener('change', () => {
+        if (inputs[i].type === 'text')
+          characterSheet.features[index][fields[i]] = inputs[i].value
+        else if (inputs[i].type === 'number') {
+          if (Number(inputs[i].value) < 0) inputs[i].value = '0'
+          characterSheet.features[index][fields[i]] = Number(inputs[i].value)
+        }
+        updateDisplayHTML()
+        fillFeaturesEditHTML()
+        updateFeaturesEventListeners()
+      })
+    }
+    select.addEventListener('change', () => {
+      let value = select.value
+      characterSheet.features[index].refresh =
+        value === 'none' ? value : `${value}Rest`
+      updateDisplayHTML()
+      fillFeaturesEditHTML()
+      updateFeaturesEventListeners()
+    })
   }
 }
 
