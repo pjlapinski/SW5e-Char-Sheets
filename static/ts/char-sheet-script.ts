@@ -5,6 +5,8 @@ import {
   fillAttacksEditHTML,
   fillEquipmentEditHTML,
   fillFeaturesEditHTML,
+  fillHPInfoEditHTML,
+  fillBasicInfoEditHTML,
 } from './char-sheet-html-updates.js'
 
 export const characterSheet: Sheet = JSON.parse(
@@ -111,6 +113,30 @@ const featuresDisplayList: HTMLElement = document.getElementById(
 const addFeatureBtn: HTMLInputElement = document.getElementById(
   'add-feature'
 ) as HTMLInputElement
+const maxHitPointsEdit: HTMLInputElement = document.getElementById(
+  'max-hp-edit'
+) as HTMLInputElement
+const hitDiceDieEdit: HTMLInputElement = document.getElementById(
+  'hit-dice-die-edit'
+) as HTMLInputElement
+const healOrDamageAmount: HTMLInputElement = document.getElementById(
+  'heal-or-damage-amount'
+) as HTMLInputElement
+const healOrDamageChoice: HTMLSelectElement = document.getElementById(
+  'heal-or-damage-choice'
+) as HTMLSelectElement
+const submitHealOrDamage: HTMLInputElement = document.getElementById(
+  'submit-heal-or-damage'
+) as HTMLInputElement
+const hitDiceAvailable: HTMLInputElement = document.getElementById(
+  'hit-dice-available-amount'
+) as HTMLInputElement
+const deathSaveSuccesses: HTMLElement = document.getElementById(
+  'death-saves__successes'
+)
+const deathSaveFailures: HTMLElement = document.getElementById(
+  'death-saves__failures'
+)
 // #endregion
 
 // #region event listeners
@@ -125,6 +151,7 @@ export function addAllEventListeners(): void {
   addAttacksEventListeners()
   addEquipmentEventListeners()
   addFeaturesEventListeners()
+  addHPInfoEventListeners()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -555,6 +582,78 @@ function updateFeaturesEventListeners(): void {
       updateDisplayHTML()
       fillFeaturesEditHTML()
       updateFeaturesEventListeners()
+    })
+  }
+}
+
+function addHPInfoEventListeners(): void {
+  maxHitPointsEdit.addEventListener('change', () => {
+    let value = Number(maxHitPointsEdit.value)
+    value = value > 0 ? value : 0
+    characterSheet.hitPoints.max = value
+    updateDisplayHTML()
+  })
+
+  hitDiceDieEdit.addEventListener('change', () => {
+    let value = Number(hitDiceDieEdit.value)
+    value = value > 0 ? value : 0
+    characterSheet.hitDice.type = value
+    updateDisplayHTML()
+  })
+
+  healOrDamageChoice.addEventListener('change', () => {
+    updateDisplayHTML()
+  })
+
+  submitHealOrDamage.addEventListener('click', () => {
+    let state = healOrDamageChoice.value
+    let amount = Number(healOrDamageAmount.value)
+
+    if (state === 'damage') {
+      let diff = characterSheet.hitPoints.temporary - amount
+      if (diff >= 0) {
+        characterSheet.hitPoints.temporary -= amount
+      } else {
+        characterSheet.hitPoints.temporary = 0
+        let after = characterSheet.hitPoints.current + diff // diff is a negative number here
+        after = after > 0 ? after : 0
+        characterSheet.hitPoints.current = after
+      }
+    } else if (state === 'heal') {
+      let after = characterSheet.hitPoints.current + amount
+      let max = characterSheet.hitPoints.max
+      after = after <= max ? after : max
+      characterSheet.hitPoints.current = after
+    } else {
+      amount = amount > 0 ? amount : 0
+      characterSheet.hitPoints.temporary += amount
+    }
+    updateDisplayHTML()
+  })
+
+  hitDiceAvailable.addEventListener('change', () => {
+    let value = Number(hitDiceAvailable.value)
+    let max = characterSheet.level
+
+    value = value > 0 ? value : 0
+    value = value <= max ? value : max
+    characterSheet.hitDice.left = value
+    updateDisplayHTML()
+  })
+
+  let deathSaveSuccInputs = deathSaveSuccesses.getElementsByTagName('input')
+  let deathSaveFailInputs = deathSaveFailures.getElementsByTagName('input')
+
+  for (let i = 0; i < 3; i++) {
+    deathSaveSuccInputs[i].addEventListener('change', () => {
+      let checked = deathSaveSuccInputs[i].checked
+      characterSheet.deathSaves.succeeded = checked ? i + 1 : i
+      updateDisplayHTML()
+    })
+    deathSaveFailInputs[i].addEventListener('change', () => {
+      let checked = deathSaveFailInputs[i].checked
+      characterSheet.deathSaves.failed = checked ? i + 1 : i
+      updateDisplayHTML()
     })
   }
 }
