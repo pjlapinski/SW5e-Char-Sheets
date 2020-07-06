@@ -10,6 +10,7 @@ import {
   fillHTMLOnInitialize,
 } from './char-sheet-html-updates.js'
 import { closeMenu } from './website-animations.js'
+import { apiFind, apiFindExactly } from './api-handler.js'
 
 export const characterSheet: Sheet = JSON.parse(
   sessionStorage.getItem('characterSheet')
@@ -932,15 +933,19 @@ export function getProficiencyBonus(level: number): number {
   else return 6
 }
 
-export function stringCamelCaseToDashes(str: string): string {
-  return str.replace(/[A-Z]/g, m => '-' + m.toLowerCase())
-}
+export async function getCasterType(): Promise<string> {
+  let type = 'None'
+  let cls = await apiFindExactly('classes', { name: characterSheet.class })
 
-export function stringToCamelCase(str: string): string {
-  return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
-    if (+match === 0) return ''
-    return index === 0 ? match.toLowerCase() : match.toUpperCase()
-  })
+  if (cls == null) return 'None'
+  if (cls['casterType'] === 'None' && characterSheet.archetype !== '') {
+    let arch = await apiFindExactly('archetypes', {
+      name: characterSheet.archetype,
+    })
+    if (arch == null) return 'None'
+    return arch['casterType']
+  }
+  return cls['casterType']
 }
 
 function longRest(): void {
@@ -962,7 +967,10 @@ function longRest(): void {
   update()
 }
 
-function shortRest(): void {
+async function shortRest(): Promise<void> {
+  let type = await getCasterType()
+  if (type === 'Tech')
+    characterSheet.powerPointsLeft = characterSheet.powerPointsMax
   for (let feature of characterSheet.features)
     if (feature.refresh === 'shortRest') feature.usesLeft = feature.usesMax
   showUtilityShortRest()
@@ -1020,10 +1028,20 @@ function showUtilityShortRest(): void {
   submit.value = 'Rest'
   submit.addEventListener('click', () => {
     characterSheet.hitDice.left -= Number(amount.value)
-    console.log(characterSheet.hitDice)
     exitUtilityDiv()
   })
   utilityDiv.appendChild(submit)
+}
+
+export function stringCamelCaseToDashes(str: string): string {
+  return str.replace(/[A-Z]/g, m => '-' + m.toLowerCase())
+}
+
+export function stringToCamelCase(str: string): string {
+  return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
+    if (+match === 0) return ''
+    return index === 0 ? match.toLowerCase() : match.toUpperCase()
+  })
 }
 
 // #endregion

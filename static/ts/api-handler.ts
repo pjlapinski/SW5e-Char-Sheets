@@ -3,7 +3,7 @@
  * matches the criteria given in filter. If no criteria are given, it returns
  * everything from that file
  */
-async function apiFind(
+export async function apiFind(
   dataType: string,
   filter: { [name: string]: string }
 ): Promise<object> {
@@ -30,7 +30,7 @@ async function apiFind(
  * element in that file. The values in kwargs have to match content of the element
  * EXACTLY for it to be returned.
  */
-async function apiFindExactly(
+export async function apiFindExactly(
   dataType: string,
   filter: { [name: string]: string }
 ): Promise<object[]> {
