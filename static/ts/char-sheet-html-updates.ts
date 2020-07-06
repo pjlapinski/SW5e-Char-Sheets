@@ -589,16 +589,19 @@ function fillBonusesHTML(): void {
   bonuses.innerHTML = ''
   for (let bonusName in characterSheet.bonuses) {
     let bonusValue: number = characterSheet.bonuses[bonusName]
+    let wrapper: HTMLElement = document.createElement('div')
+    wrapper.className = 'bonus-wrapper'
     let name: HTMLElement = document.createElement('h4')
     name.className = 'label'
     name.innerText = bonusName
-    bonuses.appendChild(name)
+    wrapper.appendChild(name)
     let input: HTMLInputElement = document.createElement('input')
     input.type = 'number'
     // change the camel case name to being separated by dashes, so it fits html standard
     input.id = `${stringCamelCaseToDashes(bonusName)}-bonus-value`
     input.value = String(bonusValue)
-    bonuses.appendChild(input)
+    wrapper.appendChild(input)
+    bonuses.appendChild(wrapper)
   }
 }
 

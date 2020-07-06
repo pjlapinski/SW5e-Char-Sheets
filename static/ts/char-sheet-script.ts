@@ -50,9 +50,10 @@ attributeNames.forEach(att =>
     <HTMLInputElement>document.getElementById(`${att}-score`)
   )
 )
-const bonusesFields: Array<HTMLInputElement> = Array.from(
-  document.getElementById('bonuses-section').getElementsByTagName('input')
+const bonusesDivs: HTMLCollection = document.getElementsByClassName(
+  'bonus-wrapper'
 )
+
 const proficiencyCheckboxes: HTMLCollection = document.getElementsByClassName(
   'proficiency-checkbox'
 )
@@ -106,9 +107,10 @@ function addAttributeScoresEventListeners(): void {
 }
 
 function addBonusesEventListeners(): void {
-  for (let bonus of bonusesFields) {
-    bonus.addEventListener('change', () => {
-      let nameParts = bonus.id.split('-')
+  for (let bonus of bonusesDivs) {
+    let input = bonus.getElementsByTagName('input')[0]
+    input.addEventListener('change', () => {
+      let nameParts = input.id.split('-')
       // removing the '-bonus-value' part
       nameParts.pop()
       nameParts.pop()
@@ -119,7 +121,7 @@ function addBonusesEventListeners(): void {
         name += part
       }
 
-      characterSheet.bonuses[name] = Number(bonus.value)
+      characterSheet.bonuses[name] = Number(input.value)
       updateDisplayHTML()
     })
   }
@@ -158,6 +160,7 @@ function addExpertiseEventListeners(): void {
     })
   }
 }
+
 function addNotesEventListeners(): void {
   editNotes.addEventListener('change', () => {
     characterSheet.notes = editNotes.value
