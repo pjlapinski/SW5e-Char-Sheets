@@ -96,6 +96,7 @@ export interface Sheet {
     performance: number
     persuasion: number
     initiative: number
+    hitPointsPerLevel: number
   }
   deathSaves: {
     succeeded: number

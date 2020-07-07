@@ -1,4 +1,4 @@
-import { Sheet, Attack, Power } from 'char-sheet-interfaces'
+import { Sheet, Attack, Power, Feature } from 'char-sheet-interfaces'
 import {
   updateDisplayHTML,
   fillPowersEditHTML,
@@ -187,6 +187,9 @@ const shortRestBtn: HTMLInputElement = document.getElementById(
 ) as HTMLInputElement
 const longRestBtn: HTMLInputElement = document.getElementById(
   'long-rest'
+) as HTMLInputElement
+const levelUpBtn: HTMLInputElement = document.getElementById(
+  'level-up'
 ) as HTMLInputElement
 const utilityDiv: HTMLElement = document.getElementById('utility-section')
 let previousSection: number
@@ -728,7 +731,7 @@ function addHPInfoEventListeners(): void {
 }
 
 function addBasicInfoEventListeners(): void {
-  // TODO: add level up
+  levelUpBtn.addEventListener('click', showUtilityLevelUp)
 
   charNameEdit.addEventListener('change', () => {
     characterSheet.name = charNameEdit.value
@@ -976,6 +979,61 @@ async function shortRest(): Promise<void> {
   showUtilityShortRest()
 }
 
+async function getLevelUpFeatures(): Promise<Array<Feature>> {
+  let result: Array<Feature> = []
+
+  let cls = await apiFindExactly('classes', { name: characterSheet.class })
+  if (cls == null) return result
+  let features = cls['levelChanges'][String(characterSheet.level)][
+    'Features'
+  ].split(/, /g)
+  for (let feature of features) {
+    let featueDesc = cls['features'][feature]
+    if (featueDesc == null) continue
+    let featureObj: Feature = {
+      name: feature,
+      description: featueDesc,
+      usesLeft: 0,
+      usesMax: 0,
+      refresh: 'none',
+    }
+    result.push(featureObj)
+  }
+  if (characterSheet.archetype === '') return result
+  let arch = await apiFindExactly('archetypes', {
+    name: characterSheet.archetype,
+  })
+  if (arch == null) return result
+  let archFeaturesOnLevel = arch['featuresTable'][characterSheet.level]
+  if (archFeaturesOnLevel == null) return result
+  let archFeatures = archFeaturesOnLevel.split(/, /g)
+  for (let feature of archFeatures) {
+    let featueDesc = arch['features'][feature]
+    let featureObj: Feature = {
+      name: feature,
+      description: featueDesc,
+      usesLeft: 0,
+      usesMax: 0,
+      refresh: 'none',
+    }
+    result.push(featureObj)
+  }
+  return result
+}
+
+// TODO: write those 3 functions
+async function getPowerPointsAtLevel(level: number): Promise<number> {
+  return 0
+}
+
+async function getMaxPowerLevel(level: number): Promise<number> {
+  return 0
+}
+
+async function getPowersKnown(level: number): Promise<number> {
+  return 0
+}
+
 // #endregion
 // #region utility functions
 function update(): void {
@@ -1031,6 +1089,67 @@ function showUtilityShortRest(): void {
     exitUtilityDiv()
   })
   utilityDiv.appendChild(submit)
+}
+
+async function showUtilityLevelUp(): Promise<void> {
+  initUtilityDiv()
+  characterSheet.level++
+  characterSheet.hitDice.left++
+  let hpBonus =
+    characterSheet.bonuses.hitPointsPerLevel +
+    getAttributeModifier('constitution')
+  let sign = hpBonus >= 0 ? '+' : ''
+  let cls = await apiFindExactly('classes', { name: characterSheet.class })
+  let arch = await apiFindExactly('archetypes', {
+    name: characterSheet.archetype,
+  })
+
+  let hpMessage: HTMLElement = document.createElement('h4')
+  hpMessage.innerText =
+    `Congratulations! If you roll for HP, go ahead and roll 1d${characterSheet.hitDice.type}${sign}${hpBonus}. ` +
+    'Then input the result below.'
+  utilityDiv.appendChild(hpMessage)
+  let hpInput: HTMLInputElement = document.createElement('input')
+  hpInput.type = 'number'
+  utilityDiv.appendChild(hpInput)
+  let message: HTMLElement = document.createElement('p')
+  message.innerText =
+    `Below you will find the list of features you have gained. Those will be added directly to your features. However, ` +
+    `keep in mind that things like number of uses are NOT added automatically. Also, any previous features that are upgraded ` +
+    `on this level are not shown here. Please go through your existing features and make sure to update everything!`
+  utilityDiv.appendChild(message)
+  let featuresList: HTMLElement = document.createElement('ul')
+  let features = await getLevelUpFeatures()
+
+  for (let feature of features) {
+    let li: HTMLElement = document.createElement('li')
+    let name: HTMLElement = document.createElement('h3')
+    name.className = 'label'
+    name.innerText = feature.name
+    li.appendChild(name)
+    let desc: HTMLElement = document.createElement('p')
+    desc.innerText = feature.description
+    li.appendChild(desc)
+    featuresList.appendChild(li)
+  }
+  utilityDiv.appendChild(featuresList)
+
+  let casterType = await getCasterType()
+  if (casterType !== 'None') {
+    let pointDifference =
+      (await getPowerPointsAtLevel(characterSheet.level)) -
+      (await getPowerPointsAtLevel(characterSheet.level - 1))
+    let powersAmount =
+      (await getPowersKnown(characterSheet.level)) -
+      (await getPowersKnown(characterSheet.level - 1))
+    let maxLevel = await getMaxPowerLevel(characterSheet.level)
+    let powerMessage: HTMLElement = document.createElement('h4')
+    powerMessage.innerText =
+      `Additionally, you gained ${pointDifference} power points, which will be updated automatically. ` +
+      `You can also choose ${powersAmount} new powers, at maximum power level of ${maxLevel}.`
+  }
+
+  // TODO: finish up this function. it needs a "submit" button
 }
 
 export function stringCamelCaseToDashes(str: string): string {

@@ -69,7 +69,8 @@
         "intimidation": 0,
         "performance": 0,
         "persuasion": 0,
-        "initiative": 0
+        "initiative": 0,
+        "hitPointsPerLevel": 0
     },
     "deathSaves": {
         "succeeded": 2,
