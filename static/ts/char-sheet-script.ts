@@ -7,7 +7,6 @@ import {
   fillFeaturesEditHTML,
   fillHPInfoEditHTML,
   fillBasicInfoEditHTML,
-  fillHTMLOnInitialize,
 } from './char-sheet-html-updates.js'
 import { closeMenu } from './website-animations.js'
 import { apiFind, apiFindExactly } from './api-handler.js'
@@ -984,7 +983,7 @@ async function getLevelUpFeatures(): Promise<Array<Feature>> {
 
   let cls = await apiFindExactly('classes', { name: characterSheet.class })
   if (cls == null) return result
-  let features = cls['levelChanges'][String(characterSheet.level)][
+  let features = cls['levelChanges'][String(characterSheet.level + 1)][
     'Features'
   ].split(/, /g)
   for (let feature of features) {
@@ -1004,7 +1003,8 @@ async function getLevelUpFeatures(): Promise<Array<Feature>> {
     name: characterSheet.archetype,
   })
   if (arch == null) return result
-  let archFeaturesOnLevel = arch['featuresTable'][characterSheet.level]
+  let archFeaturesOnLevel =
+    arch['featuresTable'][String(characterSheet.level + 1)]
   if (archFeaturesOnLevel == null) return result
   let archFeatures = archFeaturesOnLevel.split(/, /g)
   for (let feature of archFeatures) {
@@ -1021,17 +1021,78 @@ async function getLevelUpFeatures(): Promise<Array<Feature>> {
   return result
 }
 
-// TODO: write those 3 functions
 async function getPowerPointsAtLevel(level: number): Promise<number> {
-  return 0
+  let cls = await apiFindExactly('classes', { name: characterSheet.class })
+  let arch = await apiFindExactly('archetypes', {
+    name: characterSheet.archetype,
+  })
+  let casterType = await getCasterType()
+
+  if (cls == null && arch == null) return 0
+  if (
+    cls == null ||
+    cls['levelChanges'][String(level)][`${casterType} Points`] == null
+  ) {
+    if (
+      arch == null ||
+      arch['leveledTable'] == null ||
+      arch['leveledTable'][String(level)] == null ||
+      arch['leveledTable'][String(level)][1]['key'] !== `${casterType} Points`
+    )
+      return 0
+    return Number(arch['leveledTable'][String(level)][1]['value'])
+  }
+  return Number(cls['levelChanges'][String(level)][`${casterType} Points`])
 }
 
 async function getMaxPowerLevel(level: number): Promise<number> {
-  return 0
+  let cls = await apiFindExactly('classes', { name: characterSheet.class })
+  let arch = await apiFindExactly('archetypes', {
+    name: characterSheet.archetype,
+  })
+
+  if (cls == null && arch == null) return 0
+  if (
+    cls == null ||
+    cls['levelChanges'][String(level)]['Max Power Level'] == null
+  ) {
+    if (
+      arch == null ||
+      arch['leveledTable'] == null ||
+      arch['leveledTable'][String(level)] == null ||
+      arch['leveledTable'][String(level)][2]['key'] !== 'Max Power Level'
+    )
+      return 0
+    return Number(arch['leveledTable'][String(level)][2]['value'][0])
+  }
+  return Number(cls['levelChanges'][String(level)]['Max Power Level'][0])
 }
 
 async function getPowersKnown(level: number): Promise<number> {
-  return 0
+  let cls = await apiFindExactly('classes', { name: characterSheet.class })
+  let arch = await apiFindExactly('archetypes', {
+    name: characterSheet.archetype,
+  })
+  let casterType = await getCasterType()
+
+  if (cls == null && arch == null) return 0
+  if (
+    cls == null ||
+    cls['levelChanges'][String(level)][`${casterType} Powers Known`] == null
+  ) {
+    if (
+      arch == null ||
+      arch['leveledTable'] == null ||
+      arch['leveledTable'][String(level)] == null ||
+      arch['leveledTable'][String(level)][0]['key'] !==
+        `${casterType} Powers Known`
+    )
+      return 0
+    return Number(arch['leveledTable'][String(level)][0]['value'])
+  }
+  return Number(
+    cls['levelChanges'][String(level)][`${casterType} Powers Known`]
+  )
 }
 
 // #endregion
@@ -1093,16 +1154,16 @@ function showUtilityShortRest(): void {
 
 async function showUtilityLevelUp(): Promise<void> {
   initUtilityDiv()
-  characterSheet.level++
-  characterSheet.hitDice.left++
+  let returnBtn: HTMLInputElement = document.createElement('input')
+  returnBtn.value = 'Return'
+  returnBtn.type = 'button'
+  returnBtn.addEventListener('click', exitUtilityDiv)
+  utilityDiv.appendChild(returnBtn)
+
   let hpBonus =
     characterSheet.bonuses.hitPointsPerLevel +
     getAttributeModifier('constitution')
   let sign = hpBonus >= 0 ? '+' : ''
-  let cls = await apiFindExactly('classes', { name: characterSheet.class })
-  let arch = await apiFindExactly('archetypes', {
-    name: characterSheet.archetype,
-  })
 
   let hpMessage: HTMLElement = document.createElement('h4')
   hpMessage.innerText =
@@ -1135,21 +1196,39 @@ async function showUtilityLevelUp(): Promise<void> {
   utilityDiv.appendChild(featuresList)
 
   let casterType = await getCasterType()
+  let pointDifference = 0
   if (casterType !== 'None') {
-    let pointDifference =
-      (await getPowerPointsAtLevel(characterSheet.level)) -
-      (await getPowerPointsAtLevel(characterSheet.level - 1))
+    pointDifference =
+      (await getPowerPointsAtLevel(characterSheet.level + 1)) -
+      (await getPowerPointsAtLevel(characterSheet.level))
     let powersAmount =
-      (await getPowersKnown(characterSheet.level)) -
-      (await getPowersKnown(characterSheet.level - 1))
-    let maxLevel = await getMaxPowerLevel(characterSheet.level)
+      (await getPowersKnown(characterSheet.level + 1)) -
+      (await getPowersKnown(characterSheet.level))
+    let maxLevel = await getMaxPowerLevel(characterSheet.level + 1)
     let powerMessage: HTMLElement = document.createElement('h4')
     powerMessage.innerText =
-      `Additionally, you gained ${pointDifference} power points, which will be updated automatically. ` +
-      `You can also choose ${powersAmount} new powers, at maximum power level of ${maxLevel}.`
+      `Additionally, you gained ${pointDifference} power point${
+        pointDifference > 1 ? 's' : ''
+      }, which will be updated automatically. ` +
+      `You can also choose ${powersAmount} new power${
+        powersAmount > 1 ? 's' : ''
+      }, at maximum power level of ${maxLevel}.`
+    utilityDiv.appendChild(powerMessage)
   }
-
-  // TODO: finish up this function. it needs a "submit" button
+  let submitBtn: HTMLInputElement = document.createElement('input')
+  submitBtn.type = 'button'
+  submitBtn.value = 'Level up'
+  submitBtn.addEventListener('click', () => {
+    characterSheet.level++
+    characterSheet.hitDice.left++
+    characterSheet.hitPoints.max += Number(hpInput.value)
+    characterSheet.hitPoints.current += Number(hpInput.value)
+    for (let feature of features) characterSheet.features.push(feature)
+    characterSheet.powerPointsMax += pointDifference
+    fillBasicInfoEditHTML()
+    exitUtilityDiv()
+  })
+  utilityDiv.appendChild(submitBtn)
 }
 
 export function stringCamelCaseToDashes(str: string): string {
