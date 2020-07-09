@@ -14,6 +14,7 @@ import { apiFind, apiFindExactly } from './api-handler.js'
 export const characterSheet: Sheet = JSON.parse(
   sessionStorage.getItem('characterSheet')
 )
+sessionStorage.removeItem('characterSheet')
 
 // #region variables
 export const skills: object = {
@@ -192,6 +193,7 @@ const levelUpBtn: HTMLInputElement = document.getElementById(
 ) as HTMLInputElement
 const utilityDiv: HTMLElement = document.getElementById('utility-section')
 let previousSection: number
+const saveBtn: HTMLElement = document.getElementById('save-nav')
 // #endregion
 
 // #region event listeners
@@ -209,6 +211,7 @@ export function addAllEventListeners(): void {
   addHPInfoEventListeners()
   addBasicInfoEventListeners()
   addRestButtonsEventListeners()
+  addSaveEventListener()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -826,6 +829,19 @@ function addRestButtonsEventListeners(): void {
   shortRestBtn.addEventListener('click', shortRest)
   longRestBtn.addEventListener('click', longRest)
 }
+
+function addSaveEventListener(): void {
+  saveBtn.addEventListener('click', () => {
+    fetch('/char-sheet/save/' + document.location.pathname.split('/')[2], {
+      method: 'POST',
+      body: JSON.stringify(characterSheet),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  })
+}
+
 // #endregion
 
 // #region 5e calculating functions
