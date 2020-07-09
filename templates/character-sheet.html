@@ -155,15 +155,15 @@
         <div class="death-saves-wrapper">
           <h4 class="label">Successes:</h4>
           <div class="death-saves-line" id="death-saves__successes">
-            <input type="checkbox" />
-            <input type="checkbox" />
-            <input type="checkbox" />
+            <input type="checkbox" class="checkbox" />
+            <input type="checkbox" class="checkbox" />
+            <input type="checkbox" class="checkbox" />
           </div>
           <h4 class="label">Failures:</h4>
           <div class="death-saves-line" id="death-saves__failures">
-            <input type="checkbox" />
-            <input type="checkbox" />
-            <input type="checkbox" />
+            <input type="checkbox" class="checkbox" />
+            <input type="checkbox" class="checkbox" />
+            <input type="checkbox" class="checkbox" />
           </div>
         </div>
       </div>
@@ -192,15 +192,6 @@
       </div>
 
       <div class="sheet-section display-sheet-section" id="attacks-section">
-        <!-- js is going to calculate attacks by itself - kind of.
-        it's going to need some input, like, if you're proficient in the weapon,
-        if it's a magic weapon, what's it's damage etc,
-
-        with that info it will calculate attack bonus and damage bonus 
-        
-        should there be a separate section for input and output, or should it
-        all be in here
-        -->
         <table id="attacks-table">
           <tr id="attacks-table-header">
             <td>Name</td>
@@ -214,11 +205,6 @@
       <div class="sheet-section display-sheet-section" id="powers-section">
         <div class="powers-header">
           <div class="powers-header__element">
-            <!-- in the final version we're only going to have either tech powers or
-              both dark and light side powers 
-            
-              which means that both tech points and force points are going to be combined
-              into just "power points", so the ids will have to be changed -->
             <h3 class="label">Tech powers:</h3>
             <div class="powers-header__element__single-line">
               <h4 class="label">Tech save DC:</h4>
@@ -318,27 +304,27 @@
         <input type="button" id="level-up" class="button" value="Level up" />
 
         <h4 class="label">Name:</h4>
-        <input type="text" id="character-name-edit" />
+        <input type="text" id="character-name-edit" class="text" />
 
         <h4 class="label">Species:</h4>
-        <input type="text" id="species-edit" />
+        <input type="text" id="species-edit" class="text" />
 
         <h4 class="label">Class & level:</h4>
-        <input type="text" id="class-edit" />
-        <input type="text" id="archetype-edit" />
-        <input type="number" id="level-edit" />
+        <input type="text" id="class-edit" class="text" />
+        <input type="text" id="archetype-edit" class="text" />
+        <input type="number" id="level-edit" class="number" />
 
         <h4 class="label">Background:</h4>
-        <input type="text" id="background-edit" />
+        <input type="text" id="background-edit" class="text" />
 
         <h4 class="label">Alignment:</h4>
-        <input type="text" id="alignment-edit" />
+        <input type="text" id="alignment-edit" class="text" />
 
         <h4 class="label">Speed:</h4>
-        <input type="number" id="speed-edit" />
+        <input type="number" id="speed-edit" class="number" />
 
         <h4 class="label">Base Armor Class:</h4>
-        <input type="number" id="armor-class-edit" />
+        <input type="number" id="armor-class-edit" class="number" />
 
         <h4 class="label">Equipped Armor Type:</h4>
         <select id="equipped-armor-type">
@@ -350,7 +336,6 @@
 
         <div class="personality-wrapper">
           <h4 class="label">Personality traits:</h4>
-          <!-- text areas maybe? -->
           <textarea rows="5" cols="80" id="personality-traits-edit"></textarea>
           <h4 class="label">Ideal:</h4>
           <textarea rows="5" cols="80" id="ideal-edit"></textarea>
@@ -358,15 +343,14 @@
           <textarea rows="5" cols="80" id="bond-edit"></textarea>
           <h4 class="label">Flaw:</h4>
           <textarea rows="5" cols="80" id="flaw-edit"></textarea>
-          <!-- very likely some more here, perhaps a text area for backstory/notes? -->
         </div>
       </div>
 
       <div class="sheet-section edit-sheet-section" id="hp-section-edit">
         <h4 class="label">Max hit points:</h4>
-        <input type="number" id="max-hp-edit" />
+        <input type="number" id="max-hp-edit" class="number" />
         <h4 class="label">Hit dice die:</h4>
-        <input type="number" id="hit-dice-die-edit" />
+        <input type="number" id="hit-dice-die-edit" class="number" />
       </div>
 
       <div class="sheet-section edit-sheet-section" id="features-section-edit">
@@ -590,7 +574,7 @@
             </div>
           </div>
         </div>
-        
+
         <button class="skills-toggle">DEXTERITY</button>
         <div class="attribute-wrapper">
           <div class="attribute-score-wrapper">

@@ -65,19 +65,19 @@ function initializeSideMenu(): void {
 }
 
 function initializeAccordion(): void {
-  let accordions = document.getElementsByClassName("skills-toggle");
-  let i: number;
+  let accordions = document.getElementsByClassName('skills-toggle')
+  let i: number
 
   for (i = 0; i < accordions.length; i++) {
-    accordions[i].addEventListener("click", function() {
-      this.classList.toggle("skills-toggle-active");
-      var panel = this.nextElementSibling;
+    accordions[i].addEventListener('click', function () {
+      this.classList.toggle('skills-toggle-active')
+      let panel = this.nextElementSibling
       if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
+        panel.style.maxHeight = null
       } else {
-        panel.style.maxHeight = panel.scrollHeight + "%";
-      } 
-    });
+        panel.style.maxHeight = panel.scrollHeight + '%'
+      }
+    })
   }
 }
 
@@ -158,6 +158,7 @@ function changeSelectedInformations(element): void {
       )
     }
   }
+  closeMenu()
 
   // 11-13 are for save, return (not supported yet) and edit
   // this function can be propably more generic

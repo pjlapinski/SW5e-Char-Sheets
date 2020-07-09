@@ -314,7 +314,7 @@ function addPowersEventListeners(): void {
       })
       update()
       fillPowersEditHTML()
-      updateEditPowersListsEventListeners(i)
+      for (let j = 0; j <= 9; j++) updateEditPowersListsEventListeners(j)
     })
     updateEditPowersListsEventListeners(i)
   }
@@ -330,6 +330,9 @@ function updateEditPowersListsEventListeners(level: number): void {
     let inputs: Array<HTMLInputElement> = Array.from(
       power.getElementsByTagName('input')
     )
+    let description: HTMLTextAreaElement = power.getElementsByTagName(
+      'textarea'
+    )[0]
     let fields = [
       'delete',
       'name',
@@ -338,7 +341,6 @@ function updateEditPowersListsEventListeners(level: number): void {
       'range',
       'duration',
       'concentration',
-      'description',
     ]
     for (let i = 0; i < fields.length; i++) {
       if (i === 0) {
@@ -346,7 +348,7 @@ function updateEditPowersListsEventListeners(level: number): void {
           characterSheet.powers[`level${level}`].splice(index, 1)
           update()
           fillPowersEditHTML()
-          updateEditPowersListsEventListeners(level)
+          for (let j = 0; j < 10; j++) updateEditPowersListsEventListeners(j)
         })
         continue
       }
@@ -359,9 +361,16 @@ function updateEditPowersListsEventListeners(level: number): void {
             inputs[i].checked
         update()
         fillPowersEditHTML()
-        updateEditPowersListsEventListeners(level)
+        for (let j = 0; j < 10; j++) updateEditPowersListsEventListeners(j)
       })
     }
+    description.addEventListener('change', () => {
+      characterSheet.powers[`level${level}`][index]['description'] =
+        description.value
+      update()
+      fillPowersEditHTML()
+      for (let j = 0; j < 10; j++) updateEditPowersListsEventListeners(j)
+    })
   }
 }
 
@@ -406,8 +415,8 @@ function updateAttacksEventListeners(): void {
       'dmgType',
       'dmgBonus',
       'atkBonus',
-      'notes',
     ]
+    let notes: HTMLTextAreaElement = attack.getElementsByTagName('textarea')[0]
     for (let i = 0; i < fields.length; i++) {
       if (i === 0) {
         inputs[i].addEventListener('click', () => {
@@ -430,6 +439,12 @@ function updateAttacksEventListeners(): void {
         updateAttacksEventListeners()
       })
     }
+    notes.addEventListener('change', () => {
+      characterSheet.attacks[index].notes = notes.value
+      update()
+      fillAttacksEditHTML()
+      updateAttacksEventListeners()
+    })
   }
 }
 
@@ -461,7 +476,7 @@ function updateEquipmentEventListeners(): void {
     'equipment__item'
   )
 
-  for (let index = 0; index < items.length; index++) {
+  for (let index = 0; index < displayItems.length; index++) {
     let item = items[index]
     let itemDisplay = displayItems[index]
 
@@ -486,7 +501,8 @@ function updateEquipmentEventListeners(): void {
       })
     }
 
-    let fields = ['delete', 'amount', 'name', 'usesMax', 'notes']
+    let fields = ['delete', 'amount', 'name', 'usesMax']
+    let notes: HTMLTextAreaElement = item.getElementsByTagName('textarea')[0]
     for (let i = 0; i < fields.length; i++) {
       if (i === 0) {
         inputs[i].addEventListener('click', () => {
@@ -510,6 +526,12 @@ function updateEquipmentEventListeners(): void {
         updateEquipmentEventListeners()
       })
     }
+    notes.addEventListener('change', () => {
+      characterSheet.equipment[index].notes = notes.value
+      update()
+      fillEquipmentEditHTML()
+      updateEquipmentEventListeners()
+    })
   }
 }
 
@@ -623,7 +645,10 @@ function updateFeaturesEventListeners(): void {
     }
 
     let select: HTMLSelectElement = feature.getElementsByTagName('select')[0]
-    let fields = ['delete', 'name', 'usesMax', 'description']
+    let description: HTMLTextAreaElement = feature.getElementsByTagName(
+      'textarea'
+    )[0]
+    let fields = ['delete', 'name', 'usesMax']
 
     for (let i = 0; i < fields.length; i++) {
       if (i === 0) {
@@ -647,6 +672,12 @@ function updateFeaturesEventListeners(): void {
         addFeaturesEventListeners()
       })
     }
+    description.addEventListener('change', () => {
+      characterSheet.features[index].description = description.value
+      update()
+      fillFeaturesEditHTML()
+      addFeaturesEventListeners()
+    })
     select.addEventListener('change', () => {
       let value = select.value
       characterSheet.features[index].refresh =
@@ -702,6 +733,7 @@ function addHPInfoEventListeners(): void {
       amount = amount > 0 ? amount : 0
       characterSheet.hitPoints.temporary = amount
     }
+    healOrDamageAmount.value = ''
     update()
   })
 
@@ -715,17 +747,21 @@ function addHPInfoEventListeners(): void {
     update()
   })
 
-  let deathSaveSuccInputs = deathSaveSuccesses.getElementsByTagName('input')
-  let deathSaveFailInputs = deathSaveFailures.getElementsByTagName('input')
+  let deathSaveSuccInputs: HTMLCollection = deathSaveSuccesses.getElementsByClassName(
+    'checkbox'
+  )
+  let deathSaveFailInputs: HTMLCollection = deathSaveFailures.getElementsByClassName(
+    'checkbox'
+  )
 
   for (let i = 0; i < 3; i++) {
     deathSaveSuccInputs[i].addEventListener('change', () => {
-      let checked = deathSaveSuccInputs[i].checked
+      let checked = (deathSaveSuccInputs[i] as HTMLInputElement).checked
       characterSheet.deathSaves.succeeded = checked ? i + 1 : i
       update()
     })
     deathSaveFailInputs[i].addEventListener('change', () => {
-      let checked = deathSaveFailInputs[i].checked
+      let checked = (deathSaveFailInputs[i] as HTMLInputElement).checked
       characterSheet.deathSaves.failed = checked ? i + 1 : i
       update()
     })
@@ -1145,7 +1181,6 @@ function initUtilityDiv(): void {
     }
   }
   utilityDiv.style.display = 'block'
-  closeMenu()
   document.getElementById('menu-toggle').style.display = 'none'
 }
 
@@ -1164,6 +1199,7 @@ function showUtilityShortRest(): void {
   question.innerText = 'How many hit dice would you like to use?'
   utilityDiv.appendChild(question)
   let amount = document.createElement('input')
+  amount.className = 'number'
   amount.type = 'number'
   amount.addEventListener('change', () => {
     let value = Number(amount.value)
@@ -1173,6 +1209,7 @@ function showUtilityShortRest(): void {
   })
   utilityDiv.appendChild(amount)
   let submit = document.createElement('input')
+  submit.className = 'button'
   submit.type = 'button'
   submit.value = 'Rest'
   submit.addEventListener('click', () => {
@@ -1191,6 +1228,7 @@ async function showUtilityLevelUp(): Promise<void> {
     utilityDiv.appendChild(message)
     let returnBtn: HTMLInputElement = document.createElement('input')
     returnBtn.value = 'Return'
+    returnBtn.className = 'button'
     returnBtn.type = 'button'
     returnBtn.addEventListener('click', exitUtilityDiv)
     utilityDiv.appendChild(returnBtn)
@@ -1202,6 +1240,7 @@ async function showUtilityLevelUp(): Promise<void> {
   })
   let returnBtn: HTMLInputElement = document.createElement('input')
   returnBtn.value = 'Return'
+  returnBtn.className = 'button'
   returnBtn.type = 'button'
   returnBtn.addEventListener('click', exitUtilityDiv)
   utilityDiv.appendChild(returnBtn)
@@ -1217,6 +1256,7 @@ async function showUtilityLevelUp(): Promise<void> {
     'Then input the result below.'
   utilityDiv.appendChild(hpMessage)
   let hpInput: HTMLInputElement = document.createElement('input')
+  hpInput.className = 'number'
   hpInput.type = 'number'
   utilityDiv.appendChild(hpInput)
   let message: HTMLElement = document.createElement('p')
@@ -1263,6 +1303,7 @@ async function showUtilityLevelUp(): Promise<void> {
   }
   let submitBtn: HTMLInputElement = document.createElement('input')
   submitBtn.type = 'button'
+  submitBtn.className = 'button'
   submitBtn.value = 'Level up'
   submitBtn.addEventListener('click', () => {
     characterSheet.level++

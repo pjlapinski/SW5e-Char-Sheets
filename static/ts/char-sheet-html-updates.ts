@@ -531,6 +531,7 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     concentrationLabel.innerText = 'Concentration:'
     concentrationDiv.appendChild(concentrationLabel)
     let concentration: HTMLInputElement = document.createElement('input')
+    concentration.className = 'checkbox'
     concentration.type = 'checkbox'
     concentration.checked = power.concentration
     concentration.disabled = true
@@ -604,6 +605,7 @@ function fillBonusesHTML(): void {
     name.innerText = bonusName
     wrapper.appendChild(name)
     let input: HTMLInputElement = document.createElement('input')
+    input.className = 'number'
     input.type = 'number'
     // change the camel case name to being separated by dashes, so it fits html standard
     input.id = `${stringCamelCaseToDashes(bonusName)}-bonus-value`
@@ -639,10 +641,12 @@ export function fillFeaturesEditHTML(): void {
   for (let prof of characterSheet.otherProficiencies) {
     let profLi: HTMLElement = document.createElement('li')
     let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.className = 'button'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     profLi.appendChild(deleteBtn)
     let profInput: HTMLInputElement = document.createElement('input')
+    profInput.className = 'text'
     profInput.type = 'text'
     profInput.value = prof
     profLi.appendChild(profInput)
@@ -652,10 +656,12 @@ export function fillFeaturesEditHTML(): void {
   for (let lang of characterSheet.languages) {
     let langLi: HTMLElement = document.createElement('li')
     let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.className = 'button'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     langLi.appendChild(deleteBtn)
     let langInput: HTMLInputElement = document.createElement('input')
+    langInput.className = 'text'
     langInput.type = 'text'
     langInput.value = lang
     langLi.appendChild(langInput)
@@ -665,10 +671,12 @@ export function fillFeaturesEditHTML(): void {
   for (let feature of characterSheet.features) {
     let li: HTMLElement = document.createElement('li')
     let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.className = 'button'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
     let name: HTMLInputElement = document.createElement('input')
+    name.className = 'text'
     name.type = 'text'
     name.value = feature.name
     li.appendChild(name)
@@ -692,10 +700,13 @@ export function fillFeaturesEditHTML(): void {
     usesLabel.innerText = 'Max uses:'
     li.appendChild(usesLabel)
     let maxUses: HTMLInputElement = document.createElement('input')
+    maxUses.className = 'number'
     maxUses.type = 'number'
     maxUses.value = String(feature.usesMax)
     li.appendChild(maxUses)
-    let description: HTMLInputElement = document.createElement('input')
+    let description: HTMLTextAreaElement = document.createElement('textarea')
+    description.cols = 80
+    description.rows = 5
     description.value = feature.description
     li.appendChild(description)
     editFeaturesAndTraits.appendChild(li)
@@ -709,6 +720,7 @@ export function fillEquipmentEditHTML(): void {
     li.className = 'equipment__item'
     let deleteBtn: HTMLInputElement = document.createElement('input')
     deleteBtn.type = 'button'
+    deleteBtn.className = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
     let amountAndName: HTMLElement = document.createElement('div')
@@ -719,6 +731,7 @@ export function fillEquipmentEditHTML(): void {
     amount.value = String(item.amount)
     amountAndName.appendChild(amount)
     let name: HTMLInputElement = document.createElement('input')
+    name.className = 'text'
     name.type = 'text'
     name.value = item.name
     amountAndName.appendChild(name)
@@ -732,8 +745,9 @@ export function fillEquipmentEditHTML(): void {
     maxUses.className = 'underlined-input__number'
     maxUses.value = String(item.usesMax)
     li.appendChild(maxUses)
-    let notes: HTMLInputElement = document.createElement('input')
-    notes.type = 'text'
+    let notes: HTMLTextAreaElement = document.createElement('textarea')
+    notes.cols = 80
+    notes.rows = 5
     notes.value = item.notes
     li.appendChild(notes)
     editEquipment.appendChild(li)
@@ -745,6 +759,7 @@ export function fillAttacksEditHTML(): void {
   for (let attack of characterSheet.attacks) {
     let li: HTMLElement = document.createElement('li')
     let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.className = 'button'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
@@ -753,6 +768,7 @@ export function fillAttacksEditHTML(): void {
     nameLabel.innerText = 'Name:'
     li.appendChild(nameLabel)
     let name: HTMLInputElement = document.createElement('input')
+    name.className = 'text'
     name.type = 'text'
     name.value = attack.name
     li.appendChild(name)
@@ -761,6 +777,7 @@ export function fillAttacksEditHTML(): void {
     proficientLabel.innerText = 'Proficient:'
     li.appendChild(proficientLabel)
     let proficient: HTMLInputElement = document.createElement('input')
+    proficient.className = 'checkbox'
     proficient.type = 'checkbox'
     proficient.checked = attack.proficiency
     li.appendChild(proficient)
@@ -769,6 +786,7 @@ export function fillAttacksEditHTML(): void {
     finesseLabel.innerText = 'Finesse:'
     li.appendChild(finesseLabel)
     let finesse: HTMLInputElement = document.createElement('input')
+    finesse.className = 'checkbox'
     finesse.type = 'checkbox'
     finesse.checked = attack.finesse
     li.appendChild(finesse)
@@ -777,6 +795,7 @@ export function fillAttacksEditHTML(): void {
     rangedLabel.innerText = 'Ranged:'
     li.appendChild(rangedLabel)
     let ranged: HTMLInputElement = document.createElement('input')
+    ranged.className = 'checkbox'
     ranged.type = 'checkbox'
     ranged.checked = attack.ranged
     li.appendChild(ranged)
@@ -785,6 +804,7 @@ export function fillAttacksEditHTML(): void {
     dmgDiceAmountLabel.innerText = 'Damage Dice Amount:'
     li.appendChild(dmgDiceAmountLabel)
     let dmgDiceAmount: HTMLInputElement = document.createElement('input')
+    dmgDiceAmount.className = 'number'
     dmgDiceAmount.type = 'number'
     dmgDiceAmount.value = String(attack.dmgDiceAmount)
     li.appendChild(dmgDiceAmount)
@@ -793,6 +813,7 @@ export function fillAttacksEditHTML(): void {
     dmgDiceValueLabel.innerText = 'Damage Dice Value:'
     li.appendChild(dmgDiceValueLabel)
     let dmgDiceValue: HTMLInputElement = document.createElement('input')
+    dmgDiceValue.className = 'number'
     dmgDiceValue.type = 'number'
     dmgDiceValue.value = String(attack.dmgDiceValue)
     li.appendChild(dmgDiceValue)
@@ -801,6 +822,7 @@ export function fillAttacksEditHTML(): void {
     dmgTypeLabel.innerText = 'Damage Type:'
     li.appendChild(dmgTypeLabel)
     let dmgType: HTMLInputElement = document.createElement('input')
+    dmgType.className = 'text'
     dmgType.type = 'text'
     dmgType.value = String(attack.dmgType)
     li.appendChild(dmgType)
@@ -809,6 +831,7 @@ export function fillAttacksEditHTML(): void {
     dmgBonusLabel.innerText = 'Damage Bonus:'
     li.appendChild(dmgBonusLabel)
     let dmgBonus: HTMLInputElement = document.createElement('input')
+    dmgBonus.className = 'number'
     dmgBonus.type = 'number'
     dmgBonus.value = String(attack.dmgBonus)
     li.appendChild(dmgBonus)
@@ -817,6 +840,7 @@ export function fillAttacksEditHTML(): void {
     atkBonusLabel.innerText = 'Attack Bonus:'
     li.appendChild(atkBonusLabel)
     let atkBonus: HTMLInputElement = document.createElement('input')
+    atkBonus.className = 'number'
     atkBonus.type = 'number'
     atkBonus.value = String(attack.atkBonus)
     li.appendChild(atkBonus)
@@ -824,8 +848,9 @@ export function fillAttacksEditHTML(): void {
     notesLabel.className = 'label'
     notesLabel.innerText = 'Notes:'
     li.appendChild(notesLabel)
-    let notes: HTMLInputElement = document.createElement('input')
-    notes.type = 'text'
+    let notes: HTMLTextAreaElement = document.createElement('textarea')
+    notes.cols = 80
+    notes.rows = 2
     notes.value = String(attack.notes)
     li.appendChild(notes)
     editAttacks.appendChild(li)
@@ -855,10 +880,12 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     let li: HTMLElement = document.createElement('li')
     li.className = 'power'
     let deleteBtn: HTMLInputElement = document.createElement('input')
+    deleteBtn.className = 'button'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
     let name: HTMLInputElement = document.createElement('input')
+    name.className = 'text'
     name.type = 'text'
     name.value = power.name
     li.appendChild(name)
@@ -869,6 +896,7 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     alignmentLabel.innerText = 'Force Alignment:'
     alignmentDiv.appendChild(alignmentLabel)
     let alignment: HTMLInputElement = document.createElement('input')
+    alignment.className = 'text'
     alignment.type = 'text'
     alignment.value = power.alignment
     alignmentDiv.appendChild(alignment)
@@ -880,6 +908,7 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     castingPeriodLabel.innerText = 'Casting Period:'
     castingPeriodDiv.appendChild(castingPeriodLabel)
     let castingPeriod: HTMLInputElement = document.createElement('input')
+    castingPeriod.className = 'text'
     castingPeriod.type = 'text'
     castingPeriod.value = power.casting
     castingPeriodDiv.appendChild(castingPeriod)
@@ -891,6 +920,7 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     rangeLabel.innerText = 'Range:'
     rangeDiv.appendChild(rangeLabel)
     let range: HTMLInputElement = document.createElement('input')
+    range.className = 'text'
     range.type = 'text'
     range.value = power.range
     rangeDiv.appendChild(range)
@@ -902,6 +932,7 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     durationLabel.innerText = 'Duration:'
     durationDiv.appendChild(durationLabel)
     let duration: HTMLInputElement = document.createElement('input')
+    duration.className = 'text'
     duration.type = 'text'
     duration.value = power.duration
     durationDiv.appendChild(duration)
@@ -913,6 +944,7 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     concentrationLabel.innerText = 'Concentration:'
     concentrationDiv.appendChild(concentrationLabel)
     let concentration: HTMLInputElement = document.createElement('input')
+    concentration.className = 'checkbox'
     concentration.type = 'checkbox'
     concentration.checked = power.concentration
     concentrationDiv.appendChild(concentration)
@@ -921,8 +953,9 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     descriptionLabel.className = 'label'
     descriptionLabel.innerText = 'Description:'
     li.appendChild(descriptionLabel)
-    let description: HTMLInputElement = document.createElement('input')
-    description.type = 'text'
+    let description: HTMLTextAreaElement = document.createElement('textarea')
+    description.cols = 80
+    description.rows = 5
     description.value = power.description
     li.appendChild(description)
     ul.appendChild(li)
