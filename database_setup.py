@@ -11,7 +11,8 @@ def create_database():
             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             username VARCHAR(20) UNIQUE NOT NULL,
             email VARCHAR(40) UNIQUE NOT NULL,
-            password VARCHAR(60) NOT NULL
+            password VARCHAR(60) NOT NULL,
+            activated INTEGER NOT NULL DEFAULT 0
         );
         """)
         cur.execute("DROP TABLE IF EXISTS character;")
@@ -31,7 +32,8 @@ def create_database():
         #     id SERIAL PRIMARY KEY,
         #     username VARCHAR(20) UNIQUE NOT NULL,
         #     email VARCHAR(40) UNIQUE NOT NULL,
-        #     password VARCHAR(60) NOT NULL
+        #     password VARCHAR(60) NOT NULL,
+        #     activated BOOLEAN NOT NULL DEFAULT FALSE
         # );
         # """)
         # cur.execute("DROP TABLE IF EXISTS character;")
@@ -47,9 +49,10 @@ def create_database():
         # also this is just temporary
         with open('./sheets/1.json') as f:
             content = f.read().replace("'", r"''")
+        # postgres boolean values - TRUE, FALSE, 'unknown'
         cur.execute("""
-        INSERT INTO user (username, email, password) VALUES(
-            'testuser', 'testuser@test.com', 'test'
+        INSERT INTO user (username, email, password, activated) VALUES(
+            'testuser', 'testuser@test.com', 'test', 1
         );
         """)
         cur.execute(f"""
