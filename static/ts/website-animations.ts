@@ -16,6 +16,7 @@ let editSheetSections: Array<Element> = Array.from(
 let previouslyClickedElement: number = 0
 let isEditModeActive: Boolean = false
 initializeSideMenu()
+initializeAccordion()
 
 // indexes 0-8 are for infomations about a character, 11-13 are for save, return and edit
 
@@ -61,6 +62,23 @@ function initializeSideMenu(): void {
 
   sheetSections[0].setAttribute('style', 'display: block')
   sideMenuButtons[0].setAttribute('style', 'background: rgb(105, 105, 105)')
+}
+
+function initializeAccordion(): void {
+  let accordions = document.getElementsByClassName("skills-toggle");
+  let i: number;
+
+  for (i = 0; i < accordions.length; i++) {
+    accordions[i].addEventListener("click", function() {
+      this.classList.toggle("skills-toggle-active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "%";
+      } 
+    });
+  }
 }
 
 function disableSection(section: Array<Element>) {

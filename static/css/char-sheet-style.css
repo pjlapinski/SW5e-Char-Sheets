@@ -109,7 +109,7 @@ select {
   border: white;
 }
 
-.button {
+.button, .skills-toggle {
   width: 100%;
 }
 
@@ -125,6 +125,34 @@ button {
 textarea {
   width: 100%;
   resize: none;
+}
+
+.skills-toggle {
+  background-color: rgb(68, 68, 68);
+    border: none;
+  padding: 2%;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.skills-toggle:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.skills-toggle-active:after {
+  content: "\2212";
+}
+
+.skills-toggle:hover {
+  background: rgba(116, 116, 116, 0.8);
 }
 
 #notes-edit {
@@ -195,11 +223,9 @@ textarea {
 }
 
 .attribute-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 3vh 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }
 
 .attribute-score-wrapper {
