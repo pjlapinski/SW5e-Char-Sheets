@@ -1,13 +1,14 @@
 from flask import Flask, render_template, send_from_directory
 import json
 import os
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-APP_STATIC = os.path.join(APP_ROOT, 'static')
+import sqlite3
 
 
 app = Flask(__name__)
 # don't cache files, may be deleted later when deploying
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+APP_STATIC = os.path.join(APP_ROOT, 'static')
 
 
 @app.route('/')
@@ -18,23 +19,17 @@ def index():
 
 @app.route('/char-sheet/<int:sheet_id>')
 def sheet(sheet_id):
-    # first query the database and save the file from it into the /sheets folder
-    # if there are no results, return an error page
-    #
-    # or, even better, create a database handler which, when queried, returns
-    # the character sheet as a json already, without having to save it to a folder
-    # ---- this would be much preferred
-    with open(os.path.join(APP_ROOT, f'sheets/{sheet_id}.json'), 'r') as f:
-        result = json.loads(f.read())
+    with sqlite3.connect('./temp_db.db') as conn:
+        # TODO: check for authorization here
+        cur = conn.cursor()
+        cur.execute(f"SELECT sheet FROM character WHERE id={sheet_id}")
+        raw_sheet = cur.fetchone()
+        cur.close()
+    if raw_sheet is None:
+        # return the render of the error page
+        return
+    result = json.loads(raw_sheet[0])
     return render_template('character-sheet.html', data=result)
-
-
-@app.route('/static/js/<path:filename>')
-def js_static(filename):
-    return send_from_directory(APP_STATIC,
-                               f'js/{filename}', as_attachment=True,
-                               mimetype='text/javascript'
-                               )
 
 
 if __name__ == '__main__':
