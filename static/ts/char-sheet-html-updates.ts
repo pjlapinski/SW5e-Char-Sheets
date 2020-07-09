@@ -346,7 +346,7 @@ function fillFeaturesDisplayHTML(): void {
       limitedUsesWrapper.className = 'limited-uses-wrapper'
       let usesAmount: HTMLInputElement = document.createElement('input')
       usesAmount.type = 'number'
-      usesAmount.className = 'underlined-input__number'
+      usesAmount.className = 'number underlined-input__number'
       usesAmount.value = String(feature.usesLeft)
       limitedUsesWrapper.appendChild(usesAmount)
       let slash: HTMLElement = document.createElement('h4')
@@ -394,7 +394,7 @@ function fillEquipmentDisplayHTML(): void {
       limitedUsesWrapper.className = 'limited-uses-wrapper'
       let usesAmount: HTMLInputElement = document.createElement('input')
       usesAmount.type = 'number'
-      usesAmount.className = 'underlined-input__number'
+      usesAmount.className = 'number underlined-input__number'
       usesAmount.value = String(item.usesLeft)
       limitedUsesWrapper.appendChild(usesAmount)
       let slash: HTMLElement = document.createElement('h4')
@@ -727,7 +727,7 @@ export function fillEquipmentEditHTML(): void {
     amountAndName.className = 'item-amount-and-name'
     let amount: HTMLInputElement = document.createElement('input')
     amount.type = 'number'
-    amount.className = 'underlined-input__number'
+    amount.className = 'number underlined-input__number'
     amount.value = String(item.amount)
     amountAndName.appendChild(amount)
     let name: HTMLInputElement = document.createElement('input')
@@ -742,7 +742,7 @@ export function fillEquipmentEditHTML(): void {
     li.appendChild(usesLabel)
     let maxUses: HTMLInputElement = document.createElement('input')
     maxUses.type = 'number'
-    maxUses.className = 'underlined-input__number'
+    maxUses.className = 'number underlined-input__number'
     maxUses.value = String(item.usesMax)
     li.appendChild(maxUses)
     let notes: HTMLTextAreaElement = document.createElement('textarea')
