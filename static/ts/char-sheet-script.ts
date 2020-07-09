@@ -951,15 +951,17 @@ export function getProficiencyBonus(level: number): number {
   else return 6
 }
 
-export async function getCasterType(): Promise<string> {
+export async function getCasterType(cls?, arch?): Promise<string> {
   let type = 'None'
-  let cls = await apiFindExactly('classes', { name: characterSheet.class })
+  if (cls == null)
+    cls = await apiFindExactly('classes', { name: characterSheet.class })
 
   if (cls == null) return 'None'
   if (cls['casterType'] === 'None' && characterSheet.archetype !== '') {
-    let arch = await apiFindExactly('archetypes', {
-      name: characterSheet.archetype,
-    })
+    if (arch == null)
+      arch = await apiFindExactly('archetypes', {
+        name: characterSheet.archetype,
+      })
     if (arch == null) return 'None'
     return arch['casterType']
   }
@@ -994,10 +996,11 @@ async function shortRest(): Promise<void> {
   showUtilityShortRest()
 }
 
-async function getLevelUpFeatures(): Promise<Array<Feature>> {
+async function getLevelUpFeatures(cls?, arch?): Promise<Array<Feature>> {
   let result: Array<Feature> = []
 
-  let cls = await apiFindExactly('classes', { name: characterSheet.class })
+  if (cls == null)
+    cls = await apiFindExactly('classes', { name: characterSheet.class })
   if (cls == null) return result
   let features = cls['levelChanges'][String(characterSheet.level + 1)][
     'Features'
@@ -1015,9 +1018,10 @@ async function getLevelUpFeatures(): Promise<Array<Feature>> {
     result.push(featureObj)
   }
   if (characterSheet.archetype === '') return result
-  let arch = await apiFindExactly('archetypes', {
-    name: characterSheet.archetype,
-  })
+  if (arch == null)
+    arch = await apiFindExactly('archetypes', {
+      name: characterSheet.archetype,
+    })
   if (arch == null) return result
   let archFeaturesOnLevel =
     arch['featuresTable'][String(characterSheet.level + 1)]
@@ -1037,12 +1041,18 @@ async function getLevelUpFeatures(): Promise<Array<Feature>> {
   return result
 }
 
-async function getPowerPointsAtLevel(level: number): Promise<number> {
-  let cls = await apiFindExactly('classes', { name: characterSheet.class })
-  let arch = await apiFindExactly('archetypes', {
-    name: characterSheet.archetype,
-  })
-  let casterType = await getCasterType()
+async function getPowerPointsAtLevel(
+  level: number,
+  cls?,
+  arch?
+): Promise<number> {
+  if (cls == null)
+    cls = await apiFindExactly('classes', { name: characterSheet.class })
+  if (arch == null)
+    arch = await apiFindExactly('archetypes', {
+      name: characterSheet.archetype,
+    })
+  let casterType = await getCasterType(cls, arch)
 
   if (cls == null && arch == null) return 0
   if (
@@ -1061,11 +1071,13 @@ async function getPowerPointsAtLevel(level: number): Promise<number> {
   return Number(cls['levelChanges'][String(level)][`${casterType} Points`])
 }
 
-async function getMaxPowerLevel(level: number): Promise<number> {
-  let cls = await apiFindExactly('classes', { name: characterSheet.class })
-  let arch = await apiFindExactly('archetypes', {
-    name: characterSheet.archetype,
-  })
+async function getMaxPowerLevel(level: number, cls?, arch?): Promise<number> {
+  if (cls == null)
+    cls = await apiFindExactly('classes', { name: characterSheet.class })
+  if (arch == null)
+    arch = await apiFindExactly('archetypes', {
+      name: characterSheet.archetype,
+    })
 
   if (cls == null && arch == null) return 0
   if (
@@ -1084,12 +1096,14 @@ async function getMaxPowerLevel(level: number): Promise<number> {
   return Number(cls['levelChanges'][String(level)]['Max Power Level'][0])
 }
 
-async function getPowersKnown(level: number): Promise<number> {
-  let cls = await apiFindExactly('classes', { name: characterSheet.class })
-  let arch = await apiFindExactly('archetypes', {
-    name: characterSheet.archetype,
-  })
-  let casterType = await getCasterType()
+async function getPowersKnown(level: number, cls?, arch?): Promise<number> {
+  if (cls == null)
+    cls = await apiFindExactly('classes', { name: characterSheet.class })
+  if (arch == null)
+    arch = await apiFindExactly('archetypes', {
+      name: characterSheet.archetype,
+    })
+  let casterType = await getCasterType(cls, arch)
 
   if (cls == null && arch == null) return 0
   if (
@@ -1170,6 +1184,10 @@ function showUtilityShortRest(): void {
 
 async function showUtilityLevelUp(): Promise<void> {
   initUtilityDiv()
+  let cls = await apiFindExactly('classes', { name: characterSheet.class })
+  let arch = await apiFindExactly('archetypes', {
+    name: characterSheet.archetype,
+  })
   let returnBtn: HTMLInputElement = document.createElement('input')
   returnBtn.value = 'Return'
   returnBtn.type = 'button'
@@ -1196,7 +1214,7 @@ async function showUtilityLevelUp(): Promise<void> {
     `on this level are not shown here. Please go through your existing features and make sure to update everything!`
   utilityDiv.appendChild(message)
   let featuresList: HTMLElement = document.createElement('ul')
-  let features = await getLevelUpFeatures()
+  let features = await getLevelUpFeatures(cls, arch)
 
   for (let feature of features) {
     let li: HTMLElement = document.createElement('li')
@@ -1211,16 +1229,16 @@ async function showUtilityLevelUp(): Promise<void> {
   }
   utilityDiv.appendChild(featuresList)
 
-  let casterType = await getCasterType()
+  let casterType = await getCasterType(cls, arch)
   let pointDifference = 0
   if (casterType !== 'None') {
     pointDifference =
-      (await getPowerPointsAtLevel(characterSheet.level + 1)) -
-      (await getPowerPointsAtLevel(characterSheet.level))
+      (await getPowerPointsAtLevel(characterSheet.level + 1, cls, arch)) -
+      (await getPowerPointsAtLevel(characterSheet.level, cls, arch))
     let powersAmount =
-      (await getPowersKnown(characterSheet.level + 1)) -
-      (await getPowersKnown(characterSheet.level))
-    let maxLevel = await getMaxPowerLevel(characterSheet.level + 1)
+      (await getPowersKnown(characterSheet.level + 1, cls, arch)) -
+      (await getPowersKnown(characterSheet.level, cls, arch))
+    let maxLevel = await getMaxPowerLevel(characterSheet.level + 1, cls, arch)
     let powerMessage: HTMLElement = document.createElement('h4')
     powerMessage.innerText =
       `Additionally, you gained ${pointDifference} power point${
