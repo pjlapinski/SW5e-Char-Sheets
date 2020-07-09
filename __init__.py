@@ -26,8 +26,7 @@ def sheet(sheet_id):
         raw_sheet = cur.fetchone()
         cur.close()
     if raw_sheet is None:
-        # return the render of the error page
-        return
+        return render_template('error-page.html')
     result = json.loads(raw_sheet[0])
     return render_template('character-sheet.html', data=result)
 
