@@ -773,6 +773,7 @@ function addBasicInfoEventListeners(): void {
 
   charNameEdit.addEventListener('change', () => {
     characterSheet.name = charNameEdit.value
+    document.title = `SW5e - ${characterSheet.name}`
     update()
     fillBasicInfoEditHTML()
   })
