@@ -1184,6 +1184,18 @@ function showUtilityShortRest(): void {
 
 async function showUtilityLevelUp(): Promise<void> {
   initUtilityDiv()
+  if (characterSheet.level === 20) {
+    let message: HTMLElement = document.createElement('h4')
+    message.innerText =
+      'You are max level, there is no more levelling up to be done!'
+    utilityDiv.appendChild(message)
+    let returnBtn: HTMLInputElement = document.createElement('input')
+    returnBtn.value = 'Return'
+    returnBtn.type = 'button'
+    returnBtn.addEventListener('click', exitUtilityDiv)
+    utilityDiv.appendChild(returnBtn)
+    return
+  }
   let cls = await apiFindExactly('classes', { name: characterSheet.class })
   let arch = await apiFindExactly('archetypes', {
     name: characterSheet.archetype,
