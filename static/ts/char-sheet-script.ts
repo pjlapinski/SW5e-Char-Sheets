@@ -193,6 +193,7 @@ const levelUpBtn: HTMLInputElement = document.getElementById(
 const utilityDiv: HTMLElement = document.getElementById('utility-section')
 let previousSection: number
 const saveBtn: HTMLElement = document.getElementById('save-nav')
+const returnBtn: HTMLElement = document.getElementById('return-nav')
 // #endregion
 
 // #region event listeners
@@ -211,6 +212,7 @@ export function addAllEventListeners(): void {
   addBasicInfoEventListeners()
   addRestButtonsEventListeners()
   addSaveEventListener()
+  addReturnEventListener()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -867,14 +869,13 @@ function addRestButtonsEventListeners(): void {
 }
 
 function addSaveEventListener(): void {
-  saveBtn.addEventListener('click', () => {
-    fetch('/char-sheet/save/' + document.location.pathname.split('/')[2], {
-      method: 'POST',
-      body: JSON.stringify(characterSheet),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+  saveBtn.addEventListener('click', saveSheet)
+}
+
+function addReturnEventListener(): void {
+  returnBtn.addEventListener('click', () => {
+    saveSheet()
+    document.location.href = document.location.origin
   })
 }
 
@@ -1331,6 +1332,16 @@ export function stringToCamelCase(str: string): string {
 
 export function updateTitle(): void {
   document.title = `SW5e - ${characterSheet.name}`
+}
+
+function saveSheet(): void {
+  fetch('/char-sheet/save/' + document.location.pathname.split('/')[2], {
+    method: 'POST',
+    body: JSON.stringify(characterSheet),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 }
 
 // #endregion
