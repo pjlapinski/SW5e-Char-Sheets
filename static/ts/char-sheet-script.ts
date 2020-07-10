@@ -1329,10 +1329,8 @@ export function stringToCamelCase(str: string): string {
   })
 }
 
-function updateTitle(): void {
+export function updateTitle(): void {
   document.title = `SW5e - ${characterSheet.name}`
 }
-
-updateTitle()
 
 // #endregion

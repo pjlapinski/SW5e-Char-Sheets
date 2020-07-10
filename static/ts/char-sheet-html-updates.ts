@@ -15,6 +15,7 @@ import {
   stringCamelCaseToDashes,
   stringToCamelCase,
   addAllEventListeners,
+  updateTitle,
 } from './char-sheet-script.js'
 
 // html elements that are going to be changing
@@ -964,5 +965,6 @@ function fillSinglePowerLevelEditHTML(level: number): void {
 }
 // #endregion
 
+updateTitle()
 fillHTMLOnInitialize()
 addAllEventListeners()
