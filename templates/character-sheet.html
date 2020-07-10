@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+    rel="stylesheet"
+    href=" {{ url_for('static', filename='css/general-style.css') }}"
+  />
+    <link
       rel="stylesheet"
       href=" {{ url_for('static', filename='css/char-sheet-style.css') }}"
     />
@@ -305,7 +309,7 @@
         class="sheet-section edit-sheet-section"
         id="basic-info-section-edit"
       >
-        <input type="button" id="level-up" class="button" value="Level up" />
+        <input type="button" id="level-up" class="input-button" value="Level up" />
 
         <h4 class="label">Name:</h4>
         <input type="text" id="character-name-edit" class="text" />
@@ -367,7 +371,7 @@
             type="button"
             value="+"
             id="add-other-proficiency"
-            class="button add-button"
+            class="input-button add-button"
           />
         </div>
         <div class="languages-wrapper">
@@ -379,7 +383,7 @@
             type="button"
             value="+"
             id="add-language"
-            class="button add-button"
+            class="input-button add-button"
           />
         </div>
         <div class="features-and-traits-wrapper">
@@ -391,7 +395,7 @@
             type="button"
             value="+"
             id="add-feature"
-            class="button add-button"
+            class="input-button add-button"
           />
         </div>
       </div>
@@ -404,7 +408,7 @@
           type="button"
           value="+"
           id="add-equipment"
-          class="button add-button"
+          class="input-button add-button"
         />
       </div>
 
@@ -416,7 +420,7 @@
           type="button"
           value="+"
           id="add-attack"
-          class="button add-button"
+          class="input-button add-button"
         />
       </div>
 
@@ -442,7 +446,7 @@
               type="button"
               value="+"
               id="add-power__at-will"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-1-edit">
               <br />
@@ -451,7 +455,7 @@
               type="button"
               value="+"
               id="add-power__level-1"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-2-edit">
               <br />
@@ -460,7 +464,7 @@
               type="button"
               value="+"
               id="add-power__level-2"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-3-edit">
               <br />
@@ -469,7 +473,7 @@
               type="button"
               value="+"
               id="add-power__level-3"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-4-edit">
               <br />
@@ -478,7 +482,7 @@
               type="button"
               value="+"
               id="add-power__level-4"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-5-edit">
               <br />
@@ -487,7 +491,7 @@
               type="button"
               value="+"
               id="add-power__level-5"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-6-edit">
               <br />
@@ -496,7 +500,7 @@
               type="button"
               value="+"
               id="add-power__level-6"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-7-edit">
               <br />
@@ -505,7 +509,7 @@
               type="button"
               value="+"
               id="add-power__level-7"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-8-edit">
               <br />
@@ -514,7 +518,7 @@
               type="button"
               value="+"
               id="add-power__level-8"
-              class="button add-button"
+              class="input-button add-button"
             />
             <li id="powers__level-9-edit">
               <br />
@@ -523,7 +527,7 @@
               type="button"
               value="+"
               id="add-power__level-9"
-              class="button add-button"
+              class="input-button add-button"
             />
           </ol>
         </div>
