@@ -772,7 +772,7 @@ function addBasicInfoEventListeners(): void {
 
   charNameEdit.addEventListener('change', () => {
     characterSheet.name = charNameEdit.value
-    document.title = `SW5e - ${characterSheet.name}`
+    updateTitle()
     update()
     fillBasicInfoEditHTML()
   })
@@ -1328,5 +1328,11 @@ export function stringToCamelCase(str: string): string {
     return index === 0 ? match.toLowerCase() : match.toUpperCase()
   })
 }
+
+function updateTitle(): void {
+  document.title = `SW5e - ${characterSheet.name}`
+}
+
+updateTitle()
 
 // #endregion

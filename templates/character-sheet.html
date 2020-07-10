@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap"
       rel="stylesheet"
     />
-    <title>SW5e - {{ data['name'] }}</title>
+    <title>SW5e</title>
   </head>
   <body>
     <div id="sheet-side-menu" class="side-menu">
@@ -990,7 +990,10 @@
     <script>
       // this is only done so that typescript has no problem with using a variable
       // defined in a completly different place
-      sessionStorage.setItem('characterSheet', '{{ data | tojson | safe }}'.slice(1, -1))
+      sessionStorage.setItem(
+        'characterSheet',
+        '{{ data | tojson | safe }}'.slice(1, -1)
+      )
     </script>
     <script
       type="module"
