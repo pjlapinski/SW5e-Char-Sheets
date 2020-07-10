@@ -14,14 +14,16 @@
     <title>SW5e - Home</title>
   </head>
   <body>
-    <div class="header">
-      <div class="header-title">SW5e</div>
-      <div class="header-buttons-wrapper">
-        <button>Login</button>
-        <button>Register</button>
-      </div>
+    <!-- some header -->
+
+    <div class="main-content-wrapper">
+      <ul id="sheet-links">
+        {% for sheet in sheets %}
+        <li class="sheet-link">
+          <a href="char-sheet/{{ sheet[0] }}">{{ sheet[1] }}</a>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-    <div class="main-content-wrapper">content</div>
-    <div class="footer">footer</div>
   </body>
 </html>

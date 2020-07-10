@@ -13,7 +13,23 @@ APP_STATIC = os.path.join(APP_ROOT, 'static')
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    # if not logged in:
+    # return render_template('home.html')
+    # else:
+    user_id = 1
+    with sqlite3.connect('./temp_db.db') as conn:
+        cur = conn.cursor()
+        cur.execute(
+            f"SELECT id, sheet FROM character WHERE owner_id={user_id}")
+        sheets = []
+        sheet = cur.fetchone()
+        while sheet is not None:
+            sheet_id = sheet[0]
+            character_name = json.loads(sheet[1])['name']
+            sheets.append((sheet_id, character_name))
+            sheet = cur.fetchone()
+        cur.close()
+    return render_template('home-sheets.html', sheets=sheets)
 
 
 @app.route('/char-sheet/<int:sheet_id>')
@@ -29,19 +45,18 @@ def sheet(sheet_id):
     return render_template('character-sheet.html', data=raw_sheet[0])
 
 
-@app.route('/char-sheet/save/<int:sheet_id>', methods=['GET', 'POST'])
+@app.route('/char-sheet/save/<int:sheet_id>', methods=['POST'])
 def save_sheet(sheet_id):
-    if request.method == 'POST':
-        sheet = request.get_json()
-        with sqlite3.connect('./temp_db.db') as conn:
-            # TODO: check for authorization here
-            str_sheet = json.dumps(sheet).replace("'", "''")
-            cur = conn.cursor()
-            cur.execute(f"""
-            UPDATE character SET sheet='{str_sheet}' WHERE id={sheet_id}
-            """)
-            cur.close()
-        return 'OK', 200
+    sheet = request.get_json()
+    with sqlite3.connect('./temp_db.db') as conn:
+        # TODO: check for authorization here
+        str_sheet = json.dumps(sheet).replace("'", "''")
+        cur = conn.cursor()
+        cur.execute(f"""
+        UPDATE character SET sheet='{str_sheet}' WHERE id={sheet_id}
+        """)
+        cur.close()
+    return 'OK', 200
 
 
 @app.route('/static/js/<path:filename>')
