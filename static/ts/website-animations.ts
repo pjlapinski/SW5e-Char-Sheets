@@ -75,7 +75,7 @@ function initializeAccordion(): void {
       if (panel.style.maxHeight) {
         panel.style.maxHeight = null
       } else {
-        panel.style.maxHeight = panel.scrollHeight + '%'
+        panel.style.maxHeight = panel.scrollHeight + 'vh'
       }
     })
   }

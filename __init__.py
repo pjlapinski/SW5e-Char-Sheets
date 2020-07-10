@@ -13,8 +13,7 @@ APP_STATIC = os.path.join(APP_ROOT, 'static')
 
 @app.route('/')
 def index():
-    # for now
-    return render_template('error-page.html')
+    return render_template('home.html')
 
 
 @app.route('/char-sheet/<int:sheet_id>')
