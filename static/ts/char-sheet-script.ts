@@ -1344,4 +1344,7 @@ function saveSheet(): void {
   })
 }
 
+// auto save every 30 seconds
+setInterval(saveSheet, 30000)
+
 // #endregion
