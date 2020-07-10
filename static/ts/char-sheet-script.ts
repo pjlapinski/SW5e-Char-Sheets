@@ -1,4 +1,4 @@
-import { Sheet, Attack, Power, Feature } from 'char-sheet-interfaces'
+import { Sheet, Attack, Feature } from 'char-sheet-interfaces'
 import {
   updateDisplayHTML,
   fillPowersEditHTML,
@@ -8,8 +8,7 @@ import {
   fillHPInfoEditHTML,
   fillBasicInfoEditHTML,
 } from './char-sheet-html-updates.js'
-import { closeMenu } from './website-animations.js'
-import { apiFind, apiFindExactly } from './api-handler.js'
+import { apiFindExactly } from './api-handler.js'
 
 export const characterSheet: Sheet = JSON.parse(
   sessionStorage.getItem('characterSheet')

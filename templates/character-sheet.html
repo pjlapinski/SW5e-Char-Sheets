@@ -187,7 +187,11 @@
 
       <div class="sheet-section display-sheet-section" id="equipment-section">
         <h4 class="label">Credits:</h4>
-        <input type="number" id="credits" class="number underlined-input__number" />
+        <input
+          type="number"
+          id="credits"
+          class="number underlined-input__number"
+        />
         <ul id="equipment"></ul>
       </div>
 
@@ -986,10 +990,7 @@
     <script>
       // this is only done so that typescript has no problem with using a variable
       // defined in a completly different place
-      sessionStorage.setItem(
-        'characterSheet',
-        '{{ data | tojson | safe }}'.replace(/\n/g, '\\n').replace(/\r/g, '\\r')
-      )
+      sessionStorage.setItem('characterSheet', '{{ data | tojson | safe }}'.slice(1, -1))
     </script>
     <script
       type="module"

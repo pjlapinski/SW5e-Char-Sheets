@@ -27,8 +27,7 @@ def sheet(sheet_id):
         cur.close()
     if raw_sheet is None:
         return render_template('error-page.html')
-    result = json.loads(raw_sheet[0])
-    return render_template('character-sheet.html', data=result)
+    return render_template('character-sheet.html', data=raw_sheet[0])
 
 
 @app.route('/char-sheet/save/<int:sheet_id>', methods=['GET', 'POST'])
