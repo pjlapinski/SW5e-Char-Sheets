@@ -11,6 +11,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 # generate a new one on deploy and read it from the environment variable
 app.config['SECRET_KEY'] = '57fcbcb450d4560880d2635018e43fec'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///temp_db.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
