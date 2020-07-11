@@ -21,7 +21,7 @@
 
 .nav-wrapper:hover {
   background: rgb(105, 105, 105) !important;
-  border: 1px #42D6CA !important; 
+  border: 1px #42d6ca !important;
 }
 
 #sheet-close-btn {
@@ -102,7 +102,7 @@
 
 .skills-toggle {
   background-color: rgb(68, 68, 68);
-    border: none;
+  border: none;
   padding: 2%;
   text-align: left;
   color: white;
@@ -121,7 +121,7 @@
 }
 
 .skills-toggle-active:after {
-  content: "\2212";
+  content: '\2212';
 }
 
 .skills-toggle:hover {
@@ -312,4 +312,10 @@
 
 .power {
   margin-left: 2rem;
+}
+
+li {
+  background: rgba(63, 63, 63, 0.4);
+  margin: 10px 0px 10px 0px;
+  padding: 1vw;
 }

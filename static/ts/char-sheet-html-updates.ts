@@ -773,10 +773,6 @@ export function fillAttacksEditHTML(): void {
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
-    let nameLabel: HTMLElement = document.createElement('h4')
-    nameLabel.className = 'label'
-    nameLabel.innerText = 'Name:'
-    li.appendChild(nameLabel)
     let name: HTMLInputElement = document.createElement('input')
     name.className = 'text'
     name.type = 'text'
