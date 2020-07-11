@@ -19,18 +19,24 @@ select {
     border: white;
 }
 
+button, .input-button {
+    background: black;
+    padding: 1vh;
+    color: white;
+    border-style: solid;
+    border-color: #42D6CA;
+    border-width: 1px;
+    transition: ease-out 0.3s;
+}
+
+.input-button:hover, button:hover {
+    background: #42D6CA;
+    color: black;
+    border-width: 2px;
+}
+
 .input-button {
     width: 100%;
-}
-
-button {
-    background: rgba(63, 63, 63);
-    padding: 1%;
-    border: none;
-}
-
-.button:hover, button:hover {
-    background: rgba(116, 116, 116, 0.8);
 }
 
 textarea {
@@ -44,8 +50,7 @@ textarea {
 }
 
 .footer, .header {
-    position: fixed;
-    left: 0;
+    padding: 1%;
     width: 100%;
     background-color: black;
     color: white;
@@ -54,8 +59,19 @@ textarea {
 
 .footer {
     bottom: 0;
+    position: fixed;
+    left: 0;
 }
 
 .header {
     top: 0;
+    height: 8%;
+}
+
+.header-buttons-wrapper {
+    text-align: right;
+}
+
+.main-content-wrapper {
+    padding: 10%;
 }
