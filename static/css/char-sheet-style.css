@@ -135,10 +135,11 @@
 .underlined-input__number {
   background: transparent;
   border-style: hidden;
-  width: 3rem;
+  width: 5rem;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
+  padding: 0px;
   color: rgb(255, 255, 255);
 }
 
