@@ -21,7 +21,10 @@ def index():
     # if not logged in:
     # return render_template('home.html')
     # else:
-    user_id = 0
+    logged = False
+    user_id = 1
+    if not logged:
+        return render_template('home.html', title='Home')
     with sqlite3.connect('./temp_db.db') as conn:
         cur = conn.cursor()
         cur.execute(
