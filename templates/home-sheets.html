@@ -1,0 +1,20 @@
+{% extends "layout.html" %} {% block content %}
+<div class="header">
+  <div class="header-title">SW5e</div>
+  <div class="header-buttons-wrapper">
+    <button>Account</button>
+    <button>Log out</button>
+  </div>
+</div>
+
+<div class="main-content-wrapper">
+  <ul id="sheet-links">
+    {% for sheet in sheets %}
+    <li class="sheet-link">
+      <a href="char-sheet/{{ sheet[0] }}">{{ sheet[1] }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <button>Create a character</button>
+</div>
+{% endblock content %}
