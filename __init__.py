@@ -23,8 +23,10 @@ def index():
     # else:
     logged = False
     user_id = 1
+    register_form = RegisterForm()
+    login_form = LoginForm()
     if not logged:
-        return render_template('home.html', title='Home')
+        return render_template('home.html', title='Home', register_form=register_form, login_form=login_form)
     with sqlite3.connect('./temp_db.db') as conn:
         cur = conn.cursor()
         cur.execute(
@@ -73,11 +75,9 @@ def save_sheet(sheet_id):
     return 'OK', 200
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['POST'])
 def register():
     form = RegisterForm()
-    if request.method == 'GET':
-        return render_template('register.html', title='Register', form=form)
     if form.validate_on_submit():
         with sqlite3.connect('temp_db.db') as conn:
             cur = conn.cursor()
@@ -97,13 +97,13 @@ def register():
             # now send them an email
             conn.commit()
             cur.close()
+    else:
+        print(form.errors)
     return redirect(url_for('index'))
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('login.html', title='Login', form=LoginForm())
     return redirect(url_for('index'))
 
 

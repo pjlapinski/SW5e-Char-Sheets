@@ -1,44 +1,66 @@
 {% extends "layout.html" %} {% block content %}
-    <div class="header">
-        <div class="header-title">SW5e</div>
-        <div class="header-buttons-wrapper">
-            <button id="login-button">Login</button>
-            <button id="register-button">Register</button>
+<div class="header">
+  <div class="header-title">SW5e</div>
+  <div class="header-buttons-wrapper">
+    <button id="login-button">Login</button>
+    <button id="register-button">Register</button>
+  </div>
+</div>
+<div class="main-content-wrapper">
+  content
+  <div class="modal" id="login-modal">
+    <div class="modal-content-wrapper">
+      <form action="{{ url_for('login') }}" method="POST">
+        {{ login_form.csrf_token(id='log-csrf') }}
+        <div class="modal-content form-element">
+          {{ login_form.email.label(class='modal-content') }} {{
+          login_form.email(class='modal-content') }}
         </div>
+        <div class="modal-content form-element">
+          {{ login_form.password.label(class='modal-content') }} {{
+          login_form.password(class='modal-content') }}
+        </div>
+        <div class="modal-content form-element">
+          {{ login_form.remember.label(class='modal-content') }} {{
+          login_form.remember(class='modal-content') }}
+        </div>
+        <div class="modal-content form-element">
+          {{ login_form.submit(class='button') }}
+        </div>
+      </form>
     </div>
-    <div class="main-content-wrapper">
-        content
-        <div class="modal" id="login-modal">
-            <div class="modal-content-wrapper">
-                <form method="POST">
-                    <p class="modal-content">Login:</p>
-                    <input type="text" id="login" class="modal-content">
-                    <p class="modal-content">Password:</p>
-                    <input type="text" id="password" class="modal-content">
-                    <input type="submit" value="Login" class="button">
-                </form>
-            </div>
+  </div>
+
+  <div class="modal" id="register-modal">
+    <div class="modal-content-wrapper">
+      <form action="{{ url_for('register') }}" method="POST">
+        {{ register_form.csrf_token(id='reg-csrf') }}
+        <div class="modal-content form-element">
+          {{ register_form.username.label(class='modal-content') }} {{
+          register_form.username(class='modal-content') }}
         </div>
-        
-        <div class="modal" id="register-modal">
-            <div class="modal-content-wrapper">
-                <form method="POST">
-                    <p class="modal-content">Login:</p>
-                    <input type="text" id="login" class="modal-content">
-                    <p class="modal-content">Email:</p>
-                    <input type="text" id="email" class="modal-content">
-                    <p class="modal-content">Password:</p>
-                    <input type="text" id="password" class="modal-content">
-                    <p class="modal-content">Confirm password:</p>
-                    <input type="text" id="confirm-password" class="modal-content">
-                    <input type="submit" value="Register" class="button">
-                </form>
-            </div>
+        <div class="modal-content form-element">
+          {{ register_form.email.label(class='modal-content') }} {{
+          register_form.email(class='modal-content') }}
         </div>
-    </div>    
-    <div class="footer">footer</div>
-    <script
-    type="module"
-    src="{{ url_for('static', filename='js/home-animations.js') }}"
-    ></script>
+        <div class="modal-content form-element">
+          {{ register_form.password.label(class='modal-content') }} {{
+          register_form.password(class='modal-content') }}
+        </div>
+        <div class="modal-content form-element">
+          {{ register_form.confirm_password.label(class='modal-content') }} {{
+          register_form.confirm_password(class='modal-content') }}
+        </div>
+        <div class="modal-content form-element">
+          {{ register_form.submit(class='button') }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="footer">footer</div>
+<script
+  type="module"
+  src="{{ url_for('static', filename='js/home-animations.js') }}"
+></script>
 {% endblock content %}
