@@ -53,7 +53,7 @@ function initializeSideMenu(): void {
       document.getElementById('sheet-side-menu').offsetWidth > 0 &&
       !event.target.closest('.nav-wrapper')
     ) {
-      closeMenu()
+      closeMenu();
     }
   }
 

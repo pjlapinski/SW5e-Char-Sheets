@@ -1,12 +1,44 @@
 {% extends "layout.html" %} {% block content %}
     <div class="header">
-      <div class="header-title">SW5e</div>
-      <div class="header-buttons-wrapper">
-        <button>Login</button>
-        <button>Register</button>
-      </div>
+        <div class="header-title">SW5e</div>
+        <div class="header-buttons-wrapper">
+            <button id="login-button">Login</button>
+            <button id="register-button">Register</button>
+        </div>
     </div>
-    <div class="main-content-wrapper">content</div>
+    <div class="main-content-wrapper">
+        content
+        <div class="modal" id="login-modal">
+            <div class="modal-content-wrapper">
+                <form method="POST">
+                    <p class="modal-content">Login:</p>
+                    <input type="text" id="login" class="modal-content">
+                    <p class="modal-content">Password:</p>
+                    <input type="text" id="password" class="modal-content">
+                    <input type="submit" value="Login" class="button">
+                </form>
+            </div>
+        </div>
+        
+        <div class="modal" id="register-modal">
+            <div class="modal-content-wrapper">
+                <form method="POST">
+                    <p class="modal-content">Login:</p>
+                    <input type="text" id="login" class="modal-content">
+                    <p class="modal-content">Email:</p>
+                    <input type="text" id="email" class="modal-content">
+                    <p class="modal-content">Password:</p>
+                    <input type="text" id="password" class="modal-content">
+                    <p class="modal-content">Confirm password:</p>
+                    <input type="text" id="confirm-password" class="modal-content">
+                    <input type="submit" value="Register" class="button">
+                </form>
+            </div>
+        </div>
+    </div>    
     <div class="footer">footer</div>
-  </body>
+    <script
+    type="module"
+    src="{{ url_for('static', filename='js/home-animations.js') }}"
+    ></script>
 {% endblock content %}

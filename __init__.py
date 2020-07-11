@@ -21,7 +21,7 @@ def index():
     # if not logged in:
     # return render_template('home.html')
     # else:
-    user_id = 1
+    user_id = 0
     with sqlite3.connect('./temp_db.db') as conn:
         cur = conn.cursor()
         cur.execute(
@@ -35,6 +35,12 @@ def index():
             sheet = cur.fetchone()
         cur.close()
     return render_template('home-sheets.html', sheets=sheets, title='Home')
+
+
+@app.route('/home')
+def home():
+    # TODO: delete this route as it is only for test
+    return render_template("home.html")
 
 
 @app.route('/char-sheet/<int:sheet_id>')
