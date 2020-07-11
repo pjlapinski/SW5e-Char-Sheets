@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href=" {{ url_for('static', filename='css/general-style.css') }}"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <title>SW5e - Home</title>
-  </head>
-  <body>
-    <!-- some header -->
+{% extends "layout.html" %} {% block content %}
+<div class="header">
+  <div class="header-title">SW5e</div>
+  <div class="header-buttons-wrapper">
+    <button>Account</button>
+    <button>Log out</button>
+  </div>
+</div>
 
-    <div class="main-content-wrapper">
-      <ul id="sheet-links">
-        {% for sheet in sheets %}
-        <li class="sheet-link">
-          <a href="char-sheet/{{ sheet[0] }}">{{ sheet[1] }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </body>
-</html>
+<div class="main-content-wrapper">
+  <ul id="sheet-links">
+    {% for sheet in sheets %}
+    <li class="sheet-link">
+      <a href="char-sheet/{{ sheet[0] }}">{{ sheet[1] }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <button>Create a character</button>
+</div>
+{% endblock content %}
