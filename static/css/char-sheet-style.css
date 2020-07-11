@@ -15,10 +15,13 @@
 .nav-wrapper {
   padding: 1vh;
   cursor: pointer;
+  transition: ease-out 0.2s;
+  border: none;
 }
 
 .nav-wrapper:hover {
   background: rgb(105, 105, 105) !important;
+  border: 1px #42D6CA !important; 
 }
 
 #sheet-close-btn {
