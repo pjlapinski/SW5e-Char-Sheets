@@ -1,4 +1,7 @@
 import sqlite3
+from __init__ import app
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt(app)
 
 
 def create_database():
@@ -50,9 +53,11 @@ def create_database():
         with open('./sheets/1.json') as f:
             content = f.read().replace("'", r"''")
         # postgres boolean values - TRUE, FALSE, 'unknown'
-        cur.execute("""
+        cur.execute(f"""
         INSERT INTO user (username, email, password, activated) VALUES(
-            'testuser', 'testuser@test.com', 'test', 1
+            'testuser', 'testuser@test.com', '{
+                bcrypt.generate_password_hash('test').decode('utf-8')
+                }', 1
         );
         """)
         cur.execute(f"""
