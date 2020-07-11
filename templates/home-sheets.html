@@ -2,8 +2,12 @@
 <div class="header">
   <div class="header-title">SW5e</div>
   <div class="header-buttons-wrapper">
-    <button>Account</button>
-    <button>Log out</button>
+    <a href="{{ url_for('account') }}">
+      <button>Account</button>
+    </a>
+    <a href="{{ url_for('logout') }}">
+      <button>Log out</button>
+    </a>
   </div>
 </div>
 

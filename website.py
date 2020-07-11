@@ -2,14 +2,12 @@ from flask import render_template, send_from_directory, request, redirect, url_f
 from models import User, Character
 from forms import RegisterForm, LoginForm
 from __init__ import app, db, bcrypt, APP_STATIC
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user
 import json
 
 
 @app.route('/')
 def index():
-    logged = False
-    user_id = 1
     errors = None
     origin = None
     if 'errors' in request.args.keys():
@@ -17,9 +15,9 @@ def index():
         origin = request.args['origin']
     register_form = RegisterForm()
     login_form = LoginForm()
-    if not logged:
+    if not current_user.is_authenticated:
         return render_template('home.html', title='Home', register_form=register_form, login_form=login_form, origin=origin, errors=errors)
-    characters = Character.query.filter_by(owner_id=user_id).all()
+    characters = Character.query.filter_by(owner_id=current_user.id).all()
     sheets = []
     for character in characters:
         name = json.loads(character.sheet)['name']
@@ -29,7 +27,10 @@ def index():
 
 @app.route('/char-sheet/<int:sheet_id>')
 def sheet(sheet_id):
-    raw_sheet = Character.query.filter_by(id=sheet_id).first().sheet
+    char = Character.query.filter_by(id=sheet_id).first()
+    if char.owner_id != current_user.id:
+        return render_template('error-page.html', title='Error')
+    raw_sheet = char.sheet
     if raw_sheet is None:
         return render_template('error-page.html', title='Error')
     return render_template('character-sheet.html', data=raw_sheet)
@@ -38,9 +39,10 @@ def sheet(sheet_id):
 @app.route('/char-sheet/save/<int:sheet_id>', methods=['POST'])
 def save_sheet(sheet_id):
     sheet = request.get_json()
-    # TODO: check for authorization here
     str_sheet = json.dumps(sheet).replace("'", "''")
     char = Character.query.filter_by(id=sheet_id).first()
+    if char.owner_id != current_user.id:
+        return render_template('error-page.html', title='Error')
     char.sheet = str_sheet
     db.session.commit()
     return 'OK', 200
@@ -49,6 +51,8 @@ def save_sheet(sheet_id):
 @app.route('/register', methods=['POST'])
 def register():
     form = RegisterForm()
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     if form.validate_on_submit():
         usr = User.query.filter_by(username=form.username.data).first()
         if usr:
@@ -73,6 +77,8 @@ def register():
 @app.route('/login', methods=['POST'])
 def login():
     form = LoginForm()
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if not user:
@@ -82,10 +88,16 @@ def login():
         if not user.activated:
             return redirect(url_for('index', errors={'': 'Account not activated. Please check your email.'}))
         else:
+            # this returns false if it failed to log in, but we're already checking that above
             login_user(user, remember=form.remember.data)
             return redirect(url_for('index'))
-        # check if such user exists
     return redirect(url_for('index', errors=form.errors, origin='login'))
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 
 @app.route('/static/js/<path:filename>')
