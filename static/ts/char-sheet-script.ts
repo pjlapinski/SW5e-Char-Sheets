@@ -502,7 +502,7 @@ function updateEquipmentEventListeners(): void {
       })
     }
 
-    let fields = ['delete', 'amount', 'name', 'usesMax']
+    let fields = ['delete', 'name', 'amount', 'usesMax']
     let notes: HTMLTextAreaElement = item.getElementsByTagName('textarea')[0]
     for (let i = 0; i < fields.length; i++) {
       if (i === 0) {

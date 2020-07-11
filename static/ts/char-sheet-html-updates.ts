@@ -681,6 +681,10 @@ export function fillFeaturesEditHTML(): void {
     name.type = 'text'
     name.value = feature.name
     li.appendChild(name)
+    let restLabel: HTMLElement = document.createElement('h4')
+    restLabel.className = 'label'
+    restLabel.innerText = 'Recharge:'
+    li.appendChild(restLabel)
     let restSelect: HTMLSelectElement = document.createElement('select')
     let optionLong: HTMLElement = document.createElement('option')
     optionLong.innerText = 'long'
@@ -724,28 +728,33 @@ export function fillEquipmentEditHTML(): void {
     deleteBtn.className = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
-    let amountAndName: HTMLElement = document.createElement('div')
-    amountAndName.className = 'item-amount-and-name'
-    let amount: HTMLInputElement = document.createElement('input')
-    amount.type = 'number'
-    amount.className = 'number underlined-input__number'
-    amount.value = String(item.amount)
-    amountAndName.appendChild(amount)
     let name: HTMLInputElement = document.createElement('input')
     name.className = 'text'
     name.type = 'text'
     name.value = item.name
-    amountAndName.appendChild(name)
-    li.appendChild(amountAndName)
+    li.appendChild(name)
+    let amountLabel: HTMLElement = document.createElement('h4')
+    amountLabel.className = 'label'
+    amountLabel.innerText = 'Amount:'
+    li.appendChild(amountLabel)
+    let amount: HTMLInputElement = document.createElement('input')
+    amount.type = 'number'
+    amount.className = 'number underlined-input__number'
+    amount.value = String(item.amount)
+    li.appendChild(amount)
     let usesLabel: HTMLElement = document.createElement('h4')
     usesLabel.className = 'label'
-    usesLabel.innerText = 'Uses:'
+    usesLabel.innerText = 'Max Uses:'
     li.appendChild(usesLabel)
     let maxUses: HTMLInputElement = document.createElement('input')
     maxUses.type = 'number'
     maxUses.className = 'number underlined-input__number'
     maxUses.value = String(item.usesMax)
     li.appendChild(maxUses)
+    let notesLabel: HTMLElement = document.createElement('h4')
+    notesLabel.className = 'label'
+    notesLabel.innerText = 'Notes:'
+    li.appendChild(notesLabel)
     let notes: HTMLTextAreaElement = document.createElement('textarea')
     notes.cols = 80
     notes.rows = 5
