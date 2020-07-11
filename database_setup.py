@@ -3,13 +3,15 @@ from models import User, Character
 
 
 def create_database():
+    db.drop_all()
+    db.session.commit()
     db.create_all()
     user = User(username='testuser', email='testuser@test.com',
                 password=bcrypt.generate_password_hash('testuser'), activated=True)
     db.session.add(user)
     db.session.commit()
     with open('./sheets/1.json') as f:
-        content = f.read().replace("'", r"''")
+        content = f.read()
     char = Character(sheet=f"{content}", owner_id=user.id)
     db.session.add(char)
     db.session.commit()

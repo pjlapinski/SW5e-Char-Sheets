@@ -1,0 +1,11 @@
+{% extends "layout.html" %} {% block content %}
+<div class="main-content-wrapper">
+  <p>Are you sure you would like to delete this sheet?</p>
+  <form method="POST" action="{{ url_for('delete_sheet', sheet_id=sheet_id) }}">
+    <button>Yes</button>
+  </form>
+  <a href="{{ url_for('index') }}">
+    <button>No</button>
+  </a>
+</div>
+{% endblock content %}

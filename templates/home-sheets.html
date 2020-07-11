@@ -16,9 +16,14 @@
     {% for sheet in sheets %}
     <li class="sheet-link">
       <a href="char-sheet/{{ sheet[0] }}">{{ sheet[1] }}</a>
+      <a href="delete-sheet/{{ sheet[0] }}">
+        <button>Delete</button>
+      </a>
     </li>
     {% endfor %}
   </ul>
-  <button>Create a character</button>
+  <form action="{{ url_for('create_sheet') }}" method="POST">
+    <button>Create a character</button>
+  </form>
 </div>
 {% endblock content %}

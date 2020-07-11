@@ -1,0 +1,49 @@
+{% extends "layout.html" %} {% block content %}
+<div class="main-content-wrapper">
+  <form method="POST" action="{{ url_for('account') }}">
+    {{ password_form.hidden_tag() }}
+    <div class="form-element">
+      {{ password_form.old_password.label(class='label') }}
+      {% if password_form.old_password.errors or message %}
+        {{ password_form.old_password(class='text invalid-input') }}
+        {% for error in password_form.old_password.errors %}
+          <p class="error-message">{{ error }}</p>
+        {% endfor %}
+        {% if message %}
+          <p class="error-message">{{ message }}</p>
+        {% endif %}
+      {% else %}
+        {{ password_form.old_password(class='text') }}
+      {% endif %}
+    </div>
+    <div class="form-element">
+      {{ password_form.new_password.label(class='label') }}
+      {% if password_form.new_password.errors %}
+        {{ password_form.new_password(class='text invalid-input') }}
+        {% for error in password_form.new_password.errors %}
+          <p class="error-message">{{ error }}</p>
+        {% endfor %}
+      {% else %}
+        {{ password_form.new_password(class='text') }}
+      {% endif %}
+    </div>
+    <div class="form-element">
+      {{ password_form.confirm_password.label(class='label') }}
+      {% if password_form.confirm_password.errors %}
+        {{ password_form.confirm_password(class='text invalid-input') }}
+        {% for error in password_form.confirm_password.errors %}
+          <p class="error-message">{{ error }}</p>
+        {% endfor %}
+      {% else %}
+        {{ password_form.confirm_password(class='text') }}
+      {% endif %}
+    </div>
+    <div class="form-element">
+      {{ password_form.submit(class='button') }}
+    </div>
+  </form>
+  <a href="{{ url_for('delete') }}">
+    <button>Delete account</button>
+  </a>
+</div>
+{% endblock content %}

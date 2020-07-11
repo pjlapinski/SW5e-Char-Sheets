@@ -28,3 +28,16 @@ class LoginForm(FlaskForm):
     ], id='log-password')
     remember = BooleanField('Remember Me')
     submit = SubmitField('Log in', id='log-submit')
+
+
+class ChangePassword(FlaskForm):
+    old_password = PasswordField('Old Password', validators=[
+        DataRequired(), Length(min=8)
+    ])
+    new_password = PasswordField('New Password', validators=[
+        DataRequired(), Length(min=8)
+    ])
+    confirm_password = PasswordField('Confirm Password', validators=[
+        DataRequired(), Length(min=8), EqualTo('new_password')
+    ])
+    submit = SubmitField('Change Password', id='submit-password')
