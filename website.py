@@ -27,6 +27,8 @@ def index():
 
 @app.route('/char-sheet/<int:sheet_id>')
 def sheet(sheet_id):
+    if not current_user.is_authenticated:
+        return render_template('error-page.html', title='Error')
     char = Character.query.filter_by(id=sheet_id).first()
     if char.owner_id != current_user.id:
         return render_template('error-page.html', title='Error')
@@ -39,6 +41,8 @@ def sheet(sheet_id):
 @app.route('/char-sheet/save/<int:sheet_id>', methods=['POST'])
 def save_sheet(sheet_id):
     sheet = request.get_json()
+    if not sheet:
+        return 'Bad Request', 400
     str_sheet = json.dumps(sheet)
     char = Character.query.filter_by(id=sheet_id).first()
     if char.owner_id != current_user.id:

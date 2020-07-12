@@ -213,6 +213,7 @@ export function addAllEventListeners(): void {
   addRestButtonsEventListeners()
   addSaveEventListener()
   addReturnEventListener()
+  addOnExitEventListener()
 }
 
 function addAttributeScoresEventListeners(): void {
@@ -876,6 +877,23 @@ function addReturnEventListener(): void {
   returnBtn.addEventListener('click', () => {
     saveSheet()
     document.location.href = document.location.origin
+  })
+}
+
+function addOnExitEventListener(): void {
+  // this whole thing works kind of funky on mobile chromxe
+
+  // for mobile, the 'beforeunload' way will not work, so this will have to do
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') saveSheet()
+  })
+  window.addEventListener('beforeunload', () => {
+    let url = '/char-sheet/save/' + document.location.pathname.split('/')[2]
+    let headers = {
+      type: 'application/json',
+    }
+    let blob = new Blob([JSON.stringify(characterSheet)], headers)
+    navigator.sendBeacon(url, blob)
   })
 }
 
