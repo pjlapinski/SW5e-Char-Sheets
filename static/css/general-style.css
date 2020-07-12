@@ -1,52 +1,67 @@
+/* overall styling */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-  background-image: url('/static/images/clear-bg.png');
-  color: rgb(255, 255, 255);
+    background-image: url('/static/images/clear-bg.png');
+    color: rgb(255, 255, 255);
 }
 
 input,
 textarea,
 select {
-  padding: 1%;
-  background: rgba(116, 116, 116, 0.376);
-  color: white;
-  border: white;
+    padding: 1%;
+    background: rgba(116, 116, 116, 0.376);
+    color: white;
+    border: white;
+    transition: ease-out 0.3s;
 }
 
-button, .input-button {
+button, .input-button, .button {
     background: black;
     padding: 1vh;
     color: white;
     border-style: solid;
     border-color: #42D6CA;
     border-width: 1px;
-    transition: ease-out 0.3s;
+    transition: ease-in 0.2s;
 }
 
-.input-button:hover, button:hover {
-    background: #42D6CA;
-    color: black;
-    border-width: 2px;
+.header-buttons-wrapper > button, .input-button, .button {
+    width: 20vw;
+}
+
+.main-content-wrapper > button, .input-button, .button {
+    width: 20vw;
+}
+
+button:hover, .button:hover, .input-button:hover {
+    background: #42d6ca;
+    border-color: #42c0d6;
+    color: #111;
+    -webkit-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    -moz-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
 }
 
 .input-button {
     width: 100%;
 }
 
-textarea {
-  width: 100%;
-  resize: none;
+.input-text:hover {
+    -webkit-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    -moz-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
 }
 
-.error-div {
-  text-align: center;
-  font-size: xx-large;
+textarea {
+    width: 100%;
+    resize: none;
 }
 
 .footer, .header {
@@ -68,6 +83,12 @@ textarea {
     height: 8%;
 }
 
+.header-title {
+    padding: 10px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
 .header-buttons-wrapper {
     text-align: right;
 }
@@ -76,8 +97,21 @@ textarea {
     padding: 10%;
 }
 
+.error-div {
+    text-align: center;
+    font-size: xx-large;
+}
+
+.error-message {
+    color: red;
+    font-size: small;
+}
+
+/* modal boxes (login, register) */
+
 .modal-content {
-    margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 10px;
     clear: both;
 }
 
@@ -91,11 +125,6 @@ textarea {
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
-}
-
-.modal-content-wrapper > input {
-    display: inline-block;
-    width: 50%;
 }
 
 .modal {

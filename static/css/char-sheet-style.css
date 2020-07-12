@@ -16,12 +16,17 @@
   padding: 1vh;
   cursor: pointer;
   transition: ease-out 0.2s;
-  border: none;
+  border: 1px #111;
+  border-style: solid;
 }
 
 .nav-wrapper:hover {
-  background: rgb(105, 105, 105) !important;
-  border: 1px #42d6ca !important;
+  background: #42d6ca !important;
+  border-color: #42c0d6;
+  color: #111;
+  -webkit-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+  -moz-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+  box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
 }
 
 #sheet-close-btn {
@@ -184,9 +189,12 @@
 .species-wrapper,
 .class-wrapper,
 .alignment-wrapper,
-.background-wrapper,
 .combat-info-wrapper {
   display: flex;
+}
+
+.background-wrapper {
+  display: block;
 }
 
 .sheet-section h4,
