@@ -299,15 +299,14 @@
 #attacks-table td {
   font-size: 16;
   width: fit-content;
-  background-color: rgb(78, 78, 78);
+  background-color: rgba(78, 78, 78, 0.828);
   padding: 1.5vh;
-  border-radius: 15px;
   text-align: center;
 }
 
 #attacks-table-header td {
   font-weight: bold;
-  background: rgb(177, 177, 177);
+  background: #42c0d6ca;
   color: black;
 }
 
@@ -319,12 +318,28 @@
   align-items: flex-end;
 }
 
-.power {
-  margin-left: 2rem;
+.powers-header-wrapper {
+  background-color: rgba(63, 63, 63, 0.4);
+}
+
+.powers-header__element {
+  display: none;
+}
+
+.tabs {
+
+}
+
+.tabs-button {
+  width: fit-content;
 }
 
 li {
   background: rgba(63, 63, 63, 0.4);
   margin: 10px 0px 10px 0px;
   padding: 1vw;
+}
+
+ul {
+  list-style: none;
 }

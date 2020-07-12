@@ -15,7 +15,7 @@ body {
 input,
 textarea,
 select {
-    padding: 1%;
+    padding: 10px;
     background: rgba(116, 116, 116, 0.376);
     color: white;
     border: white;
@@ -23,9 +23,12 @@ select {
 }
 
 button, .input-button, .button {
+    font-weight: bold;
+    font-size: medium;
     background: black;
-    padding: 1vh;
-    color: white;
+    padding: 2vh;
+    min-width: 25%;
+    color: #42D6CA;
     border-style: solid;
     border-color: #42D6CA;
     border-width: 1px;
@@ -53,10 +56,21 @@ button:hover, .button:hover, .input-button:hover {
     width: 100%;
 }
 
+.input-text {
+    font-size: medium;
+}
+
 .input-text:hover {
     -webkit-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
     -moz-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
     box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    background-color: #37ada4;
+    color: #111;
+}
+
+.input-text:active {
+    background-color: #42D6CA;
+    color: #111;
 }
 
 textarea {
@@ -151,4 +165,22 @@ textarea {
 @keyframes animatetop {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
+}
+
+/* big screens */
+
+@media screen and (min-width: 600px) {
+    button, .input-button, .button {
+        background: black;
+        padding: 10px;
+        min-width: 5%;
+    }
+}
+
+/* small screens */
+
+@media screen and (max-width: 600px) {
+    .modal-content-wrapper {
+        width: 80%;
+    }
 }
