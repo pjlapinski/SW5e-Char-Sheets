@@ -65,9 +65,6 @@ def register():
         usr = User.query.filter_by(email=form.email.data).first()
         if usr:
             return redirect(url_for('index', errors={'email': ['User with such email already exists.']}, origin='register'))
-        # before we're ready to send people emails, accounts
-        # created are all going to be active by default - when
-        # we have emails figured out, they can be deactivated here,
         user = User(username=form.username.data,
                     email=form.email.data,
                     password=bcrypt.generate_password_hash(
