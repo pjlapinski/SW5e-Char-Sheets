@@ -1,8 +1,9 @@
 from flask import render_template, send_from_directory, request, redirect, url_for
 from models import User, Character
-from forms import RegisterForm, LoginForm, ChangePassword
-from __init__ import app, db, bcrypt, APP_STATIC
+from forms import RegisterForm, LoginForm, ChangePassword, RequestActivationEmail, ForgotPassword, ResetPassword
+from __init__ import app, db, bcrypt, APP_STATIC, mail
 from flask_login import login_user, current_user, logout_user
+from flask_mail import Message
 import json
 
 
@@ -71,11 +72,115 @@ def register():
                     email=form.email.data,
                     password=bcrypt.generate_password_hash(
                         form.password.data).decode('utf-8'),
-                    activated=True)
+                    activated=False)
         db.session.add(user)
         db.session.commit()
+        send_activation_email(user)
         return redirect(url_for('index'))
     return redirect(url_for('index', errors=form.errors, origin='register'))
+
+
+def send_activation_email(user):
+    token = user.get_token()
+    msg = Message('SW5e Sheets - Account activation',
+                  sender=app.config['MAIL_USERNAME'],
+                  recipients=[user.email])
+    # if the message is supposed to be sent with html, use
+    # msg.html = 'message content', probably read from a file, or even better, a template like our pages
+    # instead of msg.body
+    msg.body = f"""Thank you for registering an account on our website. To activate it,
+visit this link: {url_for('activate', token=token, _external=True)}
+This link will expire within 10 minutes of you recieving this message."""
+    mail.send(msg)
+
+
+def send_forgot_password_email(user):
+    token = user.get_token()
+    msg = Message('SW5e Sheets - Password reset',
+                  sender=app.config['MAIL_USERNAME'],
+                  recipients=[user.email])
+    # if the message is supposed to be sent with html, use
+    # msg.html = 'message content', probably read from a file, or even better, a template like our pages
+    # instead of msg.body
+    msg.body = f"""A password reset request has been sent. If you did not make this request, you can simply
+ignore this message. In other case, please enter this link to reset your password: {url_for('reset_password', token=token, _external=True)}
+This link will expire within 10 minutes of you recieving this message."""
+    mail.send(msg)
+
+
+@app.route('/activation_request', methods=['GET', 'POST'])
+def activation_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RequestActivationEmail()
+    errors = form.errors
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            errors = form.errors
+            user = User.query.filter_by(email=form.email.data).first()
+            if not user:
+                if 'email' not in errors.keys():
+                    errors['email'] = []
+                errors['email'].append('No such user exists.')
+            elif user.activated:
+                if 'email' not in errors.keys():
+                    errors['email'] = []
+                errors['email'].append(
+                    "This user's account is already active.")
+            else:
+                send_activation_email(user)
+                return redirect(url_for('index'))
+    return render_template('request-email.html', title='Request Email', form=form, errors=errors)
+
+
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = ForgotPassword()
+    errors = form.errors
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            errors = form.errors
+            user = User.query.filter_by(email=form.email.data).first()
+            if not user:
+                if 'email' not in errors.keys():
+                    errors['email'] = []
+                errors['email'].append('No such user exists.')
+            else:
+                send_forgot_password_email(user)
+                return redirect(url_for('index'))
+    return render_template('request-email.html', title='Request Email', form=form, errors=errors)
+
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    form = ResetPassword()
+    if current_user.is_authenticated:
+        return render_template('error-page.html', title='Error')
+    user = User.verify_token(token)
+    if user is None:
+        return render_template('error-page.html', title='Error')
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            user.password = bcrypt.generate_password_hash(
+                form.new_password.data)
+            db.session.commit()
+            return redirect(url_for('index'))
+    return render_template('reset-password.html', title='Reset Password', form=form, errors=form.errors)
+
+
+@app.route('/activate/<token>')
+def activate(token):
+    if current_user.is_authenticated:
+        return render_template('error-page.html', title='Error')
+    user = User.verify_token(token)
+    if user is None:
+        return render_template('error-page.html', title='Error')
+    else:
+        user.activated = True
+        db.session.commit()
+    return redirect(url_for('index'))
 
 
 @app.route('/login', methods=['POST'])
@@ -84,13 +189,13 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(username=form.username.data).first()
         if not user:
-            return redirect(url_for('index', errors={'email': ['No such user exists.']}, origin='login'))
+            return redirect(url_for('index', errors={'username': ['No such user exists.']}, origin='login'))
         if not bcrypt.check_password_hash(user.password, form.password.data):
             return redirect(url_for('index', errors={'password': ['Incorrect password.']}, origin='login'))
         if not user.activated:
-            return redirect(url_for('index', errors={'email': ['Account not activated. Please check your email.']}, origin='login'))
+            return redirect(url_for('index', errors={'username': ['Account not activated. Please check your email.']}, origin='login'))
         else:
             # this returns false if it failed to log in, but we're already checking that above
             login_user(user, remember=form.remember.data)

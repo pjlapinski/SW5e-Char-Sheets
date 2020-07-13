@@ -1,0 +1,28 @@
+{% extends "layout.html" %} {% block content %}
+<div class="main-content-wrapper">
+  <form method="POST">
+    {{ form.csrf_token }}
+    <div class="form-element">
+      {{ form.email.label(class='label') }}
+      {% if errors %}
+        {% if 'email' in errors %}
+          {{ form.email(class='text invalid-input') }}
+          {% for message in errors['email'] %}
+            <p class="error-message">{{ message }}</p>
+          {% endfor %}
+        {% else %}
+          {{ form.email(class='text') }}
+        {% endif %}
+      {% else %}
+        {{ form.email(class='text') }}
+      {% endif %}
+    </div>
+    <div class="modal-content form-element">
+      {{ form.submit(class='button') }}
+    </div>
+  </form>
+  <a href="{{ url_for('index') }}">
+    <button>Return</button>
+  </a>
+</div>
+{% endblock content %}

@@ -4,3 +4,4 @@ venv/
 __pycache__/
 *.js
 temp_db.db
+email_data.txt

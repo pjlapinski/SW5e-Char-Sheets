@@ -13,18 +13,21 @@
       <form action="{{ url_for('login') }}" method="POST">
         {{ login_form.csrf_token(id='log-csrf') }}
         <div class="modal-content form-element">
-          {{ login_form.email.label(class='modal-content') }}
+          {{ login_form.username.label(class='modal-content') }}
             {% if errors and origin == 'login' %}
-              {% if 'email' in errors %}
-                {{ login_form.email(class='modal-content invalid-input') }}
-                {% for message in errors['email'] %}
+              {% if 'username' in errors %}
+                {{ login_form.username(class='modal-content invalid-input') }}
+                {% for message in errors['username'] %}
                   <p class="error-message">{{ message }}</p>
+                  {% if message.split(' ')[0] == 'Account' %}
+                    <p class="error-message">Token expired? <a href="{{ url_for('activation_request') }}">Request another.</a></p>
+                  {% endif %}
                 {% endfor %}
               {% else %}
-                {{ login_form.email(class='modal-content input-text') }}
+                {{ login_form.username(class='modal-content input-text') }}
             {% endif %}
           {% else %}
-            {{ login_form.email(class='modal-content input-text') }}
+            {{ login_form.username(class='modal-content input-text') }}
           {% endif %}
         </div>
         <div class="modal-content form-element">
@@ -45,6 +48,9 @@
         <div class="modal-content form-element">
           {{ login_form.remember.label(class='modal-content') }}
           {{ login_form.remember(class='modal-content') }}
+        </div>
+        <div class="modal-content">
+          <a href="{{ url_for('forgot_password') }}"><p>Forgot your password?</p></a>
         </div>
         <div class="modal-content form-element">
           {{ login_form.submit(class='button') }}
