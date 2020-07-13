@@ -24,9 +24,9 @@
   background: #42d6ca !important;
   border-color: #42c0d6;
   color: #111;
-  -webkit-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
-  -moz-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
-  box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+  -webkit-box-shadow: 0px 0px 36px 6px rgba(66, 192, 214, 0.44);
+  -moz-box-shadow: 0px 0px 36px 6px rgba(66, 192, 214, 0.44);
+  box-shadow: 0px 0px 36px 6px rgba(66, 192, 214, 0.44);
 }
 
 #sheet-close-btn {
@@ -327,7 +327,6 @@
 }
 
 .tabs {
-
 }
 
 .tabs-button {
