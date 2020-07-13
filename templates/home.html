@@ -56,6 +56,7 @@
           {{ login_form.submit(class='button') }}
         </div>
       </form>
+      <button class="forgot-password-btn">Clouded by dark side my mind is, <b>forgot password</b> I did</button>
     </div>
   </div>
 
@@ -72,10 +73,10 @@
                 <p class="error-message">{{ message }}</p>
               {% endfor %}
             {% else %}
-              {{ register_form.username(class='modal-content') }}
+              {{ register_form.username(class='modal-content input-text') }}
             {% endif %}
           {% else %}
-            {{ register_form.username(class='modal-content') }}
+            {{ register_form.username(class='modal-content input-text') }}
           {% endif %}
         </div>
         <div class="modal-content form-element">
@@ -87,10 +88,10 @@
                 <p class="error-message">{{ message }}</p>
               {% endfor %}
             {% else %}
-              {{ register_form.email(class='modal-content') }}
+              {{ register_form.email(class='modal-content input-text') }}
             {% endif %}
           {% else %}
-            {{ register_form.email(class='modal-content') }}
+            {{ register_form.email(class='modal-content input-text') }}
           {% endif %}
         </div>
         <div class="modal-content form-element">
@@ -102,10 +103,10 @@
                 <p class="error-message">{{ message }}</p>
               {% endfor %}
             {% else %}
-              {{ register_form.password(class='modal-content') }}
+              {{ register_form.password(class='modal-content input-text') }}
             {% endif %}
           {% else %}
-            {{ register_form.password(class='modal-content') }}
+            {{ register_form.password(class='modal-content input-text') }}
           {% endif %}
         </div>
         <div class="modal-content form-element">
@@ -117,10 +118,10 @@
                 <p class="error-message">{{ message }}</p>
               {% endfor %}
             {% else %}
-              {{ register_form.confirm_password(class='modal-content') }}
+              {{ register_form.confirm_password(class='modal-content input-text') }}
             {% endif %}
           {% else %}
-            {{ register_form.confirm_password(class='modal-content') }}
+            {{ register_form.confirm_password(class='modal-content input-text') }}
           {% endif %}
         </div>
         <div class="modal-content form-element">

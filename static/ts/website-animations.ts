@@ -21,13 +21,20 @@ initializeAccordion()
 // indexes 0-8 are for infomations about a character, 11-13 are for save, return and edit
 
 function openMenu() {
-  document.getElementById('menu-toggle').style.display = 'none'
-  document.getElementById('sheet-side-menu').style.width = '45%'
+  if (window.outerWidth > 600) {
+    document.getElementById('menu-toggle').style.display = 'none'
+    document.getElementById('sheet-side-menu').style.width = '250px'
+  } else {
+    document.getElementById('menu-toggle').style.display = 'none'
+    document.getElementById('sheet-side-menu').style.width = '45%'
+  }
 }
 
 export function closeMenu() {
+  if (window.outerWidth < 600) {
   document.getElementById('menu-toggle').style.display = 'block'
   document.getElementById('sheet-side-menu').style.width = '0'
+  }
 }
 
 function initializeSideMenu(): void {
@@ -49,9 +56,9 @@ function initializeSideMenu(): void {
 
   window.onmouseup = function (event) {
     if (
-      !event.target.closest('.side-menu') &&
+      (!event.target.closest('.side-menu') &&
       document.getElementById('sheet-side-menu').offsetWidth > 0 &&
-      !event.target.closest('.nav-wrapper')
+      !event.target.closest('.nav-wrapper')) && window.outerWidth < 600
     ) {
       closeMenu();
     }
