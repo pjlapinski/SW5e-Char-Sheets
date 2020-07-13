@@ -2,6 +2,7 @@ json/
 venv/
 .vscode/
 __pycache__/
-*.js
+tsconfig.json
+*.ts
 temp_db.db
 email_data.txt

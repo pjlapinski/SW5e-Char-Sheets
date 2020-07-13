@@ -1,7 +1,0 @@
-{
-    "compilerOptions": {
-        "target": "ESNext",
-        "watch": true,
-        "outDir": "./static/js"
-    }
-}
