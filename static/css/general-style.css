@@ -162,6 +162,12 @@ textarea {
     align-content: center;
 }
 
+.forgot-password-btn {
+    font-size: smaller;
+    font-weight: lighter;
+    border: none;
+}
+
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
