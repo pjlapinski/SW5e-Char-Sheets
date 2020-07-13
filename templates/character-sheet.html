@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-    rel="stylesheet"
-    href=" {{ url_for('static', filename='css/general-style.css') }}"
-  />
+      rel="stylesheet"
+      href=" {{ url_for('static', filename='css/general-style.css') }}"
+    />
     <link
       rel="stylesheet"
       href=" {{ url_for('static', filename='css/char-sheet-style.css') }}"
@@ -60,7 +60,7 @@
         <h2 id="save-nav">Save</h2>
       </div>
       <div class="nav-wrapper">
-        <h2 id="return-nav">My account</h2>
+        <h2 id="return-nav">Home</h2>
       </div>
       <div class="nav-wrapper">
         <h2>Edit</h2>
@@ -211,15 +211,14 @@
       </div>
 
       <div class="sheet-section display-sheet-section" id="powers-section">
-        
         <div class="powers-header-wrapper">
           <div class="tabs">
-            <button class="tabs-button">tech</button>
-            <button class="tabs-button">dark side</button>
-            <button class="tabs-button">light side</button>
-            <button class="tabs-button">power points</button>
+            <button class="tabs-button" id="tabs__tech">Tech</button>
+            <button class="tabs-button" id="tabs__dark">Dark side</button>
+            <button class="tabs-button" id="tabs__light">Light side</button>
+            <button class="tabs-button" id="tabs__power-points">Power points</button>
           </div>
-          
+
           <div class="powers-header">
             <div class="powers-header__element">
               <h3 class="label">Tech powers:</h3>
@@ -232,7 +231,7 @@
                 <h4 id="tech-attack-bonus"></h4>
               </div>
             </div>
-  
+
             <div class="powers-header__element">
               <h3 class="label">Dark side powers:</h3>
               <div class="powers-header__element__single-line">
@@ -244,7 +243,7 @@
                 <h4 id="dark-side-attack-bonus"></h4>
               </div>
             </div>
-  
+
             <div class="powers-header__element">
               <h3 class="label">Light side powers:</h3>
               <div class="powers-header__element__single-line">
@@ -256,7 +255,7 @@
                 <h4 id="light-side-attack-bonus"></h4>
               </div>
             </div>
-  
+
             <div class="powers-header__element">
               <h4 class="label">Power points:</h4>
               <div class="powers-header__element__single-line">
@@ -319,7 +318,12 @@
         class="sheet-section edit-sheet-section"
         id="basic-info-section-edit"
       >
-        <input type="button" id="level-up" class="input-button" value="Level up" />
+        <input
+          type="button"
+          id="level-up"
+          class="input-button"
+          value="Level up"
+        />
 
         <h4 class="label">Name:</h4>
         <input type="text" id="character-name-edit" class="text" />
@@ -435,16 +439,12 @@
       </div>
 
       <div class="sheet-section edit-sheet-section" id="powers-section-edit">
-        <div class="powers-header">
-          <div class="powers-header__element">
-            <h4 class="label">Max power points:</h4>
-            <input
-              type="number"
-              id="max-power-points-edit"
-              class="number underlined-input__number"
-            />
-          </div>
-        </div>
+        <h4 class="label">Max power points:</h4>
+        <input
+          type="number"
+          id="max-power-points-edit"
+          class="number underlined-input__number"
+        />
 
         <div class="powers-list-wrapper">
           <h3 class="label">Powers known:</h3>

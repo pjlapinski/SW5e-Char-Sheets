@@ -22,6 +22,11 @@ select {
     transition: ease-out 0.3s;
 }
 
+option {
+    background: white;
+    color: black;
+}
+
 button, .input-button, .button {
     font-weight: bold;
     font-size: medium;
