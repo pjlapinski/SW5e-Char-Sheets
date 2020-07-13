@@ -13,50 +13,44 @@
       <form action="{{ url_for('login') }}" method="POST">
         {{ login_form.csrf_token(id='log-csrf') }}
         <div class="modal-content form-element">
-          {{ login_form.username.label(class='modal-content') }}
-            {% if errors and origin == 'login' %}
-              {% if 'username' in errors %}
-                {{ login_form.username(class='modal-content invalid-input') }}
-                {% for message in errors['username'] %}
-                  <p class="error-message">{{ message }}</p>
-                  {% if message.split(' ')[0] == 'Account' %}
-                    <p class="error-message">Token expired? <a href="{{ url_for('activation_request') }}">Request another.</a></p>
-                  {% endif %}
-                {% endfor %}
-              {% else %}
-                {{ login_form.username(class='modal-content input-text') }}
-            {% endif %}
-          {% else %}
-            {{ login_form.username(class='modal-content input-text') }}
+          {{ login_form.username.label(class='modal-content') }} {% if errors
+          and origin == 'login' %} {% if 'username' in errors %} {{
+          login_form.username(class='modal-content invalid-input') }} {% for
+          message in errors['username'] %}
+          <p class="error-message">{{ message }}</p>
+          {% if message.split(' ')[0] == 'Account' %}
+          <p class="error-message">
+            Token expired?
+            <a href="{{ url_for('activation_request') }}">Request another.</a>
+          </p>
+          {% endif %} {% endfor %} {% else %} {{
+          login_form.username(class='modal-content input-text') }} {% endif %}
+          {% else %} {{ login_form.username(class='modal-content input-text') }}
           {% endif %}
         </div>
         <div class="modal-content form-element">
-          {{ login_form.password.label(class='modal-content') }}
-            {% if errors %}
-              {% if 'password' in errors %}
-                {{ login_form.password(class='modal-content invalid-input') }}
-                {% for message in errors['password'] %}
-                  <p class="error-message">{{ message }}</p>
-                {% endfor %}
-              {% else %}
-                {{ login_form.password(class='modal-content input-text') }}
-              {% endif %}
-          {% else %}
-            {{ login_form.password(class='modal-content input-text') }}
-          {% endif %}
+          {{ login_form.password.label(class='modal-content') }} {% if errors %}
+          {% if 'password' in errors %} {{
+          login_form.password(class='modal-content invalid-input') }} {% for
+          message in errors['password'] %}
+          <p class="error-message">{{ message }}</p>
+          {% endfor %} {% else %} {{ login_form.password(class='modal-content
+          input-text') }} {% endif %} {% else %} {{
+          login_form.password(class='modal-content input-text') }} {% endif %}
         </div>
         <div class="modal-content form-element">
-          {{ login_form.remember.label(class='modal-content') }}
-          {{ login_form.remember(class='modal-content') }}
-        </div>
-        <div class="modal-content">
-          <a href="{{ url_for('forgot_password') }}"><p>Forgot your password?</p></a>
+          {{ login_form.remember.label(class='modal-content') }} {{
+          login_form.remember(class='modal-content') }}
         </div>
         <div class="modal-content form-element">
           {{ login_form.submit(class='button') }}
         </div>
       </form>
-      <button class="forgot-password-btn">Clouded by dark side my mind is, <b>forgot password</b> I did</button>
+      <a href="{{ url_for('forgot_password') }}">
+        <button class="forgot-password-btn">
+          Clouded by dark side my mind is, <b>forgot password</b> I did
+        </button>
+      </a>
     </div>
   </div>
 
@@ -65,64 +59,48 @@
       <form action="{{ url_for('register') }}" method="POST">
         {{ register_form.csrf_token(id='reg-csrf') }}
         <div class="modal-content form-element">
-          {{ register_form.username.label(class='modal-content') }}
-          {% if errors %}
-            {% if 'username' in errors %}
-              {{ register_form.username(class='modal-content invalid-input') }}
-              {% for message in errors['username'] %}
-                <p class="error-message">{{ message }}</p>
-              {% endfor %}
-            {% else %}
-              {{ register_form.username(class='modal-content input-text') }}
-            {% endif %}
-          {% else %}
-            {{ register_form.username(class='modal-content input-text') }}
-          {% endif %}
+          {{ register_form.username.label(class='modal-content') }} {% if errors
+          %} {% if 'username' in errors %} {{
+          register_form.username(class='modal-content invalid-input') }} {% for
+          message in errors['username'] %}
+          <p class="error-message">{{ message }}</p>
+          {% endfor %} {% else %} {{ register_form.username(class='modal-content
+          input-text') }} {% endif %} {% else %} {{
+          register_form.username(class='modal-content input-text') }} {% endif
+          %}
         </div>
         <div class="modal-content form-element">
-          {{ register_form.email.label(class='modal-content') }}
-          {% if errors and origin == 'register' %}
-            {% if 'email' in errors %}
-              {{ register_form.email(class='modal-content invalid-input') }}
-              {% for message in errors['email'] %}
-                <p class="error-message">{{ message }}</p>
-              {% endfor %}
-            {% else %}
-              {{ register_form.email(class='modal-content input-text') }}
-            {% endif %}
-          {% else %}
-            {{ register_form.email(class='modal-content input-text') }}
-          {% endif %}
+          {{ register_form.email.label(class='modal-content') }} {% if errors
+          and origin == 'register' %} {% if 'email' in errors %} {{
+          register_form.email(class='modal-content invalid-input') }} {% for
+          message in errors['email'] %}
+          <p class="error-message">{{ message }}</p>
+          {% endfor %} {% else %} {{ register_form.email(class='modal-content
+          input-text') }} {% endif %} {% else %} {{
+          register_form.email(class='modal-content input-text') }} {% endif %}
         </div>
         <div class="modal-content form-element">
-          {{ register_form.password.label(class='modal-content') }}
-          {% if errors and origin == 'register' %}
-            {% if 'password' in errors %}
-              {{ register_form.password(class='modal-content invalid-input') }}
-              {% for message in errors['password'] %}
-                <p class="error-message">{{ message }}</p>
-              {% endfor %}
-            {% else %}
-              {{ register_form.password(class='modal-content input-text') }}
-            {% endif %}
-          {% else %}
-            {{ register_form.password(class='modal-content input-text') }}
-          {% endif %}
+          {{ register_form.password.label(class='modal-content') }} {% if errors
+          and origin == 'register' %} {% if 'password' in errors %} {{
+          register_form.password(class='modal-content invalid-input') }} {% for
+          message in errors['password'] %}
+          <p class="error-message">{{ message }}</p>
+          {% endfor %} {% else %} {{ register_form.password(class='modal-content
+          input-text') }} {% endif %} {% else %} {{
+          register_form.password(class='modal-content input-text') }} {% endif
+          %}
         </div>
         <div class="modal-content form-element">
-          {{ register_form.confirm_password.label(class='modal-content') }}
-          {% if errors and origin == 'register' %}
-            {% if 'confirm_password' in errors %}
-              {{ register_form.confirm_password(class='modal-content invalid-input') }}
-              {% for message in errors['confirm_password'] %}
-                <p class="error-message">{{ message }}</p>
-              {% endfor %}
-            {% else %}
-              {{ register_form.confirm_password(class='modal-content input-text') }}
-            {% endif %}
-          {% else %}
-            {{ register_form.confirm_password(class='modal-content input-text') }}
-          {% endif %}
+          {{ register_form.confirm_password.label(class='modal-content') }} {%
+          if errors and origin == 'register' %} {% if 'confirm_password' in
+          errors %} {{ register_form.confirm_password(class='modal-content
+          invalid-input') }} {% for message in errors['confirm_password'] %}
+          <p class="error-message">{{ message }}</p>
+          {% endfor %} {% else %} {{
+          register_form.confirm_password(class='modal-content input-text') }} {%
+          endif %} {% else %} {{
+          register_form.confirm_password(class='modal-content input-text') }} {%
+          endif %}
         </div>
         <div class="modal-content form-element">
           {{ register_form.submit(class='button') }}
