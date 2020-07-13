@@ -97,9 +97,13 @@
   padding: 5vh 10vw;
 }
 
+/* hp */
+
 #hp-section-edit {
   text-align: center;
 }
+
+/* bonuses */
 
 #bonuses-section {
   display: flex;
@@ -125,45 +129,8 @@
 
 /* sheets' content styling */
 
-.skills-toggle {
-  width: 100%;
-}
-
 .add-button {
   width: 20%;
-}
-
-.skills-toggle {
-  background-color: rgb(68, 68, 68);
-  border: none;
-  padding: 2%;
-  text-align: left;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.skills-toggle:after {
-  content: '\002B';
-  color: #777;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-}
-
-.skills-toggle-active:after {
-  content: '\2212';
-}
-
-.skills-toggle:hover {
-  background: rgba(116, 116, 116, 0.8);
-  box-shadow: none;
-}
-
-#notes-edit {
-  min-height: 80vh;
 }
 
 .underlined-input__number {
@@ -200,18 +167,10 @@
 }
 
 #submit-heal-or-damage {
-  background: rgb(63, 63, 63);
-  color: rgb(255, 255, 255);
-  border: solid;
-  border-color: black;
-  border-radius: 15px;
-  font-weight: bold;
-  padding: 1vh 3vw;
-}
-
-#submit-heal-or-damage:active {
-  background-color: rgb(255, 255, 255);
-  color: rgb(63, 63, 63);
+  width: 100%;
+  padding: 0.5vh;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 /* styling for the part with attribute scores and skills */
@@ -313,6 +272,8 @@
   display: flex;
 }
 
+/* attacks */
+
 .attack .label-with-background + .label-with-background {
   margin-left: 1rem;
 }
@@ -324,6 +285,8 @@
 #attacks-table {
   width: 60vw;
 }
+
+/* FIXME: notes flowing out of the screen */
 
 #attacks-table td {
   font-size: 16;
@@ -337,6 +300,16 @@
   font-weight: bold;
   background: #42c0d6ca;
   color: black;
+}
+
+/* powers */
+
+.tabs {
+}
+
+.tabs-button {
+  width: fit-content;
+  padding: ;
 }
 
 .power__single-line {
@@ -355,12 +328,45 @@
   display: none;
 }
 
-.tabs {
+/* skills */
+
+.skills-toggle {
+  width: 100%;
 }
 
-.tabs-button {
-  width: fit-content;
-  padding: ;
+.skills-toggle {
+  background-color: rgb(68, 68, 68);
+  border: none;
+  padding: 2%;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.skills-toggle:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.skills-toggle-active:after {
+  content: '\2212';
+}
+
+.skills-toggle:hover {
+  background: rgba(116, 116, 116, 0.8);
+  box-shadow: none;
+}
+
+/* notes */
+
+#notes-edit {
+  min-height: 80vh;
 }
 
 li {
