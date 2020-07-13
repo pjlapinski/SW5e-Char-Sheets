@@ -9,19 +9,14 @@ import os
 app = Flask(__name__)
 # don't cache files, may be deleted later when deploying
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-# generate a new one on deploy and read it from the environment variable
-app.config['SECRET_KEY'] = '57fcbcb450d4560880d2635018e43fec'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///temp_db.db'
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-# on heroku, read those from environment variables
-with open('email_data.txt') as f:
-    content = f.read().strip()
-    email, password = content.split(':')
-app.config['MAIL_USERNAME'] = email
-app.config['MAIL_PASSWORD'] = password
+app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
+app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
 
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
