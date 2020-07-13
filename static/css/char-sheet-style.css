@@ -159,6 +159,7 @@
 
 .skills-toggle:hover {
   background: rgba(116, 116, 116, 0.8);
+  box-shadow: none;
 }
 
 #notes-edit {
@@ -321,7 +322,7 @@
 }
 
 #attacks-table {
-  width: 75vw;
+  width: 60vw;
 }
 
 #attacks-table td {

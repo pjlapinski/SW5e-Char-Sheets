@@ -38,6 +38,7 @@ button, .input-button, .button {
     border-color: #42D6CA;
     border-width: 1px;
     transition: ease-in 0.2s;
+    cursor: pointer;
 }
 
 .header-buttons-wrapper > button, .input-button, .button {
@@ -48,7 +49,8 @@ button, .input-button, .button {
     width: 20vw;
 }
 
-button:hover, .button:hover, .input-button:hover {
+button:hover, .button:hover, .input-button:hover,
+button:active, .button:active, .input-button:active {
     background: #42d6ca;
     border-color: #42c0d6;
     color: #111;
@@ -112,7 +114,7 @@ textarea {
     text-align: right;
 }
 
-.main-content-wrapper {
+.main-content-wrapper, .account-management-wrapper {
     padding: 10%;
 }
 
@@ -194,4 +196,73 @@ textarea {
     .modal-content-wrapper {
         width: 80%;
     }
+
+    .delete-btn, .sheet-link {
+        font-size: 10vw !important;
+    }
+}
+
+/* profile */
+
+a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+ul#sheet-links {
+    list-style: none;
+}
+
+.sheet-link {
+    font-size: 6vw;
+}
+
+.delete-btn {
+    font-size: 6vw;
+    cursor: pointer;
+    transition: 1s;
+    float: right;
+}
+
+.delete-btn:hover, .delete-btn:active {
+    color: red;
+}
+
+#create-char-btn, .wide-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-element {
+    margin-bottom: 10px;
+}
+
+.label {
+    margin-right: 4px;
+}
+
+.form-element > * {
+    display: block;
+    width: 100%;
+}
+
+.account-management-wrapper {
+    text-align: center;
+}
+
+.delete-btn-txt {
+    margin-top: 20px;
+    width: 100%;
+    border-color: #bd0000;
+    border-style: 1px solid;
+    color: #bd0000;
+}
+
+.delete-btn-txt:hover, .delete-btn-txt:active {
+    background-color: #bd0000;
+    border-color: #bd0000;
+    -webkit-box-shadow: 0px 0px 36px 6px #bd0000d2;
+    -moz-box-shadow: 0px 0px 36px 6px #bd0000d2;
+    box-shadow: 0px 0px 36px 6px #bd0000d2;
 }
