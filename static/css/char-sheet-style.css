@@ -33,6 +33,11 @@
   margin-left: 39vw;
   font-size: 6vw;
   cursor: pointer;
+  transition: 1s;
+}
+
+#sheet-close-btn:hover {
+  color: red;
 }
 
 #menu-toggle {
@@ -41,18 +46,41 @@
   font-size: 220%;
   position: fixed;
   cursor: pointer;
+  display: none;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   #sheet-close-btn {
     font-size: 15vw;
     margin-left: 35vw;
+    display: inline-block;
   }
   .side-menu {
     padding-top: 15px;
   }
   .side-menu div {
     font-size: 5vw;
+  }
+
+  #menu-toggle {
+    display: block;
+  }
+
+  .nav-wrapper {
+    padding: 0.4vh;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  #sheet-close-btn {
+    display: none;
+  }
+  .side-menu {
+    width: 200px;
+  }
+
+  .sheet-section {
+    margin-left: 200px !important;
   }
 }
 
