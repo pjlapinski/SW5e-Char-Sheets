@@ -642,7 +642,7 @@ export function fillFeaturesEditHTML(): void {
   for (let prof of characterSheet.otherProficiencies) {
     let profLi: HTMLElement = document.createElement('li')
     let deleteBtn: HTMLInputElement = document.createElement('input')
-    deleteBtn.className = 'button'
+    deleteBtn.className = 'button sheet-delete-btn-txt'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     profLi.appendChild(deleteBtn)
@@ -657,7 +657,7 @@ export function fillFeaturesEditHTML(): void {
   for (let lang of characterSheet.languages) {
     let langLi: HTMLElement = document.createElement('li')
     let deleteBtn: HTMLInputElement = document.createElement('input')
-    deleteBtn.className = 'button'
+    deleteBtn.className = 'button sheet-delete-btn-txt'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     langLi.appendChild(deleteBtn)
@@ -672,7 +672,7 @@ export function fillFeaturesEditHTML(): void {
   for (let feature of characterSheet.features) {
     let li: HTMLElement = document.createElement('li')
     let deleteBtn: HTMLInputElement = document.createElement('input')
-    deleteBtn.className = 'button'
+    deleteBtn.className = 'button sheet-delete-btn-txt'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
@@ -725,7 +725,7 @@ export function fillEquipmentEditHTML(): void {
     li.className = 'equipment__item'
     let deleteBtn: HTMLInputElement = document.createElement('input')
     deleteBtn.type = 'button'
-    deleteBtn.className = 'button'
+    deleteBtn.className = 'button sheet-delete-btn-txt'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
     let name: HTMLInputElement = document.createElement('input')
@@ -769,7 +769,7 @@ export function fillAttacksEditHTML(): void {
   for (let attack of characterSheet.attacks) {
     let li: HTMLElement = document.createElement('li')
     let deleteBtn: HTMLInputElement = document.createElement('input')
-    deleteBtn.className = 'button'
+    deleteBtn.className = 'button sheet-delete-btn-txt'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
@@ -886,7 +886,7 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     let li: HTMLElement = document.createElement('li')
     li.className = 'power'
     let deleteBtn: HTMLInputElement = document.createElement('input')
-    deleteBtn.className = 'button'
+    deleteBtn.className = 'button sheet-delete-btn-txt'
     deleteBtn.type = 'button'
     deleteBtn.value = 'Delete'
     li.appendChild(deleteBtn)
