@@ -532,7 +532,7 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     concentrationLabel.innerText = 'Concentration:'
     concentrationDiv.appendChild(concentrationLabel)
     let concentration: HTMLInputElement = document.createElement('input')
-    concentration.className = 'checkbox'
+    concentration.className = 'checkbox unclickable-checkbox'
     concentration.type = 'checkbox'
     concentration.checked = power.concentration
     concentration.disabled = true
