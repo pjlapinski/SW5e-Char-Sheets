@@ -7,7 +7,7 @@ def create_database():
     db.session.commit()
     db.create_all()
     user = User(username='testuser', email='testuser@test.com',
-                password=bcrypt.generate_password_hash('testuser'), activated=True)
+                password=bcrypt.generate_password_hash('testuser').decode('utf-8'), activated=True)
     db.session.add(user)
     db.session.commit()
     with open('./sheets/1.json') as f:
