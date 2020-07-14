@@ -161,7 +161,7 @@ def reset_password(token):
     if request.method == 'POST':
         if form.validate_on_submit():
             user.password = bcrypt.generate_password_hash(
-                form.new_password.data)
+                form.new_password.data).decode('utf-8')
             db.session.commit()
             return redirect(url_for('index'))
     return render_template('reset-password.html', title='Reset Password', form=form, errors=form.errors)
@@ -219,7 +219,7 @@ def account():
                 return render_template('account.html', title='Account', user_data=current_user, password_form=password_form, message=message)
             user = User.query.get(current_user.id)
             user.password = bcrypt.generate_password_hash(
-                password_form.new_password.data)
+                password_form.new_password.data).decode('utf-8')
             db.session.commit()
             return redirect(url_for('index'))
     return render_template('account.html', title='Account', user_data=current_user, password_form=password_form, message=message)
@@ -233,6 +233,7 @@ def delete_account():
         user_id = current_user.id
         logout_user()
         User.query.filter_by(id=user_id).delete()
+        Character.query.filter_by(owner_id=user_id).delete()
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('delete.html', title='Delete Account')
@@ -370,4 +371,4 @@ def js_static(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run()
