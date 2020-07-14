@@ -233,6 +233,7 @@ def delete_account():
         user_id = current_user.id
         logout_user()
         User.query.filter_by(id=user_id).delete()
+        Character.query.filter_by(owner_id=user_id).delete()
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('delete.html', title='Delete Account')
