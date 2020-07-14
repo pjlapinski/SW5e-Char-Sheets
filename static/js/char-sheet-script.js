@@ -989,6 +989,7 @@ function initUtilityDiv() {
         if (section.style.display === 'block') {
             previousSection = i;
             section.style.display = 'none';
+            break;
         }
     }
     utilityDiv.style.display = 'block';
