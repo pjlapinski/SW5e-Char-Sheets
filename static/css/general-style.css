@@ -188,6 +188,18 @@ textarea {
         padding: 10px;
         min-width: 5%;
     }
+
+    .wide-btn {
+        width: 50%;
+    }
+    
+    .delete-btn-txt {
+        margin-top: 20px;
+        width: 50%;
+        border-color: #bd0000;
+        border-style: 1px solid;
+        color: #bd0000;
+    }
 }
 
 /* small screens */
@@ -215,7 +227,7 @@ ul#sheet-links {
 }
 
 .sheet-link {
-    font-size: 6vw;
+    font-size: 4vw;
 }
 
 .delete-btn {
@@ -232,6 +244,10 @@ ul#sheet-links {
 #create-char-btn, .wide-btn {
     width: 100%;
     margin-top: 20px;
+}
+
+.wide-btn {
+    width: 70%;
 }
 
 .form-element {
@@ -251,15 +267,15 @@ ul#sheet-links {
     text-align: center;
 }
 
-.delete-btn-txt {
+.delete-btn-txt, .sheet-delete-btn-txt {
     margin-top: 20px;
-    width: 100%;
+    width: 70%;
     border-color: #bd0000;
     border-style: 1px solid;
     color: #bd0000;
 }
 
-.delete-btn-txt:hover, .delete-btn-txt:active {
+.delete-btn-txt:hover, .delete-btn-txt:active, .sheet-delete-btn-txt:hover {
     background-color: #bd0000;
     border-color: #bd0000;
     -webkit-box-shadow: 0px 0px 36px 6px #bd0000d2;

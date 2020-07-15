@@ -408,7 +408,7 @@ function fillSinglePowerLevelDisplayHTML(level) {
         concentrationLabel.innerText = 'Concentration:';
         concentrationDiv.appendChild(concentrationLabel);
         let concentration = document.createElement('input');
-        concentration.className = 'checkbox';
+        concentration.className = 'checkbox unclickable-checkbox';
         concentration.type = 'checkbox';
         concentration.checked = power.concentration;
         concentration.disabled = true;
@@ -509,7 +509,7 @@ export function fillFeaturesEditHTML() {
     for (let prof of characterSheet.otherProficiencies) {
         let profLi = document.createElement('li');
         let deleteBtn = document.createElement('input');
-        deleteBtn.className = 'button';
+        deleteBtn.className = 'button sheet-delete-btn-txt';
         deleteBtn.type = 'button';
         deleteBtn.value = 'Delete';
         profLi.appendChild(deleteBtn);
@@ -524,7 +524,7 @@ export function fillFeaturesEditHTML() {
     for (let lang of characterSheet.languages) {
         let langLi = document.createElement('li');
         let deleteBtn = document.createElement('input');
-        deleteBtn.className = 'button';
+        deleteBtn.className = 'button sheet-delete-btn-txt';
         deleteBtn.type = 'button';
         deleteBtn.value = 'Delete';
         langLi.appendChild(deleteBtn);
@@ -539,7 +539,7 @@ export function fillFeaturesEditHTML() {
     for (let feature of characterSheet.features) {
         let li = document.createElement('li');
         let deleteBtn = document.createElement('input');
-        deleteBtn.className = 'button';
+        deleteBtn.className = 'button sheet-delete-btn-txt';
         deleteBtn.type = 'button';
         deleteBtn.value = 'Delete';
         li.appendChild(deleteBtn);
@@ -593,7 +593,7 @@ export function fillEquipmentEditHTML() {
         li.className = 'equipment__item';
         let deleteBtn = document.createElement('input');
         deleteBtn.type = 'button';
-        deleteBtn.className = 'button';
+        deleteBtn.className = 'button sheet-delete-btn-txt';
         deleteBtn.value = 'Delete';
         li.appendChild(deleteBtn);
         let name = document.createElement('input');
@@ -636,7 +636,7 @@ export function fillAttacksEditHTML() {
     for (let attack of characterSheet.attacks) {
         let li = document.createElement('li');
         let deleteBtn = document.createElement('input');
-        deleteBtn.className = 'button';
+        deleteBtn.className = 'button sheet-delete-btn-txt';
         deleteBtn.type = 'button';
         deleteBtn.value = 'Delete';
         li.appendChild(deleteBtn);
@@ -748,7 +748,7 @@ function fillSinglePowerLevelEditHTML(level) {
         let li = document.createElement('li');
         li.className = 'power';
         let deleteBtn = document.createElement('input');
-        deleteBtn.className = 'button';
+        deleteBtn.className = 'button sheet-delete-btn-txt';
         deleteBtn.type = 'button';
         deleteBtn.value = 'Delete';
         li.appendChild(deleteBtn);
