@@ -97,6 +97,10 @@
   padding: 5vh 10vw;
 }
 
+.sheet-delete-btn-txt {
+  width: 30%;
+}
+
 /* hp */
 
 #hp-section-edit {

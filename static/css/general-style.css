@@ -180,6 +180,11 @@ textarea {
     to {top:0; opacity:1}
 }
 
+.blurred-element {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
 /* big screens */
 
 @media screen and (min-width: 600px) {
@@ -227,11 +232,11 @@ ul#sheet-links {
 }
 
 .sheet-link {
-    font-size: 4vw;
+    font-size: 2vw;
 }
 
 .delete-btn {
-    font-size: 6vw;
+    font-size: 2vw;
     cursor: pointer;
     transition: 1s;
     float: right;

@@ -4,19 +4,33 @@
 let sideMenuButtons: Array<Element> = Array.from(
   document.getElementsByClassName('nav-wrapper')
 )
+
 let sheetSections: Array<Element> = Array.from(
   document.getElementsByClassName('sheet-section')
 )
+
 let displaySheetSections: Array<Element> = Array.from(
   document.getElementsByClassName('display-sheet-section')
 )
+
 let editSheetSections: Array<Element> = Array.from(
   document.getElementsByClassName('edit-sheet-section')
 )
+
+let buttonTabs: Array<Element> = Array.from(
+  document.getElementsByClassName('tabs-button')
+)
+
+let powersTabs: Array<Element> = Array.from(
+  document.getElementsByClassName('powers-header__element')
+)
+
 let previouslyClickedElement: number = 0
 let isEditModeActive: Boolean = false
+
 initializeSideMenu()
 initializeAccordion()
+initializePowersTabs()
 
 // indexes 0-8 are for infomations about a character, 11-13 are for save, return and edit
 
@@ -38,7 +52,6 @@ export function closeMenu() {
 }
 
 function initializeSideMenu(): void {
-  let sideMenu = document.getElementsByClassName('side-menu')[0]
   let menuToggle = document.getElementById('menu-toggle')
   let closeMenuBtn = document.getElementById('sheet-close-btn')
   menuToggle.addEventListener('click', openMenu, false)
@@ -86,12 +99,26 @@ function initializeAccordion(): void {
       }
     })
   }
+
+  let x = accordions[i] as HTMLElement
+  x.classList.toggle('skills-toggle-active')
+  let panel = x.nextElementSibling as HTMLElement
+  panel.style.maxHeight = panel.scrollHeight + 'vh'
+}
+
+function initializePowersTabs(): void {
+  
 }
 
 function disableSection(section: Array<Element>) {
   section.forEach(element => {
     element.setAttribute('style', 'display: none')
   })
+}
+
+function changeSelectedTab(buttonTab): void {
+  let clickedElement: number = buttonTab.indexOf(buttonTab)
+
 }
 
 function changeSelectedInformations(element): void {
