@@ -209,10 +209,11 @@
 }
 
 .attribute-score-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 10vw;
+  text-align: center;
+}
+
+.attribute-score-wrapper h1 {
+  font-family: 'distant-galaxy';
 }
 
 .skills-wrapper {
@@ -239,10 +240,6 @@
 .attribute-small-input {
   /* 1 or 2 digit numbers only */
   width: 4rem;
-  background: rgba(2, 229, 245, 0.6);
-  color: white;
-  border-right: solid;
-  border-right-width: 2px;
   font-weight: bold;
   text-align: center;
   font-size: 1rem;
@@ -250,11 +247,15 @@
 
 .attribute-big {
   /* 1 digit numbers with a + or - in front (excluding 0) */
-  background: rgba(2, 229, 245, 0.6);
-  border-right: solid;
-  border-right-width: 2px;
   margin: 0.5vh 0;
   padding: 3vh;
+  font-size: xx-large;
+}
+
+.attribute-big:before {
+  content: "level";
+  font-family: 'distant-galaxy';
+  color: yellow;
 }
 
 .passive-perception-wrapper {
