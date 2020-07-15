@@ -15,6 +15,11 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/favicon-32.png') }}"
+    />
     <title>SW5e</title>
   </head>
   <body>
@@ -144,7 +149,11 @@
             <option value="temp-hp">Temp. HP</option>
           </select>
         </div>
-        <button id="submit-heal-or-damage" class="wide-button" style="display: block;"></button>
+        <button
+          id="submit-heal-or-damage"
+          class="wide-button"
+          style="display: block;"
+        ></button>
         <div class="hit-dice-wrapper">
           <h4 class="label">Hit dice:</h4>
           <input
@@ -216,7 +225,9 @@
             <button class="tabs-button" id="tabs__tech">Tech</button>
             <button class="tabs-button" id="tabs__dark">Dark side</button>
             <button class="tabs-button" id="tabs__light">Light side</button>
-            <button class="tabs-button" id="tabs__power-points">Power points</button>
+            <button class="tabs-button" id="tabs__power-points">
+              Power points
+            </button>
           </div>
 
           <div class="powers-header">
