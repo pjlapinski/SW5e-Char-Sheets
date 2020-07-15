@@ -83,6 +83,10 @@
   .sheet-section {
     margin-left: 200px !important;
   }
+
+  .sheet-delete-btn-txt {
+    width: 15vw !important;
+  }
 }
 
 /* general styling for the sheets */
@@ -99,7 +103,7 @@
 }
 
 .sheet-delete-btn-txt {
-  width: 30%;
+  width: 40%;
 }
 
 .sheet-section h2 {
