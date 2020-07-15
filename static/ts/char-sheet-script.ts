@@ -1215,6 +1215,12 @@ function exitUtilityDiv(): void {
 
 function showUtilityShortRest(): void {
   initUtilityDiv()
+  let returnBtn: HTMLInputElement = document.createElement('input')
+  returnBtn.value = 'Return'
+  returnBtn.className = 'button'
+  returnBtn.type = 'button'
+  returnBtn.addEventListener('click', exitUtilityDiv)
+  utilityDiv.appendChild(returnBtn)
   let question = document.createElement('h4')
   question.innerText = 'How many hit dice would you like to use?'
   utilityDiv.appendChild(question)
