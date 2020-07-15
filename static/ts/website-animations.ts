@@ -108,7 +108,28 @@ function initializeAccordion(): void {
 }
 
 function initializePowersTabs(): void {
-  
+  let tabsBtns = document.getElementsByClassName('tabs-button')
+  let tabs = document.getElementsByClassName('powers-header__element')
+
+  for (let i = 0; i < tabsBtns.length; i++) {
+
+      tabsBtns[i].addEventListener('click', function () {
+
+        //TODO: this can be animated using maxHeight property
+        // FIXME: tab after click must close other tabs
+
+      let panel: HTMLElement = tabs[i] as HTMLElement
+      if (panel.style.display == 'none' || panel.style.display == '') {
+        panel.style.display = 'block'
+        this.classList.add('tabs-button-active')
+        panel.classList.add('powers-header-active')
+      } else {
+        panel.style.display = 'none'
+        this.classList.remove('tabs-button-active')
+        panel.classList.remove('powers-header-active')
+      }
+    })
+  }
 }
 
 function disableSection(section: Array<Element>) {
