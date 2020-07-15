@@ -1,5 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 <div class="account-management-wrapper">
+  <div class="account-management">
     <form method="POST" action="{{ url_for('account') }}">
       {{ password_form.hidden_tag() }}
       <div class="form-element">
@@ -42,15 +43,16 @@
         {{ password_form.submit(class='button') }}
       </div>
     </form>
-  <div>
-    <a href="{{ url_for('delete_account') }}">
-      <button class="delete-btn-txt">Delete account</button>
-    </a>
-  </div>
-  <div>
-    <a href="{{ url_for('index') }}">
-      <button class="wide-btn">Return</button>
-    </a>
+    <div>
+      <a href="{{ url_for('delete_account') }}">
+        <button class="delete-btn-txt">Delete account</button>
+      </a>
+    </div>
+    <div>
+      <a href="{{ url_for('index') }}">
+        <button class="wide-btn">Return</button>
+      </a>
+    </div>
   </div>
 </div>
 {% endblock content %}

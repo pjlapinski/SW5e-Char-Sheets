@@ -10,7 +10,8 @@
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
-}
+  font-family: 'distant-galaxy';
+  }
 
 .nav-wrapper {
   padding: 1vh;
@@ -344,7 +345,7 @@
   padding: 2%;
   text-align: left;
   color: white;
-  font-weight: bold;
+  font-weight: lighter;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
@@ -353,7 +354,7 @@
 .skills-toggle:after {
   content: '\002B';
   color: #777;
-  font-weight: bold;
+  font-weight: lighter;
   float: right;
   margin-left: 5px;
 }

@@ -98,12 +98,13 @@ function initializeAccordion(): void {
         panel.style.maxHeight = panel.scrollHeight + 'vh'
       }
     })
-  }
 
-  let x = accordions[i] as HTMLElement
-  x.classList.toggle('skills-toggle-active')
-  let panel = x.nextElementSibling as HTMLElement
-  panel.style.maxHeight = panel.scrollHeight + 'vh'
+    // FIXME: it is working but not making toggle big
+    // let toggle = accordions[i] as HTMLElement
+    // let panelAfterToggle = toggle.nextElementSibling as HTMLElement
+    // panelAfterToggle.style.maxHeight = panelAfterToggle.scrollHeight + 'vh'
+    // toggle.classList.toggle('skills-toggle-active')
+  }
 }
 
 function initializePowersTabs(): void {

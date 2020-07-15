@@ -12,6 +12,11 @@ body {
     color: rgb(255, 255, 255);
 }
 
+@font-face {
+    font-family: distant-galaxy;
+    src: url(/static/fonts/distant_galaxy/SFDistantGalaxy.ttf);
+}
+
 input,
 textarea,
 select {
@@ -28,7 +33,6 @@ option {
 }
 
 button, .input-button, .button {
-    font-weight: bold;
     font-size: medium;
     background: black;
     padding: 2vh;
@@ -39,6 +43,7 @@ button, .input-button, .button {
     border-width: 1px;
     transition: ease-in 0.2s;
     cursor: pointer;
+    font-family: 'distant-galaxy';
 }
 
 .header-buttons-wrapper > button, .input-button, .button {
@@ -106,16 +111,24 @@ textarea {
 
 .header-title {
     padding: 10px;
-    font-weight: bold;
+    font-family: 'distant-galaxy';
     font-size: xx-large;
+    color: #eeff01;
 }
 
 .header-buttons-wrapper {
     text-align: right;
 }
 
-.main-content-wrapper, .account-management-wrapper {
+.main-content-wrapper, .account-management {
     padding: 10%;
+    text-align: center;
+}
+
+.main-content-wrapper > h1 {
+    font-family: 'distant-galaxy';
+    font-weight: lighter;
+    color: #eeff01;
 }
 
 .error-div {
@@ -168,6 +181,7 @@ textarea {
     font-size: smaller;
     font-weight: lighter;
     border: none;
+    font-family: 'Roboto', sans-serif;
 }
 
 @-webkit-keyframes animatetop {
@@ -183,6 +197,10 @@ textarea {
 .blurred-element {
     filter: blur(8px);
     -webkit-filter: blur(8px);
+}
+
+label {
+    font-family: 'distant-galaxy';
 }
 
 /* big screens */
@@ -205,6 +223,10 @@ textarea {
         border-style: 1px solid;
         color: #bd0000;
     }
+
+    .account-management {
+        width: 50%;
+    }
 }
 
 /* small screens */
@@ -223,7 +245,7 @@ textarea {
 
 a {
     text-decoration: none;
-    color: white;
+    color: #42D6CA;
     cursor: pointer;
 }
 
@@ -232,14 +254,16 @@ ul#sheet-links {
 }
 
 .sheet-link {
-    font-size: 2vw;
+    font-size: 3vw;
+    font-family: 'distant-galaxy';
 }
 
 .delete-btn {
-    font-size: 2vw;
+    font-size: 3vw;
     cursor: pointer;
     transition: 1s;
     float: right;
+    font-family: 'Roboto', sans-serif;
 }
 
 .delete-btn:hover, .delete-btn:active {
@@ -261,6 +285,8 @@ ul#sheet-links {
 
 .label {
     margin-right: 4px;
+    font-weight: lighter;
+    font-family: 'distant-galaxy';
 }
 
 .form-element > * {
@@ -268,7 +294,13 @@ ul#sheet-links {
     width: 100%;
 }
 
+.account-management {
+    text-align: center;
+    display: inline-block;
+}
+
 .account-management-wrapper {
+    width: 100%;
     text-align: center;
 }
 
