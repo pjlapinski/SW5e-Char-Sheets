@@ -7858,17 +7858,46 @@
         "damageDieType": 4,
         "properties": [
             "Dexterity 15",
-            "Double (2d4 kinetic)",
+            "Double (2d4 energy)",
             "heavy",
             "reach",
             "two-handed"
         ],
         "propertiesMap": {
             "Dexterity": "Dexterity 15",
-            "Double": "Double (2d4 kinetic)",
+            "Double": "Double (2d4 energy)",
             "Heavy": "heavy",
             "Reach": "reach",
             "Two-Handed": "two-handed"
+        },
+        "modes": [],
+        "ac": null,
+        "strengthRequirement": null,
+        "stealthDisadvantage": false
+    },
+    {
+        "name": "Disguised blade",
+        "description": null,
+        "cost": 200,
+        "weight": "1",
+        "equipmentCategory": "Weapon",
+        "damageNumberOfDice": 1,
+        "damageType": "Kinetic",
+        "damageDieModifier": 0,
+        "weaponClassification": "MartialVibroweapon",
+        "armorClassification": "Unknown",
+        "damageDieType": 4,
+        "properties": [
+            "Disarming",
+            "disguised",
+            "finesse",
+            "light"
+        ],
+        "propertiesMap": {
+            "Disarming": "Disarming",
+            "Disguised": "disguised",
+            "Finesse": "finesse",
+            "Light": "light"
         },
         "modes": [],
         "ac": null,
@@ -7886,7 +7915,7 @@
         "damageDieModifier": 0,
         "weaponClassification": "MartialBlaster",
         "armorClassification": "Unknown",
-        "damageDieType": 6,
+        "damageDieType": 4,
         "properties": [
             "Ammunition (range 40/160)",
             "keen 1",
@@ -7943,11 +7972,13 @@
         "damageDieType": 8,
         "properties": [
             "Dexterity 13",
+            "dire 1",
             "versatile (1d10)",
             "vicious 1"
         ],
         "propertiesMap": {
             "Dexterity": "Dexterity 13",
+            "Dire": "dire 1",
             "Versatile": "versatile (1d10)",
             "Vicious": "vicious 1"
         },
@@ -8141,6 +8172,31 @@
         "stealthDisadvantage": false
     },
     {
+        "name": "Shock whip",
+        "description": null,
+        "cost": 500,
+        "weight": "3",
+        "equipmentCategory": "Weapon",
+        "damageNumberOfDice": 1,
+        "damageType": "Kinetic",
+        "damageDieModifier": 0,
+        "weaponClassification": "MartialVibroweapon",
+        "armorClassification": "Unknown",
+        "damageDieType": 4,
+        "properties": [
+            "Reach",
+            "shocking 13"
+        ],
+        "propertiesMap": {
+            "Reach": "Reach",
+            "Shocking": "shocking 13"
+        },
+        "modes": [],
+        "ac": null,
+        "strengthRequirement": null,
+        "stealthDisadvantage": false
+    },
+    {
         "name": "Vibrobattleaxe",
         "description": null,
         "cost": 1200,
@@ -8174,7 +8230,7 @@
         "weight": "15",
         "equipmentCategory": "Weapon",
         "damageNumberOfDice": 1,
-        "damageType": "Energy",
+        "damageType": "Kinetic",
         "damageDieModifier": 0,
         "weaponClassification": "MartialVibroweapon",
         "armorClassification": "Unknown",
