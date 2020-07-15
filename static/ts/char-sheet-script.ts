@@ -1202,6 +1202,8 @@ function initUtilityDiv(): void {
   }
   utilityDiv.style.display = 'block'
   document.getElementById('menu-toggle').style.display = 'none'
+  if (window.outerWidth > 600)
+    document.getElementById('sheet-side-menu').style.width = '0'
 }
 
 function exitUtilityDiv(): void {
@@ -1209,7 +1211,9 @@ function exitUtilityDiv(): void {
   let sections = document.getElementsByClassName('sheet-section')
   let prev = sections[previousSection] as HTMLElement
   prev.style.display = 'block'
-  document.getElementById('menu-toggle').style.display = 'block'
+  if (window.outerWidth > 600)
+    document.getElementById('sheet-side-menu').style.width = '250px'
+  else document.getElementById('menu-toggle').style.display = 'block'
   update()
 }
 

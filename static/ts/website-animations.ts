@@ -28,8 +28,8 @@ let powersTabs: Array<Element> = Array.from(
 let previouslyClickedElement: number = 0
 let isEditModeActive: Boolean = false
 
-initializeSideMenu()
 initializeAccordion()
+initializeSideMenu()
 initializePowersTabs()
 
 // indexes 0-8 are for infomations about a character, 11-13 are for save, return and edit
@@ -46,8 +46,8 @@ function openMenu() {
 
 export function closeMenu() {
   if (window.outerWidth < 600) {
-  document.getElementById('menu-toggle').style.display = 'block'
-  document.getElementById('sheet-side-menu').style.width = '0'
+    document.getElementById('menu-toggle').style.display = 'block'
+    document.getElementById('sheet-side-menu').style.width = '0'
   }
 }
 
@@ -69,11 +69,12 @@ function initializeSideMenu(): void {
 
   window.onmouseup = function (event) {
     if (
-      (!event.target.closest('.side-menu') &&
+      !event.target.closest('.side-menu') &&
       document.getElementById('sheet-side-menu').offsetWidth > 0 &&
-      !event.target.closest('.nav-wrapper')) && window.outerWidth < 600
+      !event.target.closest('.nav-wrapper') &&
+      window.outerWidth < 600
     ) {
-      closeMenu();
+      closeMenu()
     }
   }
 
@@ -86,12 +87,11 @@ function initializeSideMenu(): void {
 
 function initializeAccordion(): void {
   let accordions = document.getElementsByClassName('skills-toggle')
-  let i: number
 
-  for (i = 0; i < accordions.length; i++) {
-    accordions[i].addEventListener('click', function () {
-      this.classList.toggle('skills-toggle-active')
-      let panel = this.nextElementSibling
+  for (let i = 0; i < accordions.length; i++) {
+    accordions[i].addEventListener('click', () => {
+      accordions[i].classList.toggle('skills-toggle-active')
+      let panel = accordions[i].nextElementSibling as HTMLElement
       if (panel.style.maxHeight) {
         panel.style.maxHeight = null
       } else {
@@ -99,8 +99,8 @@ function initializeAccordion(): void {
       }
     })
 
-    // FIXME: it is working but not making toggle big
-    // let toggle = accordions[i] as HTMLElement
+    let toggle = accordions[i] as HTMLElement
+    toggle.click()
     // let panelAfterToggle = toggle.nextElementSibling as HTMLElement
     // panelAfterToggle.style.maxHeight = panelAfterToggle.scrollHeight + 'vh'
     // toggle.classList.toggle('skills-toggle-active')
@@ -111,15 +111,24 @@ function initializePowersTabs(): void {
   let tabsBtns = document.getElementsByClassName('tabs-button')
   let tabs = document.getElementsByClassName('powers-header__element')
 
+  let tabsHtml: Array<HTMLElement> = []
+  for (let tab of tabs) {
+    tabsHtml.push(tab as HTMLElement)
+  }
+
   for (let i = 0; i < tabsBtns.length; i++) {
+    tabsBtns[i].addEventListener('click', function () {
+      //TODO: this can be animated using maxHeight property
 
-      tabsBtns[i].addEventListener('click', function () {
-
-        //TODO: this can be animated using maxHeight property
-        // FIXME: tab after click must close other tabs
-
-      let panel: HTMLElement = tabs[i] as HTMLElement
+      let panel: HTMLElement = tabsHtml[i]
       if (panel.style.display == 'none' || panel.style.display == '') {
+        for (let j = 0; j < tabsHtml.length; j++) {
+          let p = tabsHtml[j]
+          if (p != panel) {
+            p.style.display = 'none'
+            tabsBtns[j].classList.remove('tabs-button-active')
+          }
+        }
         panel.style.display = 'block'
         this.classList.add('tabs-button-active')
         panel.classList.add('powers-header-active')
@@ -140,7 +149,6 @@ function disableSection(section: Array<Element>) {
 
 function changeSelectedTab(buttonTab): void {
   let clickedElement: number = buttonTab.indexOf(buttonTab)
-
 }
 
 function changeSelectedInformations(element): void {

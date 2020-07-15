@@ -488,7 +488,6 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     alignmentLabel.innerText = 'Force Alignment:'
     alignmentDiv.appendChild(alignmentLabel)
     let alignment: HTMLElement = document.createElement('h4')
-    alignment.className = 'label'
     alignment.innerText = power.alignment
     alignmentDiv.appendChild(alignment)
     li.appendChild(alignmentDiv)
@@ -499,7 +498,6 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     castingPeriodLabel.innerText = 'Casting Period:'
     castingPeriodDiv.appendChild(castingPeriodLabel)
     let castingPeriod: HTMLElement = document.createElement('h4')
-    castingPeriod.className = 'label'
     castingPeriod.innerText = power.casting
     castingPeriodDiv.appendChild(castingPeriod)
     li.appendChild(castingPeriodDiv)
@@ -510,7 +508,6 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     rangeLabel.innerText = 'Range:'
     rangeDiv.appendChild(rangeLabel)
     let range: HTMLElement = document.createElement('h4')
-    range.className = 'label'
     range.innerText = power.range
     rangeDiv.appendChild(range)
     li.appendChild(rangeDiv)
@@ -521,7 +518,6 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     durationLabel.innerText = 'Duration:'
     durationDiv.appendChild(durationLabel)
     let duration: HTMLElement = document.createElement('h4')
-    duration.className = 'label'
     duration.innerText = power.duration
     durationDiv.appendChild(duration)
     li.appendChild(durationDiv)
@@ -739,7 +735,7 @@ export function fillEquipmentEditHTML(): void {
     li.appendChild(amountLabel)
     let amount: HTMLInputElement = document.createElement('input')
     amount.type = 'number'
-    amount.className = 'number underlined-input__number'
+    amount.className = 'number'
     amount.value = String(item.amount)
     li.appendChild(amount)
     let usesLabel: HTMLElement = document.createElement('h4')
@@ -748,7 +744,7 @@ export function fillEquipmentEditHTML(): void {
     li.appendChild(usesLabel)
     let maxUses: HTMLInputElement = document.createElement('input')
     maxUses.type = 'number'
-    maxUses.className = 'number underlined-input__number'
+    maxUses.className = 'number'
     maxUses.value = String(item.usesMax)
     li.appendChild(maxUses)
     let notesLabel: HTMLElement = document.createElement('h4')
@@ -895,66 +891,51 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     name.type = 'text'
     name.value = power.name
     li.appendChild(name)
-    let alignmentDiv: HTMLElement = document.createElement('div')
-    alignmentDiv.className = 'power__single-line'
     let alignmentLabel: HTMLElement = document.createElement('h4')
     alignmentLabel.className = 'label'
     alignmentLabel.innerText = 'Force Alignment:'
-    alignmentDiv.appendChild(alignmentLabel)
+    li.appendChild(alignmentLabel)
     let alignment: HTMLInputElement = document.createElement('input')
     alignment.className = 'text'
     alignment.type = 'text'
     alignment.value = power.alignment
-    alignmentDiv.appendChild(alignment)
-    li.appendChild(alignmentDiv)
-    let castingPeriodDiv: HTMLElement = document.createElement('div')
-    castingPeriodDiv.className = 'power__single-line'
+    li.appendChild(alignment)
     let castingPeriodLabel: HTMLElement = document.createElement('h4')
     castingPeriodLabel.className = 'label'
     castingPeriodLabel.innerText = 'Casting Period:'
-    castingPeriodDiv.appendChild(castingPeriodLabel)
+    li.appendChild(castingPeriodLabel)
     let castingPeriod: HTMLInputElement = document.createElement('input')
     castingPeriod.className = 'text'
     castingPeriod.type = 'text'
     castingPeriod.value = power.casting
-    castingPeriodDiv.appendChild(castingPeriod)
-    li.appendChild(castingPeriodDiv)
-    let rangeDiv: HTMLElement = document.createElement('div')
-    rangeDiv.className = 'power__single-line'
+    li.appendChild(castingPeriod)
     let rangeLabel: HTMLElement = document.createElement('h4')
     rangeLabel.className = 'label'
     rangeLabel.innerText = 'Range:'
-    rangeDiv.appendChild(rangeLabel)
+    li.appendChild(rangeLabel)
     let range: HTMLInputElement = document.createElement('input')
     range.className = 'text'
     range.type = 'text'
     range.value = power.range
-    rangeDiv.appendChild(range)
-    li.appendChild(rangeDiv)
-    let durationDiv: HTMLElement = document.createElement('div')
-    durationDiv.className = 'power__single-line'
+    li.appendChild(range)
     let durationLabel: HTMLElement = document.createElement('h4')
     durationLabel.className = 'label'
     durationLabel.innerText = 'Duration:'
-    durationDiv.appendChild(durationLabel)
+    li.appendChild(durationLabel)
     let duration: HTMLInputElement = document.createElement('input')
     duration.className = 'text'
     duration.type = 'text'
     duration.value = power.duration
-    durationDiv.appendChild(duration)
-    li.appendChild(durationDiv)
-    let concentrationDiv: HTMLElement = document.createElement('div')
-    concentrationDiv.className = 'power__single-line'
+    li.appendChild(duration)
     let concentrationLabel: HTMLElement = document.createElement('h4')
     concentrationLabel.className = 'label'
     concentrationLabel.innerText = 'Concentration:'
-    concentrationDiv.appendChild(concentrationLabel)
+    li.appendChild(concentrationLabel)
     let concentration: HTMLInputElement = document.createElement('input')
     concentration.className = 'checkbox'
     concentration.type = 'checkbox'
     concentration.checked = power.concentration
-    concentrationDiv.appendChild(concentration)
-    li.appendChild(concentrationDiv)
+    li.appendChild(concentration)
     let descriptionLabel: HTMLElement = document.createElement('h4')
     descriptionLabel.className = 'label'
     descriptionLabel.innerText = 'Description:'

@@ -11,7 +11,7 @@
   transition: 0.4s;
   padding-top: 60px;
   font-family: 'distant-galaxy';
-  }
+}
 
 .nav-wrapper {
   padding: 1vh;
@@ -185,13 +185,10 @@
 /* styling for the part with attribute scores and skills */
 .species-wrapper,
 .class-wrapper,
+.background-wrapper,
 .alignment-wrapper,
 .combat-info-wrapper {
   display: flex;
-}
-
-.background-wrapper {
-  display: block;
 }
 
 .sheet-section h4,
