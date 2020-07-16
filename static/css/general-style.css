@@ -319,3 +319,7 @@ ul#sheet-links {
     -moz-box-shadow: 0px 0px 36px 6px #bd0000d2;
     box-shadow: 0px 0px 36px 6px #bd0000d2;
 }
+
+.checkbox {
+    background-color: #37ada4;
+}

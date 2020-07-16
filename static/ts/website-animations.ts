@@ -147,10 +147,6 @@ function disableSection(section: Array<Element>) {
   })
 }
 
-function changeSelectedTab(buttonTab): void {
-  let clickedElement: number = buttonTab.indexOf(buttonTab)
-}
-
 function changeSelectedInformations(element): void {
   let clickedElement: number = sideMenuButtons.indexOf(element)
 
