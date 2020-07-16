@@ -527,12 +527,19 @@ function fillSinglePowerLevelDisplayHTML(level: number): void {
     concentrationLabel.className = 'label'
     concentrationLabel.innerText = 'Concentration:'
     concentrationDiv.appendChild(concentrationLabel)
+    let container: HTMLElement = document.createElement('label')
+    container.className = 'checkbox-container'
+    concentrationDiv.appendChild(container)
     let concentration: HTMLInputElement = document.createElement('input')
     concentration.className = 'checkbox unclickable-checkbox'
     concentration.type = 'checkbox'
     concentration.checked = power.concentration
     concentration.disabled = true
-    concentrationDiv.appendChild(concentration)
+    container.appendChild(concentration)
+    let checkmark: HTMLElement = document.createElement('span')
+    checkmark.className = 'checkmark'
+    container.appendChild(checkmark)
+    concentrationDiv.appendChild(container)
     li.appendChild(concentrationDiv)
     let descriptionLabel: HTMLElement = document.createElement('h4')
     descriptionLabel.className = 'label'
@@ -778,29 +785,47 @@ export function fillAttacksEditHTML(): void {
     proficientLabel.className = 'label'
     proficientLabel.innerText = 'Proficient:'
     li.appendChild(proficientLabel)
+    let proficientContainer: HTMLElement = document.createElement('label')
+    proficientContainer.className = 'checkbox-container'
+    li.appendChild(proficientContainer)
     let proficient: HTMLInputElement = document.createElement('input')
     proficient.className = 'checkbox'
     proficient.type = 'checkbox'
     proficient.checked = attack.proficiency
-    li.appendChild(proficient)
+    proficientContainer.appendChild(proficient)
+    let proficientCheckmark: HTMLElement = document.createElement('span')
+    proficientCheckmark.className = 'checkmark'
+    proficientContainer.appendChild(proficientCheckmark)
     let finesseLabel: HTMLElement = document.createElement('h4')
     finesseLabel.className = 'label'
     finesseLabel.innerText = 'Finesse:'
     li.appendChild(finesseLabel)
+    let finesseContainer: HTMLElement = document.createElement('label')
+    finesseContainer.className = 'checkbox-container'
+    li.appendChild(finesseContainer)
     let finesse: HTMLInputElement = document.createElement('input')
     finesse.className = 'checkbox'
     finesse.type = 'checkbox'
     finesse.checked = attack.finesse
-    li.appendChild(finesse)
+    finesseContainer.appendChild(finesse)
+    let finesseCheckmark: HTMLElement = document.createElement('span')
+    finesseCheckmark.className = 'checkmark'
+    finesseContainer.appendChild(finesseCheckmark)
     let rangedLabel: HTMLElement = document.createElement('h4')
     rangedLabel.className = 'label'
     rangedLabel.innerText = 'Ranged:'
     li.appendChild(rangedLabel)
+    let rangedContainer: HTMLElement = document.createElement('label')
+    rangedContainer.className = 'checkbox-container'
+    li.appendChild(rangedContainer)
     let ranged: HTMLInputElement = document.createElement('input')
     ranged.className = 'checkbox'
     ranged.type = 'checkbox'
     ranged.checked = attack.ranged
-    li.appendChild(ranged)
+    rangedContainer.appendChild(ranged)
+    let rangedCheckmark: HTMLElement = document.createElement('span')
+    rangedCheckmark.className = 'checkmark'
+    rangedContainer.appendChild(rangedCheckmark)
     let dmgDiceAmountLabel: HTMLElement = document.createElement('h4')
     dmgDiceAmountLabel.className = 'label'
     dmgDiceAmountLabel.innerText = 'Damage Dice Amount:'
@@ -931,11 +956,17 @@ function fillSinglePowerLevelEditHTML(level: number): void {
     concentrationLabel.className = 'label'
     concentrationLabel.innerText = 'Concentration:'
     li.appendChild(concentrationLabel)
+    let container: HTMLElement = document.createElement('label')
+    container.className = 'checkbox-container'
+    li.appendChild(container)
     let concentration: HTMLInputElement = document.createElement('input')
     concentration.className = 'checkbox'
     concentration.type = 'checkbox'
     concentration.checked = power.concentration
-    li.appendChild(concentration)
+    container.appendChild(concentration)
+    let checkmark: HTMLElement = document.createElement('span')
+    checkmark.className = 'checkmark'
+    container.appendChild(checkmark)
     let descriptionLabel: HTMLElement = document.createElement('h4')
     descriptionLabel.className = 'label'
     descriptionLabel.innerText = 'Description:'
