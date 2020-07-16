@@ -57,7 +57,10 @@
         </div>
         <div class="modal-content form-element">
           {{ login_form.remember.label(class='modal-content') }}
-          {{ login_form.remember(class='modal-content') }}
+          <label class="checkbox-container">
+            {{ login_form.remember(class='modal-content checkbox') }}
+            <span class="checkmark"></span>
+          </label>
         </div>
         <div class="modal-content form-element">
           {{ login_form.submit(class='button') }}
