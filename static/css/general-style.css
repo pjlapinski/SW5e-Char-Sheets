@@ -46,10 +46,6 @@ button, .input-button, .button {
     font-family: 'distant-galaxy';
 }
 
-.header-buttons-wrapper > button, .input-button, .button {
-    width: 20vw;
-}
-
 .main-content-wrapper > button, .input-button, .button {
     width: 20vw;
 }
@@ -140,6 +136,7 @@ textarea {
     color: red;
     font-size: small;
 }
+
 
 /* modal boxes (login, register) */
 
@@ -320,6 +317,73 @@ ul#sheet-links {
     box-shadow: 0px 0px 36px 6px #bd0000d2;
 }
 
-.checkbox {
-    background-color: #37ada4;
+/* checkboxes */
+
+/* height for login checkbox */
+
+/* label[for=remember] + label {
+
+} */
+
+/* The switch - the box around the slider */
+.checkbox-container {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 20px;
 }
+
+  /* Hide default HTML checkbox */
+.checkbox-container input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+  /* The slider */
+.checkmark {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.checkmark:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .checkmark {
+    background-color: #42D6CA;
+}
+
+input:focus + .checkmark {
+    box-shadow: 0 0 1px #42D6CA;
+}
+
+input:checked + .checkmark:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+  /* Rounded sliders */
+/* .checkmark {
+    border-radius: 34px;
+}
+
+.checkmark:before {
+    border-radius: 50%;
+} */

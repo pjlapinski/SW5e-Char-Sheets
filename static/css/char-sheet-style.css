@@ -64,9 +64,6 @@
   .side-menu {
     padding-top: 15px;
   }
-  .side-menu div {
-    font-size: 5vw;
-  }
 
   #menu-toggle {
     display: block;
@@ -74,6 +71,10 @@
 
   .nav-wrapper {
     padding: 0.4vh;
+  }
+
+  .sheet-section, .edit-sheet-section {
+    margin-left: 1vw !important;
   }
 }
 
@@ -104,7 +105,7 @@
   margin-left: 2vw;
   margin-right: 2vw;
   margin-top: 5%;
-  padding: 5vh 10vw;
+  padding: 5vh 5vw;
 }
 
 .sheet-delete-btn-txt {
@@ -130,6 +131,14 @@
   text-align: center;
 }
 
+#hp-section div > h4:first-child, .death-saves-wrapper > h4, .bonus-wrapper > h4:first-child {
+  color: yellow;
+}
+
+.hit-dice-wrapper h4, .limited-uses-wrapper h4 {
+  padding-top: 5px;
+}
+
 /* bonuses */
 
 #bonuses-section {
@@ -148,10 +157,20 @@
   padding: 3%;
 }
 
+.bonus-wrapper input {
+  text-align: center;
+}
+
 .tab {
   display: inline-block;
   background-color: rgb(68, 68, 68);
   padding: 1%;
+}
+
+/* eq */
+
+#credits {
+  width: 150px;
 }
 
 /* sheets' content styling */
@@ -161,14 +180,11 @@
 }
 
 .underlined-input__number {
-  width: 5rem;
+  width: 3rem;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
   padding: 5px;
-  background-color: rgba(255, 0, 0, 0.459);
-  border: 1px rgb(255, 0, 0);
-  color: rgb(255, 255, 255);
 }
 
 #heal-or-damage-choice {
@@ -305,17 +321,15 @@
   width: 60vw;
 }
 
-/* FIXME: notes flowing out of the screen */
-
 #attacks-table td {
-  font-size: 16;
   width: fit-content;
   background-color: rgba(78, 78, 78, 0.828);
-  padding: 1.5vh;
+  padding: 1.5vw;
   text-align: center;
 }
 
 #attacks-table-header td {
+  font-family: 'distant-galaxy';
   font-weight: bold;
   background: #42c0d6ca;
   color: black;
@@ -399,4 +413,13 @@ li {
 
 ul {
   list-style: none;
+}
+
+#utility-section {
+  text-align: center;
+}
+
+#utility-section > input:first-child {
+  width: 40%;
+  margin-bottom: 30px;
 }
