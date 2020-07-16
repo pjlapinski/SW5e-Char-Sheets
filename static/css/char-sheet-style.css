@@ -6,7 +6,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: rgb(0, 0, 0);
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
@@ -17,7 +17,7 @@
   padding: 1vh;
   cursor: pointer;
   transition: ease-out 0.2s;
-  border: 1px #111;
+  border: 1px rgb(0, 0, 0);
   border-style: solid;
 }
 
@@ -110,6 +110,15 @@
   margin-top: 20px;
 }
 
+/* info */
+
+#character-name {
+  font-family: 'distant-galaxy';
+  font-weight: lighter;
+  font-size: xxx-large;
+  color: yellow;
+}
+
 /* hp */
 
 #hp-section-edit {
@@ -200,6 +209,8 @@
 .sheet-section input {
   margin-right: 5px;
   margin-top: 1%;
+  font-family: 'distant-galaxy';
+  font-weight: lighter;
 }
 
 .attribute-wrapper {

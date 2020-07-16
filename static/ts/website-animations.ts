@@ -158,7 +158,7 @@ function changeSelectedInformations(element): void {
     if (isEditModeActive) {
       sideMenuButtons[previouslyClickedElement].setAttribute(
         'style',
-        'background-color: #111'
+        'background-color: rgb(0, 0, 0)'
       )
       sideMenuButtons[clickedElement].setAttribute(
         'style',
@@ -176,7 +176,7 @@ function changeSelectedInformations(element): void {
     } else {
       sideMenuButtons[previouslyClickedElement].setAttribute(
         'style',
-        'background-color: #111'
+        'background-color: rgb(0, 0, 0)'
       )
       sideMenuButtons[clickedElement].setAttribute(
         'style',
@@ -202,7 +202,7 @@ function changeSelectedInformations(element): void {
       disableSection(editSheetSections)
       sideMenuButtons[clickedElement].setAttribute(
         'style',
-        'background-color: #111'
+        'background-color: rgb(0, 0, 0);'
       )
       displaySheetSections[previouslyClickedElement].setAttribute(
         'style',
@@ -218,7 +218,7 @@ function changeSelectedInformations(element): void {
       )
       sideMenuButtons[clickedElement].setAttribute(
         'style',
-        'background: rgb(105, 105, 105)'
+        'background: #42d6ca; color: black;'
       )
     }
   }
