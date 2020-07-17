@@ -82,6 +82,7 @@ const backgroundEdit = document.getElementById('background-edit');
 const alignmentEdit = document.getElementById('alignment-edit');
 const speedEdit = document.getElementById('speed-edit');
 const armorClassEdit = document.getElementById('armor-class-edit');
+const shieldEdit = document.getElementById('shield-edit');
 const armorType = document.getElementById('equipped-armor-type');
 const personalityTraitsEdit = document.getElementById('personality-traits-edit');
 const idealEdit = document.getElementById('ideal-edit');
@@ -655,6 +656,11 @@ function addBasicInfoEventListeners() {
     });
     armorClassEdit.addEventListener('change', () => {
         characterSheet.baseAc = Number(armorClassEdit.value);
+        update();
+        fillBasicInfoEditHTML();
+    });
+    shieldEdit.addEventListener('change', () => {
+        characterSheet.shieldBonus = Number(shieldEdit.value);
         update();
         fillBasicInfoEditHTML();
     });

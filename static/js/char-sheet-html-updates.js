@@ -92,6 +92,7 @@ const editBackground = (document.getElementById('background-edit'));
 const editAlignment = (document.getElementById('alignment-edit'));
 const editSpeed = (document.getElementById('speed-edit'));
 const editBaseArmorClass = (document.getElementById('armor-class-edit'));
+const editShield = (document.getElementById('shield-edit'));
 const editPersonalityTraits = (document.getElementById('personality-traits-edit'));
 const editIdeal = (document.getElementById('ideal-edit'));
 const editBond = (document.getElementById('bond-edit'));
@@ -498,6 +499,7 @@ export function fillBasicInfoEditHTML() {
     editAlignment.value = characterSheet.alignment;
     editSpeed.value = String(characterSheet.speed);
     editBaseArmorClass.value = String(characterSheet.baseAc);
+    editShield.value = String(characterSheet.shieldBonus);
     editPersonalityTraits.value = characterSheet.personalityTraits;
     editIdeal.value = characterSheet.ideal;
     editBond.value = characterSheet.bond;
