@@ -346,6 +346,10 @@
   align-items: center;
 }
 
+.powers-list-wrapper > h3:first-child {
+  margin-top: 20px;
+}
+
 .powers-header-active {
   margin-top: 20px;
   margin-bottom: 20px;
