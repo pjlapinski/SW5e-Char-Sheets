@@ -11,7 +11,7 @@
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
-  font-family: 'STARWARS';
+  font-family: 'Sigma';
 }
 
 .nav-wrapper {
@@ -23,7 +23,7 @@
 }
 
 .nav-wrapper h2 {
-  font-family: 'STARWARS';
+  font-family: 'Sigma';
   font-weight: lighter;
 }
 
@@ -127,7 +127,7 @@
 /* info */
 
 #character-name {
-  font-family: 'STARWARS';
+  font-family: 'Sigma';
   font-weight: lighter;
   font-size: xxx-large;
   color: yellow;
@@ -249,7 +249,7 @@
 .sheet-section input {
   margin-right: 5px;
   margin-top: 5px;
-  font-family: 'STARWARS';
+  font-family: 'Sigma';
   font-weight: lighter;
 }
 
@@ -264,7 +264,7 @@
 }
 
 .attribute-score-wrapper h1 {
-  font-family: 'STARWARS';
+  font-family: 'Sigma';
 }
 
 .skills-wrapper {
@@ -344,7 +344,7 @@
 }
 
 #attacks-table-header td {
-  font-family: 'STARWARS';
+  font-family: 'Sigma';
   font-weight: bold;
   background: #42c0d6ca;
   color: black;
