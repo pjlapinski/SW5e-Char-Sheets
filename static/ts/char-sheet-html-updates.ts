@@ -298,12 +298,12 @@ function fillHPInfoDisplayHTML(): void {
   let displays = ['Take', 'Heal', 'Add']
   healOrDamageSubmit.innerText = displays[healOrDamageSelect.selectedIndex]
 
-  let successes = deathSavesSucc.children
-  let failures = deathSavesFail.children
+  let successes = deathSavesSucc.getElementsByTagName('input')
+  let failures = deathSavesFail.getElementsByTagName('input')
 
   for (let i = 0; i < 3; i++) {
-    let succ = <HTMLInputElement>successes[i]
-    let fail = <HTMLInputElement>failures[i]
+    let succ = successes[i] as HTMLInputElement
+    let fail = failures[i] as HTMLInputElement
     succ.checked = i < characterSheet.deathSaves.succeeded
     fail.checked = i < characterSheet.deathSaves.failed
   }
