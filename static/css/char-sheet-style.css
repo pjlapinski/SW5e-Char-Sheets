@@ -295,12 +295,6 @@
   font-size: xx-large;
 }
 
-.attribute-big:before {
-  content: 'level';
-  font-family: 'STARWARS';
-  color: yellow;
-}
-
 .passive-perception-wrapper {
   align-self: center;
   display: flex;
