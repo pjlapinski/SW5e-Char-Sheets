@@ -4,10 +4,13 @@ let sideMenuButtons = Array.from(document.getElementsByClassName('nav-wrapper'))
 let sheetSections = Array.from(document.getElementsByClassName('sheet-section'));
 let displaySheetSections = Array.from(document.getElementsByClassName('display-sheet-section'));
 let editSheetSections = Array.from(document.getElementsByClassName('edit-sheet-section'));
+let buttonTabs = Array.from(document.getElementsByClassName('tabs-button'));
+let powersTabs = Array.from(document.getElementsByClassName('powers-header__element'));
 let previouslyClickedElement = 0;
 let isEditModeActive = false;
-initializeSideMenu();
 initializeAccordion();
+initializeSideMenu();
+initializePowersTabs();
 // indexes 0-8 are for infomations about a character, 11-13 are for save, return and edit
 function openMenu() {
     if (window.outerWidth > 600) {
@@ -26,7 +29,6 @@ export function closeMenu() {
     }
 }
 function initializeSideMenu() {
-    let sideMenu = document.getElementsByClassName('side-menu')[0];
     let menuToggle = document.getElementById('menu-toggle');
     let closeMenuBtn = document.getElementById('sheet-close-btn');
     menuToggle.addEventListener('click', openMenu, false);
@@ -37,9 +39,10 @@ function initializeSideMenu() {
         }, false);
     });
     window.onmouseup = function (event) {
-        if ((!event.target.closest('.side-menu') &&
+        if (!event.target.closest('.side-menu') &&
             document.getElementById('sheet-side-menu').offsetWidth > 0 &&
-            !event.target.closest('.nav-wrapper')) && window.outerWidth < 600) {
+            !event.target.closest('.nav-wrapper') &&
+            window.outerWidth < 600) {
             closeMenu();
         }
     };
@@ -50,16 +53,51 @@ function initializeSideMenu() {
 }
 function initializeAccordion() {
     let accordions = document.getElementsByClassName('skills-toggle');
-    let i;
-    for (i = 0; i < accordions.length; i++) {
-        accordions[i].addEventListener('click', function () {
-            this.classList.toggle('skills-toggle-active');
-            let panel = this.nextElementSibling;
+    for (let i = 0; i < accordions.length; i++) {
+        accordions[i].addEventListener('click', () => {
+            accordions[i].classList.toggle('skills-toggle-active');
+            let panel = accordions[i].nextElementSibling;
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
             }
             else {
                 panel.style.maxHeight = panel.scrollHeight + 'vh';
+            }
+        });
+        let toggle = accordions[i];
+        toggle.click();
+        // let panelAfterToggle = toggle.nextElementSibling as HTMLElement
+        // panelAfterToggle.style.maxHeight = panelAfterToggle.scrollHeight + 'vh'
+        // toggle.classList.toggle('skills-toggle-active')
+    }
+}
+function initializePowersTabs() {
+    let tabsBtns = document.getElementsByClassName('tabs-button');
+    let tabs = document.getElementsByClassName('powers-header__element');
+    let tabsHtml = [];
+    for (let tab of tabs) {
+        tabsHtml.push(tab);
+    }
+    for (let i = 0; i < tabsBtns.length; i++) {
+        tabsBtns[i].addEventListener('click', function () {
+            //TODO: this can be animated using maxHeight property
+            let panel = tabsHtml[i];
+            if (panel.style.display == 'none' || panel.style.display == '') {
+                for (let j = 0; j < tabsHtml.length; j++) {
+                    let p = tabsHtml[j];
+                    if (p != panel) {
+                        p.style.display = 'none';
+                        tabsBtns[j].classList.remove('tabs-button-active');
+                    }
+                }
+                panel.style.display = 'block';
+                this.classList.add('tabs-button-active');
+                panel.classList.add('powers-header-active');
+            }
+            else {
+                panel.style.display = 'none';
+                this.classList.remove('tabs-button-active');
+                panel.classList.remove('powers-header-active');
             }
         });
     }
@@ -73,7 +111,7 @@ function changeSelectedInformations(element) {
     let clickedElement = sideMenuButtons.indexOf(element);
     if (clickedElement < 9) {
         if (isEditModeActive) {
-            sideMenuButtons[previouslyClickedElement].setAttribute('style', 'background-color: #111');
+            sideMenuButtons[previouslyClickedElement].setAttribute('style', 'background-color: rgb(0, 0, 0)');
             sideMenuButtons[clickedElement].setAttribute('style', 'background: rgb(105, 105, 105)');
             editSheetSections[previouslyClickedElement].setAttribute('style', 'display: none');
             editSheetSections[clickedElement].setAttribute('style', 'display: block');
@@ -82,7 +120,7 @@ function changeSelectedInformations(element) {
             }
         }
         else {
-            sideMenuButtons[previouslyClickedElement].setAttribute('style', 'background-color: #111');
+            sideMenuButtons[previouslyClickedElement].setAttribute('style', 'background-color: rgb(0, 0, 0)');
             sideMenuButtons[clickedElement].setAttribute('style', 'background: rgb(105, 105, 105)');
             displaySheetSections[previouslyClickedElement].setAttribute('style', 'display: none');
             displaySheetSections[clickedElement].setAttribute('style', 'display: block');
@@ -94,7 +132,7 @@ function changeSelectedInformations(element) {
     if (clickedElement == 13) {
         if (isEditModeActive) {
             disableSection(editSheetSections);
-            sideMenuButtons[clickedElement].setAttribute('style', 'background-color: #111');
+            sideMenuButtons[clickedElement].setAttribute('style', 'background-color: rgb(0, 0, 0);');
             displaySheetSections[previouslyClickedElement].setAttribute('style', 'display: block');
             isEditModeActive = false;
         }
@@ -102,7 +140,7 @@ function changeSelectedInformations(element) {
             isEditModeActive = true;
             disableSection(displaySheetSections);
             editSheetSections[previouslyClickedElement].setAttribute('style', 'display: block');
-            sideMenuButtons[clickedElement].setAttribute('style', 'background: rgb(105, 105, 105)');
+            sideMenuButtons[clickedElement].setAttribute('style', 'background: #42d6ca; color: black;');
         }
     }
     closeMenu();

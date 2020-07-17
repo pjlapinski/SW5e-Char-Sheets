@@ -38,7 +38,7 @@
         <h2>Features</h2>
       </div>
       <div class="nav-wrapper">
-        <h2>EQ</h2>
+        <h2>Equipment</h2>
       </div>
       <div class="nav-wrapper">
         <h2>Attacks</h2>
@@ -168,15 +168,33 @@
         <div class="death-saves-wrapper">
           <h4 class="label">Successes:</h4>
           <div class="death-saves-line" id="death-saves__successes">
-            <input type="checkbox" class="checkbox" />
-            <input type="checkbox" class="checkbox" />
-            <input type="checkbox" class="checkbox" />
+            <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" />
+              <span class="checkmark"></span>
+            </label>
           </div>
           <h4 class="label">Failures:</h4>
           <div class="death-saves-line" id="death-saves__failures">
-            <input type="checkbox" class="checkbox" />
-            <input type="checkbox" class="checkbox" />
-            <input type="checkbox" class="checkbox" />
+            <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" />
+              <span class="checkmark"></span>
+            </label>
           </div>
         </div>
       </div>
@@ -233,38 +251,32 @@
           <div class="powers-header">
             <div class="powers-header__element">
               <h3 class="label">Tech powers:</h3>
-              <div class="powers-header__element__single-line">
-                <h4 class="label">Tech save DC:</h4>
-                <h4 id="tech-save-dc"></h4>
-              </div>
-              <div class="powers-header__element__single-line">
-                <h4 class="label">Tech attack bonus:</h4>
-                <h4 id="tech-attack-bonus"></h4>
-              </div>
+
+              <h4 class="label">Tech save DC:</h4>
+              <h4 id="tech-save-dc"></h4>
+
+              <h4 class="label">Tech attack bonus:</h4>
+              <h4 id="tech-attack-bonus"></h4>
             </div>
 
             <div class="powers-header__element">
               <h3 class="label">Dark side powers:</h3>
-              <div class="powers-header__element__single-line">
-                <h4 class="label">Dark side save DC:</h4>
-                <h4 id="dark-side-save-dc"></h4>
-              </div>
-              <div class="powers-header__element__single-line">
-                <h4 class="label">Dark side attack bonus:</h4>
-                <h4 id="dark-side-attack-bonus"></h4>
-              </div>
+
+              <h4 class="label">Dark side save DC:</h4>
+              <h4 id="dark-side-save-dc"></h4>
+
+              <h4 class="label">Dark side attack bonus:</h4>
+              <h4 id="dark-side-attack-bonus"></h4>
             </div>
 
             <div class="powers-header__element">
               <h3 class="label">Light side powers:</h3>
-              <div class="powers-header__element__single-line">
-                <h4 class="label">Light side save DC:</h4>
-                <h4 id="light-side-save-dc"></h4>
-              </div>
-              <div class="powers-header__element__single-line">
-                <h4 class="label">Light side attack bonus:</h4>
-                <h4 id="light-side-attack-bonus"></h4>
-              </div>
+
+              <h4 class="label">Light side save DC:</h4>
+              <h4 id="light-side-save-dc"></h4>
+
+              <h4 class="label">Light side attack bonus:</h4>
+              <h4 id="light-side-attack-bonus"></h4>
             </div>
 
             <div class="powers-header__element">
@@ -342,7 +354,7 @@
         <h4 class="label">Species:</h4>
         <input type="text" id="species-edit" class="text" />
 
-        <h4 class="label">Class & level:</h4>
+        <h4 class="label">Class, archetype & level:</h4>
         <input type="text" id="class-edit" class="text" />
         <input type="text" id="archetype-edit" class="text" />
         <input type="number" id="level-edit" class="number" />
@@ -577,27 +589,41 @@
           </div>
           <div class="skills-wrapper">
             <div class="skill" id="strength-save">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="strength-save-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
+
+              
               <h4 class="skill-score" id="strength-save-score"></h4>
               <h4 class="skill-name">
                 Saving Throw
               </h4>
             </div>
             <div class="skill" id="athletics">
-              <input
+
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="athletics-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="athletics-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
+              
               <h4 class="skill-score" id="athletics-score"></h4>
               <h4 class="skill-name">Athletics</h4>
             </div>
@@ -620,55 +646,77 @@
           </div>
           <div class="skills-wrapper">
             <div class="skill" id="dexterity-save">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="dexterity-save-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
+
               <h4 class="skill-score" id="dexterity-save-score"></h4>
               <h4 class="skill-name">
                 Saving Throw
               </h4>
             </div>
             <div class="skill" id="acrobatics">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="acrobatics-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="acrobatics-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="acrobatics-score"></h4>
               <h4 class="skill-name">Acrobatics</h4>
             </div>
             <div class="skill" id="sleight-of-hand">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="sleight-of-hand-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="sleight-of-hand-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="sleight-of-hand-score"></h4>
               <h4 class="skill-name">Sleight of Hand</h4>
             </div>
             <div class="skill" id="stealth">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="stealth-prof"
                 class="proficiency-checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="stealth-expertise"
                 class="proficiency-checkbox__expertise"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="stealth-score"></h4>
               <h4 class="skill-name">Stealth</h4>
             </div>
@@ -691,11 +739,14 @@
           </div>
           <div class="skills-wrapper">
             <div class="skill" id="constitution-save">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="constitution-save-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="constitution-save-score"></h4>
               <h4 class="skill-name">
                 Saving Throw
@@ -720,85 +771,118 @@
           </div>
           <div class="skills-wrapper">
             <div class="skill" id="intelligence-save">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="intelligence-save-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="intelligence-save-score"></h4>
               <h4 class="skill-name">
                 Saving Throw
               </h4>
             </div>
             <div class="skill" id="investigation">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="investigation-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="investigation-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="investigation-score"></h4>
               <h4 class="skill-name">
                 Investigation
               </h4>
             </div>
             <div class="skill" id="lore">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="lore-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="lore-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="lore-score"></h4>
               <h4 class="skill-name">Lore</h4>
             </div>
             <div class="skill" id="nature">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="nature-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="nature-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="nature-score"></h4>
               <h4 class="skill-name">Nature</h4>
             </div>
             <div class="skill" id="piloting">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="piloting-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="piloting-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="piloting-score"></h4>
               <h4 class="skill-name">Piloting</h4>
             </div>
             <div class="skill" id="technology">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="technology-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="technology-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="technology-score"></h4>
               <h4 class="skill-name">Technology</h4>
             </div>
@@ -821,83 +905,116 @@
           </div>
           <div class="skills-wrapper">
             <div class="skill" id="wisdom-save">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="wisdom-save-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="wisdom-save-score"></h4>
               <h4 class="skill-name">
                 Saving Throw
               </h4>
             </div>
             <div class="skill" id="animal-handling">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="animal-handling-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="animal-handling-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="animal-handling-score"></h4>
               <h4 class="skill-name">Animal handling</h4>
             </div>
             <div class="skill" id="insight">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="insight-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="insight-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="insight-score"></h4>
               <h4 class="skill-name">Insight</h4>
             </div>
             <div class="skill" id="medicine">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="medicine-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="medicine-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="medicine-score"></h4>
               <h4 class="skill-name">Medicine</h4>
             </div>
             <div class="skill" id="perception">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="perception-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="perception-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="perception-score"></h4>
               <h4 class="skill-name">Perception</h4>
             </div>
             <div class="skill" id="survival">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="survival-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="survival-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="survival-score"></h4>
               <h4 class="skill-name">Survival</h4>
             </div>
@@ -921,71 +1038,98 @@
 
           <div class="skills-wrapper">
             <div class="skill" id="charisma-save">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="charisma-save-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="charisma-save-score"></h4>
               <h4 class="skill-name">
                 Saving Throw
               </h4>
             </div>
             <div class="skill" id="deception">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="deception-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="deception-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="deception-score"></h4>
               <h4 class="skill-name">
                 Deception
               </h4>
             </div>
             <div class="skill" id="intimidation">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="intimidation-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="intimidation-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="intimidation-score"></h4>
               <h4 class="skill-name">Intimidation</h4>
             </div>
             <div class="skill" id="performance">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="performance-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="performance-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="performance-score"></h4>
               <h4 class="skill-name">Performance</h4>
             </div>
             <div class="skill" id="persuasion">
-              <input
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="persuasion-prof"
-                class="proficiency-checkbox"
+                class="proficiency-checkbox checkbox"
               />
-              <input
+              <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-container">
+                <input
                 type="checkbox"
                 id="persuasion-expertise"
-                class="proficiency-checkbox__expertise"
+                class="proficiency-checkbox__expertise checkbox"
               />
+              <span class="checkmark"></span>
+              </label>
               <h4 class="skill-score" id="persuasion-score"></h4>
               <h4 class="skill-name">Persuasion</h4>
             </div>

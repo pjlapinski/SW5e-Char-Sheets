@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 <div class="header">
-  <div class="header-title">SW5e</div>
+  <div class="header-title">SW5e character sheets</div>
   <div class="header-buttons-wrapper">
     <button id="login-button">Login</button>
     <button id="register-button">Register</button>
@@ -16,8 +16,11 @@
   <p>
     Everything is based off of the conversion created and hosted <a class="visible-a" href="https://sw5e.com/">here.</a>
   </p>
-  <div class="modal" id="login-modal">
+</div>
+
+<div class="modal" id="login-modal">
     <div class="modal-content-wrapper">
+      <div id="login-close-btn" class="modal-close-btn">&times;</div>
       <form action="{{ url_for('login') }}" method="POST">
         {{ login_form.csrf_token(id='log-csrf') }}
         <div class="modal-content form-element">
@@ -40,7 +43,7 @@
         </div>
         <div class="modal-content form-element">
           {{ login_form.password.label(class='modal-content') }}
-            {% if errors %}
+            {% if errors and origin == 'login' %}
               {% if 'password' in errors %}
                 {{ login_form.password(class='modal-content invalid-input') }}
                 {% for message in errors['password'] %}
@@ -55,7 +58,10 @@
         </div>
         <div class="modal-content form-element">
           {{ login_form.remember.label(class='modal-content') }}
-          {{ login_form.remember(class='modal-content') }}
+          <label class="checkbox-container">
+            {{ login_form.remember(class='modal-content checkbox') }}
+            <span class="checkmark"></span>
+          </label>
         </div>
         <div class="modal-content form-element">
           {{ login_form.submit(class='button') }}
@@ -65,15 +71,16 @@
         <button class="forgot-password-btn">Clouded by dark side my mind is, <b>forgot password</b> I did</button>
       </a>
     </div>
-  </div>
+</div>
 
-  <div class="modal" id="register-modal">
+<div class="modal" id="register-modal">
     <div class="modal-content-wrapper">
+      <div id="register-close-btn" class="modal-close-btn">&times;</div>
       <form action="{{ url_for('register') }}" method="POST">
         {{ register_form.csrf_token(id='reg-csrf') }}
         <div class="modal-content form-element">
           {{ register_form.username.label(class='modal-content') }}
-          {% if errors %}
+          {% if errors and origin == 'register' %}
             {% if 'username' in errors %}
               {{ register_form.username(class='modal-content invalid-input') }}
               {% for message in errors['username'] %}
@@ -81,12 +88,12 @@
               {% endfor %}
             {% else %}
               {{ register_form.username(class='modal-content input-text') }}
-            {% endif %}
-          {% else %}
-            {{ register_form.username(class='modal-content input-text') }}
           {% endif %}
-        </div>
-        <div class="modal-content form-element">
+        {% else %}
+          {{ register_form.username(class='modal-content input-text') }}
+        {% endif %}
+      </div>
+      <div class="modal-content form-element">
           {{ register_form.email.label(class='modal-content') }}
           {% if errors and origin == 'register' %}
             {% if 'email' in errors %}
@@ -96,13 +103,13 @@
               {% endfor %}
             {% else %}
               {{ register_form.email(class='modal-content input-text') }}
-            {% endif %}
-          {% else %}
-            {{ register_form.email(class='modal-content input-text') }}
           {% endif %}
-        </div>
-        <div class="modal-content form-element">
-          {{ register_form.password.label(class='modal-content') }}
+        {% else %}
+          {{ register_form.email(class='modal-content input-text') }}
+        {% endif %}
+      </div>
+      <div class="modal-content form-element">
+        {{ register_form.password.label(class='modal-content') }}
           {% if errors and origin == 'register' %}
             {% if 'password' in errors %}
               {{ register_form.password(class='modal-content invalid-input') }}
@@ -112,12 +119,12 @@
             {% else %}
               {{ register_form.password(class='modal-content input-text') }}
             {% endif %}
-          {% else %}
-            {{ register_form.password(class='modal-content input-text') }}
-          {% endif %}
-        </div>
-        <div class="modal-content form-element">
-          {{ register_form.confirm_password.label(class='modal-content') }}
+        {% else %}
+          {{ register_form.password(class='modal-content input-text') }}
+        {% endif %}
+      </div>
+      <div class="modal-content form-element">
+        {{ register_form.confirm_password.label(class='modal-content') }}
           {% if errors and origin == 'register' %}
             {% if 'confirm_password' in errors %}
               {{ register_form.confirm_password(class='modal-content invalid-input') }}
@@ -127,18 +134,21 @@
             {% else %}
               {{ register_form.confirm_password(class='modal-content input-text') }}
             {% endif %}
-          {% else %}
-            {{ register_form.confirm_password(class='modal-content input-text') }}
-          {% endif %}
-        </div>
-        <div class="modal-content form-element">
-          {{ register_form.submit(class='button') }}
-        </div>
-      </form>
-    </div>
+        {% else %}
+          {{ register_form.confirm_password(class='modal-content input-text') }}
+        {% endif %}
+      </div>
+      <div class="modal-content form-element">
+        {{ register_form.submit(class='button') }}
+      </div>
+    </form>
   </div>
 </div>
-<div class="footer">footer</div>
+
+<div class="footer">
+  <p>Background image generated <a href="http://wwwtyro.github.io/procedural.js/space/" target="_blank">here</a></p>
+  <p>Contact: sw5esheets@gmail.com</p>
+</div>
 <script
   type="module"
   src="{{ url_for('static', filename='js/home-animations.js') }}"

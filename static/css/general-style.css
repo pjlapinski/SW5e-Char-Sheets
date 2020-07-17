@@ -12,9 +12,13 @@ body {
     color: rgb(255, 255, 255);
 }
 
+@font-face {
+    font-family: distant-galaxy;
+    src: url(/static/fonts/distant_galaxy/SFDistantGalaxy.ttf);
+}
+
 input,
-textarea,
-select {
+textarea {
     padding: 10px;
     background: rgba(116, 116, 116, 0.376);
     color: white;
@@ -22,13 +26,22 @@ select {
     transition: ease-out 0.3s;
 }
 
+select {
+    padding: 4px;
+    font-weight: lighter;
+    font-family: 'distant-galaxy';
+    background: rgba(116, 116, 116, 0.376);
+    color: white;
+    border: white;
+}
+
 option {
-    background: white;
-    color: black;
+    font-family: 'distant-galaxy';
+    background-color: #3b3b3b;
+    color: white;
 }
 
 button, .input-button, .button {
-    font-weight: bold;
     font-size: medium;
     background: black;
     padding: 2vh;
@@ -39,10 +52,7 @@ button, .input-button, .button {
     border-width: 1px;
     transition: ease-in 0.2s;
     cursor: pointer;
-}
-
-.header-buttons-wrapper > button, .input-button, .button {
-    width: 20vw;
+    font-family: 'distant-galaxy';
 }
 
 .main-content-wrapper > button, .input-button, .button {
@@ -97,6 +107,8 @@ textarea {
     bottom: 0;
     position: fixed;
     left: 0;
+    color: #3b3b3b;
+    font-size: smaller;
 }
 
 .header {
@@ -106,16 +118,24 @@ textarea {
 
 .header-title {
     padding: 10px;
-    font-weight: bold;
+    font-family: 'distant-galaxy';
     font-size: xx-large;
+    color: #eeff01;
 }
 
 .header-buttons-wrapper {
     text-align: right;
 }
 
-.main-content-wrapper, .account-management-wrapper {
+.main-content-wrapper, .account-management {
     padding: 10%;
+    text-align: center;
+}
+
+.main-content-wrapper > h1 {
+    font-family: 'distant-galaxy';
+    font-weight: lighter;
+    color: #eeff01;
 }
 
 .error-div {
@@ -128,7 +148,19 @@ textarea {
     font-size: small;
 }
 
+
 /* modal boxes (login, register) */
+
+.modal-close-btn {
+    font-size: 12vw;
+    float: right;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.modal-close-btn:hover {
+    color: red;
+}
 
 .modal-content {
     width: 100%;
@@ -137,7 +169,7 @@ textarea {
 }
 
 .modal-content-wrapper {
-    padding: 5%;
+    padding: 2%;
     display: inline-block;
     width: 50%;
     border: 1px #42D6CA;
@@ -152,7 +184,7 @@ textarea {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 30vh;
+    padding-top: 15vh;
     left: 0;
     top: 0;
     width: 100%;
@@ -168,6 +200,7 @@ textarea {
     font-size: smaller;
     font-weight: lighter;
     border: none;
+    font-family: 'Roboto', sans-serif;
 }
 
 @-webkit-keyframes animatetop {
@@ -178,6 +211,15 @@ textarea {
 @keyframes animatetop {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
+}
+
+.blurred-element {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+label {
+    font-family: 'distant-galaxy';
 }
 
 /* big screens */
@@ -200,6 +242,14 @@ textarea {
         border-style: 1px solid;
         color: #bd0000;
     }
+
+    .account-management {
+        width: 50%;
+    }
+
+    .modal-close-btn {
+        font-size: 4vw;
+    }
 }
 
 /* small screens */
@@ -212,13 +262,17 @@ textarea {
     .delete-btn, .sheet-link {
         font-size: 10vw !important;
     }
+
+    select {
+        width: 47%;
+    }
 }
 
 /* profile */
 
 a {
     text-decoration: none;
-    color: white;
+    color: #42D6CA;
     cursor: pointer;
 }
 
@@ -227,14 +281,16 @@ ul#sheet-links {
 }
 
 .sheet-link {
-    font-size: 4vw;
+    font-size: 3vw;
+    font-family: 'distant-galaxy';
 }
 
 .delete-btn {
-    font-size: 6vw;
+    font-size: 3vw;
     cursor: pointer;
     transition: 1s;
     float: right;
+    font-family: 'Roboto', sans-serif;
 }
 
 .delete-btn:hover, .delete-btn:active {
@@ -256,6 +312,8 @@ ul#sheet-links {
 
 .label {
     margin-right: 4px;
+    font-weight: lighter;
+    font-family: 'distant-galaxy';
 }
 
 .form-element > * {
@@ -263,7 +321,13 @@ ul#sheet-links {
     width: 100%;
 }
 
+.account-management {
+    text-align: center;
+    display: inline-block;
+}
+
 .account-management-wrapper {
+    width: 100%;
     text-align: center;
 }
 
@@ -281,4 +345,116 @@ ul#sheet-links {
     -webkit-box-shadow: 0px 0px 36px 6px #bd0000d2;
     -moz-box-shadow: 0px 0px 36px 6px #bd0000d2;
     box-shadow: 0px 0px 36px 6px #bd0000d2;
+}
+
+/* checkboxes */
+
+.checkbox-container {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 20px;
+}
+
+.checkbox-container input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+  /* The slider */
+.checkmark {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 1px #42c0d6;
+    border-style: solid;
+}
+
+.checkmark:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 15px;
+    left: 4px;
+    bottom: 2px;
+    background-color: rgb(255, 255, 255);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input[name=remember] + .checkmark:before {
+    content: "";
+}
+
+input:checked + .checkmark {
+    background-color: #42D6CA;
+    -webkit-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    -moz-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+}
+
+input:focus + .checkmark {
+    -webkit-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    -moz-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+}
+
+input:checked + .checkmark:before {
+    background-color: rgb(0, 0, 0);
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
+}
+
+.checkmark:hover {
+    -webkit-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    -moz-box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+    box-shadow: 0px 0px 36px 6px rgba(66,192,214,0.44);
+}
+
+  /* Rounded sliders */
+.checkmark {
+    border-radius: 40px;
+}
+
+.checkmark:before {
+    border-radius: 100%;
+}
+
+/* disabled sliders */
+
+input:disabled + .checkmark {
+    background-color: #3b3b3b;
+    border-color: #3b3b3b;
+    cursor: unset;
+}
+
+input:disabled + .checkmark:before {
+    background-color: #999999;
+    bottom: 3px;
+}
+
+input:disabled + .checkmark {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+input:disabled + .checkmark {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+input:disabled + .checkmark:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }

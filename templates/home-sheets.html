@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 <div class="header">
-  <div class="header-title">SW5e</div>
+  <div class="header-title">SW5e character sheets</div>
   <div class="header-buttons-wrapper">
     <a href="{{ url_for('account') }}">
       <button>Account</button>
@@ -25,5 +25,10 @@
   <form action="{{ url_for('create_sheet') }}" method="POST">
     <button id="create-char-btn">Create a character</button>
   </form>
+</div>
+
+<div class="footer">
+  <p>Background image generated <a href="http://wwwtyro.github.io/procedural.js/space/" target="_blank">here</a></p>
+  <p>Contact: sw5esheets@gmail.com</p>
 </div>
 {% endblock content %}

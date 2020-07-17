@@ -146,7 +146,7 @@ function addProficienciesEventListeners() {
     for (let prof of proficiencyCheckboxes) {
         prof.addEventListener('change', () => {
             let input = prof;
-            let skillName = stringToCamelCase(prof.parentElement.id.replace(/-/g, ' '));
+            let skillName = stringToCamelCase(prof.parentElement.parentElement.id.replace(/-/g, ' '));
             if (input.checked)
                 characterSheet.proficiencies.push(skillName);
             else {
@@ -161,7 +161,7 @@ function addExpertiseEventListeners() {
     for (let expertise of expertiseCheckboxes) {
         expertise.addEventListener('change', () => {
             let input = expertise;
-            let skillName = stringToCamelCase(expertise.parentElement.id.replace(/-/g, ' '));
+            let skillName = stringToCamelCase(expertise.parentElement.parentElement.id.replace(/-/g, ' '));
             if (input.checked)
                 characterSheet.expertise.push(skillName);
             else {
@@ -994,13 +994,18 @@ function initUtilityDiv() {
     }
     utilityDiv.style.display = 'block';
     document.getElementById('menu-toggle').style.display = 'none';
+    if (window.outerWidth > 600)
+        document.getElementById('sheet-side-menu').style.width = '0';
 }
 function exitUtilityDiv() {
     utilityDiv.style.display = 'none';
     let sections = document.getElementsByClassName('sheet-section');
     let prev = sections[previousSection];
     prev.style.display = 'block';
-    document.getElementById('menu-toggle').style.display = 'block';
+    if (window.outerWidth > 600)
+        document.getElementById('sheet-side-menu').style.width = '250px';
+    else
+        document.getElementById('menu-toggle').style.display = 'block';
     update();
 }
 function showUtilityShortRest() {

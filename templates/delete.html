@@ -1,13 +1,15 @@
 {% extends "layout.html" %} {% block content %}
 <div class="account-management-wrapper">
-  <p><b>Are you sure you would like to delete your account? All data, 
-    every character created will share the fate of Alderaan and it will 
-    not be possible to restore it.</b></p>
-  <form method="POST" action="{{ url_for('delete_account') }}">
-    <button class="delete-btn-txt">Yes</button>
-  </form>
-  <a href="{{ url_for('index') }}">
-    <button class="wide-btn">No</button>
-  </a>
+  <div class="account-management">
+    <p><b>Are you sure you would like to delete your account? All data, 
+      every character created will share the fate of Alderaan and it will 
+      not be possible to restore it.</b></p>
+    <form method="POST" action="{{ url_for('delete_account') }}">
+      <button class="delete-btn-txt">Yes</button>
+    </form>
+    <a href="{{ url_for('index') }}">
+      <button class="wide-btn">No</button>
+    </a>
+  </div>
 </div>
 {% endblock content %}
