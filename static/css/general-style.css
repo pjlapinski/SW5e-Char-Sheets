@@ -162,7 +162,7 @@ textarea {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 30vh;
+    padding-top: 15vh;
     left: 0;
     top: 0;
     width: 100%;
@@ -357,6 +357,10 @@ ul#sheet-links {
     background-color: rgb(255, 255, 255);
     -webkit-transition: .4s;
     transition: .4s;
+}
+
+input[name=remember] + .checkmark:before {
+    content: "";
 }
 
 input:checked + .checkmark {

@@ -6,6 +6,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
   background-color: rgb(0, 0, 0);
   overflow-x: hidden;
   transition: 0.4s;
@@ -47,6 +48,7 @@
 }
 
 #menu-toggle {
+  z-index: 1;
   margin-left: 2vw;
   display: inline;
   font-size: 220%;
@@ -229,7 +231,7 @@
 .sheet-section h3,
 .sheet-section input {
   margin-right: 5px;
-  margin-top: 1%;
+  margin-top: 5px;
   font-family: 'distant-galaxy';
   font-weight: lighter;
 }
@@ -369,6 +371,10 @@
 }
 
 /* skills */
+
+#attributes-and-skills-section .skill-score {
+  margin-left: 10px;
+}
 
 .skills-toggle {
   width: 100%;
