@@ -466,7 +466,7 @@ function fillAttributesAndSkillsHTML() {
         }
         skillScoreHTML.innerText = String(getSkillMod(skill));
     }
-    passivePerception.innerText = String(getPassiveSkill('perception'));
+    passivePerception.innerText = String(getPassiveSkill('perception') + characterSheet.bonuses.passivePerception);
 }
 function fillBonusesHTML() {
     bonuses.innerHTML = '';
