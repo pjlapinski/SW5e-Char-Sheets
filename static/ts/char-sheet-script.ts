@@ -252,7 +252,7 @@ function addProficienciesEventListeners(): void {
     prof.addEventListener('change', () => {
       let input = <HTMLInputElement>prof
       let skillName = stringToCamelCase(
-        prof.parentElement.id.replace(/-/g, ' ')
+        prof.parentElement.parentElement.id.replace(/-/g, ' ')
       )
       if (input.checked) characterSheet.proficiencies.push(skillName)
       else {
@@ -269,7 +269,7 @@ function addExpertiseEventListeners(): void {
     expertise.addEventListener('change', () => {
       let input = <HTMLInputElement>expertise
       let skillName = stringToCamelCase(
-        expertise.parentElement.id.replace(/-/g, ' ')
+        expertise.parentElement.parentElement.id.replace(/-/g, ' ')
       )
       if (input.checked) characterSheet.expertise.push(skillName)
       else {
