@@ -290,9 +290,11 @@
 
 .attribute-big {
   /* 1 digit numbers with a + or - in front (excluding 0) */
-  margin: 0.5vh 0;
-  padding: 3vh;
+  margin: 0.5vh auto;
+  padding: 3vh 4vh 3vh 4vh;
   font-size: xx-large;
+  background: rgba(63, 63, 63, 0.4);
+  width: fit-content;
 }
 
 .passive-perception-wrapper {
