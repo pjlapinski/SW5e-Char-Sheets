@@ -36,7 +36,7 @@
   box-shadow: 0px 0px 36px 6px rgba(66, 192, 214, 0.44);
 }
 
-#sheet-close-btn {
+#sheet-close-btn, .modal-close-btn {
   margin-left: 39vw;
   font-size: 6vw;
   cursor: pointer;
@@ -95,6 +95,10 @@
   .sheet-delete-btn-txt {
     width: 15vw !important;
   }
+
+  #submit-heal-or-damage {
+    width: 15vw !important;
+  }
 }
 
 /* general styling for the sheets */
@@ -129,6 +133,14 @@
 
 /* hp */
 
+#hp-section {
+  padding-left: 25%;
+}
+
+#hp-section .checkbox-container, #attributes-and-skills-section .checkbox-container {
+  margin-left: 5px;
+}
+
 #hp-section-edit {
   text-align: center;
 }
@@ -139,6 +151,10 @@
 
 .hit-dice-wrapper h4, .limited-uses-wrapper h4 {
   padding-top: 5px;
+}
+
+.death-saves-line, .hit-dice-wrapper {
+  margin-bottom: 20px;
 }
 
 /* bonuses */
@@ -189,12 +205,6 @@
   padding: 5px;
 }
 
-#heal-or-damage-choice {
-  background-color: rgb(163, 163, 163);
-  font-weight: bold;
-  font-size: 1rem;
-}
-
 /* 100% NEEDED */
 #hit-dice-max::after {
   content: 'd';
@@ -212,10 +222,10 @@
 }
 
 #submit-heal-or-damage {
-  width: 100%;
+  width: 65%;
   padding: 0.5vh;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* styling for the part with attribute scores and skills */
