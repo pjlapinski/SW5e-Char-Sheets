@@ -153,13 +153,16 @@
   type="module"
   src="{{ url_for('static', filename='js/home-animations.js') }}"
 ></script>
-<script>
+<script type="module">
+  import { enableBlur } from "{{ url_for('static', filename='js/home-animations.js') }}"
   if ('{{ origin }}' === 'register') {
     let registerModal = document.getElementById('register-modal')
     registerModal.style.display = 'block'
+    enableBlur()
   } else if ('{{ origin }}' === 'login') {
     let loginModal = document.getElementById('login-modal')
     loginModal.style.display = 'block'
+    enableBlur()
   }
 </script>
 {% endblock content %}
