@@ -407,15 +407,13 @@ function updateEquipmentEventListeners() {
 function addFeaturesEventListenersOnInit() {
     addOtherProficiencyBtn.addEventListener('click', () => {
         characterSheet.otherProficiencies.push('');
-        update();
         fillFeaturesEditHTML();
-        addFeaturesEventListeners();
+        update();
     });
     addLanguageBtn.addEventListener('click', () => {
         characterSheet.languages.push('');
-        update();
         fillFeaturesEditHTML();
-        addFeaturesEventListeners();
+        update();
     });
     addFeatureBtn.addEventListener('click', () => {
         characterSheet.features.push({
@@ -425,9 +423,8 @@ function addFeaturesEventListenersOnInit() {
             usesMax: 0,
             refresh: 'none',
         });
-        update();
         fillFeaturesEditHTML();
-        addFeaturesEventListeners();
+        update();
     });
     addFeaturesEventListeners();
 }
@@ -984,6 +981,7 @@ async function getPowersKnown(level, cls, arch) {
 function update() {
     updateDisplayHTML();
     updateEquipmentEventListeners();
+    addFeaturesEventListeners()
 }
 function initUtilityDiv() {
     utilityDiv.innerHTML = '';
