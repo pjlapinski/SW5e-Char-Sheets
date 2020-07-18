@@ -430,8 +430,12 @@
 
 li {
   background: rgba(63, 63, 63, 0.4);
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px 10px 1.5rem;
   padding: 1vw;
+}
+
+li li {
+  margin-left: 0px;
 }
 
 ul {
