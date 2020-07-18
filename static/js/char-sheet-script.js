@@ -340,9 +340,8 @@ function addEquipmentEventListeners() {
             usesLeft: 0,
             usesMax: 0,
         });
-        update();
         fillEquipmentEditHTML();
-        updateEquipmentEventListeners();
+        update();
     });
     creditsEdit.addEventListener('change', () => {
         characterSheet.credits = Number(creditsEdit.value);
@@ -984,7 +983,6 @@ async function getPowersKnown(level, cls, arch) {
 // #region utility functions
 function update() {
     updateDisplayHTML();
-    addFeaturesEventListeners();
     updateEquipmentEventListeners();
 }
 function initUtilityDiv() {
