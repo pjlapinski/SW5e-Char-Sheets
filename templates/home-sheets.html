@@ -15,7 +15,7 @@
   <ul id="sheet-links">
     {% for sheet in sheets %}
     <li class="sheet-link">
-      {% if sheet[1] != '' %}
+      {% if sheet[1].strip() != '' %}
         <a href="char-sheet/{{ sheet[0] }}" class="chracter-sheet-link">{{ sheet[1] }}</a>
       {% else %}
         <a href="char-sheet/{{ sheet[0] }}" class="chracter-sheet-link">Unnamed</a>
