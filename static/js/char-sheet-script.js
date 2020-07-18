@@ -440,15 +440,13 @@ function updateOtherProficienciesEventListeners() {
         let inputs = prof.getElementsByTagName('input');
         inputs[0].addEventListener('click', () => {
             characterSheet.otherProficiencies.splice(index, 1);
-            update();
             fillFeaturesEditHTML();
-            addFeaturesEventListeners();
+            update();
         });
         inputs[1].addEventListener('change', () => {
             characterSheet.otherProficiencies[index] = inputs[1].value;
-            update();
             fillFeaturesEditHTML();
-            addFeaturesEventListeners();
+            update();
         });
     }
 }
@@ -459,15 +457,13 @@ function updateLanguagesEventListeners() {
         let inputs = lang.getElementsByTagName('input');
         inputs[0].addEventListener('click', () => {
             characterSheet.languages.splice(index, 1);
-            update();
             fillFeaturesEditHTML();
-            addFeaturesEventListeners();
+            update();
         });
         inputs[1].addEventListener('change', () => {
             characterSheet.languages[index] = inputs[1].value;
-            update();
             fillFeaturesEditHTML();
-            addFeaturesEventListeners();
+            update();
         });
     }
 }
@@ -486,9 +482,8 @@ function updateFeaturesEventListeners() {
                 value = value > 0 ? value : 0;
                 value = value <= max ? value : max;
                 characterSheet.features[index].usesLeft = value;
-                update();
                 fillFeaturesEditHTML();
-                addFeaturesEventListeners();
+                update();
             });
         }
         let select = feature.getElementsByTagName('select')[0];
@@ -498,9 +493,8 @@ function updateFeaturesEventListeners() {
             if (i === 0) {
                 inputs[i].addEventListener('click', () => {
                     characterSheet.features.splice(index, 1);
-                    update();
                     fillFeaturesEditHTML();
-                    addFeaturesEventListeners();
+                    update();
                 });
                 continue;
             }
@@ -512,24 +506,21 @@ function updateFeaturesEventListeners() {
                         inputs[i].value = '0';
                     characterSheet.features[index][fields[i]] = Number(inputs[i].value);
                 }
-                update();
                 fillFeaturesEditHTML();
-                addFeaturesEventListeners();
+                update();
             });
         }
         description.addEventListener('change', () => {
             characterSheet.features[index].description = description.value;
-            update();
             fillFeaturesEditHTML();
-            addFeaturesEventListeners();
+            update();
         });
         select.addEventListener('change', () => {
             let value = select.value;
             characterSheet.features[index].refresh =
                 value === 'none' ? value : `${value}Rest`;
-            update();
             fillFeaturesEditHTML();
-            addFeaturesEventListeners();
+            update();
         });
     }
 }
