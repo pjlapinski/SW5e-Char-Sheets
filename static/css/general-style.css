@@ -13,8 +13,8 @@ body {
 }
 
 @font-face {
-    font-family: distant-galaxy;
-    src: url(/static/fonts/distant_galaxy/SFDistantGalaxy.ttf);
+    font-family: Sigma;
+    src: url('/static/fonts/sigma_five/Sigma Five Marquee.otf');
 }
 
 input,
@@ -29,14 +29,14 @@ textarea {
 select {
     padding: 4px;
     font-weight: lighter;
-    font-family: 'distant-galaxy';
+    font-family: 'Sigma';
     background: rgba(116, 116, 116, 0.376);
     color: white;
     border: white;
 }
 
 option {
-    font-family: 'distant-galaxy';
+    font-family: 'Sigma';
     background-color: #3b3b3b;
     color: white;
 }
@@ -52,11 +52,11 @@ button, .input-button, .button {
     border-width: 1px;
     transition: ease-in 0.2s;
     cursor: pointer;
-    font-family: 'distant-galaxy';
+    font-family: 'Sigma';
 }
 
 .main-content-wrapper > button, .input-button, .button {
-    width: 20vw;
+    width: fit-content;
 }
 
 button:hover, .button:hover, .input-button:hover,
@@ -118,7 +118,7 @@ textarea {
 
 .header-title {
     padding: 10px;
-    font-family: 'distant-galaxy';
+    font-family: 'Sigma';
     font-size: xx-large;
     color: #eeff01;
 }
@@ -133,7 +133,7 @@ textarea {
 }
 
 .main-content-wrapper > h1 {
-    font-family: 'distant-galaxy';
+    font-family: 'Sigma';
     font-weight: lighter;
     color: #eeff01;
 }
@@ -219,7 +219,7 @@ textarea {
 }
 
 label {
-    font-family: 'distant-galaxy';
+    font-family: 'Sigma';
 }
 
 /* big screens */
@@ -282,7 +282,7 @@ ul#sheet-links {
 
 .sheet-link {
     font-size: 3vw;
-    font-family: 'distant-galaxy';
+    font-family: 'Sigma';
 }
 
 .delete-btn {
@@ -313,7 +313,7 @@ ul#sheet-links {
 .label {
     margin-right: 4px;
     font-weight: lighter;
-    font-family: 'distant-galaxy';
+    font-family: 'Sigma';
 }
 
 .form-element > * {

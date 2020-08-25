@@ -175,6 +175,12 @@ const editSpeed: HTMLInputElement = <HTMLInputElement>(
 const editBaseArmorClass: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('armor-class-edit')
 )
+const editArmorType: HTMLSelectElement = <HTMLSelectElement>(
+  document.getElementById('equipped-armor-type')
+)
+const editShield: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('shield-edit')
+)
 const editPersonalityTraits: HTMLInputElement = <HTMLInputElement>(
   document.getElementById('personality-traits-edit')
 )
@@ -595,7 +601,9 @@ function fillAttributesAndSkillsHTML(): void {
     }
     skillScoreHTML.innerText = String(getSkillMod(skill))
   }
-  passivePerception.innerText = String(getPassiveSkill('perception'))
+  passivePerception.innerText = String(
+    getPassiveSkill('perception') + characterSheet.bonuses.passivePerception
+  )
 }
 
 function fillBonusesHTML(): void {
@@ -629,6 +637,9 @@ export function fillBasicInfoEditHTML(): void {
   editAlignment.value = characterSheet.alignment
   editSpeed.value = String(characterSheet.speed)
   editBaseArmorClass.value = String(characterSheet.baseAc)
+  let armorTypes = ['none', 'light', 'medium', 'heavy']
+  editArmorType.selectedIndex = armorTypes.indexOf(characterSheet.armorType)
+  editShield.value = String(characterSheet.shieldBonus)
   editPersonalityTraits.value = characterSheet.personalityTraits
   editIdeal.value = characterSheet.ideal
   editBond.value = characterSheet.bond

@@ -43,7 +43,7 @@
         </div>
         <div class="modal-content form-element">
           {{ login_form.password.label(class='modal-content') }}
-            {% if errors %}
+            {% if errors and origin == 'login' %}
               {% if 'password' in errors %}
                 {{ login_form.password(class='modal-content invalid-input') }}
                 {% for message in errors['password'] %}
@@ -80,7 +80,7 @@
         {{ register_form.csrf_token(id='reg-csrf') }}
         <div class="modal-content form-element">
           {{ register_form.username.label(class='modal-content') }}
-          {% if errors %}
+          {% if errors and origin == 'register' %}
             {% if 'username' in errors %}
               {{ register_form.username(class='modal-content invalid-input') }}
               {% for message in errors['username'] %}
@@ -95,7 +95,7 @@
       </div>
       <div class="modal-content form-element">
           {{ register_form.email.label(class='modal-content') }}
-          {% if errors %}
+          {% if errors and origin == 'register' %}
             {% if 'email' in errors %}
               {{ register_form.email(class='modal-content invalid-input') }}
               {% for message in errors['email'] %}
@@ -110,7 +110,7 @@
       </div>
       <div class="modal-content form-element">
         {{ register_form.password.label(class='modal-content') }}
-          {% if errors %}
+          {% if errors and origin == 'register' %}
             {% if 'password' in errors %}
               {{ register_form.password(class='modal-content invalid-input') }}
               {% for message in errors['password'] %}
@@ -125,7 +125,7 @@
       </div>
       <div class="modal-content form-element">
         {{ register_form.confirm_password.label(class='modal-content') }}
-          {% if errors %}
+          {% if errors and origin == 'register' %}
             {% if 'confirm_password' in errors %}
               {{ register_form.confirm_password(class='modal-content invalid-input') }}
               {% for message in errors['confirm_password'] %}
@@ -153,13 +153,16 @@
   type="module"
   src="{{ url_for('static', filename='js/home-animations.js') }}"
 ></script>
-<script>
+<script type="module">
+  import { enableBlur } from "{{ url_for('static', filename='js/home-animations.js') }}"
   if ('{{ origin }}' === 'register') {
     let registerModal = document.getElementById('register-modal')
     registerModal.style.display = 'block'
+    enableBlur()
   } else if ('{{ origin }}' === 'login') {
     let loginModal = document.getElementById('login-modal')
     loginModal.style.display = 'block'
+    enableBlur()
   }
 </script>
 {% endblock content %}

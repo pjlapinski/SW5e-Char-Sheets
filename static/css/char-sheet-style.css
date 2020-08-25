@@ -11,7 +11,7 @@
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
-  font-family: 'distant-galaxy';
+  font-family: 'Sigma';
 }
 
 .nav-wrapper {
@@ -23,7 +23,7 @@
 }
 
 .nav-wrapper h2 {
-  font-family: 'distant-galaxy';
+  font-family: 'Sigma';
   font-weight: lighter;
 }
 
@@ -36,7 +36,8 @@
   box-shadow: 0px 0px 36px 6px rgba(66, 192, 214, 0.44);
 }
 
-#sheet-close-btn, .modal-close-btn {
+#sheet-close-btn,
+.modal-close-btn {
   margin-left: 39vw;
   font-size: 6vw;
   cursor: pointer;
@@ -75,7 +76,8 @@
     padding: 0.4vh;
   }
 
-  .sheet-section, .edit-sheet-section {
+  .sheet-section,
+  .edit-sheet-section {
     margin-left: 1vw !important;
   }
 }
@@ -125,7 +127,7 @@
 /* info */
 
 #character-name {
-  font-family: 'distant-galaxy';
+  font-family: 'Sigma';
   font-weight: lighter;
   font-size: xxx-large;
   color: yellow;
@@ -137,7 +139,8 @@
   padding-left: 25%;
 }
 
-#hp-section .checkbox-container, #attributes-and-skills-section .checkbox-container {
+#hp-section .checkbox-container,
+#attributes-and-skills-section .checkbox-container {
   margin-left: 5px;
 }
 
@@ -145,15 +148,19 @@
   text-align: center;
 }
 
-#hp-section div > h4:first-child, .death-saves-wrapper > h4, .bonus-wrapper > h4:first-child {
+#hp-section div > h4:first-child,
+.death-saves-wrapper > h4,
+.bonus-wrapper > h4:first-child {
   color: yellow;
 }
 
-.hit-dice-wrapper h4, .limited-uses-wrapper h4 {
+.hit-dice-wrapper h4,
+.limited-uses-wrapper h4 {
   padding-top: 5px;
 }
 
-.death-saves-line, .hit-dice-wrapper {
+.death-saves-line,
+.hit-dice-wrapper {
   margin-bottom: 20px;
 }
 
@@ -242,7 +249,7 @@
 .sheet-section input {
   margin-right: 5px;
   margin-top: 5px;
-  font-family: 'distant-galaxy';
+  font-family: 'Sigma';
   font-weight: lighter;
 }
 
@@ -257,7 +264,7 @@
 }
 
 .attribute-score-wrapper h1 {
-  font-family: 'distant-galaxy';
+  font-family: 'Sigma';
 }
 
 .skills-wrapper {
@@ -283,15 +290,11 @@
 
 .attribute-big {
   /* 1 digit numbers with a + or - in front (excluding 0) */
-  margin: 0.5vh 0;
-  padding: 3vh;
+  margin: 0.5vh auto;
+  padding: 3vh 5vh 3vh 5vh;
   font-size: xx-large;
-}
-
-.attribute-big:before {
-  content: "level";
-  font-family: 'distant-galaxy';
-  color: yellow;
+  background: rgba(63, 63, 63, 0.4);
+  width: fit-content;
 }
 
 .passive-perception-wrapper {
@@ -341,7 +344,7 @@
 }
 
 #attacks-table-header td {
-  font-family: 'distant-galaxy';
+  font-family: 'Sigma';
   font-weight: bold;
   background: #42c0d6ca;
   color: black;
@@ -429,6 +432,14 @@ li {
   background: rgba(63, 63, 63, 0.4);
   margin: 10px 0px 10px 0px;
   padding: 1vw;
+}
+
+ol li {
+  margin-left: 1.5rem;
+}
+
+li li {
+  margin-left: 0px;
 }
 
 ul {

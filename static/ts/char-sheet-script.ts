@@ -166,6 +166,9 @@ const speedEdit: HTMLInputElement = document.getElementById(
 const armorClassEdit: HTMLInputElement = document.getElementById(
   'armor-class-edit'
 ) as HTMLInputElement
+const shieldEdit: HTMLInputElement = document.getElementById(
+  'shield-edit'
+) as HTMLInputElement
 const armorType: HTMLSelectElement = document.getElementById(
   'equipped-armor-type'
 ) as HTMLSelectElement
@@ -540,16 +543,14 @@ function updateEquipmentEventListeners(): void {
 function addFeaturesEventListenersOnInit(): void {
   addOtherProficiencyBtn.addEventListener('click', () => {
     characterSheet.otherProficiencies.push('')
-    update()
     fillFeaturesEditHTML()
-    addFeaturesEventListeners()
+    update()
   })
 
   addLanguageBtn.addEventListener('click', () => {
     characterSheet.languages.push('')
-    update()
     fillFeaturesEditHTML()
-    addFeaturesEventListeners()
+    update()
   })
 
   addFeatureBtn.addEventListener('click', () => {
@@ -560,9 +561,8 @@ function addFeaturesEventListenersOnInit(): void {
       usesMax: 0,
       refresh: 'none',
     })
-    update()
     fillFeaturesEditHTML()
-    addFeaturesEventListeners()
+    update()
   })
   addFeaturesEventListeners()
 }
@@ -582,16 +582,14 @@ function updateOtherProficienciesEventListeners(): void {
 
     inputs[0].addEventListener('click', () => {
       characterSheet.otherProficiencies.splice(index, 1)
-      update()
       fillFeaturesEditHTML()
-      addFeaturesEventListeners()
+      update()
     })
 
     inputs[1].addEventListener('change', () => {
       characterSheet.otherProficiencies[index] = inputs[1].value
-      update()
       fillFeaturesEditHTML()
-      addFeaturesEventListeners()
+      update()
     })
   }
 }
@@ -605,16 +603,14 @@ function updateLanguagesEventListeners(): void {
 
     inputs[0].addEventListener('click', () => {
       characterSheet.languages.splice(index, 1)
-      update()
       fillFeaturesEditHTML()
-      addFeaturesEventListeners()
+      update()
     })
 
     inputs[1].addEventListener('change', () => {
       characterSheet.languages[index] = inputs[1].value
-      update()
       fillFeaturesEditHTML()
-      addFeaturesEventListeners()
+      update()
     })
   }
 }
@@ -640,9 +636,8 @@ function updateFeaturesEventListeners(): void {
         value = value > 0 ? value : 0
         value = value <= max ? value : max
         characterSheet.features[index].usesLeft = value
-        update()
         fillFeaturesEditHTML()
-        addFeaturesEventListeners()
+        update()
       })
     }
 
@@ -656,9 +651,8 @@ function updateFeaturesEventListeners(): void {
       if (i === 0) {
         inputs[i].addEventListener('click', () => {
           characterSheet.features.splice(index, 1)
-          update()
           fillFeaturesEditHTML()
-          addFeaturesEventListeners()
+          update()
         })
         continue
       }
@@ -669,24 +663,21 @@ function updateFeaturesEventListeners(): void {
           if (Number(inputs[i].value) < 0) inputs[i].value = '0'
           characterSheet.features[index][fields[i]] = Number(inputs[i].value)
         }
-        update()
         fillFeaturesEditHTML()
-        addFeaturesEventListeners()
+        update()
       })
     }
     description.addEventListener('change', () => {
       characterSheet.features[index].description = description.value
-      update()
       fillFeaturesEditHTML()
-      addFeaturesEventListeners()
+      update()
     })
     select.addEventListener('change', () => {
       let value = select.value
       characterSheet.features[index].refresh =
         value === 'none' ? value : `${value}Rest`
-      update()
       fillFeaturesEditHTML()
-      addFeaturesEventListeners()
+      update()
     })
   }
 }
@@ -829,6 +820,12 @@ function addBasicInfoEventListeners(): void {
 
   armorClassEdit.addEventListener('change', () => {
     characterSheet.baseAc = Number(armorClassEdit.value)
+    update()
+    fillBasicInfoEditHTML()
+  })
+
+  shieldEdit.addEventListener('change', () => {
+    characterSheet.shieldBonus = Number(shieldEdit.value)
     update()
     fillBasicInfoEditHTML()
   })
@@ -1184,8 +1181,8 @@ async function getPowersKnown(level: number, cls?, arch?): Promise<number> {
 // #region utility functions
 function update(): void {
   updateDisplayHTML()
-  addFeaturesEventListeners()
   updateEquipmentEventListeners()
+  addFeaturesEventListeners()
 }
 
 function initUtilityDiv(): void {
