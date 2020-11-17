@@ -37,9 +37,9 @@ def dump_to_json(target):
     if result.ok:
         if os.path.isfile(f'./static/json/{target}.json'):
             print(f'Removing the old {target} file')
-            os.remove(f'./static/json/{target}.json')
+            os.remove(f'../static/json/{target}.json')
         result_json = result.json()
-        with open(f'./static/json/{target}.json', 'w') as f:
+        with open(f'../static/json/{target}.json', 'w') as f:
             relevant_info = clean_up_json(result_json)
             json.dump(relevant_info, f, indent=4)
         print('Done dumping json to the file')

@@ -1,4 +1,4 @@
-import { Sheet, Attack, Feature } from 'char-sheet-interfaces'
+import { Sheet, Attack, Feature } from './char-sheet-interfaces'
 import {
   updateDisplayHTML,
   fillPowersEditHTML,
@@ -701,6 +701,11 @@ function addHPInfoEventListeners(): void {
 
   healOrDamageChoice.addEventListener('change', () => {
     update()
+  })
+
+  healOrDamageAmount.addEventListener('change', () => {
+    if (Number(healOrDamageAmount.value) < 0)
+      healOrDamageAmount.value = '0'
   })
 
   submitHealOrDamage.addEventListener('click', () => {

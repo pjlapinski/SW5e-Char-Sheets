@@ -1,10 +1,10 @@
+from app.__init__ import app, db, bcrypt, APP_STATIC
 from flask import render_template, send_from_directory, request, redirect, url_for
-from models import User, Character
-from forms import RegisterForm, LoginForm, ChangePassword, RequestActivationEmail, ForgotPassword, ResetPassword
-from __init__ import app, db, bcrypt, APP_STATIC, mail
 from flask_login import login_user, current_user, logout_user
-from flask_mail import Message
 import json
+from app.models import User, Character
+from app.forms import RegisterForm, LoginForm, ChangePassword, RequestActivationEmail, ForgotPassword, ResetPassword
+from app.emails import send_activation_email, send_forgot_password_email
 
 
 @app.route('/')
@@ -75,37 +75,6 @@ def register():
         send_activation_email(user)
         return redirect(url_for('index'))
     return redirect(url_for('index', errors=form.errors, origin='register'))
-
-
-def send_activation_email(user):
-    token = user.get_token()
-    msg = Message('SW5e Sheets - Account activation',
-                  sender=app.config['MAIL_USERNAME'],
-                  recipients=[user.email])
-    # if the message is supposed to be sent with html, use
-    # msg.html = 'message content', probably read from a file, or even better, a template like our pages
-    # instead of msg.body
-    msg.body = f"""Thank you for registering an account on our website. To activate it, visit this link: 
-{url_for('activate', token=token, _external=True)}
-This link will expire within 10 minutes of you recieving this message.
-SW5e Character Sheets Team"""
-    mail.send(msg)
-
-
-def send_forgot_password_email(user):
-    token = user.get_token()
-    msg = Message('SW5e Sheets - Password reset',
-                  sender=app.config['MAIL_USERNAME'],
-                  recipients=[user.email])
-    # if the message is supposed to be sent with html, use
-    # msg.html = 'message content', probably read from a file, or even better, a template like our pages
-    # instead of msg.body
-    msg.body = f"""A password reset request has been sent. If you did not make this request, you can simply
-ignore this message. In other case, please enter this link to reset your password:
-{url_for('reset_password', token=token, _external=True)}
-This link will expire within 10 minutes of you recieving this message.
-SW5e Character Sheets Team"""
-    mail.send(msg)
 
 
 @app.route('/activation_request', methods=['GET', 'POST'])
@@ -371,7 +340,3 @@ def js_static(filename):
                                f'js/{filename}', as_attachment=True,
                                mimetype='text/javascript'
                                )
-
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')

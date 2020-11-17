@@ -1,4 +1,4 @@
-import { Feature, Attack, Item, Power, Sheet } from 'char-sheet-interfaces'
+import { Feature, Attack, Item, Power, Sheet } from './char-sheet-interfaces'
 import {
   characterSheet,
   skills,
