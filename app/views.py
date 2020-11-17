@@ -340,3 +340,8 @@ def js_static(filename):
                                f'js/{filename}', as_attachment=True,
                                mimetype='text/javascript'
                                )
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error-page.html', title='Error')
