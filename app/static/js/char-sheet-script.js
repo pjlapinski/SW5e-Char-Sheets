@@ -542,6 +542,10 @@ function addHPInfoEventListeners() {
     healOrDamageChoice.addEventListener('change', () => {
         update();
     });
+    healOrDamageAmount.addEventListener('change', () => {
+        if (Number(healOrDamageAmount.value) < 0)
+            healOrDamageAmount.value = '0';
+    });
     submitHealOrDamage.addEventListener('click', () => {
         let state = healOrDamageChoice.value;
         let amount = Number(healOrDamageAmount.value);
