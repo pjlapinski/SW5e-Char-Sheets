@@ -950,6 +950,7 @@ export function getPowerAttackBonus(type: string): number {
   if (type === 'tech') bonus += getAttributeModifier('intelligence')
   else if (type === 'light') bonus += getAttributeModifier('wisdom')
   else bonus += getAttributeModifier('charisma')
+  bonus += getProficiencyBonus(characterSheet.level)
   return bonus
 }
 
