@@ -760,6 +760,7 @@ export function getPowerAttackBonus(type) {
         bonus += getAttributeModifier('wisdom');
     else
         bonus += getAttributeModifier('charisma');
+    bonus += getProficiencyBonus(characterSheet.level);
     return bonus;
 }
 export function calculateAC() {
